@@ -15,7 +15,9 @@ Part of the onboarding process involves connecting to your RDS PostgreSQL instan
 **Note:** This example requires the ``psql`` client to be installed, as well as for the newly created RDS instance to be accessible from your local machine. 
 
 <!-- BEGIN_TF_DOCS -->
+## Requirements
 
+No requirements.
 
 ## Providers
 
@@ -42,4 +44,8 @@ Part of the onboarding process involves connecting to your RDS PostgreSQL instan
 |------|-------------|------|---------|:--------:|
 | <a name="input_dsfhub_host"></a> [dsfhub\_host](#input\_dsfhub\_host) | n/a | `any` | n/a | yes |
 | <a name="input_dsfhub_token"></a> [dsfhub\_token](#input\_dsfhub\_token) | n/a | `any` | n/a | yes |
+
+## Outputs
+
+No outputs.
 <!-- END_TF_DOCS -->
