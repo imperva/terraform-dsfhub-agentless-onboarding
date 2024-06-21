@@ -15,6 +15,7 @@ jobs:
         working-dir: modules,examples
         recursive: true
         recursive-path: .
+        recursive-include-main: false
         output-file: README.md
         output-method: inject
         git-push: "true"
