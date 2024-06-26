@@ -276,3 +276,6 @@ $ export TF_LOG=DEBUG
 $ export TF_LOG_PATH=terraform_debug.log 
 $ terraform apply -auto-approve
 ```
+
+## License
+MIT licensed. See [LICENSE](LICENSE.md) for full details.
