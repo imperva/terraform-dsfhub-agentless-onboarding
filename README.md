@@ -108,20 +108,7 @@ The following table lists the DSF versions that each module is tested and mainta
 </table>
 
 ## Version History
-<table>
-  <tr>
-   <th>Date</th>
-   <th>Version</th>
-   <th>Details</th>
-  </tr>
-
-   <tr>
-      <td>2024-06-25</td>
-      <td>1.0.0</td>
-      <td>Added Amazon RDS PostgreSQL module</td>
-   </tr>
-
-</table>
+All notable changes to the project will be documented within the [change log](CHANGELOG.md).
 
 
 ## Usage
