@@ -270,7 +270,7 @@ $ terraform apply
 ```
 
 ## Troubleshooting
-If you encounter a problem with these modules, please open a [Github issue](https://github.com/imperva/terraform-dsfhub-agentless-onboarding/issues/new) and attach the relevant terraform logs. You can gather additional debug information by setting environment variables before running your terraform commands:
+If you encounter a problem with these modules, please open an [issue](https://github.com/imperva/terraform-dsfhub-agentless-onboarding/issues/new) and attach the relevant terraform logs. You can gather additional debug information by setting environment variables before running your terraform commands:
 ```
 $ export TF_LOG=DEBUG 
 $ export TF_LOG_PATH=terraform_debug.log 
