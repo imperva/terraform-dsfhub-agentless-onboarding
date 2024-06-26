@@ -92,22 +92,10 @@ This guide references the following information and links, some of which are ava
 
 </table>
 
-## DSF Version Compatibility
-The following table lists the DSF versions that each module is tested and maintained against
-<table>
-  <tr>
-   <th>Module</th>
-   <th>DSF Versions</th>
-  </tr>
+### DSF Version Compatibility
+To see the full list of DSF versions that each module is supported for, see [DSF Version Compatability](DSF_VERSION_COMPATABILITY.md).
 
-   <tr>
-      <td>onboard-aws-rds-postgresql</td>
-      <td>4.16</td>
-   </tr>
-
-</table>
-
-## Version History
+### Version History
 All notable changes to the project will be documented within the [change log](CHANGELOG.md).
 
 
