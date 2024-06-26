@@ -41,7 +41,7 @@ variable "gateway_id" {
 }
 
 variable "profile_name" {
-  description = "The name of a profile in /install_dir/jsonar/local/credentials/.aws/credentials to use for authenticating"
+  description = "The name of a profile in /install_dir/jsonar/local/credentials/.aws/credentials to use for authentication"
   type        = string
   default     = null
 }
