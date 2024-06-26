@@ -57,10 +57,8 @@ This guide references the following information and links, some of which are ava
 
 <table>
   <tr>
-   <td><strong>Link</strong>
-   </td>
-   <td><strong>Details</strong>
-   </td>
+   <th>Link</th>
+   <th>Details</th>
   </tr>
 
    <tr>
@@ -72,16 +70,12 @@ This guide references the following information and links, some of which are ava
 
   <tr>
    <td>
-   <a href="https://registry.terraform.io/providers/imperva/dsfhub/latest">DSF Hub</a>
-
-   <a href="https://registry.terraform.io/providers/hashicorp/aws/latest">AWS</a>
-
-   <a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest">Azure</a>
-
+   <a href="https://registry.terraform.io/providers/imperva/dsfhub/latest">DSF Hub</a>,
+   <a href="https://registry.terraform.io/providers/hashicorp/aws/latest">AWS</a>,
+   <a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest">Azure</a>,
    <a href="https://registry.terraform.io/providers/hashicorp/google/latest">GCP</a>
    </td>
-   <td>Relevant provider registries
-   </td>
+   <td>Relevant provider registries</td>
   </tr>
 
   <tr>
@@ -92,7 +86,7 @@ This guide references the following information and links, some of which are ava
   </tr>
 
   <tr>
-    <td><a href="https://docs.imperva.com/bundle/v4.16-sonar-user-guide/page/84555.htm">Generating a DSF hub authorization token</a></td>
+    <td><a href="https://docs.imperva.com/bundle/v4.16-sonar-user-guide/page/84555.htm">Generating a DSF Hub Authorization Token</a></td>
     <td></td>
   </tr>
 
@@ -102,11 +96,8 @@ This guide references the following information and links, some of which are ava
 The following table lists the DSF versions that each module is tested and maintained against
 <table>
   <tr>
-   <td><strong>Module</strong>
-   </td>
-   <td><strong>DSF Versions</strong>
-   </td>
-   </td>
+   <th>Module</th>
+   <th>DSF Versions</th>
   </tr>
 
    <tr>
@@ -119,12 +110,9 @@ The following table lists the DSF versions that each module is tested and mainta
 ## Version History
 <table>
   <tr>
-   <td><strong>Date</strong>
-   </td>
-   <td><strong>Version</strong>
-   </td>
-   <td><strong>Details</strong>
-   </td>
+   <th>Date</th>
+   <th>Version</th>
+   <th>Details</th>
   </tr>
 
    <tr>
@@ -147,7 +135,7 @@ The specific module may also require additional configurations. More details can
 The following example will go through the steps for onboarding Amazon RDS for PostgreSQL, but the ideas apply to all modules.
 
 ### Generate a DSF Authorization Token
-Using the ``dsfhub`` provider will require an authorization token that has been given access to the Unified Settings Console. To generate one, follow the instructions described in https://docs.imperva.com/bundle/v4.16-sonar-user-guide/page/84555.htm.
+Using the ``dsfhub`` provider will require an authorization token that has been given access to the Unified Settings Console. To generate one, follow the instructions described in [Generating an Authorization Token for DSF Open APIs](https://docs.imperva.com/bundle/v4.16-sonar-user-guide/page/84555.htm).
 
 ### Configure the Providers
 Both the ``aws`` and ``dsfhub`` providers offer different methods for configuration. In this example, we will define authentication keys using environment variables.
@@ -173,7 +161,7 @@ AWS cloud account assets support a few different authentication mechanisms but i
 
 The ``pgaudit`` extension and ``rds_pgaudit`` role need to be created by running SQL commands against the RDS PostgreSQL instance. In this example, we'll use the ``psql`` client to connect from our local machine and run the commands. Note that this will require the instance be accessible from the local machine running terraform.
 
-The psql client can be installed simply with a package manager. On MacOS, you can run the following
+The ``psql`` client can be installed simply with a package manager. On MacOS, you can run the following
 
 ```bash
 $ brew install libpq
