@@ -278,4 +278,4 @@ $ terraform apply -auto-approve
 ```
 
 ## License
-MIT licensed. See [LICENSE](LICENSE) for full details.
+MIT licensed. See [LICENSE](https://github.com/imperva/terraform-dsfhub-agentless-onboarding/blob/main/LICENSE) for full details.
