@@ -93,10 +93,10 @@ This guide references the following information and links, some of which are ava
 </table>
 
 ### DSF Version Compatibility
-To see the full list of DSF versions that each module is supported for, see [DSF Version Compatability](DSF_VERSION_COMPATABILITY.md).
+To see the full list of DSF versions that each module is supported for, see [DSF Version Compatability](https://github.com/imperva/terraform-dsfhub-agentless-onboarding/blob/main/DSF_VERSION_COMPATABILITY.md).
 
 ### Version History
-All notable changes to the project will be documented within the [change log](CHANGELOG.md).
+All notable changes to the project will be documented within the [change log](https://github.com/imperva/terraform-dsfhub-agentless-onboarding/blob/main/CHANGELOG.md).
 
 
 ## Usage
