@@ -278,4 +278,4 @@ $ terraform apply -auto-approve
 ```
 
 ## License
-MIT licensed. See [LICENSE](LICENSE.md) for full details.
+MIT licensed. See [LICENSE](LICENSE) for full details.
