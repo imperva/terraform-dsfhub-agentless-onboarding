@@ -93,10 +93,10 @@ This guide references the following information and links, some of which are ava
 </table>
 
 ### DSF Version Compatibility
-To see the full list of DSF versions that each module is supported for, see [DSF Version Compatability](DSF_VERSION_COMPATABILITY.md).
+To see the full list of DSF versions that each module is supported for, see [DSF Version Compatability](https://github.com/imperva/terraform-dsfhub-agentless-onboarding/blob/main/DSF_VERSION_COMPATABILITY.md).
 
 ### Version History
-All notable changes to the project will be documented within the [change log](CHANGELOG.md).
+All notable changes to the project will be documented within the [change log](https://github.com/imperva/terraform-dsfhub-agentless-onboarding/blob/main/CHANGELOG.md).
 
 
 ## Usage
@@ -197,7 +197,7 @@ provider "dsfhub" {
 ################################################################################
 # 1. AWS cloud account
 module "aws-default-account-asset" {
-  source = "../../modules/dsfhub-aws-cloud-account"
+  source = "imperva/agentless-onboarding/dsfhub//modules/dsfhub-aws-cloud-account"
 
   admin_email        = local.admin_email
   asset_display_name = "aws-account-asset"
@@ -231,7 +231,7 @@ resource "terraform_data" "configure_database" {
 # Amazon RDS for PostgreSQL 16.0
 ################################################################################
 module "aws-rds-postgresql" {
-  source = "../../modules/onboard-aws-rds-postgresql"
+  source = "imperva/agentless-onboarding/dsfhub//modules/onboard-aws-rds-postgresql"
 
   aws_log_group_admin_email        = local.admin_email
   aws_log_group_audit_pull_enabled = true
@@ -278,4 +278,4 @@ $ terraform apply -auto-approve
 ```
 
 ## License
-MIT licensed. See [LICENSE](LICENSE.md) for full details.
+MIT licensed. See [LICENSE](https://github.com/imperva/terraform-dsfhub-agentless-onboarding/blob/main/LICENSE) for full details.
