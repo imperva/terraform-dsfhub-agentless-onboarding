@@ -41,6 +41,7 @@ jobs:
     - name: Terraform validate
       working-directory: ${{ matrix.directory }}
       run: |
+        terraform workspace new ${{ github.run_id }}
         terraform init
         terraform validate
 
