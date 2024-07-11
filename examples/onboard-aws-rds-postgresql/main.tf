@@ -1,5 +1,5 @@
 locals {
-  aws_region = "us-east-2"
+  aws_region           = "us-east-2"
 
   admin_email = "test@example.com"
   gateway_id  = "a1b2c3d4-e5f6-g8h9-wxyz-123456790"
