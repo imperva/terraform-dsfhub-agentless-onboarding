@@ -69,7 +69,7 @@ resource "terraform_data" "configure_database" {
 # Amazon Redshift Cluster via Table
 ################################################################################
 module "aws-redshift-cluster-1" {
-  source = "imperva/agentless-onboarding/dsfhub//modules/onboard-aws-redshift-odbc"
+  source = "../../modules/onboard-aws-redshift-odbc"
 
   aws_redshift_admin_email        = local.admin_email
   aws_redshift_audit_pull_enabled = true
@@ -111,7 +111,7 @@ module "aws-default-account-asset" {
 # Amazon Redshift Cluster via S3
 ################################################################################
 module "aws-redshift-1" {
-  source = "imperva/agentless-onboarding/dsfhub//modules/onboard-aws-redshift-s3"
+  source = "../../modules/onboard-aws-redshift-s3"
 
   aws_redshift_admin_email       = local.admin_email
   aws_redshift_gateway_id        = local.gateway_id
