@@ -48,5 +48,5 @@ variable "profile_name" {
 
 variable "region" {
   description = "Default AWS region of the account"
-  type = string 
+  type        = string
 }

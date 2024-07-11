@@ -30,7 +30,9 @@ No requirements.
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_aws-default-account-asset"></a> [aws-default-account-asset](#module\_aws-default-account-asset) | imperva/agentless-onboarding/dsfhub//modules/dsfhub-aws-cloud-account | n/a |
-| <a name="module_aws-rds-postgresql"></a> [aws-rds-postgresql](#module\_aws-rds-postgresql) | imperva/agentless-onboarding/dsfhub//modules/onboard-aws-rds-postgresql | n/a |
+| <a name="module_aws-rds-postgresql-1"></a> [aws-rds-postgresql-1](#module\_aws-rds-postgresql-1) | imperva/agentless-onboarding/dsfhub//modules/onboard-aws-rds-postgresql | n/a |
+| <a name="module_aws-rds-postgresql-2"></a> [aws-rds-postgresql-2](#module\_aws-rds-postgresql-2) | imperva/agentless-onboarding/dsfhub//modules/onboard-aws-rds-postgresql | n/a |
+| <a name="module_aws-rds-postgresql-3"></a> [aws-rds-postgresql-3](#module\_aws-rds-postgresql-3) | imperva/agentless-onboarding/dsfhub//modules/onboard-aws-rds-postgresql | n/a |
 
 ## Resources
 

@@ -1,0 +1,76 @@
+name: Pull request
+on:
+  - pull_request
+jobs:
+  collectInputs:
+    name: Collect workflow inputs
+    runs-on: ubuntu-latest
+    outputs: 
+      directories: ${{ steps.dirs.outputs.matrix }}
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        ref: ${{ github.event.pull_request.head.ref }}
+    - name: Get root directories
+      id: dirs
+      run: echo "matrix=$(ls -d {modules,examples}/* | jq -R -s -c 'split("\n")[:-1]')" >> $GITHUB_OUTPUT
+      
+  validateConfigs:
+    name: Validate terraform pull PR
+    needs: collectInputs
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        directory: ${{ fromJson(needs.collectInputs.outputs.directories) }}
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        ref: ${{ github.event.pull_request.head.ref }}
+    - name: Validate configs
+      uses: dflook/terraform-validate@v1
+      with:
+        path: ${{ matrix.directory }}
+
+  updateDocumentation:
+    name: Update READMEs
+    needs: validateConfigs
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        ref: ${{ github.event.pull_request.head.ref }}
+    - name: Render terraform docs inside the README.md and push changes back to PR branch
+      uses: terraform-docs/gh-actions@v1.2.0
+      with:
+        args: --recursive-include-main=false --read-comments=false
+        working-dir: modules,examples
+        recursive: true
+        recursive-path: .
+        output-file: README.md
+        output-method: inject
+        git-push: "true"
+
+  formatConfig:
+    name: Fix Terraform file formatting
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        ref: ${{ github.event.pull_request.head.ref }}
+    - name: Terraform fmt modules
+      uses: dflook/terraform-fmt@v1
+      with:
+        path: modules/
+    - name: Terraform fmt examples
+      uses: dflook/terraform-fmt@v1
+      with:
+        path: examples/
+    - name: Commit changes to PR
+      uses: stefanzweifel/git-auto-commit-action@v5
+      

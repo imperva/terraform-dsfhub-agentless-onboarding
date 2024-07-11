@@ -49,15 +49,15 @@ module "aws-default-account-asset" {
 # 2. Run shell script locally to create extension and role on the newly created
 #    postgres instance. 
 resource "terraform_data" "configure_database" {
-  depends_on = [module.aws-rds-postgresql]
+  depends_on = [module.aws-rds-postgresql-1]
 
   provisioner "local-exec" {
     environment = {
-      PGHOST     = module.aws-rds-postgresql.postgres-instance.address
+      PGHOST     = module.aws-rds-postgresql-1.postgres-instance.address
       PGUSER     = "admin"
       PGPASSWORD = "abcd1234"
-      PGPORT     = module.aws-rds-postgresql.postgres-instance.port
-      PGDATABASE = module.aws-rds-postgresql.postgres-instance.db_name
+      PGPORT     = module.aws-rds-postgresql-1.postgres-instance.port
+      PGDATABASE = module.aws-rds-postgresql-1.postgres-instance.db_name
     }
 
     command = "./configure_database.sh"
@@ -69,7 +69,7 @@ resource "terraform_data" "configure_database" {
 ################################################################################
 # Amazon RDS for PostgreSQL 16.0
 ################################################################################
-module "aws-rds-postgresql" {
+module "aws-rds-postgresql-1" {
   source = "imperva/agentless-onboarding/dsfhub//modules/onboard-aws-rds-postgresql"
 
   aws_log_group_admin_email        = local.admin_email
@@ -103,7 +103,7 @@ module "aws-rds-postgresql" {
 ################################################################################
 # Amazon RDS for PostgreSQL 16.0 w/ Slow Query
 ################################################################################
-module "aws-rds-postgresql" {
+module "aws-rds-postgresql-2" {
   source = "imperva/agentless-onboarding/dsfhub//modules/onboard-aws-rds-postgresql"
 
   aws_log_group_admin_email        = local.admin_email
@@ -168,7 +168,7 @@ module "aws-rds-postgresql" {
 ################################################################################
 # Amazon RDS for PostgreSQL 15.0 Aggregated
 ################################################################################
-module "aws-rds-postgresql" {
+module "aws-rds-postgresql-3" {
   source = "imperva/agentless-onboarding/dsfhub//modules/onboard-aws-rds-postgresql"
 
   aws_log_group_admin_email        = local.admin_email
