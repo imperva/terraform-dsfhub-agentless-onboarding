@@ -1,0 +1,44 @@
+name: Pull request
+on:
+  - pull_request
+jobs:
+  collectInputs:
+    name: Collect workflow inputs
+    runs-on: ubuntu-latest
+    outputs: 
+      directories: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        ref: ${{ github.event.pull_request.head.ref }}
+    - name: Get root directories
+      run: echo "matrix=$(ls -d {modules,examples}/* | jq -R -s -c 'split("\n")[:-1]')" >> $GITHUB_OUTPUT
+      
+  validatePullRequest:
+    name: Validate terraform pull PR
+    needs: collectInputs
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        directory: ${{ fromJson(needs.collectInputs.outputs.directories) }}
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        ref: ${{ github.event.pull_request.head.ref }}
+    - name: Validate configs
+      uses: dflook/terraform-validate@v1
+      with:
+        path: ${{ matrix.directory }}
+    - name: Render terraform docs inside the README.md and push changes back to PR branch
+      uses: terraform-docs/gh-actions@v1.2.0
+        with:
+          args: --recursive-include-main=false --read-comments=false
+          working-dir: modules,examples
+          recursive: true
+          recursive-path: .
+          output-file: README.md
+          output-method: inject
+          git-push: "true"
+
