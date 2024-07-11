@@ -1,5 +1,11 @@
 <!-- BEGIN_TF_DOCS -->
+## Requirements
 
+No requirements.
+
+## Providers
+
+No providers.
 
 ## Modules
 
@@ -12,6 +18,10 @@
 | <a name="module_docdb-log-group-asset"></a> [docdb-log-group-asset](#module\_docdb-log-group-asset) | ../dsfhub-aws-log-group | n/a |
 | <a name="module_docdb-param-group"></a> [docdb-param-group](#module\_docdb-param-group) | ../aws-docdb-cluster-parameter-group | n/a |
 
+## Resources
+
+No resources.
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
@@ -21,24 +31,24 @@
 | <a name="input_aws_docdb_cluster_parent_asset_id"></a> [aws\_docdb\_cluster\_parent\_asset\_id](#input\_aws\_docdb\_cluster\_parent\_asset\_id) | The asset\_id that contains this asset (e.g. Asset ID of the database sending audit events) | `string` | n/a | yes |
 | <a name="input_aws_docdb_cluster_region"></a> [aws\_docdb\_cluster\_region](#input\_aws\_docdb\_cluster\_region) | AWS region of the DocumentDB Cluster. | `string` | n/a | yes |
 | <a name="input_aws_log_group_admin_email"></a> [aws\_log\_group\_admin\_email](#input\_aws\_log\_group\_admin\_email) | The email address to notify about the asset. | `string` | n/a | yes |
-| <a name="input_aws_log_group_gateway_id"></a> [aws\_log\_group\_gateway\_id](#input\_aws\_log\_group\_gateway\_id) | Unique identifier (UID) attached to the jSonar machine controlling the asset | `string` | n/a | yes |
-| <a name="input_aws_log_group_region"></a> [aws\_log\_group\_region](#input\_aws\_log\_group\_region) | AWS region of the log group | `string` | n/a | yes |
-| <a name="input_cluster_db_subnet_group_name"></a> [cluster\_db\_subnet\_group\_name](#input\_cluster\_db\_subnet\_group\_name) | A DB subnet group to associate with this DB instance. | `string` | n/a | yes |
-| <a name="input_cluster_identifier"></a> [cluster\_identifier](#input\_cluster\_identifier) | Identifier of DocumentDB Cluster. | `string` | n/a | yes |
-| <a name="input_cluster_master_password"></a> [cluster\_master\_password](#input\_cluster\_master\_password) | Password for the master DB user. | `string` | n/a | yes |
-| <a name="input_cluster_vpc_security_group_ids"></a> [cluster\_vpc\_security\_group\_ids](#input\_cluster\_vpc\_security\_group\_ids) | List of VPC security groups to associate with the Cluster | `list(string)` | n/a | yes |
 | <a name="input_aws_log_group_audit_pull_enabled"></a> [aws\_log\_group\_audit\_pull\_enabled](#input\_aws\_log\_group\_audit\_pull\_enabled) | If true, sonargateway will collect the audit logs for this system if it can. | `bool` | `false` | no |
+| <a name="input_aws_log_group_gateway_id"></a> [aws\_log\_group\_gateway\_id](#input\_aws\_log\_group\_gateway\_id) | Unique identifier (UID) attached to the jSonar machine controlling the asset | `string` | n/a | yes |
 | <a name="input_aws_log_group_reason"></a> [aws\_log\_group\_reason](#input\_aws\_log\_group\_reason) | Used to differentiate connections that belong to the same asset | `string` | `"default"` | no |
+| <a name="input_aws_log_group_region"></a> [aws\_log\_group\_region](#input\_aws\_log\_group\_region) | AWS region of the log group | `string` | n/a | yes |
 | <a name="input_cluster_apply_immediately"></a> [cluster\_apply\_immediately](#input\_cluster\_apply\_immediately) | Specifies whether any cluster modifications are applied immediately, or during the next maintenance window. | `bool` | `true` | no |
+| <a name="input_cluster_db_subnet_group_name"></a> [cluster\_db\_subnet\_group\_name](#input\_cluster\_db\_subnet\_group\_name) | A DB subnet group to associate with this DB instance. | `string` | n/a | yes |
 | <a name="input_cluster_deletion_protection"></a> [cluster\_deletion\_protection](#input\_cluster\_deletion\_protection) | A value that indicates whether the DB cluster has deletion protection enabled. The database can't be deleted when deletion protection is enabled. | `bool` | `false` | no |
 | <a name="input_cluster_enabled_cloudwatch_logs_exports"></a> [cluster\_enabled\_cloudwatch\_logs\_exports](#input\_cluster\_enabled\_cloudwatch\_logs\_exports) | List of log types to export to CloudWatch. | `list(string)` | <pre>[<br>  "audit"<br>]</pre> | no |
 | <a name="input_cluster_engine_version"></a> [cluster\_engine\_version](#input\_cluster\_engine\_version) | Database engine version, e.g. "5.0.0" | `string` | `"5.0.0"` | no |
 | <a name="input_cluster_final_snapshot_identifier"></a> [cluster\_final\_snapshot\_identifier](#input\_cluster\_final\_snapshot\_identifier) | The name of your final DB snapshot when this DB cluster is deleted. If omitted, no final snapshot will be made. Must be provided if skip\_final\_snapshot is set to false. | `string` | `null` | no |
+| <a name="input_cluster_identifier"></a> [cluster\_identifier](#input\_cluster\_identifier) | Identifier of DocumentDB Cluster. | `string` | n/a | yes |
+| <a name="input_cluster_master_password"></a> [cluster\_master\_password](#input\_cluster\_master\_password) | Password for the master DB user. | `string` | n/a | yes |
 | <a name="input_cluster_master_username"></a> [cluster\_master\_username](#input\_cluster\_master\_username) | Master DB username. | `string` | `"docdb"` | no |
 | <a name="input_cluster_port"></a> [cluster\_port](#input\_cluster\_port) | The port on which the DB accepts connections. | `number` | `27017` | no |
 | <a name="input_cluster_skip_final_snapshot"></a> [cluster\_skip\_final\_snapshot](#input\_cluster\_skip\_final\_snapshot) | Determines whether a final DB snapshot is created before the DB cluster is deleted. If true is specified, no DB snapshot is created. If false is specified, a DB snapshot is created before the DB cluster is deleted, using the value from final\_snapshot\_identifier | `bool` | `true` | no |
 | <a name="input_cluster_storage_type"></a> [cluster\_storage\_type](#input\_cluster\_storage\_type) | The storage type to associate with the DB cluster. | `string` | `"standard"` | no |
 | <a name="input_cluster_tags"></a> [cluster\_tags](#input\_cluster\_tags) | A map of tags to assign to the DB cluster. | `map(string)` | `null` | no |
+| <a name="input_cluster_vpc_security_group_ids"></a> [cluster\_vpc\_security\_group\_ids](#input\_cluster\_vpc\_security\_group\_ids) | List of VPC security groups to associate with the Cluster | `list(string)` | n/a | yes |
 | <a name="input_instance_apply_immediately"></a> [instance\_apply\_immediately](#input\_instance\_apply\_immediately) | Specifies whether any cluster modifications are applied immediately, or during the next maintenance window. | `bool` | `true` | no |
 | <a name="input_instance_count"></a> [instance\_count](#input\_instance\_count) | The number of instances to create in the DocumentDB cluster. | `number` | `1` | no |
 | <a name="input_instance_instance_class"></a> [instance\_instance\_class](#input\_instance\_instance\_class) | The instance type of the DocumentDB cluster. Example: 'db.r5.large'. Reference: https://docs.aws.amazon.com/documentdb/latest/developerguide/db-instance-classes.html#db-instance-class-specs | `string` | `"db.r5.large"` | no |

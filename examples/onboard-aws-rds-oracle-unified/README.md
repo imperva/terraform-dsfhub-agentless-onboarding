@@ -1,5 +1,7 @@
 <!-- BEGIN_TF_DOCS -->
+## Requirements
 
+No requirements.
 
 ## Providers
 
@@ -11,7 +13,8 @@
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_aws-rds-oracle-unified"></a> [aws-rds-oracle-unified](#module\_aws-rds-oracle-unified) | ../../modules/onboard-aws-rds-oracle-unified | n/a |
+| <a name="module_aws-rds-oracle-unified-1"></a> [aws-rds-oracle-unified-1](#module\_aws-rds-oracle-unified-1) | ../../modules/onboard-aws-rds-oracle-unified | n/a |
+| <a name="module_aws-rds-oracle-unified-2"></a> [aws-rds-oracle-unified-2](#module\_aws-rds-oracle-unified-2) | ../../modules/onboard-aws-rds-oracle-unified | n/a |
 
 ## Resources
 
@@ -25,4 +28,8 @@
 |------|-------------|------|---------|:--------:|
 | <a name="input_dsfhub_host"></a> [dsfhub\_host](#input\_dsfhub\_host) | n/a | `any` | n/a | yes |
 | <a name="input_dsfhub_token"></a> [dsfhub\_token](#input\_dsfhub\_token) | n/a | `any` | n/a | yes |
+
+## Outputs
+
+No outputs.
 <!-- END_TF_DOCS -->

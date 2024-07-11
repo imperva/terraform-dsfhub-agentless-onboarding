@@ -10,14 +10,24 @@ This example creates both 'aws' and 'dsfhub' resources. More information regardi
 An AWS account asset will need to be onboarded to your DSF hub prior to using this module. The account asset will need to be granted permissions to be able to read from the newly created CloudWatch log group. 
 
 <!-- BEGIN_TF_DOCS -->
+## Requirements
 
+No requirements.
+
+## Providers
+
+No providers.
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_aws-default-account-asset"></a> [aws-default-account-asset](#module\_aws-default-account-asset) | ../../modules/dsfhub-aws-cloud-account | n/a |
-| <a name="module_aws-neptune-slowquery"></a> [aws-neptune-slowquery](#module\_aws-neptune-slowquery) | ../../modules/onboard-aws-neptune-slow-query | n/a |
+| <a name="module_aws-default-account-asset"></a> [aws-default-account-asset](#module\_aws-default-account-asset) | imperva/agentless-onboarding/dsfhub//modules/dsfhub-aws-cloud-account | n/a |
+| <a name="module_aws-neptune-slowquery-1"></a> [aws-neptune-slowquery-1](#module\_aws-neptune-slowquery-1) | ../../modules/onboard-aws-neptune-slow-query | n/a |
+
+## Resources
+
+No resources.
 
 ## Inputs
 
@@ -25,4 +35,8 @@ An AWS account asset will need to be onboarded to your DSF hub prior to using th
 |------|-------------|------|---------|:--------:|
 | <a name="input_dsfhub_host"></a> [dsfhub\_host](#input\_dsfhub\_host) | n/a | `any` | n/a | yes |
 | <a name="input_dsfhub_token"></a> [dsfhub\_token](#input\_dsfhub\_token) | n/a | `any` | n/a | yes |
+
+## Outputs
+
+No outputs.
 <!-- END_TF_DOCS -->
