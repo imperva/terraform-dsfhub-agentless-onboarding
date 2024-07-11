@@ -72,6 +72,7 @@ resource "terraform_data" "configure_database" {
 module "aws-rds-postgresql-1" {
   source = "imperva/agentless-onboarding/dsfhub//modules/onboard-aws-rds-postgresql"
 
+  OBVIOUSLY_FAKE_VAR               = "something dumb"
   aws_log_group_admin_email        = local.admin_email
   aws_log_group_audit_pull_enabled = true
   aws_log_group_gateway_id         = local.admin_email
