@@ -49,15 +49,15 @@ module "aws-default-account-asset" {
 # 2. Run shell script locally to create extension and role on the newly created
 #    postgres instance. 
 resource "terraform_data" "configure_database" {
-  depends_on = [module.aws-rds-postgresql]
+  depends_on = [module.aws-rds-postgresql-1]
 
   provisioner "local-exec" {
     environment = {
-      PGHOST     = module.aws-rds-postgresql.postgres-instance.address
+      PGHOST     = module.aws-rds-postgresql-1.postgres-instance.address
       PGUSER     = "admin"
       PGPASSWORD = "abcd1234"
-      PGPORT     = module.aws-rds-postgresql.postgres-instance.port
-      PGDATABASE = module.aws-rds-postgresql.postgres-instance.db_name
+      PGPORT     = module.aws-rds-postgresql-1.postgres-instance.port
+      PGDATABASE = module.aws-rds-postgresql-1.postgres-instance.db_name
     }
 
     command = "./configure_database.sh"
