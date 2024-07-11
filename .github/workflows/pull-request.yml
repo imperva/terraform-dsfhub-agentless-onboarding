@@ -41,6 +41,7 @@ jobs:
     - name: Terraform validate
       working-directory: ${{ matrix.directory }}
       run: |
+        if [[ -d ".terraform" ]]; then echo "removing exisiting .terraform directory"; rm -rf .terraform; fi
         terraform workspace new ${{ github.run_id }}
         terraform init
         terraform validate
