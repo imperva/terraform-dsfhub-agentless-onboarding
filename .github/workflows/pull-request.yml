@@ -39,7 +39,7 @@ jobs:
     
     # Initialize terraform and validate submodules
     - name: Terraform Init
-      run: terraform init
+      run: terraform -chdir=${{ matrix.directory }} init
 
     - name: Terraform validate
       run: terraform -chdir=${{ matrix.directory }} validate
