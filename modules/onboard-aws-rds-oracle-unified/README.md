@@ -1,3 +1,14 @@
+# onboard-aws-rds-oracle-unified
+Onboard Amazon RDS for Oracle (Unified Audit) to DSF Hub.
+
+## Notes
+There are two prerequisites for using this module:
+1. An AWS cloud account asset onboarded to your DSF Hub with permissions to pull from CloudWatch log groups.
+2. A method to create an audit pull user, as well as an audit policy on the Oracle instance.
+
+See the corresponding example for more details.
+
+
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 

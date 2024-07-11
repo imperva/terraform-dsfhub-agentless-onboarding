@@ -1,3 +1,12 @@
+# onboard-aws-redshift-odbc
+Onboard Amazon Redshift (via ODBC) to DSF Hub.
+
+## Notes
+There is one prerequisite for using this module:
+1. A method to create an audit pull user on the Redshift cluster.
+
+See the corresponding example for more details.
+
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 

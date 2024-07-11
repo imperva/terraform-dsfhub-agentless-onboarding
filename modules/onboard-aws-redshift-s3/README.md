@@ -1,3 +1,10 @@
+# onboard-aws-redshift-s3
+Onboard Amazon Redshift (via S3 Bucket) to DSF Hub.
+
+## Notes
+There is one prerequisite for using this module:
+1. An AWS cloud account asset onboarded to your DSF Hub with permissions to pull from S3 buckets.
+
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 

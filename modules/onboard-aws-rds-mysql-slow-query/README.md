@@ -1,3 +1,12 @@
+# onboard-aws-rds-mysql-slow-query
+Onboard Amazon RDS for MySQL with slow query to DSF Hub.
+
+## Notes
+There is one prerequisite for using this module:
+1. An AWS cloud account asset onboarded to your DSF Hub with permissions to pull from CloudWatch log groups.
+
+See the corresponding example for more details.
+
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
