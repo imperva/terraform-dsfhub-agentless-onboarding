@@ -38,11 +38,11 @@ jobs:
       uses: hashicorp/setup-terraform@v2
     
     # Initialize terraform and validate submodules
-    - name: Terraform Init
-      run: terraform -chdir=${{ matrix.directory }} init
-
     - name: Terraform validate
-      run: terraform -chdir=${{ matrix.directory }} validate
+      working-directory: ${{ matrix.directory }}
+      run: |
+        terraform init
+        terraform validate
 
   updateDocumentation:
     name: Update READMEs
