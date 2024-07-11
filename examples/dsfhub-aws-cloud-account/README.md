@@ -1,7 +1,7 @@
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
-  No requirements.
+No requirements.
 
 ## Providers
 
