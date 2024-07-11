@@ -1,6 +1,6 @@
 variable "admin_email" {
   description = "The email address to notify about the asset."
-  type = string
+  type        = string
 }
 
 variable "asset_display_name" {
@@ -10,13 +10,13 @@ variable "asset_display_name" {
 
 variable "asset_id" {
   description = "AWS log group ARN"
-  type = string
+  type        = string
 }
 
 variable "audit_pull_enabled" {
   description = "If true, sonargateway will collect the audit logs for this system if it can."
-  type = bool
-  default = false
+  type        = bool
+  default     = false
 }
 
 variable "audit_type" {
@@ -32,16 +32,16 @@ variable "gateway_id" {
 
 variable "reason" {
   description = "Used to differentiate connections that belong to the same asset"
-  type = string
-  default = "default"
+  type        = string
+  default     = "default"
 }
 
 variable "region" {
   description = "AWS region of the log group"
-  type = string 
+  type        = string
 }
 
 variable "parent_asset_id" {
   description = "The asset_id that contains this asset (e.g. Asset ID of the database sending audit events). The parent must either be an AWS account, or have a parent which is an AWS account."
-  type = string
+  type        = string
 }

@@ -20,7 +20,7 @@ variable "parameters" {
   type = list(
     object({
       name         = string
-      apply_method = optional(string, "immediate") 
+      apply_method = optional(string, "immediate")
       value        = any
     })
   )
