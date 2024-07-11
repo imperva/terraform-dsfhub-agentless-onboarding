@@ -13,7 +13,8 @@ jobs:
       with:
         ref: ${{ github.event.pull_request.head.ref }}
     - name: Get root directories
-      run: echo "matrix=$(ls -d {modules,examples}/* | jq -R -s -c 'split("\n")[:-1]')" >> $GITHUB_OUTPUT
+      run: ls -d {modules,examples}/* | jq -R -s -c 'split("\n")[:-1]'
+      # run: echo "matrix=$(ls -d {modules,examples}/* | jq -R -s -c 'split("\n")[:-1]')" >> $GITHUB_OUTPUT
       
   validatePullRequest:
     name: Validate terraform pull PR
