@@ -19,7 +19,7 @@ resource "aws_db_option_group" "this" {
         for_each = option.value.option_settings != null ? option.value.option_settings : []
 
         content {
-          name = option_settings.value.name
+          name  = option_settings.value.name
           value = option_settings.value.value
         }
       }

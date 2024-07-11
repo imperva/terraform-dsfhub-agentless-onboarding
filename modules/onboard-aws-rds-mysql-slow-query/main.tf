@@ -78,7 +78,7 @@ module "aws-rds-mysql-asset" {
 
 module "aws-log-group-audit-asset" {
   depends_on = [module.aws-rds-mysql-asset]
-  source = "../dsfhub-aws-log-group"
+  source     = "../dsfhub-aws-log-group"
 
   admin_email        = var.aws_log_group_admin_email
   asset_display_name = "${module.mysql-audit-log-group.this.arn}:*"

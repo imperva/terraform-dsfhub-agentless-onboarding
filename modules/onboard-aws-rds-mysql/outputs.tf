@@ -15,10 +15,10 @@ output "mysql-log-group" {
 
 output "aws-rds-mysql-asset" {
   description = "aws rds mysql asset"
-  value = module.aws-rds-mysql-asset.this
+  value       = module.aws-rds-mysql-asset.this
 }
 
 output "aws-log-group-asset" {
   description = "aws log group asset"
-  value = module.aws-log-group-asset.this
+  value       = module.aws-log-group-asset.this
 }

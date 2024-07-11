@@ -1,12 +1,12 @@
 variable "aws_log_group_admin_email" {
   description = "The email address to notify about the asset."
-  type = string
+  type        = string
 }
 
 variable "aws_log_group_audit_pull_enabled" {
   description = "If true, sonargateway will collect the audit logs for this system if it can."
-  type = bool
-  default = false
+  type        = bool
+  default     = false
 }
 
 variable "aws_log_group_gateway_id" {
@@ -16,7 +16,7 @@ variable "aws_log_group_gateway_id" {
 
 variable "aws_log_group_region" {
   description = "AWS region of the log group"
-  type = string 
+  type        = string
 }
 
 variable "aws_rds_mysql_admin_email" {
@@ -207,11 +207,11 @@ variable "option_group_options" {
       option_name = "MARIADB_AUDIT_PLUGIN"
       option_settings = [
         {
-          name = "SERVER_AUDIT_EVENTS"
+          name  = "SERVER_AUDIT_EVENTS"
           value = "CONNECT,QUERY,QUERY_DDL,QUERY_DML,QUERY_DCL"
         },
         {
-          name = "SERVER_AUDIT_EXCL_USERS"
+          name  = "SERVER_AUDIT_EXCL_USERS"
           value = "rdsadmin"
         }
       ]

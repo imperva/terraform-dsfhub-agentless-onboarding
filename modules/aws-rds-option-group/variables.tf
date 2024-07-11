@@ -23,11 +23,11 @@ variable "options" {
   description = "List of objects containing options for the DB option group."
   type = list(
     object({
-      option_name     = string
+      option_name = string
       option_settings = optional(
         list(
           object({
-            name = string
+            name  = string
             value = string
           })
         ),

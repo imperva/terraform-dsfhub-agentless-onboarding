@@ -201,11 +201,11 @@ variable "option_group_options" {
       option_name = "MARIADB_AUDIT_PLUGIN"
       option_settings = [
         {
-          name = "SERVER_AUDIT_EVENTS"
+          name  = "SERVER_AUDIT_EVENTS"
           value = "CONNECT,QUERY,QUERY_DDL,QUERY_DML,QUERY_DCL"
         },
         {
-          name = "SERVER_AUDIT_EXCL_USERS"
+          name  = "SERVER_AUDIT_EXCL_USERS"
           value = "rdsadmin"
         }
       ]
@@ -247,21 +247,21 @@ variable "parameter_group_parameters" {
   )
   default = [
     {
-      name = "slow_query_log"
+      name  = "slow_query_log"
       value = 1
     },
     {
-      name = "long_query_time"
+      name  = "long_query_time"
       value = 60
     },
     {
-      name = "log_output"
+      name  = "log_output"
       value = "FILE"
     },
     {
-      name = "log_slow_admin_statements"
+      name  = "log_slow_admin_statements"
       value = 1
-    },    
+    },
   ]
 }
 

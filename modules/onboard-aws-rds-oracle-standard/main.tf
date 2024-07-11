@@ -46,7 +46,7 @@ module "aws-rds-oracle-asset" {
 
   admin_email        = var.aws_rds_oracle_admin_email
   asset_display_name = module.oracle-instance.this.identifier
-  asset_id           = module.oracle-instance.this.arn 
+  asset_id           = module.oracle-instance.this.arn
   audit_type         = var.aws_rds_oracle_audit_type
   gateway_id         = var.aws_rds_oracle_gateway_id
   parent_asset_id    = var.aws_rds_oracle_parent_asset_id

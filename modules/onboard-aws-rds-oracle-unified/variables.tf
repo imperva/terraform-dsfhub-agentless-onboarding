@@ -96,13 +96,13 @@ variable "parameter_group_parameters" {
   )
   default = [
     {
-      name  = "audit_trail"
-      value = "DB,EXTENDED"
+      name         = "audit_trail"
+      value        = "DB,EXTENDED"
       apply_method = "pending-reboot"
     },
     {
-      name  = "audit_sys_operations"
-      value = "TRUE"
+      name         = "audit_sys_operations"
+      value        = "TRUE"
       apply_method = "pending-reboot"
     }
   ]
