@@ -33,12 +33,12 @@ jobs:
         path: ${{ matrix.directory }}
     - name: Render terraform docs inside the README.md and push changes back to PR branch
       uses: terraform-docs/gh-actions@v1.2.0
-        with:
-          args: --recursive-include-main=false --read-comments=false
-          working-dir: modules,examples
-          recursive: true
-          recursive-path: .
-          output-file: README.md
-          output-method: inject
-          git-push: "true"
-
+      with:
+        args: --recursive-include-main=false --read-comments=false
+        working-dir: modules,examples
+        recursive: true
+        recursive-path: .
+        output-file: README.md
+        output-method: inject
+        git-push: "true"
+        
