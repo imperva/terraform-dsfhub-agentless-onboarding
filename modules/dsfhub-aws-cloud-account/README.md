@@ -7,7 +7,7 @@ No requirements.
 
 | Name | Version |
 |------|---------|
-| <a name="provider_dsfhub"></a> [dsfhub](#provider\_dsfhub) | n/a |
+| <a name="provider_dsfhub"></a> [dsfhub](#provider\_dsfhub) | 1.2.46 |
 
 ## Modules
 
