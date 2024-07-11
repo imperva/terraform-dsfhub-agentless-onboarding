@@ -69,7 +69,7 @@ resource "terraform_data" "configure_database" {
 ################################################################################
 # Amazon RDS for PostgreSQL 16.0
 ################################################################################
-module "aws-rds-postgresql" {
+module "aws-rds-postgresql-1" {
   source = "imperva/agentless-onboarding/dsfhub//modules/onboard-aws-rds-postgresql"
 
   aws_log_group_admin_email        = local.admin_email
@@ -103,7 +103,7 @@ module "aws-rds-postgresql" {
 ################################################################################
 # Amazon RDS for PostgreSQL 16.0 w/ Slow Query
 ################################################################################
-module "aws-rds-postgresql" {
+module "aws-rds-postgresql-2" {
   source = "imperva/agentless-onboarding/dsfhub//modules/onboard-aws-rds-postgresql"
 
   aws_log_group_admin_email        = local.admin_email
@@ -168,7 +168,7 @@ module "aws-rds-postgresql" {
 ################################################################################
 # Amazon RDS for PostgreSQL 15.0 Aggregated
 ################################################################################
-module "aws-rds-postgresql" {
+module "aws-rds-postgresql-3" {
   source = "imperva/agentless-onboarding/dsfhub//modules/onboard-aws-rds-postgresql"
 
   aws_log_group_admin_email        = local.admin_email
