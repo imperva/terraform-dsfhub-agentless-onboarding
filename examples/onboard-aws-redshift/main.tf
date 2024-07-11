@@ -45,15 +45,15 @@ provider "dsfhub" {
 ################################################################################
 # Runs the shell script locally to create the audit pull user
 resource "terraform_data" "configure_database" {
-  depends_on = [module.aws-redshift-cluster]
+  depends_on = [module.aws-redshift-cluster-1]
 
   provisioner "local-exec" {
     environment = {
       ADMIN_USER     = local.master_user
       ADMIN_PASSWORD = local.master_password
-      HOSTNAME       = regex("(.*):", module.aws-redshift-cluster.redshift-cluster.endpoint)[0]
-      DATABASE       = module.aws-redshift-cluster.redshift-cluster.database_name
-      PORT           = module.aws-redshift-cluster.redshift-cluster.port
+      HOSTNAME       = regex("(.*):", module.aws-redshift-cluster-1.redshift-cluster.endpoint)[0]
+      DATABASE       = module.aws-redshift-cluster-1.redshift-cluster.database_name
+      PORT           = module.aws-redshift-cluster-1.redshift-cluster.port
 
       AUDIT_PULL_USERNAME = local.audit_pull_user
       AUDIT_PULL_PASSWORD = local.audit_pull_password
@@ -68,7 +68,7 @@ resource "terraform_data" "configure_database" {
 ################################################################################
 # Amazon Redshift Cluster via Table
 ################################################################################
-module "aws-redshift-cluster" {
+module "aws-redshift-cluster-1" {
   source = "imperva/agentless-onboarding/dsfhub//modules/onboard-aws-redshift-odbc"
 
   aws_redshift_admin_email        = local.admin_email
@@ -110,7 +110,7 @@ module "aws-default-account-asset" {
 ################################################################################
 # Amazon Redshift Cluster via S3
 ################################################################################
-module "aws-redshift" {
+module "aws-redshift-1" {
   source = "imperva/agentless-onboarding/dsfhub//modules/onboard-aws-redshift-s3"
 
   aws_redshift_admin_email       = local.admin_email

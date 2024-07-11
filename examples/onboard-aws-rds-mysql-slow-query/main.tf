@@ -50,8 +50,8 @@ module "aws-default-account-asset" {
 ################################################################################
 # AWS RDS MySQL 8.0
 ################################################################################
-module "aws-rds-mysql" {
-  source = "imperva/agentless-onboarding/dsfhub//modules/onboard-aws-rds-mysql-slow-query"
+module "aws-rds-mysql-1" {
+  source = "../../modules/onboard-aws-rds-mysql-slow-query"
 
   aws_log_group_admin_email        = local.admin_email
   aws_log_group_audit_pull_enabled = true

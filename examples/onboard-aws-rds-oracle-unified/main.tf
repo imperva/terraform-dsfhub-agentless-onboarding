@@ -40,15 +40,15 @@ provider "dsfhub" {
 ################################################################################
 # 1. Run shell script locally to create audit pull user and policies
 resource "terraform_data" "configure_database" {
-  depends_on = [module.aws-rds-oracle-unified]
+  depends_on = [module.aws-rds-oracle-unified-1]
 
   provisioner "local-exec" {
     environment = {
       ADMIN_USER     = local.master_user
       ADMIN_PASSWORD = local.master_password
-      HOSTNAME       = module.aws-rds-oracle-unified.oracle-instance.address
-      SID            = module.aws-rds-oracle-unified.oracle-instance.db_name
-      PORT           = module.aws-rds-oracle-unified.oracle-instance.port
+      HOSTNAME       = module.aws-rds-oracle-unified-1.oracle-instance.address
+      SID            = module.aws-rds-oracle-unified-1.oracle-instance.db_name
+      PORT           = module.aws-rds-oracle-unified-1.oracle-instance.port
 
       AUDIT_POLICY_NAME   = local.audit_policy_name
       AUDIT_PULL_USERNAME = local.audit_pull_user
@@ -65,8 +65,8 @@ resource "terraform_data" "configure_database" {
 ################################################################################
 # AWS RDS Oracle 19
 ################################################################################
-module "aws-rds-oracle-unified" {
-  source = "imperva/agentless-onboarding/dsfhub//modules/onboard-aws-rds-oracle-unified"
+module "aws-rds-oracle-unified-1" {
+  source = "../../modules/onboard-aws-rds-oracle-unified"
 
   aws_rds_oracle_admin_email        = local.admin_email
   aws_rds_oracle_audit_pull_enabled = true
@@ -92,8 +92,8 @@ module "aws-rds-oracle-unified" {
 ################################################################################
 # AWS RDS Oracle 19 Aggregated
 ################################################################################
-module "aws-rds-oracle-unified" {
-  source = "imperva/agentless-onboarding/dsfhub//modules/onboard-aws-rds-oracle-unified"
+module "aws-rds-oracle-unified-2" {
+  source = "../../modules/onboard-aws-rds-oracle-unified"
 
   aws_rds_oracle_admin_email        = local.admin_email
   aws_rds_oracle_audit_pull_enabled = true

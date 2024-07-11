@@ -46,8 +46,8 @@ module "aws-default-account-asset" {
 ################################################################################
 # AWS RDS MariaDB 10.11
 ################################################################################
-module "aws-rds-mariadb" {
-  source = "imperva/agentless-onboarding/dsfhub//modules/onboard-aws-rds-mariadb"
+module "aws-rds-mariadb-1" {
+  source = "../../modules/onboard-aws-rds-mariadb"
 
   aws_log_group_admin_email        = local.admin_email
   aws_log_group_audit_pull_enabled = true

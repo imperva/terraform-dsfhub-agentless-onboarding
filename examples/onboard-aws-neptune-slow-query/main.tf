@@ -51,9 +51,8 @@ module "aws-default-account-asset" {
 ################################################################################
 # Amazon Neptune
 ################################################################################
-
-module "aws-neptune-slowquery" {
-  source = "imperva/agentless-onboarding/dsfhub//modules/onboard-aws-neptune-slow-query"
+module "aws-neptune-slowquery-1" {
+  source = "../../modules/onboard-aws-neptune-slow-query"
 
   parameter_group_name   = "nept-clus-group"
   parameter_group_family = "neptune1.3"

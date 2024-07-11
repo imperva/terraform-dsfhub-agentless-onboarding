@@ -52,8 +52,8 @@ module "aws-default-account-asset" {
 # Amazon Neptune
 ################################################################################
 
-module "aws-neptune" {
-  source = "imperva/agentless-onboarding/dsfhub//modules/onboard-aws-neptune"
+module "aws-neptune-1" {
+  source = "../../modules/onboard-aws-neptune"
 
   parameter_group_name   = "nept-clus-group"
   parameter_group_family = "neptune1.3"

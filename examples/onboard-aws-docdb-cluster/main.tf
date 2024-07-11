@@ -48,8 +48,8 @@ module "aws-default-account-asset" {
 # Amazon DocumentDB Cluster 5.0.0
 ################################################################################
 
-module "aws-docdb-cluster" {
-  source = "imperva/agentless-onboarding/dsfhub//modules/onboard-aws-docdb-cluster"
+module "aws-docdb-cluster-1" {
+  source = "../../modules/onboard-aws-docdb-cluster"
 
   aws_log_group_admin_email        = local.admin_email
   aws_log_group_audit_pull_enabled = true
