@@ -46,7 +46,7 @@ jobs:
 
   updateDocumentation:
     name: Update READMEs
-    needs: validateConfigs
+    needs: validatePR
     runs-on: ubuntu-latest
     steps:
     # Checkout the repository to the GitHub Actions runner
