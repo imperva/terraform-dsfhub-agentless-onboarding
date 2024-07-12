@@ -44,7 +44,7 @@ The following table lists the DSF versions that each module is tested and mainta
       <td>4.16+</td>
    </tr>
    <tr>
-      <td>onboard-aws-rds-postgresql</td>
+      <td>onboard-aws-rds-redshift</td>
       <td>4.17+</td>
    </tr>
 

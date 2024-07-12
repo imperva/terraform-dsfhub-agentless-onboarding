@@ -11,7 +11,8 @@
 - Amazon RDS MySQL Slow query module
 - Amazon RDS Oracle (standard auditing) module
 - Amazon RDS Oracle (unified auditing) module
-- Amazon Redshift module
+- Amazon Redshift (via ODBC) module
+- Amazon Redshift (via S3 bucket) module
 
 ## 1.0.1 (2024-06-27)
 
