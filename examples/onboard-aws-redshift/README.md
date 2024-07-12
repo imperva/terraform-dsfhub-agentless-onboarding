@@ -8,7 +8,7 @@ It creates both 'aws' and 'dsfhub' resources. More information regarding authent
 Importantly, the example includes two different audit methods: auditing via the Audit Tables, or auditing via an S3 bucket. <b>Please choose your desired audit method</b>.
 
 ## Option 1: Auditing via Audit Tables
-## Prerequisites
+### Prerequisites
 #### Database Configuration
 Part of the onboarding process involves connecting to your Redshift cluster and running SQL commands to create an audit pull user. This module includes an example for how to connect to the instance from your local machine and create it. 
 
@@ -16,7 +16,7 @@ Part of the onboarding process involves connecting to your Redshift cluster and 
 
 ## Option 2: Auditing via S3
 
-## Prerequisites
+### Prerequisites
 #### Account Asset Permissions
 An AWS account asset will need to be onboarded to your DSF hub prior to using this module. The account asset will need to be granted permissions to be able to read from the newly created S3 bucket. In addition, the cloud account should be granted these additional permissions:
 
