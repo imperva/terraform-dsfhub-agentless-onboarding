@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.0.2 (TBD)
+## 1.0.2 (2024-07-12)
 
 ### Features
 - Amazon DocumentDB module
