@@ -8,40 +8,56 @@ jobs:
     outputs: 
       directories: ${{ steps.dirs.outputs.matrix }}
     steps:
+    # Checkout the repository to the GitHub Actions runner
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         ref: ${{ github.event.pull_request.head.ref }}
+
+    # Find all subdirectories within "modules/" and "examples/"
     - name: Get root directories
       id: dirs
       run: echo "matrix=$(ls -d {modules,examples}/* | jq -R -s -c 'split("\n")[:-1]')" >> $GITHUB_OUTPUT
-      
-  validateConfigs:
-    name: Validate terraform pull PR
-    needs: collectInputs
+  
+  validatePR:
+    name: Validate PR
     runs-on: ubuntu-latest
+    needs: collectInputs
     strategy:
       matrix:
         directory: ${{ fromJson(needs.collectInputs.outputs.directories) }}
     steps:
+    # Checkout the repository to the GitHub Actions runner
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         ref: ${{ github.event.pull_request.head.ref }}
-    - name: Validate configs
-      uses: dflook/terraform-validate@v1
-      with:
-        path: ${{ matrix.directory }}
+    
+    # Install the latest version of Terraform
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v2
+    
+    # Initialize terraform and validate submodules
+    - name: Terraform validate
+      working-directory: ${{ matrix.directory }}
+      run: |
+        if [[ -d ".terraform" ]]; then echo "removing exisiting .terraform directory"; rm -rf .terraform; fi
+        terraform workspace new ${{ github.run_id }}
+        terraform init
+        terraform validate
 
   updateDocumentation:
     name: Update READMEs
-    needs: validateConfigs
+    needs: validatePR
     runs-on: ubuntu-latest
     steps:
+    # Checkout the repository to the GitHub Actions runner
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         ref: ${{ github.event.pull_request.head.ref }}
+
+    # Update READMEs using terraform-docs
     - name: Render terraform docs inside the README.md and push changes back to PR branch
       uses: terraform-docs/gh-actions@v1.2.0
       with:
@@ -59,18 +75,25 @@ jobs:
     permissions:
       contents: write
     steps:
+    # Checkout the repository to the GitHub Actions runner
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         ref: ${{ github.event.pull_request.head.ref }}
+
+    # Format Terraform modules
     - name: Terraform fmt modules
       uses: dflook/terraform-fmt@v1
       with:
         path: modules/
+    
+    # Format Terraform examples
     - name: Terraform fmt examples
       uses: dflook/terraform-fmt@v1
       with:
         path: examples/
+
+    # Push changes to PR
     - name: Commit changes to PR
       uses: stefanzweifel/git-auto-commit-action@v5
       
