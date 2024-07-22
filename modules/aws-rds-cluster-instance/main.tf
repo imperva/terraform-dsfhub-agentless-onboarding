@@ -1,5 +1,4 @@
 resource "aws_rds_cluster_instance" "this" {
-
   apply_immediately            = var.apply_immediately
   auto_minor_version_upgrade   = var.minor_version_upgrade
   cluster_identifier           = var.cluster_id

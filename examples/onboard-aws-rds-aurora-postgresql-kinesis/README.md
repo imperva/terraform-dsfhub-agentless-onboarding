@@ -17,7 +17,7 @@ An AWS account asset will need to be onboarded to your DSF hub prior to using th
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_aws-aurora-postgresql-kinesis"></a> [aws-aurora-postgresql-kinesis](#module\_aws-aurora-postgresql-kinesis) | ../../modules/onboard-aws-rds-aurora-postgresql-kinesis | n/a |
-| <a name="module_aws-default-account-asset"></a> [aws-default-account-asset](#module\_aws-default-account-asset) | ../../modules/dsfhub-aws-cloud-account | n/a |
+| <a name="module_aws-default-account-asset"></a> [aws-default-account-asset](#module\_aws-default-account-asset) | imperva/agentless-onboarding/dsfhub//modules/dsfhub-aws-cloud-account | n/a |
 
 ## Inputs
 

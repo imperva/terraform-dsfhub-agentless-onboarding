@@ -28,7 +28,7 @@ Part of the onboarding process involves connecting to your Aurora PostgreSQL clu
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_aurora-postgresql"></a> [aurora-postgresql](#module\_aurora-postgresql) | ../../modules/onboard-aws-rds-aurora-postgresql | n/a |
-| <a name="module_aws-default-account-asset"></a> [aws-default-account-asset](#module\_aws-default-account-asset) | ../../modules/dsfhub-aws-cloud-account | n/a |
+| <a name="module_aws-default-account-asset"></a> [aws-default-account-asset](#module\_aws-default-account-asset) | imperva/agentless-onboarding/dsfhub//modules/dsfhub-aws-cloud-account | n/a |
 
 ## Resources
 
