@@ -1,5 +1,5 @@
 module "aurora-postgresql-cluster" {
-  source     = "../aws-rds-cluster"
+  source = "../aws-rds-cluster"
 
   apply_immediately                  = var.cluster_apply_immediately
   backup_retention                   = var.cluster_backup_retention

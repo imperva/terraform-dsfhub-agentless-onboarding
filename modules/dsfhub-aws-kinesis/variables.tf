@@ -10,7 +10,7 @@ variable "asset_display_name" {
 
 variable "asset_id" {
   description = "AWS kinesis stream ARN"
-  type = string
+  type        = string
 }
 
 variable "audit_pull_enabled" {

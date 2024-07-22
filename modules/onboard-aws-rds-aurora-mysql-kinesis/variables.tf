@@ -150,7 +150,7 @@ variable "db_instance_class" {
       can(regex("^db.r6g.*large$", var.db_instance_class)) ||
       can(regex("^db.r6i.*large$", var.db_instance_class)) ||
       can(regex("^db.r5.*large$", var.db_instance_class)) ||
-      can(regex("^db.x2g.*$", var.db_instance_class)) 
+      can(regex("^db.x2g.*$", var.db_instance_class))
     )
     error_message = "Invalid instance class for database activity streams. Supported instance classes for database activity streams can be found at https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/DBActivityStreams.Overview.html#DBActivityStreams.Overview.requirements.classes."
   }

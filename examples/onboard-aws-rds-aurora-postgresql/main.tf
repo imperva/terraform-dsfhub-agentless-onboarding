@@ -108,7 +108,7 @@ module "aurora-postgresql" {
   source = "../../modules/onboard-aws-rds-aurora-postgresql"
 
   aws_aurora_postgresql_cluster_admin_email     = local.admin_email
-  aws_aurora_postgresql_cluster_audit_type = "AGGREGATED"
+  aws_aurora_postgresql_cluster_audit_type      = "AGGREGATED"
   aws_aurora_postgresql_cluster_gateway_id      = local.gateway_id
   aws_aurora_postgresql_cluster_parent_asset_id = module.aws-default-account-asset.this.asset_id
   aws_aurora_postgresql_cluster_region          = local.aws_region
