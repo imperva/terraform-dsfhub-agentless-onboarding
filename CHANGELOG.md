@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.0.3 (2024-07-22)
+
+### Features
+- Amazon RDS Aurora MySQL module
+- Amazon RDS Aurora MySQL Kinesis module
+- Amazon RDS Aurora MySQL Slow query module
+- Amazon RDS Aurora PostgreSQL module
+- Amazon RDS Aurora PostgreSQL Kinesis module
+
 ## 1.0.2 (2024-07-12)
 
 ### Features
