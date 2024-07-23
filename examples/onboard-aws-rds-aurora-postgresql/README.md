@@ -15,7 +15,9 @@ Part of the onboarding process involves connecting to your Aurora PostgreSQL clu
 **Note:** This example requires the ``psql`` client to be installed, as well as for the newly created Aurora cluster to be accessible from your local machine. 
 
 <!-- BEGIN_TF_DOCS -->
+## Requirements
 
+No requirements.
 
 ## Providers
 
@@ -27,7 +29,8 @@ Part of the onboarding process involves connecting to your Aurora PostgreSQL clu
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_aurora-postgresql"></a> [aurora-postgresql](#module\_aurora-postgresql) | ../../modules/onboard-aws-rds-aurora-postgresql | n/a |
+| <a name="module_aurora-postgresql-1"></a> [aurora-postgresql-1](#module\_aurora-postgresql-1) | ../../modules/onboard-aws-rds-aurora-postgresql | n/a |
+| <a name="module_aurora-postgresql-2"></a> [aurora-postgresql-2](#module\_aurora-postgresql-2) | ../../modules/onboard-aws-rds-aurora-postgresql | n/a |
 | <a name="module_aws-default-account-asset"></a> [aws-default-account-asset](#module\_aws-default-account-asset) | imperva/agentless-onboarding/dsfhub//modules/dsfhub-aws-cloud-account | n/a |
 
 ## Resources
@@ -42,4 +45,8 @@ Part of the onboarding process involves connecting to your Aurora PostgreSQL clu
 |------|-------------|------|---------|:--------:|
 | <a name="input_dsfhub_host"></a> [dsfhub\_host](#input\_dsfhub\_host) | n/a | `any` | n/a | yes |
 | <a name="input_dsfhub_token"></a> [dsfhub\_token](#input\_dsfhub\_token) | n/a | `any` | n/a | yes |
+
+## Outputs
+
+No outputs.
 <!-- END_TF_DOCS -->
