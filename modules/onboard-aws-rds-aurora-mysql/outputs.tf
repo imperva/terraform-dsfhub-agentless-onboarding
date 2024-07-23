@@ -18,12 +18,12 @@ output "log_group" {
   value       = module.aurora-mysql-log-group.this
 }
 
-output "dsf_aurora_mysql_cluster" {
+output "aws_rds_aurora_mysql_cluster_asset" {
   description = "Aurora MySQL cluster asset"
   value       = module.aws-rds-aurora-mysql-cluster-asset.this
 }
 
-output "dsf_aurora_mysql_log_group" {
-  description = "Aurora MySQL log group asset"
+output "aws_log_group_asset" {
+  description = "AWS log group asset"
   value       = module.aws-log-group-asset.this
 }

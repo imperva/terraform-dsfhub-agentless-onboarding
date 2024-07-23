@@ -70,10 +70,10 @@ No resources.
 
 | Name | Description |
 |------|-------------|
+| <a name="output_aws_log_group_asset"></a> [aws\_log\_group\_asset](#output\_aws\_log\_group\_asset) | AWS log group asset |
+| <a name="output_aws_rds_aurora_mysql_cluster_asset"></a> [aws\_rds\_aurora\_mysql\_cluster\_asset](#output\_aws\_rds\_aurora\_mysql\_cluster\_asset) | Aurora MySQL cluster asset |
 | <a name="output_cluster"></a> [cluster](#output\_cluster) | Aurora MySQL Cluster |
 | <a name="output_cluster_parameter_group"></a> [cluster\_parameter\_group](#output\_cluster\_parameter\_group) | Aurora MySQL Cluster parameter group |
-| <a name="output_dsf_aurora_mysql_cluster"></a> [dsf\_aurora\_mysql\_cluster](#output\_dsf\_aurora\_mysql\_cluster) | Aurora MySQL cluster asset |
-| <a name="output_dsf_aurora_mysql_log_group"></a> [dsf\_aurora\_mysql\_log\_group](#output\_dsf\_aurora\_mysql\_log\_group) | Aurora MySQL log group asset |
 | <a name="output_instance"></a> [instance](#output\_instance) | Aurora MySQL instance |
 | <a name="output_log_group"></a> [log\_group](#output\_log\_group) | Aurora MySQL log group |
 <!-- END_TF_DOCS -->

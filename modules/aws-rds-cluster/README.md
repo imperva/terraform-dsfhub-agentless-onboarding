@@ -43,5 +43,5 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_this"></a> [this](#output\_this) | Aurora MySQL cluster |
+| <a name="output_this"></a> [this](#output\_this) | RDS Aurora cluster |
 <!-- END_TF_DOCS -->

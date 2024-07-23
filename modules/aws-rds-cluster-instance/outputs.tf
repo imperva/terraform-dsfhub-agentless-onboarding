@@ -1,4 +1,4 @@
 output "this" {
-  description = "Aurora MySQL Cluster instance"
+  description = "RDS Aurora cluster instance"
   value       = aws_rds_cluster_instance.this
 }

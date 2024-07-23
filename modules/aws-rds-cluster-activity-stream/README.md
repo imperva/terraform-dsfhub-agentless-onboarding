@@ -32,5 +32,5 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_this"></a> [this](#output\_this) | RDS Cluster activity stream |
+| <a name="output_this"></a> [this](#output\_this) | RDS Aurora Cluster database activity stream |
 <!-- END_TF_DOCS -->

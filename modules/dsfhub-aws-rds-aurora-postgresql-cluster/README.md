@@ -40,5 +40,5 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_this"></a> [this](#output\_this) | Aurora PostgreSQL DSF asset |
+| <a name="output_this"></a> [this](#output\_this) | Aurora PostgreSQL cluster DSF asset |
 <!-- END_TF_DOCS -->

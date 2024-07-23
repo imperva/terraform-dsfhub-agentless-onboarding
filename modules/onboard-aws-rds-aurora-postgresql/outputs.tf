@@ -1,10 +1,10 @@
 output "cluster_parameter_group" {
-  description = "Aurora PostgreSQL cluster parameter group"
+  description = "Aurora PostgreSQL Cluster parameter group"
   value       = module.aurora-postgresql-cluster-parameter-group.this
 }
 
 output "cluster" {
-  description = "Aurora PostgreSQL cluster"
+  description = "Aurora PostgreSQL Cluster"
   value       = module.aurora-postgresql-cluster.this
 }
 
