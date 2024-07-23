@@ -47,7 +47,7 @@ variable "cluster_parameter_group_tags" {
   default     = null
 }
 
-# Aurora Mysql Cluster variables
+# Aurora MySQL Cluster variables
 variable "cluster_db_enabled_cloudwatch_logs_exports" {
   description = "Set of log types to enable for exporting to CloudWatch logs. Valid values: audit, error, general, slowquery."
   type        = list(any)
@@ -129,7 +129,7 @@ variable "cluster_apply_immediately" {
   default     = true
 }
 
-# Aurora Mysql Instance variables
+# Aurora MySQL Instance variables
 variable "instance_identifier" {
   description = "The name of the aurora mysql cluster instance"
   type        = string
@@ -153,7 +153,7 @@ variable "instance_publicly_accessible" {
   default     = false
 }
 
-#AWS cloudwatch variables
+# AWS CloudWatch variables
 variable "log_group_retention_in_days" {
   description = "Specifies the number of days you want to retain log events in the specified log group. If you select 0, the events in the log group are always retained and never expire."
   type        = number

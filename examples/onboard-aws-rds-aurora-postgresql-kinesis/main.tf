@@ -50,7 +50,7 @@ module "aws-default-account-asset" {
 ################################################################################
 # Amazon Aurora PostgreSQL 16 via kinesis stream
 ################################################################################
-module "aws-aurora-postgresql-kinesis" {
+module "aws-aurora-postgresql-kinesis-1" {
   source = "../../modules/onboard-aws-rds-aurora-postgresql-kinesis"
 
   aws_aurora_postgresql_cluster_admin_email     = local.admin_email
@@ -79,7 +79,7 @@ module "aws-aurora-postgresql-kinesis" {
 ################################################################################
 # Amazon Aurora PostgreSQL 16 via kinesis stream aggregated
 ################################################################################
-module "aws-aurora-postgresql-kinesis" {
+module "aws-aurora-postgresql-kinesis-2" {
   source = "../../modules/onboard-aws-rds-aurora-postgresql-kinesis"
 
   aws_aurora_postgresql_cluster_admin_email     = local.admin_email

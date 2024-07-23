@@ -1,7 +1,7 @@
 locals {
   aws_region          = "us-east-2"
   apply_immediately   = true
-  master_user         = "admin"
+  master_user         = "PGadmin"
   master_password     = "Abcd1234"
   subnet_group_name   = "default"
   vpc_security_groups = ["sg-0123456789abcdefg"]
@@ -54,14 +54,14 @@ module "aws-default-account-asset" {
 # 2. Run shell script locally to create extension and role on the newly created
 #    postgres cluster.
 resource "terraform_data" "configure_database" {
-  depends_on = [module.aurora-postgresql]
+  depends_on = [module.aurora-postgresql-1]
 
   provisioner "local-exec" {
     environment = {
-      PGHOST     = module.aurora-postgresql.cluster.endpoint
+      PGHOST     = module.aurora-postgresql-1.cluster.endpoint
       PGUSER     = local.master_user
       PGPASSWORD = local.master_password
-      PGPORT     = module.aurora-postgresql.cluster.port
+      PGPORT     = module.aurora-postgresql-1.cluster.port
       PGDATABASE = "postgres"
     }
 
@@ -74,7 +74,7 @@ resource "terraform_data" "configure_database" {
 ################################################################################
 # Amazon Aurora PostgreSQL 16.1
 ################################################################################
-module "aurora-postgresql" {
+module "aurora-postgresql-1" {
   source = "../../modules/onboard-aws-rds-aurora-postgresql"
 
   aws_aurora_postgresql_cluster_admin_email     = local.admin_email
@@ -104,7 +104,7 @@ module "aurora-postgresql" {
 ################################################################################
 # Amazon Aurora PostgreSQL 16.1 Aggregated
 ################################################################################
-module "aurora-postgresql" {
+module "aurora-postgresql-2" {
   source = "../../modules/onboard-aws-rds-aurora-postgresql"
 
   aws_aurora_postgresql_cluster_admin_email     = local.admin_email

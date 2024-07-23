@@ -189,7 +189,7 @@ variable "key_deletion_window_in_days" {
 variable "key_description" {
   description = "The description of the key as viewed in AWS console."
   type        = string
-  default     = "AWS KMS Key to encrypt Aurora Mysql Database Activity Stream."
+  default     = "AWS KMS Key to encrypt Aurora MySQL Database Activity Stream."
 }
 
 variable "key_is_enabled" {

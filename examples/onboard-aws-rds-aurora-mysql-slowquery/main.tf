@@ -49,7 +49,7 @@ module "aws-default-account-asset" {
 }
 
 ################################################################################
-# Amazon Aurora MySQL Slowquery
+# Amazon Aurora MySQL Slow query
 ################################################################################
 
 module "aws-aurora-mysql-slowquery" {
@@ -89,7 +89,7 @@ module "aws-aurora-mysql-slowquery" {
   cluster_db_subnet_group_name   = local.subnet_group_name
   cluster_vpc_security_group_ids = local.vpc_security_group_ids
 
-  instance_identifier          = "aurora-mysql-inst"
+  instance_identifier          = "aurora-mysql"
   instance_publicly_accessible = false
 
   aws_aurora_mysql_cluster_admin_email     = local.admin_email
