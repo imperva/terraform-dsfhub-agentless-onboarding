@@ -78,8 +78,8 @@ No resources.
 |------|-------------|
 | <a name="output_aws_log_group_asset"></a> [aws\_log\_group\_asset](#output\_aws\_log\_group\_asset) | AWS log group asset |
 | <a name="output_aws_rds_aurora_postgresql_cluster_asset"></a> [aws\_rds\_aurora\_postgresql\_cluster\_asset](#output\_aws\_rds\_aurora\_postgresql\_cluster\_asset) | Aurora PostgreSQL cluster asset |
-| <a name="output_cluster"></a> [cluster](#output\_cluster) | Aurora PostgreSQL cluster |
-| <a name="output_cluster_parameter_group"></a> [cluster\_parameter\_group](#output\_cluster\_parameter\_group) | Aurora PostgreSQL cluster parameter group |
+| <a name="output_cluster"></a> [cluster](#output\_cluster) | Aurora PostgreSQL Cluster |
+| <a name="output_cluster_parameter_group"></a> [cluster\_parameter\_group](#output\_cluster\_parameter\_group) | Aurora PostgreSQL Cluster parameter group |
 | <a name="output_instance"></a> [instance](#output\_instance) | Aurora PostgreSQL instance |
 | <a name="output_log_group"></a> [log\_group](#output\_log\_group) | Aurora PostgreSQL log group |
 <!-- END_TF_DOCS -->
