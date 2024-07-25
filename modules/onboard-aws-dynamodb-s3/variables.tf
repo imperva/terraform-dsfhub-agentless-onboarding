@@ -113,19 +113,19 @@ variable "cloudtrail_event_selector" {
 
 variable "eventbridge_rule_description" {
   description = "The description of the rule."
-  type = string
-  default = "Captures All DynamoDB events and sends to CloudWatch log group"
+  type        = string
+  default     = "Captures All DynamoDB events and sends to CloudWatch log group"
 }
 
 variable "eventbridge_rule_name" {
   description = "The name of the rule. If omitted, Terraform will assign a random, unique name."
-  type = string
-  default = null
+  type        = string
+  default     = null
 }
 
 variable "eventbridge_rule_event_pattern" {
   description = "The event pattern described a JSON object. See full documentation of [Events and Event Patterns in EventBridge](https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-and-event-patterns.html) for details."
-  type = any
+  type        = any
   default = {
     "source" : ["aws.dynamodb"],
     "detail" : {
@@ -140,18 +140,18 @@ variable "eventbridge_rule_event_pattern" {
 
 variable "eventbridge_rule_state" {
   description = "State of the rule. Valid values are DISABLED, ENABLED, and ENABLED_WITH_ALL_CLOUDTRAIL_MANAGEMENT_EVENTS."
-  type = string
-  default = "ENABLED"
+  type        = string
+  default     = "ENABLED"
   validation {
-    condition = contains(["DISABLED", "ENABLED", "ENABLED_WITH_ALL_CLOUDTRAIL_MANAGEMENT_EVENTS"], var.eventbridge_rule_state)
+    condition     = contains(["DISABLED", "ENABLED", "ENABLED_WITH_ALL_CLOUDTRAIL_MANAGEMENT_EVENTS"], var.eventbridge_rule_state)
     error_message = "Invalid state. Valid values are DISABLED, ENABLED, and ENABLED_WITH_ALL_CLOUDTRAIL_MANAGEMENT_EVENTS."
   }
 }
 
 variable "eventbridge_rule_tags" {
   description = "A map of tags to assign to the resource."
-  type = map(string)
-  default = null
+  type        = map(string)
+  default     = null
 }
 
 variable "eventbridge_iam_role_name" {
