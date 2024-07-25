@@ -20,6 +20,7 @@ variable "object_lock_enabled" {
   type        = bool
   default     = false
 }
+
 variable "tags" {
   description = "A map of tags to assign to the resource."
   type        = map(string)
