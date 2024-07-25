@@ -7,7 +7,9 @@ The ``AWS DYNAMODB`` asset supports various authentication mechanisms (key, iam_
 See the corresponding example for more details.
 
 <!-- BEGIN_TF_DOCS -->
+## Requirements
 
+No requirements.
 
 ## Providers
 
@@ -47,22 +49,20 @@ See the corresponding example for more details.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_aws_dynamodb_admin_email"></a> [aws\_dynamodb\_admin\_email](#input\_aws\_dynamodb\_admin\_email) | The email address to notify about this asset | `string` | n/a | yes |
-| <a name="input_aws_dynamodb_gateway_id"></a> [aws\_dynamodb\_gateway\_id](#input\_aws\_dynamodb\_gateway\_id) | Unique identifier (UID) attached to the jSonar machine controlling the asset | `string` | n/a | yes |
-| <a name="input_aws_s3_admin_email"></a> [aws\_s3\_admin\_email](#input\_aws\_s3\_admin\_email) | The email address to notify about this asset | `string` | n/a | yes |
-| <a name="input_aws_s3_gateway_id"></a> [aws\_s3\_gateway\_id](#input\_aws\_s3\_gateway\_id) | Unique identifier (UID) attached to the jSonar machine controlling the asset | `string` | n/a | yes |
-| <a name="input_cloudtrail_name"></a> [cloudtrail\_name](#input\_cloudtrail\_name) | Name of the trail. | `string` | n/a | yes |
-| <a name="input_firehose_name"></a> [firehose\_name](#input\_firehose\_name) | A name to identify the stream. This is unique to the AWS account and region the Stream is created in. | `string` | n/a | yes |
-| <a name="input_s3_bucket"></a> [s3\_bucket](#input\_s3\_bucket) | The name of the bucket. Must be lowercase and less than or equal to 63 characters in length. | `string` | n/a | yes |
 | <a name="input_aws_dynamodb_access_id"></a> [aws\_dynamodb\_access\_id](#input\_aws\_dynamodb\_access\_id) | AWS Access ID. Required for "key" auth\_mechanism. | `string` | `null` | no |
+| <a name="input_aws_dynamodb_admin_email"></a> [aws\_dynamodb\_admin\_email](#input\_aws\_dynamodb\_admin\_email) | The email address to notify about this asset | `string` | n/a | yes |
 | <a name="input_aws_dynamodb_auth_mechanism"></a> [aws\_dynamodb\_auth\_mechanism](#input\_aws\_dynamodb\_auth\_mechanism) | Specifies the auth mechanism used by the connection for the db asset. Valid values: key, profile, default or iam\_role. | `string` | `"default"` | no |
+| <a name="input_aws_dynamodb_gateway_id"></a> [aws\_dynamodb\_gateway\_id](#input\_aws\_dynamodb\_gateway\_id) | Unique identifier (UID) attached to the jSonar machine controlling the asset | `string` | n/a | yes |
 | <a name="input_aws_dynamodb_iam_role_name"></a> [aws\_dynamodb\_iam\_role\_name](#input\_aws\_dynamodb\_iam\_role\_name) | AWS arn of the IAM role to be assumed. Required for "iam\_role" auth\_mechanism. | `string` | `null` | no |
 | <a name="input_aws_dynamodb_profile_name"></a> [aws\_dynamodb\_profile\_name](#input\_aws\_dynamodb\_profile\_name) | The name of a profile in /install\_dir/jsonar/local/credentials/.aws/credentials to use for authenticating | `string` | `null` | no |
 | <a name="input_aws_dynamodb_secret_key"></a> [aws\_dynamodb\_secret\_key](#input\_aws\_dynamodb\_secret\_key) | AWS secret key. Required for "key" auth\_mechanism. | `string` | `null` | no |
+| <a name="input_aws_s3_admin_email"></a> [aws\_s3\_admin\_email](#input\_aws\_s3\_admin\_email) | The email address to notify about this asset | `string` | n/a | yes |
 | <a name="input_aws_s3_audit_pull_enabled"></a> [aws\_s3\_audit\_pull\_enabled](#input\_aws\_s3\_audit\_pull\_enabled) | Whether the DSFHUB should pull logs from the asset. | `bool` | `false` | no |
+| <a name="input_aws_s3_gateway_id"></a> [aws\_s3\_gateway\_id](#input\_aws\_s3\_gateway\_id) | Unique identifier (UID) attached to the jSonar machine controlling the asset | `string` | n/a | yes |
 | <a name="input_cloudtrail_enable_logging"></a> [cloudtrail\_enable\_logging](#input\_cloudtrail\_enable\_logging) | Enables logging for the trail. Setting this to "false" will pause logging. | `bool` | `true` | no |
 | <a name="input_cloudtrail_event_selector"></a> [cloudtrail\_event\_selector](#input\_cloudtrail\_event\_selector) | Specifies an event selector for enabling data event logging. | <pre>list(<br>    object(<br>      {<br>        data_resource = optional(<br>          object(<br>            {<br>              type   = string<br>              values = list(string)<br>            }<br>          )<br>        )<br>        exclude_management_event_sources = optional(list(string))<br>        include_management_events        = optional(bool)<br>        read_write_type                  = optional(string)<br>      }<br>    )<br>  )</pre> | <pre>[<br>  {<br>    "data_resource": {<br>      "type": "AWS::DynamoDB::Table",<br>      "values": [<br>        "arn:aws:dynamodb"<br>      ]<br>    },<br>    "exclude_management_event_sources": [<br>      "kms.amazonaws.com",<br>      "rdsdata.amazonaws.com"<br>    ],<br>    "include_management_events": true,<br>    "read_write_type": "All"<br>  }<br>]</pre> | no |
 | <a name="input_cloudtrail_is_multi_region_trail"></a> [cloudtrail\_is\_multi\_region\_trail](#input\_cloudtrail\_is\_multi\_region\_trail) | Whether the trail is created in the current region or in all regions. | `bool` | `false` | no |
+| <a name="input_cloudtrail_name"></a> [cloudtrail\_name](#input\_cloudtrail\_name) | Name of the trail. | `string` | n/a | yes |
 | <a name="input_eventbridge_iam_role_description"></a> [eventbridge\_iam\_role\_description](#input\_eventbridge\_iam\_role\_description) | The description of the IAM role. | `string` | `"IAM role for sending DynamoDB logs from EventBridge to Firehose."` | no |
 | <a name="input_eventbridge_iam_role_name"></a> [eventbridge\_iam\_role\_name](#input\_eventbridge\_iam\_role\_name) | Friendly name of the role. If omitted, Terraform will assign a random, unique name. Forces new resource. | `string` | `"dynamodb_eventbridge_role"` | no |
 | <a name="input_eventbridge_iam_role_name_prefix"></a> [eventbridge\_iam\_role\_name\_prefix](#input\_eventbridge\_iam\_role\_name\_prefix) | Creates a unique friendly name beginning with the specified prefix. Conflicts with 'name'. Forces new resources. | `string` | `null` | no |
@@ -76,7 +76,9 @@ See the corresponding example for more details.
 | <a name="input_firehose_iam_role_name"></a> [firehose\_iam\_role\_name](#input\_firehose\_iam\_role\_name) | Friendly name of the role. If omitted, Terraform will assign a random, unique name. Forces new resource. | `string` | `"dynamodb_firehose_role"` | no |
 | <a name="input_firehose_iam_role_name_prefix"></a> [firehose\_iam\_role\_name\_prefix](#input\_firehose\_iam\_role\_name\_prefix) | Creates a unique friendly name beginning with the specified prefix. Conflicts with 'name'. Forces new resources. | `string` | `null` | no |
 | <a name="input_firehose_iam_role_tags"></a> [firehose\_iam\_role\_tags](#input\_firehose\_iam\_role\_tags) | Key-value mapping of tags for the IAM role. | `map(string)` | `null` | no |
+| <a name="input_firehose_name"></a> [firehose\_name](#input\_firehose\_name) | A name to identify the stream. This is unique to the AWS account and region the Stream is created in. | `string` | n/a | yes |
 | <a name="input_firehose_tags"></a> [firehose\_tags](#input\_firehose\_tags) | A map of tags to assign to the resource. | `map(string)` | `null` | no |
+| <a name="input_s3_bucket"></a> [s3\_bucket](#input\_s3\_bucket) | The name of the bucket. Must be lowercase and less than or equal to 63 characters in length. | `string` | n/a | yes |
 | <a name="input_s3_bucket_prefix"></a> [s3\_bucket\_prefix](#input\_s3\_bucket\_prefix) | Creates a unique bucket name beginning with the specified prefix. Conflicts with bucket. Must be lowercase and less than or equal to 37 characters in length. | `string` | `null` | no |
 | <a name="input_s3_force_destroy"></a> [s3\_force\_destroy](#input\_s3\_force\_destroy) | A boolean that indicates all objects should be deleted from the bucket when the bucket is destroyed so that the bucket can be destroyed without error. See more details in the [aws terraform documentation](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#force_destroy). | `bool` | `false` | no |
 | <a name="input_s3_tags"></a> [s3\_tags](#input\_s3\_tags) | A map of tags to assign to the resource. | `map(string)` | `null` | no |

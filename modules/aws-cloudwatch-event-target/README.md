@@ -1,11 +1,17 @@
 <!-- BEGIN_TF_DOCS -->
+## Requirements
 
+No requirements.
 
 ## Providers
 
 | Name | Version |
 |------|---------|
 | <a name="provider_aws"></a> [aws](#provider\_aws) | n/a |
+
+## Modules
+
+No modules.
 
 ## Resources
 
@@ -18,8 +24,8 @@
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_arn"></a> [arn](#input\_arn) | The Amazon Resource Name (ARN) of the target. | `string` | n/a | yes |
-| <a name="input_rule"></a> [rule](#input\_rule) | The name of the rule you want to add targets to. | `string` | n/a | yes |
 | <a name="input_role_arn"></a> [role\_arn](#input\_role\_arn) | The Amazon Resource Name (ARN) of the IAM role to be used for this target when the rule is triggered. | `string` | `null` | no |
+| <a name="input_rule"></a> [rule](#input\_rule) | The name of the rule you want to add targets to. | `string` | n/a | yes |
 
 ## Outputs
 

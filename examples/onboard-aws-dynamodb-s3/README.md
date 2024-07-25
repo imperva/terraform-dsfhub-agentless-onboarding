@@ -16,7 +16,13 @@ This example creates both 'aws' and 'dsfhub' resources. More information regardi
 - [dsfhub](https://registry.terraform.io/providers/imperva/dsfhub/latest/docs)
 
 <!-- BEGIN_TF_DOCS -->
+## Requirements
 
+No requirements.
+
+## Providers
+
+No providers.
 
 ## Modules
 
@@ -27,6 +33,10 @@ This example creates both 'aws' and 'dsfhub' resources. More information regardi
 | <a name="module_dynamodb-3"></a> [dynamodb-3](#module\_dynamodb-3) | ../../modules/onboard-aws-dynamodb-s3 | n/a |
 | <a name="module_dynamodb-4"></a> [dynamodb-4](#module\_dynamodb-4) | ../../modules/onboard-aws-dynamodb-s3 | n/a |
 
+## Resources
+
+No resources.
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
@@ -35,4 +45,8 @@ This example creates both 'aws' and 'dsfhub' resources. More information regardi
 | <a name="input_aws_dynamodb_secret_key"></a> [aws\_dynamodb\_secret\_key](#input\_aws\_dynamodb\_secret\_key) | n/a | `any` | n/a | yes |
 | <a name="input_dsfhub_host"></a> [dsfhub\_host](#input\_dsfhub\_host) | n/a | `any` | n/a | yes |
 | <a name="input_dsfhub_token"></a> [dsfhub\_token](#input\_dsfhub\_token) | n/a | `any` | n/a | yes |
+
+## Outputs
+
+No outputs.
 <!-- END_TF_DOCS -->
