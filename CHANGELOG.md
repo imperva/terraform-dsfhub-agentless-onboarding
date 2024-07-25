@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.4 (2024-07-25)
+
+### Features
+- Amazon DynamoDB via CloudWatch module
+- Amazon DynamoDB via S3 Bucket module
+
 ## 1.0.3 (2024-07-22)
 
 ### Features
