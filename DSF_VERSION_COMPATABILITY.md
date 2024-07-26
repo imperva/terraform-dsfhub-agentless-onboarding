@@ -12,6 +12,14 @@ The following table lists the DSF versions that each module is tested and mainta
       <td>4.17+</td>
    </tr>
    <tr>
+      <td>onboard-aws-dynamodb-cloudwatch</td>
+      <td>4.16+</td>
+   </tr>
+   <tr>
+      <td>onboard-aws-dynamodb-s3</td>
+      <td>4.17+</td>
+   </tr>
+   <tr>
       <td>onboard-aws-rds-neptune</td>
       <td>4.17+</td>
    </tr>

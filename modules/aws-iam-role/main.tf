@@ -9,4 +9,14 @@ resource "aws_iam_role" "this" {
   path                  = var.path
   permissions_boundary  = var.permissions_boundary
   tags                  = var.tags
+
+  dynamic "inline_policy" {
+    # If inline_policy is not defined, do not create
+    for_each = var.inline_policy != null ? var.inline_policy : []
+
+    content {
+      name   = inline_policy.value.name
+      policy = inline_policy.value.policy
+    }
+  }
 }
