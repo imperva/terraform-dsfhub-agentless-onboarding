@@ -83,9 +83,9 @@ module "aws-aurora-mysql-slowquery" {
     }
   ]
 
-  cluster_cluster_id             = "aurora-mysql-cluster"
-  cluster_db_master_username     = "admin"
-  cluster_db_master_password     = "mypassword"
+  cluster_identifier             = "aurora-mysql-cluster"
+  cluster_master_username     = "admin"
+  cluster_master_password     = "mypassword"
   cluster_db_subnet_group_name   = local.subnet_group_name
   cluster_vpc_security_group_ids = local.vpc_security_group_ids
 

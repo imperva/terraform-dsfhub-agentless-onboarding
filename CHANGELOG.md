@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.5 (TBD)
+
+### Features
+- Refactored Amazon RDS Aurora (MySQL and PostgreSQL) module variables
+
 ## 1.0.4 (2024-07-25)
 
 ### Features

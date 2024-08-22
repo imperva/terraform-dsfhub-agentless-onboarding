@@ -12,21 +12,21 @@ module "aurora-mysql-cluster" {
   depends_on = [module.aurora-mysql-cluster-parameter-group, module.aurora-mysql-log-group]
   source     = "../aws-rds-cluster"
 
-  cluster_id                         = var.cluster_cluster_id
-  db_engine                          = "aurora-mysql"
-  db_engine_version                  = var.cluster_db_engine_version
-  db_port                            = var.cluster_db_port
-  backup_retention                   = var.cluster_backup_retention
-  maintenance_schedule               = var.cluster_maintenance_schedule
-  final_snapshot                     = var.cluster_final_snapshot
-  db_master_username                 = var.cluster_db_master_username
-  db_master_password                 = var.cluster_db_master_password
-  network_type                       = var.cluster_network_type
-  db_subnet_group_name               = var.cluster_db_subnet_group_name
-  vpc_security_group_ids             = var.cluster_vpc_security_group_ids
-  db_enabled_cloudwatch_logs_exports = var.cluster_db_enabled_cloudwatch_logs_exports
-  parameter_group_name               = module.aurora-mysql-cluster-parameter-group.this.name
-  apply_immediately                  = var.cluster_apply_immediately
+  apply_immediately               = var.cluster_apply_immediately
+  backup_retention_period         = var.cluster_backup_retention_period
+  cluster_identifier              = var.cluster_identifier
+  db_cluster_parameter_group_name = module.aurora-mysql-cluster-parameter-group.this.name
+  db_subnet_group_name            = var.cluster_db_subnet_group_name
+  enabled_cloudwatch_logs_exports = var.cluster_enabled_cloudwatch_logs_exports
+  engine                          = "aurora-mysql"
+  engine_version                  = var.cluster_engine_version
+  master_password                 = var.cluster_master_password
+  master_username                 = var.cluster_master_username
+  network_type                    = var.cluster_network_type
+  port                            = var.cluster_port
+  preferred_maintenance_window    = var.cluster_preferred_maintenance_window
+  skip_final_snapshot             = var.cluster_skip_final_snapshot
+  vpc_security_group_ids          = var.cluster_vpc_security_group_ids
 }
 
 module "aurora-mysql-instances" {
@@ -39,7 +39,7 @@ module "aurora-mysql-instances" {
   db_instance_class     = var.instance_db_instance_class
   db_subnet_group_name  = module.aurora-mysql-cluster.this.db_subnet_group_name
   identifier            = var.instance_identifier
-  maintenance_schedule  = var.cluster_maintenance_schedule
+  maintenance_schedule  = var.cluster_preferred_maintenance_window
   minor_version_upgrade = var.instance_minor_version_upgrade
   publicly_accessible   = var.instance_publicly_accessible
 }
@@ -47,7 +47,7 @@ module "aurora-mysql-instances" {
 module "aurora-mysql-log-group" {
   source = "../aws-cloudwatch-log-group"
 
-  name              = "/aws/rds/cluster/${var.cluster_cluster_id}/audit"
+  name              = "/aws/rds/cluster/${var.cluster_identifier}/audit"
   retention_in_days = var.log_group_retention_in_days
 }
 

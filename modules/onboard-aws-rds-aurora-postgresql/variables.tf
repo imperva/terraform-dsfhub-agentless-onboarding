@@ -56,50 +56,21 @@ variable "aws_log_group_region" {
   type        = string
 }
 
-variable "cluster_db_enabled_cloudwatch_logs_exports" {
-  description = "Set of log types to enable for exporting to CloudWatch logs. Valid values: audit, error, general, slowquery."
-  type        = list(any)
-  default     = ["postgresql"]
+variable "cluster_apply_immediately" {
+  description = "Specifies whether any cluster modifications are applied immediately, or during the next maintenance window. Default is true"
+  type        = bool
+  default     = null
 }
 
-variable "cluster_db_engine_version" {
-  description = "Database engine version, e.g., 16.1"
-  type        = string
-  default     = "16.1"
-}
-
-variable "cluster_id" {
-  description = "The name of the RDS cluster"
-  type        = string
-}
-
-variable "cluster_backup_retention" {
+variable "cluster_backup_retention_period" {
   description = "Days to retain backups for, Default is 1 day."
   type        = number
   default     = null
 }
 
-variable "cluster_db_master_username" {
-  description = "Username for the master DB user."
+variable "cluster_identifier" {
+  description = "The name of the RDS cluster"
   type        = string
-  validation {
-    condition = (
-      var.cluster_db_master_username != "rdsadmin" &&
-      var.cluster_db_master_username != "admin"
-    )
-    error_message = "The aurora cluster master username must not be either \"rdsadmin\" or \"admin\". Please select another value."
-  }
-}
-
-variable "cluster_db_master_password" {
-  description = "Password for the master DB user. Note that this may show up in logs, and it will be stored in the state file. Cannot be set if manage_master_user_password is set to true"
-  type        = string
-}
-
-variable "cluster_network_type" {
-  description = " Network type of the cluster. Valid values: IPV4, DUAL"
-  type        = string
-  default     = null
 }
 
 variable "cluster_db_subnet_group_name" {
@@ -108,33 +79,62 @@ variable "cluster_db_subnet_group_name" {
   default     = null
 }
 
-variable "cluster_vpc_security_group_ids" {
-  description = "List of VPC security groups to associate."
+variable "cluster_enabled_cloudwatch_logs_exports" {
+  description = "Set of log types to enable for exporting to CloudWatch logs. Valid values: audit, error, general, slowquery."
   type        = list(any)
-  default     = null
+  default     = ["postgresql"]
 }
 
-variable "cluster_maintenance_schedule" {
-  description = "Weekly time range during which system maintenance can occur, in (UTC)."
+variable "cluster_engine_version" {
+  description = "Database engine version, e.g., 16.1"
+  type        = string
+  default     = "16.1"
+}
+
+variable "cluster_master_password" {
+  description = "Password for the master DB user. Note that this may show up in logs, and it will be stored in the state file."
+  type        = string
+}
+
+variable "cluster_master_username" {
+  description = "Username for the master DB user."
+  type        = string
+  validation {
+    condition = (
+      var.cluster_master_username != "rdsadmin" &&
+      var.cluster_master_username != "admin"
+    )
+    error_message = "The aurora cluster master username must not be either \"rdsadmin\" or \"admin\". Please select another value."
+  }
+}
+
+variable "cluster_network_type" {
+  description = " Network type of the cluster. Valid values: IPV4, DUAL"
   type        = string
   default     = null
 }
 
-variable "cluster_final_snapshot" {
-  description = "Determines whether a final DB snapshot is created before the DB cluster is deleted. If true is specified, no DB snapshot is created. If false is specified, a DB snapshot is created before the DB cluster is deleted, using the value from final_snapshot_identifier. Default is false"
-  type        = bool
-  default     = true
-}
-
-variable "cluster_db_port" {
+variable "cluster_port" {
   description = "Port on which the DB accepts connections."
   type        = number
   default     = null
 }
 
-variable "cluster_apply_immediately" {
-  description = "Specifies whether any cluster modifications are applied immediately, or during the next maintenance window. Default is true"
+variable "cluster_preferred_maintenance_window" {
+  description = "Weekly time range during which system maintenance can occur, in (UTC)."
+  type        = string
+  default     = null
+}
+
+variable "cluster_skip_final_snapshot" {
+  description = "Determines whether a final DB snapshot is created before the DB cluster is deleted. If true is specified, no DB snapshot is created. If false is specified, a DB snapshot is created before the DB cluster is deleted, using the value from final_snapshot_identifier. Default is false"
   type        = bool
+  default     = true
+}
+
+variable "cluster_vpc_security_group_ids" {
+  description = "List of VPC security groups to associate."
+  type        = list(any)
   default     = null
 }
 
@@ -200,7 +200,7 @@ variable "cluster_parameter_group_tags" {
 }
 
 variable "instance_identifier" {
-  description = "The name of the aurora cluster instance"
+  description = "The name of the Aurora PostgreSQL cluster instance"
   type        = string
 }
 

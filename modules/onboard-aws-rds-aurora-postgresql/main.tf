@@ -12,21 +12,21 @@ module "aurora-postgresql-cluster" {
   depends_on = [module.aurora-postgresql-log-group]
   source     = "../aws-rds-cluster"
 
-  apply_immediately                  = var.cluster_apply_immediately
-  backup_retention                   = var.cluster_backup_retention
-  cluster_id                         = var.cluster_id
-  db_enabled_cloudwatch_logs_exports = var.cluster_db_enabled_cloudwatch_logs_exports
-  db_engine                          = "aurora-postgresql"
-  db_engine_version                  = var.cluster_db_engine_version
-  db_master_password                 = var.cluster_db_master_password
-  db_master_username                 = var.cluster_db_master_username
-  db_port                            = var.cluster_db_port
-  db_subnet_group_name               = var.cluster_db_subnet_group_name
-  final_snapshot                     = var.cluster_final_snapshot
-  maintenance_schedule               = var.cluster_maintenance_schedule
-  network_type                       = var.cluster_network_type
-  parameter_group_name               = module.aurora-postgresql-cluster-parameter-group.this.name
-  vpc_security_group_ids             = var.cluster_vpc_security_group_ids
+  apply_immediately               = var.cluster_apply_immediately
+  backup_retention_period         = var.cluster_backup_retention_period
+  cluster_identifier              = var.cluster_identifier
+  db_cluster_parameter_group_name = module.aurora-postgresql-cluster-parameter-group.this.name
+  db_subnet_group_name            = var.cluster_db_subnet_group_name
+  enabled_cloudwatch_logs_exports = var.cluster_enabled_cloudwatch_logs_exports
+  engine                          = "aurora-postgresql"
+  engine_version                  = var.cluster_engine_version
+  master_password                 = var.cluster_master_password
+  master_username                 = var.cluster_master_username
+  network_type                    = var.cluster_network_type
+  port                            = var.cluster_port
+  preferred_maintenance_window    = var.cluster_preferred_maintenance_window
+  skip_final_snapshot             = var.cluster_skip_final_snapshot
+  vpc_security_group_ids          = var.cluster_vpc_security_group_ids
 }
 
 module "aurora-postgresql-instance" {
@@ -46,7 +46,7 @@ module "aurora-postgresql-instance" {
 module "aurora-postgresql-log-group" {
   source = "../aws-cloudwatch-log-group"
 
-  name              = "/aws/rds/cluster/${var.cluster_id}/postgresql"
+  name              = "/aws/rds/cluster/${var.cluster_identifier}/postgresql"
   retention_in_days = var.log_group_retention_in_days
 }
 

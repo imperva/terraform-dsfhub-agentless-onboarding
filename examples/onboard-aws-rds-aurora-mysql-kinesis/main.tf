@@ -65,10 +65,9 @@ module "aws-aurora-mysql-kinesis" {
   aws_kinesis_region             = local.aws_region
 
   cluster_apply_immediately  = local.apply_immediately
-  cluster_db_master_password = local.master_password
-  cluster_db_master_username = local.master_user
-  cluster_id                 = "tf-aurora-mysql-kinesis-cluster"
-  cluster_final_snapshot     = true
+  cluster_master_password = local.master_password
+  cluster_master_username = local.master_user
+  cluster_identifier                 = "tf-aurora-mysql-kinesis-cluster"
 
   instance_apply_immediately   = local.apply_immediately
   instance_identifier          = "tf-aurora-mysql-kinesis-instance"
