@@ -27,7 +27,7 @@ No modules.
 | <a name="input_asset_display_name"></a> [asset\_display\_name](#input\_asset\_display\_name) | User-friendly name of the asset, defined by the user | `string` | n/a | yes |
 | <a name="input_asset_id"></a> [asset\_id](#input\_asset\_id) | AWS ARN, e.g. "arn:aws:s3:::bucket-name" | `string` | n/a | yes |
 | <a name="input_audit_pull_enabled"></a> [audit\_pull\_enabled](#input\_audit\_pull\_enabled) | Whether the DSFHUB should pull logs from the asset. | `bool` | `false` | no |
-| <a name="input_audit_type"></a> [audit\_type](#input\_audit\_type) | Used to indicate what type of audit will be pulled on systems supporting multiple audit types. Valid values: LOG\_GROUP (default), KINESIS, CLOUDWATCH, REDSHIFT, DYNAMODB | `string` | `"LOG_GROUP"` | no |
+| <a name="input_audit_type"></a> [audit\_type](#input\_audit\_type) | Used to indicate what type of audit will be pulled on systems supporting multiple audit types. Default is null. Valid values: LOG\_GROUP, KINESIS, CLOUDWATCH, REDSHIFT, DYNAMODB | `string` | `null` | no |
 | <a name="input_bucket_account_id"></a> [bucket\_account\_id](#input\_bucket\_account\_id) | Mandatory for audit types: REDSHIFT and DYNAMODB. Account number found in the prefix of the files we are pulling. e.g: `123456789012` out of `redshift/AWSLogs/123456789012/redshift/us-east-1/2024/06/25/my_file.gz` | `string` | `null` | no |
 | <a name="input_gateway_id"></a> [gateway\_id](#input\_gateway\_id) | Unique identifier (UID) attached to the jSonar machine controlling the asset | `string` | n/a | yes |
 | <a name="input_parent_asset_id"></a> [parent\_asset\_id](#input\_parent\_asset\_id) | The asset\_id of AWS cloud account being used. E.g. Key-pair, iam\_role, profile or default | `string` | n/a | yes |

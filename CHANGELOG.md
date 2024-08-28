@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.6 (TBD)
+
+### Features
+- Amazon RDS SQL Server module
+
 ## 1.0.4 (2024-07-25)
 
 ### Features

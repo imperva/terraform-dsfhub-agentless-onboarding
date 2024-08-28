@@ -12,6 +12,7 @@ resource "aws_db_instance" "this" {
   final_snapshot_identifier       = var.final_snapshot_identifier
   identifier                      = var.identifier
   instance_class                  = var.instance_class
+  license_model                   = var.license_model
   max_allocated_storage           = var.max_allocated_storage
   option_group_name               = var.option_group_name
   parameter_group_name            = var.parameter_group_name

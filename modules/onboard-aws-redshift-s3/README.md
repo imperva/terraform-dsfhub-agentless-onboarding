@@ -45,7 +45,6 @@ No requirements.
 | <a name="input_aws_redshift_parent_asset_id"></a> [aws\_redshift\_parent\_asset\_id](#input\_aws\_redshift\_parent\_asset\_id) | The asset\_id of AWS cloud account being used. E.g. Key-pair, iam\_role, profile or default | `string` | `null` | no |
 | <a name="input_aws_redshift_region"></a> [aws\_redshift\_region](#input\_aws\_redshift\_region) | AWS region containing the Redshift cluster. | `string` | n/a | yes |
 | <a name="input_aws_s3_admin_email"></a> [aws\_s3\_admin\_email](#input\_aws\_s3\_admin\_email) | The email address to notify about the S3 asset | `string` | n/a | yes |
-| <a name="input_aws_s3_asset_display_name"></a> [aws\_s3\_asset\_display\_name](#input\_aws\_s3\_asset\_display\_name) | User-friendly name of the asset, defined by the user | `string` | n/a | yes |
 | <a name="input_aws_s3_audit_pull_enabled"></a> [aws\_s3\_audit\_pull\_enabled](#input\_aws\_s3\_audit\_pull\_enabled) | A boolean that indicates if the asset should be audited. | `bool` | `true` | no |
 | <a name="input_aws_s3_bucket_account_id"></a> [aws\_s3\_bucket\_account\_id](#input\_aws\_s3\_bucket\_account\_id) | The account\_id of the bucket owner | `string` | `null` | no |
 | <a name="input_aws_s3_gateway_id"></a> [aws\_s3\_gateway\_id](#input\_aws\_s3\_gateway\_id) | Unique identifier (UID) attached to the jSonar machine controlling the S3 asset | `string` | n/a | yes |
@@ -89,12 +88,12 @@ No requirements.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_redshift-asset"></a> [redshift-asset](#output\_redshift-asset) | aws redshift asset |
-| <a name="output_redshift-cluster"></a> [redshift-cluster](#output\_redshift-cluster) | redshift cluster |
-| <a name="output_redshift-logging"></a> [redshift-logging](#output\_redshift-logging) | redshift logging configuration |
-| <a name="output_redshift-parameter-group"></a> [redshift-parameter-group](#output\_redshift-parameter-group) | redshift parameter group |
-| <a name="output_s3-bucket"></a> [s3-bucket](#output\_s3-bucket) | s3 bucket |
-| <a name="output_s3-bucket-asset"></a> [s3-bucket-asset](#output\_s3-bucket-asset) | aws s3 bucket asset |
-| <a name="output_s3-bucket-policy"></a> [s3-bucket-policy](#output\_s3-bucket-policy) | s3 bucket policy |
-| <a name="output_s3_policy"></a> [s3\_policy](#output\_s3\_policy) | s3 iam policy |
+| <a name="output_redshift-asset"></a> [redshift-asset](#output\_redshift-asset) | AWS Redshift asset |
+| <a name="output_redshift-cluster"></a> [redshift-cluster](#output\_redshift-cluster) | Redshift Cluster |
+| <a name="output_redshift-logging"></a> [redshift-logging](#output\_redshift-logging) | Redshift Logging Configuration |
+| <a name="output_redshift-parameter-group"></a> [redshift-parameter-group](#output\_redshift-parameter-group) | Redshift Parameter Group |
+| <a name="output_s3-bucket"></a> [s3-bucket](#output\_s3-bucket) | S3 Bucket |
+| <a name="output_s3-bucket-asset"></a> [s3-bucket-asset](#output\_s3-bucket-asset) | AWS S3 bucket asset |
+| <a name="output_s3-bucket-policy"></a> [s3-bucket-policy](#output\_s3-bucket-policy) | S3 Bucket IAM Policy |
+| <a name="output_s3_policy"></a> [s3\_policy](#output\_s3\_policy) | S3 Bucket IAM Policy Document |
 <!-- END_TF_DOCS -->

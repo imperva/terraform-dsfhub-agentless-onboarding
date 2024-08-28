@@ -20,14 +20,6 @@ The following table lists the DSF versions that each module is tested and mainta
       <td>4.17+</td>
    </tr>
    <tr>
-      <td>onboard-aws-rds-neptune</td>
-      <td>4.17+</td>
-   </tr>
-   <tr>
-      <td>onboard-aws-rds-neptune-slow-query</td>
-      <td>4.17+</td>
-   </tr>
-      <tr>
       <td>onboard-aws-rds-aurora-mysql</td>
       <td>4.17+</td>
    </tr>
@@ -55,9 +47,21 @@ The following table lists the DSF versions that each module is tested and mainta
       <td>onboard-aws-rds-mysql</td>
       <td>4.16+</td>
    </tr>
+      <tr>
+      <td>onboard-aws-rds-ms-sql-server</td>
+      <td>4.17+</td>
+   </tr>
    <tr>
       <td>onboard-aws-rds-mysql-slow-query</td>
       <td>4.16+</td>
+   </tr>
+      <tr>
+      <td>onboard-aws-rds-neptune</td>
+      <td>4.17+</td>
+   </tr>
+   <tr>
+      <td>onboard-aws-rds-neptune-slow-query</td>
+      <td>4.17+</td>
    </tr>
    <tr>
       <td>onboard-aws-rds-oracle-standard</td>

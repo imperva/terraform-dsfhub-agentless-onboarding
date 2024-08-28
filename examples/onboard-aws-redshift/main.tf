@@ -121,7 +121,6 @@ module "aws-redshift-1" {
 
   aws_s3_admin_email        = local.admin_email
   aws_s3_audit_pull_enabled = true
-  aws_s3_asset_display_name = "tf-aws-s3-asset"
   aws_s3_bucket_account_id  = data.aws_caller_identity.current.account_id
   aws_s3_gateway_id         = local.gateway_id
   aws_s3_parent_asset_id    = module.aws-default-account-asset.this.asset_id

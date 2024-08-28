@@ -20,11 +20,11 @@ variable "audit_pull_enabled" {
 }
 
 variable "audit_type" {
-  description = "Used to indicate what type of audit will be pulled on systems supporting multiple audit types. Valid values: LOG_GROUP (default), KINESIS, CLOUDWATCH, REDSHIFT, DYNAMODB"
+  description = "Used to indicate what type of audit will be pulled on systems supporting multiple audit types. Default is null. Valid values: LOG_GROUP, KINESIS, CLOUDWATCH, REDSHIFT, DYNAMODB"
   type        = string
-  default     = "LOG_GROUP"
+  default     = null
   validation {
-    condition     = can(regex("LOG_GROUP|KINESIS|CLOUDWATCH|REDSHIFT|DYNAMODB", var.audit_type))
+    condition     = (var.audit_type == null ? true : (can(regex("LOG_GROUP|KINESIS|CLOUDWATCH|REDSHIFT|DYNAMODB", var.audit_type))))
     error_message = "audit_type must be one of LOG_GROUP, KINESIS, CLOUDWATCH, REDSHIFT, DYNAMODB"
   }
 }
