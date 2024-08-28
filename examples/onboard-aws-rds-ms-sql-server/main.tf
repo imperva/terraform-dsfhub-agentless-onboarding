@@ -40,7 +40,7 @@ provider "dsfhub" {
 # 1. Method to create the server audit and server audit specification
 # 2. AWS cloud account
 ################################################################################
-# 1. Run shell script locally to create  the server audit and server audit specification
+# 1. Run shell script locally to create the server audit and server audit specification
 resource "terraform_data" "configure_database-1" {
   count = length(module.aws-rds-ms-sql-server-1.rds-sql-server-instance)
 
@@ -66,6 +66,7 @@ resource "terraform_data" "configure_database-2" {
   count = length(module.aws-rds-ms-sql-server-2.rds-sql-server-instance)
 
   depends_on = [module.aws-rds-ms-sql-server-2]
+
   provisioner "local-exec" {
     environment = {
       ADMIN_USER     = local.master_user

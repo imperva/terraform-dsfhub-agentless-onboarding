@@ -5,13 +5,13 @@ variable "s3_bucket" {
 }
 
 variable "s3_force_destroy" {
-  description = "A boolean that indicates all objects should be deleted from the bucket when the bucket is destroyed so that the bucket can be destroyed without error. See more details in the (aws terraform documentation)[https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#force_destroy]."
+  description = "A boolean that indicates all objects should be deleted from the bucket when the bucket is destroyed so that the bucket can be destroyed without error. Default is false. See more details in the (AWS Terraform documentation)[https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#force_destroy]."
   type        = bool
   default     = false
 }
 
 variable "s3_object_lock_enabled" {
-  description = "A boolean that indicates whether this bucket should have an Object Lock configuration enabled."
+  description = "A boolean that indicates whether this bucket should have an Object Lock configuration enabled. Default is false."
   type        = bool
   default     = false
 }
@@ -30,7 +30,7 @@ variable "iam_role_name" {
 }
 
 variable "iam_role_path" {
-  description = "The path to the role. For more information about paths, see IAM Identifiers in the IAM User Guide."
+  description = "The path to the role. For more information about paths, see IAM Identifiers in the IAM User Guide. Default is '/service-role/'."
   type        = string
   default     = "/service-role/"
 }
@@ -110,7 +110,7 @@ variable "s3_bucket_prefix" {
 
 # AWS RDS SQL Server instance variables
 variable "db_instance_count" {
-  description = "The number of RDS instances to create."
+  description = "The number of RDS instances to create. Default is 1."
   type        = number
   default     = 1
 }
@@ -122,7 +122,7 @@ variable "rds_mssql_allocated_storage" {
 }
 
 variable "rds_mssql_apply_immediately" {
-  description = "Specifies whether any database modifications are applied immediately, or during the next maintenance window."
+  description = "Specifies whether any database modifications are applied immediately, or during the next maintenance window. Default is true."
   type        = bool
   default     = true
 }
@@ -134,7 +134,7 @@ variable "rds_mssql_db_name" {
 }
 
 variable "rds_mssql_deletion_protection" {
-  description = "If the DB instance should have deletion protection enabled. The database can't be deleted when this value is set to true."
+  description = "If the DB instance should have deletion protection enabled. The database can't be deleted when this value is set to true. Default is false."
   type        = bool
   default     = false
 }
@@ -180,13 +180,13 @@ variable "rds_mssql_port" {
 }
 
 variable "rds_mssql_publicly_accessible" {
-  description = "Bool to control if instance is publicly accessible."
+  description = "Bool to control if instance is publicly accessible. Default is true."
   type        = bool
   default     = true
 }
 
 variable "rds_mssql_skip_final_snapshot" {
-  description = "Determines whether a final DB snapshot is created before the DB instance is deleted. If true is specified, no DBSnapshot is created. If false is specified, a DB snapshot is created before the DB instance is deleted, using the value from final_snapshot_identifier."
+  description = "Determines whether a final DB snapshot is created before the DB instance is deleted. If true is specified, no DBSnapshot is created. If false is specified, a DB snapshot is created before the DB instance is deleted, using the value from final_snapshot_identifier. Default is true."
   type        = bool
   default     = true
 }
@@ -216,12 +216,12 @@ variable "rds_mssql_vpc_security_group_ids" {
 
 # AWS RDS MS SQL Server asset variables
 variable "aws_rds_mssql_admin_email" {
-  description = "The email address to notify about this asset"
+  description = "The email address to notify about this asset."
   type        = string
 }
 
 variable "aws_rds_mssql_audit_pull_enabled" {
-  description = "If true, sonargateway will collect the audit logs for this system if it can."
+  description = "If true, sonargateway will collect the audit logs for this system if it can. Default is false."
   type        = bool
   default     = false
 }
@@ -238,7 +238,7 @@ variable "aws_rds_mssql_gateway_id" {
 }
 
 variable "aws_rds_mssql_parent_asset_id" {
-  description = "The asset_id that contains this asset (e.g. Asset ID of the database sending audit events)"
+  description = "The asset_id of the AWS cloud account that contains this asset."
   type        = string
   default     = null
 }
@@ -251,12 +251,12 @@ variable "aws_rds_mssql_region" {
 
 # AWS S3 Asset variables
 variable "aws_s3_admin_email" {
-  description = "The email address to notify about the S3 asset"
+  description = "The email address to notify about the S3 asset."
   type        = string
 }
 
 variable "aws_s3_audit_pull_enabled" {
-  description = "A boolean that indicates if the asset should be audited."
+  description = "A boolean that indicates whether the asset should be audited. Default is true."
   type        = bool
   default     = true
 }
@@ -273,7 +273,7 @@ variable "aws_s3_gateway_id" {
 }
 
 variable "aws_s3_parent_asset_id" {
-  description = "The asset_id of AWS cloud account being used. E.g. Key-pair, iam_role, profile or default"
+  description = "The asset_id of AWS cloud account being used."
   type        = string
 }
 
