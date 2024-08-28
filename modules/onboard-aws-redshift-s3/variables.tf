@@ -235,10 +235,6 @@ variable "aws_s3_admin_email" {
   description = "The email address to notify about the S3 asset"
   type        = string
 }
-variable "aws_s3_asset_display_name" {
-  description = "User-friendly name of the asset, defined by the user"
-  type        = string
-}
 
 variable "aws_s3_audit_pull_enabled" {
   description = "A boolean that indicates if the asset should be audited."

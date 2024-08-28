@@ -105,7 +105,7 @@ module "s3-bucket-asset" {
   source = "../dsfhub-aws-s3-bucket-la"
 
   admin_email        = var.aws_s3_admin_email
-  asset_display_name = var.aws_s3_asset_display_name
+  asset_display_name = module.s3-bucket.this.id
   asset_id           = module.s3-bucket.this.arn
   audit_pull_enabled = var.aws_s3_audit_pull_enabled
   audit_type         = "REDSHIFT"

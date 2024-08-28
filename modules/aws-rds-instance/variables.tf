@@ -60,6 +60,12 @@ variable "instance_class" {
   default     = "db.t3.small"
 }
 
+variable "license_model" {
+  description = "License model information for this DB instance."
+  type        = string
+  default     = null
+}
+
 variable "max_allocated_storage" {
   description = "When configured, the upper limit to which Amazon RDS can automatically scale the storage of the DB instance. Configuring this will automatically ignore differences to allocated_storage."
   type        = number
