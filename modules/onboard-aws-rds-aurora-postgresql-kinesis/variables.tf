@@ -58,13 +58,13 @@ variable "aws_kinesis_region" {
 }
 
 variable "cluster_apply_immediately" {
-  description = "Specifies whether any cluster modifications are applied immediately, or during the next maintenance window. Default is true"
+  description = "Specifies whether any cluster modifications are applied immediately, or during the next maintenance window."
   type        = bool
   default     = null
 }
 
 variable "cluster_backup_retention_period" {
-  description = "Days to retain backups for, Default is 1 day."
+  description = "Days to retain backups for."
   type        = number
   default     = null
 }
@@ -134,7 +134,7 @@ variable "cluster_preferred_maintenance_window" {
 }
 
 variable "cluster_skip_final_snapshot" {
-  description = "Determines whether a final DB snapshot is created before the DB cluster is deleted. If true is specified, no DB snapshot is created. If false is specified, a DB snapshot is created before the DB cluster is deleted, using the value from final_snapshot_identifier. Default is false"
+  description = "Determines whether a final DB snapshot is created before the DB cluster is deleted. If true is specified, no DB snapshot is created. If false is specified, a DB snapshot is created before the DB cluster is deleted, using the value from final_snapshot_identifier. Default is true."
   type        = bool
   default     = true
 }
@@ -186,7 +186,7 @@ variable "instance_maintenance_schedule" {
 }
 
 variable "instance_apply_immediately" {
-  description = "Specifies whether any cluster modifications are applied immediately, or during the next maintenance window. Default is true"
+  description = "Specifies whether any cluster modifications are applied immediately, or during the next maintenance window."
   type        = bool
   default     = null
 }

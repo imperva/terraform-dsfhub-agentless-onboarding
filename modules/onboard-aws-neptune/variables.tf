@@ -118,7 +118,7 @@ variable "instance_apply_immediately" {
 }
 
 variable "instance_auto_minor_version_upgrade" {
-  description = "Indicates that minor engine upgrades will be applied automatically to the instance during the maintenance window. Default is true"
+  description = "Indicates that minor engine upgrades will be applied automatically to the instance during the maintenance window. Default is false."
   type        = bool
   default     = false
 }
@@ -153,7 +153,7 @@ variable "instance_port" {
 }
 
 variable "instance_publicly_accessible" {
-  description = "Bool to control if instance is publicly accessible. Default is false"
+  description = "Bool to control if instance is publicly accessible. Default is false."
   type        = bool
   default     = false
 }

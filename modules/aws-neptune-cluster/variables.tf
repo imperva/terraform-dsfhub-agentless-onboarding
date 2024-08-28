@@ -17,7 +17,7 @@ variable "engine_version" {
 }
 
 variable "backup_retention_period" {
-  description = "The days to retain backups for. Default is 1"
+  description = "The days to retain backups for."
   type        = number
   default     = null
 }

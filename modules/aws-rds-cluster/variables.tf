@@ -1,11 +1,11 @@
 variable "apply_immediately" {
-  description = "Specifies whether any cluster modifications are applied immediately, or during the next maintenance window. Default is true"
+  description = "Specifies whether any cluster modifications are applied immediately, or during the next maintenance window."
   type        = bool
   default     = null
 }
 
 variable "backup_retention_period" {
-  description = "Days to retain backups for, Default is 1 day."
+  description = "Days to retain backups for."
   type        = number
   default     = null
 }
@@ -74,7 +74,7 @@ variable "preferred_maintenance_window" {
 }
 
 variable "skip_final_snapshot" {
-  description = "Determines whether a final DB snapshot is created before the DB cluster is deleted. If true is specified, no DB snapshot is created. If false is specified, a DB snapshot is created before the DB cluster is deleted, using the value from final_snapshot_identifier. Default is false"
+  description = "Determines whether a final DB snapshot is created before the DB cluster is deleted. If true is specified, no DB snapshot is created. If false is specified, a DB snapshot is created before the DB cluster is deleted, using the value from final_snapshot_identifier."
   type        = bool
   default     = null
 }
