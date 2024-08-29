@@ -64,11 +64,11 @@ module "aws-aurora-postgresql-kinesis-1" {
   aws_kinesis_gateway_id         = local.gateway_id
   aws_kinesis_region             = local.aws_region
 
-  cluster_apply_immediately  = true
-  cluster_db_engine_version  = "16"
-  cluster_db_master_password = local.master_password
-  cluster_db_master_username = local.master_user
-  cluster_id                 = "tf-aurora-postgresql-kinesis-cluster"
+  cluster_apply_immediately = true
+  cluster_engine_version    = "16"
+  cluster_identifier        = "tf-aurora-postgresql-kinesis-cluster"
+  cluster_master_password   = local.master_password
+  cluster_master_username   = local.master_user
 
   instance_apply_immediately   = true
   instance_class               = "db.r5.large"
@@ -93,11 +93,11 @@ module "aws-aurora-postgresql-kinesis-2" {
   aws_kinesis_gateway_id         = local.gateway_id
   aws_kinesis_region             = local.aws_region
 
-  cluster_apply_immediately  = true
-  cluster_db_engine_version  = "16"
-  cluster_db_master_password = local.master_password
-  cluster_db_master_username = local.master_user
-  cluster_id                 = "tf-aurora-postgresql-kinesis-cluster"
+  cluster_apply_immediately = true
+  cluster_engine_version    = "16"
+  cluster_identifier        = "tf-aurora-postgresql-kinesis-cluster"
+  cluster_master_password   = local.master_password
+  cluster_master_username   = local.master_user
 
   instance_apply_immediately   = true
   instance_class               = "db.r5.large"

@@ -1,9 +1,10 @@
 # Changelog
 
-## 1.0.6 (TBD)
+## 1.0.5 (TBD)
 
 ### Features
 - Amazon RDS SQL Server module
+- Refactored Amazon RDS Aurora (MySQL and PostgreSQL) module variables
 
 ## 1.0.4 (2024-07-25)
 

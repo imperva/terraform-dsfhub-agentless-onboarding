@@ -87,12 +87,11 @@ module "aurora-postgresql-1" {
   aws_log_group_gateway_id         = local.gateway_id
   aws_log_group_region             = local.aws_region
 
-  cluster_db_engine_version      = "16.1"
-  cluster_db_master_password     = local.master_password
-  cluster_db_master_username     = local.master_user
   cluster_db_subnet_group_name   = local.subnet_group_name
-  cluster_final_snapshot         = true
-  cluster_id                     = "tf-aurora-postgresql-cluster"
+  cluster_engine_version         = "16.1"
+  cluster_identifier             = "tf-aurora-postgresql-cluster"
+  cluster_master_password        = local.master_password
+  cluster_master_username        = local.master_user
   cluster_parameter_group_name   = "tf-aurora-postgresql-instance-pg"
   cluster_vpc_security_group_ids = local.vpc_security_groups
 
@@ -118,12 +117,11 @@ module "aurora-postgresql-2" {
   aws_log_group_gateway_id         = local.gateway_id
   aws_log_group_region             = local.aws_region
 
-  cluster_db_engine_version      = "16.1"
-  cluster_db_master_password     = local.master_password
-  cluster_db_master_username     = local.master_user
   cluster_db_subnet_group_name   = local.subnet_group_name
-  cluster_final_snapshot         = true
-  cluster_id                     = "tf-aurora-postgresql-cluster"
+  cluster_engine_version         = "16.1"
+  cluster_identifier             = "tf-aurora-postgresql-cluster"
+  cluster_master_password        = local.master_password
+  cluster_master_username        = local.master_user
   cluster_parameter_group_name   = "tf-aurora-postgresql-instance-pg"
   cluster_vpc_security_group_ids = local.vpc_security_groups
 

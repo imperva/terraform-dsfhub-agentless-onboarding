@@ -5,7 +5,7 @@ variable "apply_immediately" {
 }
 
 variable "auto_minor_version_upgrade" {
-  description = "Indicates that minor engine upgrades will be applied automatically to the instance during the maintenance window. Default is true"
+  description = "Indicates that minor engine upgrades will be applied automatically to the instance during the maintenance window."
   type        = bool
   default     = null
 }
@@ -40,13 +40,13 @@ variable "neptune_parameter_group_name" {
 }
 
 variable "port" {
-  description = "The port on which the DB accepts connections. Defaults to 8182"
+  description = "The port on which the DB accepts connections."
   type        = number
   default     = null
 }
 
 variable "publicly_accessible" {
-  description = "Bool to control if instance is publicly accessible. Default is false"
+  description = "Bool to control if instance is publicly accessible."
   type        = bool
   default     = null
 }

@@ -39,7 +39,7 @@ variable "maintenance_schedule" {
 }
 
 variable "apply_immediately" {
-  description = "Specifies whether any cluster modifications are applied immediately, or during the next maintenance window. Default is true"
+  description = "Specifies whether any cluster modifications are applied immediately, or during the next maintenance window."
   type        = bool
   default     = null
 }
