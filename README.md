@@ -156,6 +156,8 @@ You can choose between the following options. The default value is `"SYNC_GW_BLO
   </tr>
 </table>
 
+For more details, see the [DSFHub provider documentation](https://registry.terraform.io/providers/imperva/dsfhub/latest/docs#dsfhub-provider-argument-reference).
+
 #### Insecure SSL (Optional)
 The `dsfhub` provider may be configured with `insecure_ssl` to allow for insecure SSL API calls to a DSF Hub instance to support tests against instances with self-signed certificates. It may be set with the `INSECURE_SSL` environment variable or within the script as the `insecure_ssl` parameter. The default value is `true`.
 
