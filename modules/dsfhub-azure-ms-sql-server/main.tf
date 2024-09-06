@@ -25,7 +25,7 @@ resource "dsfhub_data_source" "this" {
   dynamic "asset_connection" {
     # If auth_mechanism is not defined, do not create a connection
     for_each = var.auth_mechanism != null ? [0] : []
-    
+
     content {
       auth_mechanism = var.auth_mechanism
       password       = var.password
