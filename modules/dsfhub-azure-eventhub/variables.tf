@@ -26,13 +26,13 @@ variable "auth_mechanism" {
 }
 
 variable "azure_storage_account" {
-  description = "Name of the Azure Storage Account that will be used to store a marker for the EventHub pulls."
+  description = "Name of the Azure Storage Account that will be used to store a marker for the Event Hub pulls."
   type        = string
   default     = null
 }
 
 variable "azure_storage_container" {
-  description = "Name of the Azure Storage Container that will be used to store a marker for the EventHub pulls."
+  description = "Name of the Azure Storage Container that will be used to store a marker for the Event Hub pulls."
   type        = string
   default     = null
 }
@@ -44,31 +44,31 @@ variable "azure_storage_secret_key" {
 }
 
 variable "eventhub_access_key" {
-  description = "The primary key of the shared shared access policy for the namespace containing the targeted EventHub."
+  description = "The primary key of the shared shared access policy for the namespace containing the targeted Event Hub."
   type        = string
   default     = null
 }
 
 variable "eventhub_access_policy" {
-  description = "The name of the shared access policy for the namespace containing the targeted EventHub."
+  description = "The name of the shared access policy for the namespace containing the targeted Event Hub."
   type        = string
   default     = null
 }
 
 variable "eventhub_name" {
-  description = "Name of the EventHub containing the audit logs."
+  description = "Name of the Event Hub containing the audit logs."
   type        = string
   default     = null
 }
 
 variable "eventhub_namespace" {
-  description = "Name of the EventHub Namespace containing the EventHub."
+  description = "Name of the Event Hub Namespace containing the Event Hub."
   type        = string
   default     = null
 }
 
 variable "format" {
-  description = "The type of audit data being sent to the EventHub. Possible values are: AzureSQL_Managed, Blob, Cosmos_Mongo, Cosmos_SQL, Data_Explorer, Databricks_Workspace, File, Mariadb, Mysql, Postgresql, Postgresql_Flexible, Queue, Sql, Synapse, Table. Defaults to Sql."
+  description = "The type of audit data being sent to the Event Hub. Possible values are: AzureSQL_Managed, Blob, Cosmos_Mongo, Cosmos_SQL, Data_Explorer, Databricks_Workspace, File, Mariadb, Mysql, Postgresql, Postgresql_Flexible, Queue, Sql, Synapse, Table. Defaults to Sql."
   type        = string
   default     = "Sql"
   validation {
@@ -114,12 +114,12 @@ variable "reason" {
 }
 
 variable "region" {
-  description = "Azure region containing the EventHub."
+  description = "Azure region containing the Event Hub."
   type        = string
   default     = null
 }
 
 variable "server_host_name" {
-  description = "EventHub Namepace's service bus endpoint, e.g. mynamespace.servicebus.windows.net"
+  description = "Event Hub Namepace's service bus endpoint, e.g. mynamespace.servicebus.windows.net"
   type        = string
 }

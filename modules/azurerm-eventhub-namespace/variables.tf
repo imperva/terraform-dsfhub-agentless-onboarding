@@ -10,12 +10,12 @@ variable "location" {
 }
 
 variable "name" {
-  description = "Specifies the name of the EventHub Namespace resource. Changing this forces a new resource to be created."
+  description = "Specifies the name of the Event Hub Namespace resource. Changing this forces a new resource to be created."
   type        = string
 }
 
 variable "public_network_access_enabled" {
-  description = "Is public network access enabled for the EventHub Namespace? Defaults to true."
+  description = "Is public network access enabled for the Event Hub Namespace? Defaults to true."
   type        = bool
   default     = true
 }

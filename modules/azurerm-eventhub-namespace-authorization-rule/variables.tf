@@ -16,12 +16,12 @@ variable "name" {
 }
 
 variable "namespace_name" {
-  description = "Specifies the name of the EventHub Namespace. Changing this forces a new resource to be created."
+  description = "Specifies the name of the Event Hub Namespace. Changing this forces a new resource to be created."
   type        = string
 }
 
 variable "resource_group_name" {
-  description = "The name of the resource group in which the EventHub Namespace exists. Changing this forces a new resource to be created."
+  description = "The name of the resource group in which the Event Hub Namespace exists. Changing this forces a new resource to be created."
   type        = string
 }
 

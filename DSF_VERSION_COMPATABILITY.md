@@ -79,5 +79,9 @@ The following table lists the DSF versions that each module is tested and mainta
       <td>onboard-aws-rds-redshift</td>
       <td>4.17+</td>
    </tr>
+   <tr>
+      <td>onboard-azure-ms-sql-server</td>
+      <td>4.17+</td>
+   </tr>
 
 </table>

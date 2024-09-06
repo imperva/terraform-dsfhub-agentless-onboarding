@@ -19,6 +19,7 @@ resource "dsfhub_data_source" "this" {
   logs_destination_asset_id = var.logs_destination_asset_id
   parent_asset_id           = var.parent_asset_id
   server_host_name          = var.server_host_name
+  server_ip                 = var.server_ip
   server_port               = var.server_port
 
   dynamic "asset_connection" {

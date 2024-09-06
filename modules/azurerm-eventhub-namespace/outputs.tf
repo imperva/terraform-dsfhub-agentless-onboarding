@@ -1,4 +1,4 @@
 output "this" {
-  description = "Azure EventHub Namespace"
+  description = "Azure Event Hub Namespace"
   value       = azurerm_eventhub_namespace.this
 }

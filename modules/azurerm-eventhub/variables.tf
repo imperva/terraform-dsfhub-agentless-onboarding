@@ -5,12 +5,12 @@ variable "message_retention" {
 }
 
 variable "name" {
-  description = "Specifies the name of the EventHub resource. Changing this forces a new resource to be created."
+  description = "Specifies the name of the Event Hub resource. Changing this forces a new resource to be created."
   type        = string
 }
 
 variable "namespace_name" {
-  description = "Specifies the name of the EventHub Namespace. Changing this forces a new resource to be created."
+  description = "Specifies the name of the Event Hub Namespace. Changing this forces a new resource to be created."
   type        = string
 }
 
@@ -21,7 +21,7 @@ variable "partition_count" {
 }
 
 variable "resource_group_name" {
-  description = "The name of the resource group in which the EventHub's parent Namespace exists. Changing this forces a new resource to be created."
+  description = "The name of the resource group in which the Event Hub's parent Namespace exists. Changing this forces a new resource to be created."
   type        = string
 }
 

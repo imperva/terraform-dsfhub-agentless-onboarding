@@ -8,6 +8,9 @@ resource "azurerm_monitor_diagnostic_setting" "this" {
       )
       error_message = "Atleast one of eventhub_authorization_rule_id, storage_account_id must be specified"
     }
+
+    # Avoid overriding changes made automatically on the Azure side
+    ignore_changes = [enabled_log, metric]
   }
 
   eventhub_authorization_rule_id = var.eventhub_authorization_rule_id
