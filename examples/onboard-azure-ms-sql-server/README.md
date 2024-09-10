@@ -1,7 +1,7 @@
 # Onboard Azure SQL Server example
 This example includes additional prerequisites that will need to be completed to fully utilize the module. More details can be found in the [onboarding documentation](https://docs.imperva.com/bundle/onboarding-databases-to-sonar-reference-guide/page/Azure-SQL-Server-Onboarding-Steps_48367377.html).
 
-This example creates both 'azurerm' and 'dsfhub' resources. More infomation regarding authentication to each can be found in the relevant provider documentation:
+This example creates both 'azurerm' and 'dsfhub' resources. More information regarding authentication to each can be found in the relevant provider documentation:
 - [azurerm](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs)
 - [dsfhub](https://registry.terraform.io/providers/imperva/dsfhub/latest/docs)
 
