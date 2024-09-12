@@ -1,10 +1,11 @@
 resource "azurerm_cosmosdb_account" "this" {
-  kind                = var.kind
-  location            = var.location
-  name                = var.name
-  offer_type          = "Standard"
-  resource_group_name = var.resource_group_name
-  tags                = var.tags
+  kind                 = var.kind
+  location             = var.location
+  mongo_server_version = var.mongo_server_version
+  name                 = var.name
+  offer_type           = "Standard"
+  resource_group_name  = var.resource_group_name
+  tags                 = var.tags
 
 
   dynamic "capabilities" {

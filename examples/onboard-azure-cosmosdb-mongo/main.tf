@@ -1,5 +1,5 @@
 locals {
-  azure_eventhub_name       = "cosmossqleventhub"
+  azure_eventhub_name       = "cosmosmongoeventhub"
   azure_location            = "East US"
   azure_resource_group_name = "My_Resource_Group"
   azure_subscription_id     = "123456790-wxyz-g8h9-e5f6-a1b2c3d4"
@@ -13,16 +13,11 @@ locals {
 ################################################################################
 terraform {
   required_providers {
-    azapi = {
-      source = "azure/azapi"
-    }
     dsfhub = {
       source = "imperva/dsfhub"
     }
   }
 }
-
-provider "azapi" {}
 
 provider "azurerm" {
   features {}
@@ -87,22 +82,22 @@ module "storage-account" {
   source = "../../modules/azurerm-storage-account"
 
   location            = local.azure_location
-  name                = "cosmossqlstorageacc"
+  name                = "cosmosmongostorageacc"
   resource_group_name = local.azure_resource_group_name
 }
 
 module "storage-container" {
   source = "../../modules/azurerm-storage-container"
 
-  name                 = "cosmossqlstoragecon"
+  name                 = "cosmosmongostoragecon"
   storage_account_name = module.storage-account.this.name
 }
 
 ################################################################################
-# Azure Cosmos DB with SQL API
+# Azure Cosmos DB with Mongo API v4.2
 ################################################################################
-module "azure-cosmosdb-sql-1" {
-  source = "../../modules/onboard-azure-cosmosdb-sql"
+module "azure-cosmosdb-mongo-1" {
+  source = "../../modules/onboard-azure-cosmosdb-mongo"
 
   azure_cosmosdb_admin_email        = local.admin_email
   azure_cosmosdb_audit_pull_enabled = true
@@ -133,9 +128,10 @@ module "azure-cosmosdb-sql-1" {
       "zone_redundant" : false
     }
   ]
-  cosmosdb_account_location            = local.azure_location
-  cosmosdb_account_name                = "example-cosmos-sql"
-  cosmosdb_account_resource_group_name = local.azure_resource_group_name
+  cosmosdb_account_location             = local.azure_location
+  cosmosdb_account_mongo_server_version = "4.2"
+  cosmosdb_account_name                 = "example-cosmos-mongo"
+  cosmosdb_account_resource_group_name  = local.azure_resource_group_name
 
   diagnostic_setting_eventhub_authorization_rule_id = module.eventhub-write-authorization.this.id
   diagnostic_setting_eventhub_name                  = module.eventhub.this.name

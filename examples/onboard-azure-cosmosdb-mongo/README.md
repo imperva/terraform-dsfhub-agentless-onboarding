@@ -1,8 +1,7 @@
-# Onboard Azure Cosmos DB SQL API example
-This example includes additional prerequisites that will need to be completed to fully utilize the module. More details can be found in the [onboarding documentation](https://docs.imperva.com/bundle/onboarding-databases-to-sonar-reference-guide/page/Azure-Cosmos-DB-SQL-API-Onboarding-Steps_48367255.html).
+# Onboard Azure Cosmos DB API for MongoDB example
+This example includes additional prerequisites that will need to be completed to fully utilize the module. More details can be found in the [onboarding documentation](https://docs.imperva.com/bundle/onboarding-databases-to-sonar-reference-guide/page/Azure-Cosmos-DB-API-for-MongoDB-Onboarding-Steps_48367240.html).
 
-This example creates 'azapi', 'azurerm' and 'dsfhub' resources. More infomation regarding authentication to each can be found in the relevant provider documentation:
-- [azapi](https://registry.terraform.io/providers/Azure/azapi/latest/docs)
+This example creates 'azurerm' and 'dsfhub' resources. More infomation regarding authentication to each can be found in the relevant provider documentation:
 - [azurerm](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs)
 - [dsfhub](https://registry.terraform.io/providers/imperva/dsfhub/latest/docs)
 

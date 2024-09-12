@@ -55,6 +55,19 @@ variable "location" {
   type        = string
 }
 
+variable "mongo_server_version" {
+  description = "The Server Version of a MongoDB account. Possible values are 4.2, 4.0, 3.6, and 3.2."
+  type        = string
+  default     = null
+  validation {
+    condition = (
+      var.mongo_server_version == null ? true :
+      contains(["4.2", "4.0", "3.6", "3.2"], var.mongo_server_version)
+    )
+    error_message = "Invalid MongoDB server version. Possible values are 4.2, 4.0, 3.6, and 3.2."
+  }
+}
+
 variable "name" {
   description = "Specifies the name of the CosmosDB Account. Changing this forces a new resource to be created."
   type        = string
