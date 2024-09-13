@@ -79,12 +79,12 @@ module "eventhub-authorizations" {
 module "azure-eventhub-asset" {
   source = "../dsfhub-azure-eventhub"
 
-  admin_email              = var.azure_eventhub_admin_email
-  asset_display_name       = module.eventhub.this.name
-  asset_id                 = module.eventhub.this.id
+  admin_email        = var.azure_eventhub_admin_email
+  asset_display_name = module.eventhub.this.name
+  asset_id           = module.eventhub.this.id
   # audit_pull_enabled set to 'null' so as to be treated as a computed value
   # eventhub asset will be connected when assets using this eventhub as a log aggregator are connected
-  audit_pull_enabled       = null 
+  audit_pull_enabled       = null
   auth_mechanism           = "default"
   azure_storage_account    = module.storage-account.this.name
   azure_storage_container  = module.storage-container.this.name

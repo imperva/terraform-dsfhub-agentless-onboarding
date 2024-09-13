@@ -54,7 +54,7 @@ variable "eventhub_message_retention" {
   type        = number
   default     = 1
   validation {
-    condition = var.eventhub_message_retention <= 7
+    condition     = var.eventhub_message_retention <= 7
     error_message = "Maximum Event Hub message retention is 7 days."
   }
 }
@@ -69,7 +69,7 @@ variable "eventhub_partition_count" {
   type        = number
   default     = 1
   validation {
-    condition = var.eventhub_partition_count <= 32
+    condition     = var.eventhub_partition_count <= 32
     error_message = "Maximum Event Hub partition count is 32."
   }
 }
