@@ -4,74 +4,6 @@ variable "audit_policy_enabled" {
   default     = true
 }
 
-variable "azure_eventhub_admin_email" {
-  description = "The email address to notify about the asset."
-  type        = string
-}
-
-variable "azure_eventhub_asset_display_name" {
-  description = "User-friendly name of the asset, defined by user"
-  type        = string
-}
-
-variable "azure_eventhub_asset_id" {
-  description = "The Azure resource ID of the eventhub."
-  type        = string
-}
-
-variable "azure_eventhub_audit_pull_enabled" {
-  description = "If true, sonargateway will collect the audit logs for this system if it can."
-  type        = bool
-  default     = false
-}
-
-variable "azure_eventhub_azure_storage_account" {
-  description = "Name of the Azure Storage Account that will be used to store a marker for the Event Hub pulls."
-  type        = string
-}
-
-variable "azure_eventhub_azure_storage_container" {
-  description = "Name of the Azure Storage Container that will be used to store a marker for the Event Hub pulls."
-  type        = string
-}
-
-variable "azure_eventhub_azure_storage_secret_key" {
-  description = "Access Key with permissions to access the Storage Account."
-  type        = string
-}
-
-variable "azure_eventhub_eventhub_access_key" {
-  description = "The primary key of the shared shared access policy for the namespace containing the targeted Event Hub."
-  type        = string
-}
-
-variable "azure_eventhub_eventhub_access_policy" {
-  description = "The name of the shared access policy for the namespace containing the targeted Event Hub. Must have read access."
-  type        = string
-}
-
-variable "azure_eventhub_eventhub_name" {
-  description = "Name of the Event Hub containing the audit logs."
-  type        = string
-
-}
-
-variable "azure_eventhub_eventhub_namespace" {
-  description = "Name of the Event Hub Namespace containing the Event Hub."
-  type        = string
-}
-
-variable "azure_eventhub_gateway_id" {
-  description = "Unique identifier (UID) attached to the jSonar machine controlling the asset"
-  type        = string
-}
-
-variable "azure_eventhub_reason" {
-  description = "Used to differentiate connections that belong to the same asset"
-  type        = string
-  default     = "default"
-}
-
 variable "azure_ms_sql_server_admin_email" {
   description = "The email address to notify about the asset."
   type        = string
@@ -98,6 +30,11 @@ variable "azure_ms_sql_server_location" {
   description = "Physical location/region of the SQL Server instance, e.g. \"EAST US\""
   type        = string
   default     = null
+}
+
+variable "azure_ms_sql_server_logs_destination_asset_id" {
+  description = "The asset_id of the AZURE EVENTHUB asset that this instance is sending its audit logs to."
+  type = string
 }
 
 variable "azure_ms_sql_server_parent_asset_id" {

@@ -29,11 +29,13 @@ module "sql-server-extended-server-audit-policy" {
 # Allow time for 'master' database to initialize before creating diagnostic setting
 resource "time_sleep" "wait" {
   depends_on      = [module.sql-server-instance]
+  
   create_duration = "5m"
 }
 
 data "azurerm_mssql_database" "master" {
   depends_on = [time_sleep.wait]
+
   server_id  = module.sql-server-instance.this.id
   name       = "master"
 }
@@ -50,7 +52,8 @@ module "sql-server-diagnostic-setting" {
 }
 
 module "azure-ms-sql-server-asset" {
-  source = "../dsfhub-azure-ms-sql-server"
+  depends_on = [module.sql-server-diagnostic-setting]
+  source     = "../dsfhub-azure-ms-sql-server"
 
   admin_email               = var.azure_ms_sql_server_admin_email
   asset_display_name        = module.sql-server-instance.this.name
@@ -59,31 +62,9 @@ module "azure-ms-sql-server-asset" {
   database_name             = var.azure_ms_sql_server_database_name
   gateway_id                = var.azure_ms_sql_server_gateway_id
   location                  = var.azure_ms_sql_server_location
-  logs_destination_asset_id = module.azure-eventhub-asset.this.asset_id
+  logs_destination_asset_id = var.azure_ms_sql_server_logs_destination_asset_id
   parent_asset_id           = var.azure_ms_sql_server_parent_asset_id
   server_host_name          = module.sql-server-instance.this.fully_qualified_domain_name
   server_ip                 = module.sql-server-instance.this.fully_qualified_domain_name
   server_port               = "1433"
-}
-
-module "azure-eventhub-asset" {
-  depends_on = [module.sql-server-diagnostic-setting]
-  source     = "../dsfhub-azure-eventhub"
-
-  admin_email              = var.azure_eventhub_admin_email
-  asset_display_name       = var.azure_eventhub_asset_display_name
-  asset_id                 = var.azure_eventhub_asset_id
-  audit_pull_enabled       = var.azure_eventhub_audit_pull_enabled
-  auth_mechanism           = "default"
-  azure_storage_account    = var.azure_eventhub_azure_storage_account
-  azure_storage_container  = var.azure_eventhub_azure_storage_container
-  azure_storage_secret_key = var.azure_eventhub_azure_storage_secret_key
-  eventhub_access_key      = var.azure_eventhub_eventhub_access_key
-  eventhub_access_policy   = var.azure_eventhub_eventhub_access_policy
-  eventhub_name            = var.azure_eventhub_eventhub_name
-  eventhub_namespace       = var.azure_eventhub_eventhub_namespace
-  format                   = "Sql"
-  gateway_id               = var.azure_eventhub_gateway_id
-  reason                   = var.azure_eventhub_reason
-  server_host_name         = "${var.azure_eventhub_eventhub_namespace}.servicebus.windows.net"
 }
