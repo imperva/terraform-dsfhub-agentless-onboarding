@@ -28,12 +28,8 @@ No providers.
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_azure-ms-sql-server-1"></a> [azure-ms-sql-server-1](#module\_azure-ms-sql-server-1) | ../../modules/onboard-azure-ms-sql-server | n/a |
-| <a name="module_eventhub"></a> [eventhub](#module\_eventhub) | ../../modules/azurerm-eventhub | n/a |
-| <a name="module_eventhub-namespace"></a> [eventhub-namespace](#module\_eventhub-namespace) | ../../modules/azurerm-eventhub-namespace | n/a |
-| <a name="module_eventhub-read-authorization"></a> [eventhub-read-authorization](#module\_eventhub-read-authorization) | ../../modules/azurerm-eventhub-namespace-authorization-rule | n/a |
-| <a name="module_eventhub-write-authorization"></a> [eventhub-write-authorization](#module\_eventhub-write-authorization) | ../../modules/azurerm-eventhub-namespace-authorization-rule | n/a |
-| <a name="module_storage-account"></a> [storage-account](#module\_storage-account) | ../../modules/azurerm-storage-account | n/a |
-| <a name="module_storage-container"></a> [storage-container](#module\_storage-container) | ../../modules/azurerm-storage-container | n/a |
+| <a name="module_azure-ms-sql-server-2"></a> [azure-ms-sql-server-2](#module\_azure-ms-sql-server-2) | ../../modules/onboard-azure-ms-sql-server | n/a |
+| <a name="module_onboard-azure-sql-server-eventhub-1"></a> [onboard-azure-sql-server-eventhub-1](#module\_onboard-azure-sql-server-eventhub-1) | ../../modules/onboard-azure-eventhub | n/a |
 
 ## Resources
 

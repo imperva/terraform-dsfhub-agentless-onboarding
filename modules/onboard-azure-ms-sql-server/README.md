@@ -26,7 +26,6 @@ No requirements.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_azure-eventhub-asset"></a> [azure-eventhub-asset](#module\_azure-eventhub-asset) | ../dsfhub-azure-eventhub | n/a |
 | <a name="module_azure-ms-sql-server-asset"></a> [azure-ms-sql-server-asset](#module\_azure-ms-sql-server-asset) | ../dsfhub-azure-ms-sql-server | n/a |
 | <a name="module_sql-server-diagnostic-setting"></a> [sql-server-diagnostic-setting](#module\_sql-server-diagnostic-setting) | ../azurerm-monitor-diagnostic-setting | n/a |
 | <a name="module_sql-server-extended-server-audit-policy"></a> [sql-server-extended-server-audit-policy](#module\_sql-server-extended-server-audit-policy) | ../azurerm-mssql-server-extended-auditing-policy | n/a |
@@ -44,24 +43,12 @@ No requirements.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_audit_policy_enabled"></a> [audit\_policy\_enabled](#input\_audit\_policy\_enabled) | Whether to enable the extended auditing policy on the SQL Server instance. Defaults to true. | `bool` | `true` | no |
-| <a name="input_azure_eventhub_admin_email"></a> [azure\_eventhub\_admin\_email](#input\_azure\_eventhub\_admin\_email) | The email address to notify about the asset. | `string` | n/a | yes |
-| <a name="input_azure_eventhub_asset_display_name"></a> [azure\_eventhub\_asset\_display\_name](#input\_azure\_eventhub\_asset\_display\_name) | User-friendly name of the asset, defined by user | `string` | n/a | yes |
-| <a name="input_azure_eventhub_asset_id"></a> [azure\_eventhub\_asset\_id](#input\_azure\_eventhub\_asset\_id) | The Azure resource ID of the eventhub. | `string` | n/a | yes |
-| <a name="input_azure_eventhub_audit_pull_enabled"></a> [azure\_eventhub\_audit\_pull\_enabled](#input\_azure\_eventhub\_audit\_pull\_enabled) | If true, sonargateway will collect the audit logs for this system if it can. | `bool` | `false` | no |
-| <a name="input_azure_eventhub_azure_storage_account"></a> [azure\_eventhub\_azure\_storage\_account](#input\_azure\_eventhub\_azure\_storage\_account) | Name of the Azure Storage Account that will be used to store a marker for the Event Hub pulls. | `string` | n/a | yes |
-| <a name="input_azure_eventhub_azure_storage_container"></a> [azure\_eventhub\_azure\_storage\_container](#input\_azure\_eventhub\_azure\_storage\_container) | Name of the Azure Storage Container that will be used to store a marker for the Event Hub pulls. | `string` | n/a | yes |
-| <a name="input_azure_eventhub_azure_storage_secret_key"></a> [azure\_eventhub\_azure\_storage\_secret\_key](#input\_azure\_eventhub\_azure\_storage\_secret\_key) | Access Key with permissions to access the Storage Account. | `string` | n/a | yes |
-| <a name="input_azure_eventhub_eventhub_access_key"></a> [azure\_eventhub\_eventhub\_access\_key](#input\_azure\_eventhub\_eventhub\_access\_key) | The primary key of the shared shared access policy for the namespace containing the targeted Event Hub. | `string` | n/a | yes |
-| <a name="input_azure_eventhub_eventhub_access_policy"></a> [azure\_eventhub\_eventhub\_access\_policy](#input\_azure\_eventhub\_eventhub\_access\_policy) | The name of the shared access policy for the namespace containing the targeted Event Hub. Must have read access. | `string` | n/a | yes |
-| <a name="input_azure_eventhub_eventhub_name"></a> [azure\_eventhub\_eventhub\_name](#input\_azure\_eventhub\_eventhub\_name) | Name of the Event Hub containing the audit logs. | `string` | n/a | yes |
-| <a name="input_azure_eventhub_eventhub_namespace"></a> [azure\_eventhub\_eventhub\_namespace](#input\_azure\_eventhub\_eventhub\_namespace) | Name of the Event Hub Namespace containing the Event Hub. | `string` | n/a | yes |
-| <a name="input_azure_eventhub_gateway_id"></a> [azure\_eventhub\_gateway\_id](#input\_azure\_eventhub\_gateway\_id) | Unique identifier (UID) attached to the jSonar machine controlling the asset | `string` | n/a | yes |
-| <a name="input_azure_eventhub_reason"></a> [azure\_eventhub\_reason](#input\_azure\_eventhub\_reason) | Used to differentiate connections that belong to the same asset | `string` | `"default"` | no |
 | <a name="input_azure_ms_sql_server_admin_email"></a> [azure\_ms\_sql\_server\_admin\_email](#input\_azure\_ms\_sql\_server\_admin\_email) | The email address to notify about the asset. | `string` | n/a | yes |
 | <a name="input_azure_ms_sql_server_audit_pull_enabled"></a> [azure\_ms\_sql\_server\_audit\_pull\_enabled](#input\_azure\_ms\_sql\_server\_audit\_pull\_enabled) | If true, sonargateway will collect the audit logs for this system if it can. | `bool` | `false` | no |
 | <a name="input_azure_ms_sql_server_database_name"></a> [azure\_ms\_sql\_server\_database\_name](#input\_azure\_ms\_sql\_server\_database\_name) | Specifies the name of the database to connect to (or default DB). | `string` | `"master"` | no |
 | <a name="input_azure_ms_sql_server_gateway_id"></a> [azure\_ms\_sql\_server\_gateway\_id](#input\_azure\_ms\_sql\_server\_gateway\_id) | Unique identifier (UID) attached to the jSonar machine controlling the asset | `string` | n/a | yes |
 | <a name="input_azure_ms_sql_server_location"></a> [azure\_ms\_sql\_server\_location](#input\_azure\_ms\_sql\_server\_location) | Physical location/region of the SQL Server instance, e.g. "EAST US" | `string` | `null` | no |
+| <a name="input_azure_ms_sql_server_logs_destination_asset_id"></a> [azure\_ms\_sql\_server\_logs\_destination\_asset\_id](#input\_azure\_ms\_sql\_server\_logs\_destination\_asset\_id) | The asset\_id of the AZURE EVENTHUB asset that this instance is sending its audit logs to. | `string` | n/a | yes |
 | <a name="input_azure_ms_sql_server_parent_asset_id"></a> [azure\_ms\_sql\_server\_parent\_asset\_id](#input\_azure\_ms\_sql\_server\_parent\_asset\_id) | The asset\_id of the AZURE asset representing the Azure account where this server is located. | `string` | `null` | no |
 | <a name="input_diagnostic_setting_eventhub_authorization_rule_id"></a> [diagnostic\_setting\_eventhub\_authorization\_rule\_id](#input\_diagnostic\_setting\_eventhub\_authorization\_rule\_id) | Specifies the ID of an Event Hub Namespace Authorization Rule used to send Diagnostics Data. Must have write access. | `string` | n/a | yes |
 | <a name="input_diagnostic_setting_eventhub_name"></a> [diagnostic\_setting\_eventhub\_name](#input\_diagnostic\_setting\_eventhub\_name) | Specifies the name of the Event Hub where Diagnostics Data should be sent. | `string` | n/a | yes |
@@ -79,7 +66,6 @@ No requirements.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_azure-eventhub-asset"></a> [azure-eventhub-asset](#output\_azure-eventhub-asset) | AZURE EVENTHUB asset. |
 | <a name="output_azure-ms-sql-server-asset"></a> [azure-ms-sql-server-asset](#output\_azure-ms-sql-server-asset) | AZURE MS SQL SERVER asset. |
 | <a name="output_sql-server-diagnostic-setting"></a> [sql-server-diagnostic-setting](#output\_sql-server-diagnostic-setting) | Diagnostic Setting. |
 | <a name="output_sql-server-extended-server-audit-policy"></a> [sql-server-extended-server-audit-policy](#output\_sql-server-extended-server-audit-policy) | Azure MS SQL Server Extended Auditing Policy. |
