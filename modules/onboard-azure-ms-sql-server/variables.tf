@@ -34,7 +34,7 @@ variable "azure_ms_sql_server_location" {
 
 variable "azure_ms_sql_server_logs_destination_asset_id" {
   description = "The asset_id of the AZURE EVENTHUB asset that this instance is sending its audit logs to."
-  type = string
+  type        = string
 }
 
 variable "azure_ms_sql_server_parent_asset_id" {

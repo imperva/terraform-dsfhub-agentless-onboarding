@@ -28,16 +28,16 @@ module "sql-server-extended-server-audit-policy" {
 
 # Allow time for 'master' database to initialize before creating diagnostic setting
 resource "time_sleep" "wait" {
-  depends_on      = [module.sql-server-instance]
-  
+  depends_on = [module.sql-server-instance]
+
   create_duration = "5m"
 }
 
 data "azurerm_mssql_database" "master" {
   depends_on = [time_sleep.wait]
 
-  server_id  = module.sql-server-instance.this.id
-  name       = "master"
+  server_id = module.sql-server-instance.this.id
+  name      = "master"
 }
 
 module "sql-server-diagnostic-setting" {
