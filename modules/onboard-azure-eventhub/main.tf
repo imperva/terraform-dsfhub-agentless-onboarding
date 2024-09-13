@@ -9,9 +9,11 @@ terraform {
 module "storage-account" {
   source = "../azurerm-storage-account"
 
-  location            = var.storage_account_location
-  name                = var.storage_account_name
-  resource_group_name = var.storage_account_resource_group_name
+  account_replication_type = var.storage_account_replication_type
+  account_tier             = var.storage_account_tier
+  location                 = var.storage_account_location
+  name                     = var.storage_account_name
+  resource_group_name      = var.storage_account_resource_group_name
 }
 
 module "storage-container" {
@@ -80,7 +82,9 @@ module "azure-eventhub-asset" {
   admin_email              = var.azure_eventhub_admin_email
   asset_display_name       = module.eventhub.this.name
   asset_id                 = module.eventhub.this.id
-  audit_pull_enabled       = var.azure_eventhub_audit_pull_enabled
+  # audit_pull_enabled set to 'null' so as to be treated as a computed value
+  # eventhub asset will be connected when assets using this eventhub as a log aggregator are connected
+  audit_pull_enabled       = null 
   auth_mechanism           = "default"
   azure_storage_account    = module.storage-account.this.name
   azure_storage_container  = module.storage-container.this.name

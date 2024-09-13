@@ -3,12 +3,6 @@ variable "azure_eventhub_admin_email" {
   type        = string
 }
 
-variable "azure_eventhub_audit_pull_enabled" {
-  description = "If true, sonargateway will collect the audit logs for this system if it can."
-  type        = bool
-  default     = null
-}
-
 variable "azure_eventhub_format" {
   description = "The type of audit data being sent to the Event Hub. Possible values are: AzureSQL_Managed, Blob, Cosmos_Mongo, Cosmos_SQL, Data_Explorer, Databricks_Workspace, File, Mariadb, Mysql, Postgresql, Postgresql_Flexible, Queue, Sql, Synapse, Table. Defaults to Sql."
   type        = string
@@ -56,9 +50,13 @@ variable "azure_eventhub_region" {
 }
 
 variable "eventhub_message_retention" {
-  description = "Specifies the number of days to retain the events for this Event Hub."
+  description = "Specifies the number of days to retain the events for this Event Hub. Maximum value is 7 days. Defaults to 1."
   type        = number
   default     = 1
+  validation {
+    condition = var.eventhub_message_retention <= 7
+    error_message = "Maximum Event Hub message retention is 7 days."
+  }
 }
 
 variable "eventhub_name" {
@@ -67,9 +65,13 @@ variable "eventhub_name" {
 }
 
 variable "eventhub_partition_count" {
-  description = "Specifies the current number of shards on the Event Hub. Note: partition_count cannot be changed unless Eventhub Namespace SKU is Premium and cannot be decreased."
+  description = "Specifies the current number of shards on the Event Hub. Note: partition_count cannot be changed unless Eventhub Namespace SKU is Premium and cannot be decreased. Maximum value is 32. Defaults to 1."
   type        = number
   default     = 1
+  validation {
+    condition = var.eventhub_partition_count <= 32
+    error_message = "Maximum Event Hub partition count is 32."
+  }
 }
 
 variable "eventhub_resource_group_name" {
@@ -115,7 +117,7 @@ variable "eventhub_namespace_resource_group_name" {
 }
 
 variable "eventhub_namespace_sku" {
-  description = "Defines which tier to use. Valid options are Basic, Standard, and Premium. Please note that setting this field to Premium will force the creation of a new resource."
+  description = "Defines which tier to use. Valid options are Basic, Standard, and Premium. Please note that setting this field to Premium will force the creation of a new resource. Defaults to Basic."
   type        = string
   default     = "Basic"
   validation {
@@ -130,22 +132,22 @@ variable "eventhub_namespace_tags" {
   default     = null
 }
 
-variable "storage_account_account_replication_type" {
-  description = "Defines the type of replication to use for this storage account. Valid options are LRS, GRS, RAGRS, ZRS, GZRS and RAGZRS. Changing this forces a new resource to be created when types LRS, GRS and RAGRS are changed to ZRS, GZRS or RAGZRS and vice versa."
+variable "storage_account_replication_type" {
+  description = "Defines the type of replication to use for this storage account. Valid options are LRS, GRS, RAGRS, ZRS, GZRS and RAGZRS. Changing this forces a new resource to be created when types LRS, GRS and RAGRS are changed to ZRS, GZRS or RAGZRS and vice versa. Defaults to GRS."
   type        = string
   default     = "GRS"
   validation {
-    condition     = contains(["LRS", "GRS", "RAGRS", "ZRS", "GZRS", "RAGZRS"], var.storage_account_account_replication_type)
+    condition     = contains(["LRS", "GRS", "RAGRS", "ZRS", "GZRS", "RAGZRS"], var.storage_account_replication_type)
     error_message = "Invalid replication type. Valid values are LRS, GRS, RAGRS, ZRS, GZRS and RAGZRS."
   }
 }
 
-variable "storage_account_account_tier" {
+variable "storage_account_tier" {
   description = "Defines the Tier to use for this storage account. Valid options are Standard and Premium."
   type        = string
   default     = "Standard"
   validation {
-    condition     = contains(["Standard", "Premium"], var.storage_account_account_tier)
+    condition     = contains(["Standard", "Premium"], var.storage_account_tier)
     error_message = "Invalid replication type. Valid options are Standard and Premium."
   }
 }
