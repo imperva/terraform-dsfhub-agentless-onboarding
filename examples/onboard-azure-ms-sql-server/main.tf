@@ -1,5 +1,4 @@
 locals {
-  azure_eventhub_name       = "sqlservereventhub"
   azure_location            = "East US"
   azure_resource_group_name = "My_Resource_Group"
   azure_subscription_id     = "123456790-wxyz-g8h9-e5f6-a1b2c3d4"
@@ -38,59 +37,24 @@ provider "dsfhub" {
 #    reading and writing to the Event Hub.
 # 2. Storage Account and Container
 ################################################################################
-# 1. Azure Event Hub Namespace and Event Hub
-module "eventhub-namespace" {
-  source = "../../modules/azurerm-eventhub-namespace"
+module "onboard-azure-sql-server-eventhub-1" {
+  source = "../../modules/onboard-azure-eventhub"
 
-  location            = local.azure_location
-  name                = "${local.azure_eventhub_name}ns"
-  resource_group_name = local.azure_resource_group_name
-}
+  azure_eventhub_admin_email = local.admin_email
+  azure_eventhub_format      = "Sql"
+  azure_eventhub_gateway_id  = local.gateway_id
 
-module "eventhub" {
-  source = "../../modules/azurerm-eventhub"
+  eventhub_name                          = "sqlservereventhub"
+  eventhub_namespace_location            = local.azure_location
+  eventhub_namespace_name                = "sqlservereventhubns"
+  eventhub_namespace_resource_group_name = local.azure_resource_group_name
 
-  name                = local.azure_eventhub_name
-  namespace_name      = module.eventhub-namespace.this.name
-  resource_group_name = local.azure_resource_group_name
-}
+  eventhub_resource_group_name = local.azure_resource_group_name
 
-module "eventhub-write-authorization" {
-  source = "../../modules/azurerm-eventhub-namespace-authorization-rule"
-
-  listen              = false
-  manage              = false
-  name                = "${local.azure_eventhub_name}write"
-  namespace_name      = module.eventhub-namespace.this.name
-  resource_group_name = local.azure_resource_group_name
-  send                = true
-}
-
-module "eventhub-read-authorization" {
-  source = "../../modules/azurerm-eventhub-namespace-authorization-rule"
-
-  listen              = true
-  manage              = false
-  name                = "${local.azure_eventhub_name}read"
-  namespace_name      = module.eventhub-namespace.this.name
-  resource_group_name = local.azure_resource_group_name
-  send                = false
-}
-
-# 2. Storage Account and Container
-module "storage-account" {
-  source = "../../modules/azurerm-storage-account"
-
-  location            = local.azure_location
-  name                = "sqlserverstorageacc"
-  resource_group_name = local.azure_resource_group_name
-}
-
-module "storage-container" {
-  source = "../../modules/azurerm-storage-container"
-
-  name                 = "sqlserverstoragecon"
-  storage_account_name = module.storage-account.this.name
+  storage_account_location            = local.azure_location
+  storage_account_name                = "sqlserverstorageacc"
+  storage_account_resource_group_name = local.azure_resource_group_name
+  storage_container_name              = "sqlserverstoragecon"
 }
 
 ################################################################################
@@ -99,33 +63,58 @@ module "storage-container" {
 module "azure-ms-sql-server-1" {
   source = "../../modules/onboard-azure-ms-sql-server"
 
-  azure_eventhub_admin_email              = local.admin_email
-  azure_eventhub_asset_display_name       = module.eventhub.this.name
-  azure_eventhub_asset_id                 = module.eventhub.this.id
-  azure_eventhub_audit_pull_enabled       = true
-  azure_eventhub_azure_storage_account    = module.storage-account.this.name
-  azure_eventhub_azure_storage_container  = module.storage-container.this.name
-  azure_eventhub_azure_storage_secret_key = module.storage-account.this.primary_access_key
-  azure_eventhub_eventhub_access_key      = module.eventhub-read-authorization.this.primary_key
-  azure_eventhub_eventhub_access_policy   = module.eventhub-read-authorization.this.name
-  azure_eventhub_eventhub_name            = module.eventhub.this.name
-  azure_eventhub_eventhub_namespace       = module.eventhub.this.namespace_name
-  azure_eventhub_gateway_id               = local.gateway_id
-  azure_eventhub_reason                   = "default"
+  depends_on = [module.onboard-azure-sql-server-eventhub-1]
 
-  azure_ms_sql_server_admin_email        = local.admin_email
-  azure_ms_sql_server_audit_pull_enabled = true
-  azure_ms_sql_server_gateway_id         = local.gateway_id
-  azure_ms_sql_server_location           = local.azure_location
+  azure_ms_sql_server_admin_email               = local.admin_email
+  azure_ms_sql_server_audit_pull_enabled        = true
+  azure_ms_sql_server_gateway_id                = local.gateway_id
+  azure_ms_sql_server_location                  = local.azure_location
+  azure_ms_sql_server_logs_destination_asset_id = module.onboard-azure-sql-server-eventhub-1.azure-eventhub-asset.asset_id
 
-  diagnostic_setting_eventhub_authorization_rule_id = module.eventhub-write-authorization.this.id
-  diagnostic_setting_eventhub_name                  = module.eventhub.this.name
+  diagnostic_setting_eventhub_authorization_rule_id = module.onboard-azure-sql-server-eventhub-1.eventhub-write-authorization.id
+  diagnostic_setting_eventhub_name                  = module.onboard-azure-sql-server-eventhub-1.eventhub.name
   diagnostic_setting_name                           = "dsfhubdiagnostic"
 
   server_administrator_login           = "exampleadmin"
   server_administrator_login_password  = "Abcd1234"
   server_location                      = local.azure_location
   server_name                          = "example-azure-sql-server"
+  server_public_network_access_enabled = true
+  server_resource_group_name           = local.azure_resource_group_name
+}
+
+################################################################################
+# Azure SQL Server Many-to-One
+################################################################################
+locals {
+  sql_server_types = toset([
+    "dev",
+    "prod",
+    "uat"
+  ])
+}
+
+module "azure-ms-sql-server-2" {
+  source = "../../modules/onboard-azure-ms-sql-server"
+
+  depends_on = [module.onboard-azure-sql-server-eventhub-1]
+
+  for_each = local.sql_server_types
+
+  azure_ms_sql_server_admin_email               = local.admin_email
+  azure_ms_sql_server_audit_pull_enabled        = true
+  azure_ms_sql_server_gateway_id                = local.gateway_id
+  azure_ms_sql_server_location                  = local.azure_location
+  azure_ms_sql_server_logs_destination_asset_id = module.onboard-azure-sql-server-eventhub-1.azure-eventhub-asset.asset_id
+
+  diagnostic_setting_eventhub_authorization_rule_id = module.onboard-azure-sql-server-eventhub-1.eventhub-write-authorization.id
+  diagnostic_setting_eventhub_name                  = module.onboard-azure-sql-server-eventhub-1.eventhub.name
+  diagnostic_setting_name                           = "dsfhubdiagnostic"
+
+  server_administrator_login           = "exampleadmin"
+  server_administrator_login_password  = "Abcd1234"
+  server_location                      = local.azure_location
+  server_name                          = "example-azure-sql-server-${each.key}"
   server_public_network_access_enabled = true
   server_resource_group_name           = local.azure_resource_group_name
 }
