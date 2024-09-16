@@ -43,59 +43,24 @@ provider "dsfhub" {
 #    reading and writing to the Event Hub.
 # 2. Storage Account and Container
 ################################################################################
-# 1. Azure Event Hub Namespace and Event Hub
-module "eventhub-namespace" {
-  source = "../../modules/azurerm-eventhub-namespace"
+module "onboard-cosmos-sql-eventhub-1" {
+  source = "../../modules/onboard-azure-eventhub"
 
-  location            = local.azure_location
-  name                = "${local.azure_eventhub_name}ns"
-  resource_group_name = local.azure_resource_group_name
-}
+  azure_eventhub_admin_email = local.admin_email
+  azure_eventhub_format      = "Cosmos_SQL"
+  azure_eventhub_gateway_id  = local.gateway_id
 
-module "eventhub" {
-  source = "../../modules/azurerm-eventhub"
+  eventhub_name                          = "cosmossqleventhub"
+  eventhub_namespace_location            = local.azure_location
+  eventhub_namespace_name                = "cosmossqleventhubns"
+  eventhub_namespace_resource_group_name = local.azure_resource_group_name
 
-  name                = local.azure_eventhub_name
-  namespace_name      = module.eventhub-namespace.this.name
-  resource_group_name = local.azure_resource_group_name
-}
+  eventhub_resource_group_name = local.azure_resource_group_name
 
-module "eventhub-write-authorization" {
-  source = "../../modules/azurerm-eventhub-namespace-authorization-rule"
-
-  listen              = false
-  manage              = false
-  name                = "${local.azure_eventhub_name}write"
-  namespace_name      = module.eventhub-namespace.this.name
-  resource_group_name = local.azure_resource_group_name
-  send                = true
-}
-
-module "eventhub-read-authorization" {
-  source = "../../modules/azurerm-eventhub-namespace-authorization-rule"
-
-  listen              = true
-  manage              = false
-  name                = "${local.azure_eventhub_name}read"
-  namespace_name      = module.eventhub-namespace.this.name
-  resource_group_name = local.azure_resource_group_name
-  send                = false
-}
-
-# 2. Storage Account and Container
-module "storage-account" {
-  source = "../../modules/azurerm-storage-account"
-
-  location            = local.azure_location
-  name                = "cosmossqlstorageacc"
-  resource_group_name = local.azure_resource_group_name
-}
-
-module "storage-container" {
-  source = "../../modules/azurerm-storage-container"
-
-  name                 = "cosmossqlstoragecon"
-  storage_account_name = module.storage-account.this.name
+  storage_account_location            = local.azure_location
+  storage_account_name                = "cosmossqlstorageacc"
+  storage_account_resource_group_name = local.azure_resource_group_name
+  storage_container_name              = "cosmossqlstoragecon"
 }
 
 ################################################################################
@@ -104,22 +69,12 @@ module "storage-container" {
 module "azure-cosmosdb-sql-1" {
   source = "../../modules/onboard-azure-cosmosdb-sql"
 
-  azure_cosmosdb_admin_email        = local.admin_email
-  azure_cosmosdb_audit_pull_enabled = true
-  azure_cosmosdb_gateway_id         = local.gateway_id
+  depends_on = [module.onboard-cosmos-sql-eventhub-1]
 
-  azure_eventhub_admin_email              = local.admin_email
-  azure_eventhub_asset_display_name       = module.eventhub.this.name
-  azure_eventhub_asset_id                 = module.eventhub.this.id
-  azure_eventhub_audit_pull_enabled       = true
-  azure_eventhub_azure_storage_account    = module.storage-account.this.name
-  azure_eventhub_azure_storage_container  = module.storage-container.this.name
-  azure_eventhub_azure_storage_secret_key = module.storage-account.this.primary_access_key
-  azure_eventhub_eventhub_access_key      = module.eventhub-read-authorization.this.primary_key
-  azure_eventhub_eventhub_access_policy   = module.eventhub-read-authorization.this.name
-  azure_eventhub_eventhub_name            = module.eventhub.this.name
-  azure_eventhub_eventhub_namespace       = module.eventhub.this.namespace_name
-  azure_eventhub_gateway_id               = local.gateway_id
+  azure_cosmosdb_admin_email               = local.admin_email
+  azure_cosmosdb_audit_pull_enabled        = true
+  azure_cosmosdb_gateway_id                = local.gateway_id
+  azure_cosmosdb_logs_destination_asset_id = module.onboard-cosmos-sql-eventhub-1.azure-eventhub-asset.asset_id
 
   cosmosdb_account_consistency_policy = [
     {
@@ -137,7 +92,51 @@ module "azure-cosmosdb-sql-1" {
   cosmosdb_account_name                = "example-cosmos-sql"
   cosmosdb_account_resource_group_name = local.azure_resource_group_name
 
-  diagnostic_setting_eventhub_authorization_rule_id = module.eventhub-write-authorization.this.id
-  diagnostic_setting_eventhub_name                  = module.eventhub.this.name
+  diagnostic_setting_eventhub_authorization_rule_id = module.onboard-cosmos-sql-eventhub-1.eventhub-write-authorization.id
+  diagnostic_setting_eventhub_name                  = module.onboard-cosmos-sql-eventhub-1.eventhub.name
+  diagnostic_setting_name                           = "dsfhubdiagnostic"
+}
+
+################################################################################
+# Azure Cosmos DB with SQL API Many-to-One
+################################################################################
+locals {
+  cosmos_sql_types = toset([
+    "dev",
+    "prod",
+    "uat"
+  ])
+}
+
+module "azure-cosmosdb-sql-2" {
+  source = "../../modules/onboard-azure-cosmosdb-sql"
+
+  depends_on = [module.onboard-cosmos-sql-eventhub-1]
+
+  for_each = local.cosmos_sql_types
+
+  azure_cosmosdb_admin_email               = local.admin_email
+  azure_cosmosdb_audit_pull_enabled        = true
+  azure_cosmosdb_gateway_id                = local.gateway_id
+  azure_cosmosdb_logs_destination_asset_id = module.onboard-cosmos-sql-eventhub-1.azure-eventhub-asset.asset_id
+
+  cosmosdb_account_consistency_policy = [
+    {
+      "consistency_level" : "Session"
+    }
+  ]
+  cosmosdb_account_geo_location = [
+    {
+      "failover_priority" : 0,
+      "location" : "eastus",
+      "zone_redundant" : false
+    }
+  ]
+  cosmosdb_account_location            = local.azure_location
+  cosmosdb_account_name                = "example-cosmos-sql-${each.key}"
+  cosmosdb_account_resource_group_name = local.azure_resource_group_name
+
+  diagnostic_setting_eventhub_authorization_rule_id = module.onboard-cosmos-sql-eventhub-1.eventhub-write-authorization.id
+  diagnostic_setting_eventhub_name                  = module.onboard-cosmos-sql-eventhub-1.eventhub.name
   diagnostic_setting_name                           = "dsfhubdiagnostic"
 }
