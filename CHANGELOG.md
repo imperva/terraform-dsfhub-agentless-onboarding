@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.0.6 (TBD)
+## 1.0.6 (2024-09-17)
 
 ### Features
 - Azure CosmosDB API for MongoDB module
