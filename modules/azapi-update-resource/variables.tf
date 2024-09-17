@@ -1,5 +1,5 @@
 variable "body" {
-  description = "It is in a format like resource-type@api-version. resource-type is the Azure resource type, for example, Microsoft.Storage/storageAccounts. api-version is version of the API used to manage this azure resource."
+  description = "The request body used to add on to an existing Azure resource."
   type        = string
 }
 
@@ -9,6 +9,6 @@ variable "resource_id" {
 }
 
 variable "type" {
-  description = "The request body used to add on to an existing Azure resource."
+  description = "It is in a format like resource-type@api-version. resource-type is the Azure resource type, for example, Microsoft.Storage/storageAccounts. api-version is version of the API used to manage this azure resource."
   type        = any
 }
