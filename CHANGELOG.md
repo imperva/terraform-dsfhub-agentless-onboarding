@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.6 (TBD)
+
+### Features
+- Azure SQL Server module
+
 ## 1.0.5 (2024-08-29)
 
 ### Features
