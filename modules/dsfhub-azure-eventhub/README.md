@@ -40,7 +40,7 @@ No modules.
 | <a name="input_parent_asset_id"></a> [parent\_asset\_id](#input\_parent\_asset\_id) | The asset\_id of the azure asset that is sending its audit logs to this AZURE EVENTHUB asset. | `string` | `null` | no |
 | <a name="input_reason"></a> [reason](#input\_reason) | Used to differentiate connections that belong to the same asset | `string` | `"default"` | no |
 | <a name="input_region"></a> [region](#input\_region) | Azure region containing the Event Hub. | `string` | `null` | no |
-| <a name="input_server_host_name"></a> [server\_host\_name](#input\_server\_host\_name) | Event Hub Namepace's service bus endpoint, e.g. mynamespace.servicebus.windows.net | `string` | n/a | yes |
+| <a name="input_server_host_name"></a> [server\_host\_name](#input\_server\_host\_name) | Event Hub Namespace's service bus endpoint, e.g. mynamespace.servicebus.windows.net | `string` | n/a | yes |
 
 ## Outputs
 
