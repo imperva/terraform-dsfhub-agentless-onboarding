@@ -1,5 +1,5 @@
 variable "message_retention" {
-  description = "Specifies the number of days to retain the events for this Event Hub."
+  description = "Specifies the number of days to retain the events for this Event Hub. Defaults to 1."
   type        = number
   default     = 1
 }
@@ -15,7 +15,7 @@ variable "namespace_name" {
 }
 
 variable "partition_count" {
-  description = "Specifies the current number of shards on the Event Hub. Note: partition_count cannot be changed unless Eventhub Namespace SKU is Premium and cannot be decreased."
+  description = "Specifies the current number of shards on the Event Hub. Note: partition_count cannot be changed unless Eventhub Namespace SKU is Premium and cannot be decreased. Defaults to 1."
   type        = number
   default     = 1
 }

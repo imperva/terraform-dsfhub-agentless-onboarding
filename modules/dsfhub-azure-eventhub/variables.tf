@@ -120,6 +120,6 @@ variable "region" {
 }
 
 variable "server_host_name" {
-  description = "Event Hub Namepace's service bus endpoint, e.g. mynamespace.servicebus.windows.net"
+  description = "Event Hub Namespace's service bus endpoint, e.g. mynamespace.servicebus.windows.net"
   type        = string
 }

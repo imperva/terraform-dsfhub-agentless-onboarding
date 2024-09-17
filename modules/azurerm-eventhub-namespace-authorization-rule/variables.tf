@@ -1,11 +1,11 @@
 variable "listen" {
-  description = "Grants listen access to this this Authorization Rule. Defaults to false."
+  description = "Grants listen access to this Authorization Rule. Defaults to false."
   type        = bool
   default     = false
 }
 
 variable "manage" {
-  description = "Grants manage access to this this Authorization Rule. When this property is true - both listen and send must be too. Defaults to false."
+  description = "Grants manage access to this Authorization Rule. When this property is true - both listen and send must be too. Defaults to false."
   type        = bool
   default     = false
 }
@@ -26,7 +26,7 @@ variable "resource_group_name" {
 }
 
 variable "send" {
-  description = "Grants send access to this this Authorization Rule. Defaults to false."
+  description = "Grants send access to this Authorization Rule. Defaults to false."
   type        = bool
   default     = false
 }
