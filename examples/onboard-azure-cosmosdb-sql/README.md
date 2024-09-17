@@ -1,7 +1,7 @@
 # Onboard Azure Cosmos DB SQL API example
 This example includes additional prerequisites that will need to be completed to fully utilize the module. More details can be found in the [onboarding documentation](https://docs.imperva.com/bundle/onboarding-databases-to-sonar-reference-guide/page/Azure-Cosmos-DB-SQL-API-Onboarding-Steps_48367255.html).
 
-This example creates 'azapi', 'azurerm' and 'dsfhub' resources. More infomation regarding authentication to each can be found in the relevant provider documentation:
+This example creates 'azapi', 'azurerm' and 'dsfhub' resources. More information regarding authentication to each can be found in the relevant provider documentation:
 - [azapi](https://registry.terraform.io/providers/Azure/azapi/latest/docs)
 - [azurerm](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs)
 - [dsfhub](https://registry.terraform.io/providers/imperva/dsfhub/latest/docs)
@@ -13,7 +13,7 @@ This module expects an Event Hub and a Storage Account Container to have been cr
 Cosmos DB audit logs are sent to an Azure Event Hub and are retrieved by DSF. The Event Hubs are created within an Event Hub Namespace, which can contain one or more Event Hubs. Audit logs of multiple Cosmos DB instances can be sent to a single Event Hub. 
 
 ### Azure Storage Account and Container
-Storage Containers are used to store transactional data for the Event Hub import processes, and one Storage Container is required for each Event Hub. These Storage Containers exists within a Storage Account, which may contain multiple Storage Containers.
+Storage Containers are used to store transactional data for the Event Hub import processes, and one Storage Container is required for each Event Hub. These Storage Containers exist within a Storage Account, which may contain multiple Storage Containers.
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
