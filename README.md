@@ -113,19 +113,57 @@ The following example will go through the steps for onboarding Amazon RDS for Po
 Using the ``dsfhub`` provider will require an authorization token that has been given access to the Unified Settings Console. To generate one, follow the instructions described in [Generating an Authorization Token for DSF Open APIs](https://docs.imperva.com/bundle/v4.16-sonar-user-guide/page/84555.htm).
 
 ### Configure the Providers
+#### Authentication (Mandatory)
 Both the ``aws`` and ``dsfhub`` providers offer different methods for configuration. In this example, we will define authentication keys using environment variables.
 
-To configure the [dsfhub](https://registry.terraform.io/providers/imperva/dsfhub/latest) provider, export the hostname of your DSF hub as well as the authorization token created above
+To configure the [dsfhub](https://registry.terraform.io/providers/imperva/dsfhub/latest) provider, export the hostname of your DSF hub as well as the authorization token created above:
 ```bash
-$ export TF_VAR_dsfhub_host='https://1.2.3.4:8443'
-$ export TF_VAR_dsfhub_token='a1b2c3d4-e5f6-g8h9-wxyz-123456790'
+$ export DSFHUB_HOST="https://1.2.3.4:8443"
+$ export DSFHUB_TOKEN="a1b2c3d4-e5f6-g8h9-wxyz-123456790"
 ```
 
-The [aws](https://registry.terraform.io/providers/hashicorp/aws/latest) provider can also be configured using environment variables. To do so, export your key pair that has permissions to create resources
+The [aws](https://registry.terraform.io/providers/hashicorp/aws/latest) provider can also be configured using environment variables. To do so, export your key pair that has permissions to create resources:
 ```bash
 $ export AWS_ACCESS_KEY_ID="anaccesskey"
 $ export AWS_SECRET_ACCESS_KEY="asecretkey"
 ``` 
+
+#### Sync Type (Optional)
+The `dsfhub` provider may be configured with `sync_type` to determine whether to run the "Sync assets and connections between WAREHOUSE and AGENTLESS GATEWAYS" playbook immediately following the import of assets and connections. It may be set with the `SYNC_TYPE` environment variable or within the script as the `sync_type` parameter. 
+
+```bash
+$ export SYNC_TYPE="SYNC_GW_NON_BLOCKING"
+```
+
+You can choose between the following options. The default value is `"SYNC_GW_BLOCKING"`.
+
+<table>
+  <tr>
+   <th>Sync Type Value</th>
+   <th>Description</th>
+  </tr>
+  <tr>
+    <td>SYNC_GW_BLOCKING (default)</td>
+    <td>The playbook is run synchronously and blocks the creation or update of assets and connections until all gateways have been synced.</td>
+  </tr>
+    <tr>
+    <td>SYNC_GW_NON_BLOCKING</td>
+    <td>The playbook is run asynchronously and does not affect the creation or update of assets and connections.</td>
+  </tr>
+    <tr>
+    <td>DO_NOT_SYNC_GW</td>
+    <td>The playbook is not run in connection with the creation or update of assets and connections.</td>
+  </tr>
+</table>
+
+For more details, see the [DSFHub provider documentation](https://registry.terraform.io/providers/imperva/dsfhub/latest/docs#dsfhub-provider-argument-reference).
+
+#### Insecure SSL (Optional)
+The `dsfhub` provider may be configured with `insecure_ssl` to allow for insecure SSL API calls to a DSF Hub instance to support tests against instances with self-signed certificates. It may be set with the `INSECURE_SSL` environment variable or within the script as the `insecure_ssl` parameter. The default value is `true`.
+
+```bash
+$ export INSECURE_SSL=false
+```
 
 ### Complete Module Prerequisites
 The Amazon RDS for PostgreSQL module has two prerequisites:
@@ -183,10 +221,13 @@ provider "aws" {
 
 variable "dsfhub_host" {}  # TF_VAR_dsfhub_host env variable
 variable "dsfhub_token" {} # TF_VAR_dsfhub_token env variable
+variable "sync_type" {}    # SYNC_TYPE env variable (optional)
 
 provider "dsfhub" {
   dsfhub_host  = var.dsfhub_host
   dsfhub_token = var.dsfhub_token
+  sync_type    = var.sync_type     # optional
+  insecure_ssl = false             # optional
 }
 
 ################################################################################
