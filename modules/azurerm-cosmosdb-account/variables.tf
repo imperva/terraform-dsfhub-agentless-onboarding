@@ -45,7 +45,7 @@ variable "geo_location" {
 }
 
 variable "kind" {
-  description = "Specifies the Kind of CosmosDB to create - possible values are GlobalDocumentDB (used for both SQL and Table API) and MongoDB. Defaults to GlobalDocumentDB. Changing this forces a new resource to be created."
+  description = "Specifies the Kind of CosmosDB to create - possible values are GlobalDocumentDB (used for both SQL and Table API) and MongoDB. Defaults to GlobalDocumentDB. Changing this forces a new resource to be created. Defaults to GlobalDocumentDB."
   type        = string
   default     = "GlobalDocumentDB"
 }

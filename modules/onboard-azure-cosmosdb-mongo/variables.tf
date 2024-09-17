@@ -71,7 +71,7 @@ variable "cosmosdb_account_location" {
 }
 
 variable "cosmosdb_account_mongo_server_version" {
-  description = "The Server Version of a MongoDB account. Possible values are 4.2, 4.0, 3.6, and 3.2."
+  description = "The Server Version of a MongoDB account. Possible values are 4.2, 4.0, 3.6, and 3.2. Defaults to 4.2."
   type        = string
   default     = "4.2"
   validation {
