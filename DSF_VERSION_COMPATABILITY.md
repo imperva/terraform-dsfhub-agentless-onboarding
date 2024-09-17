@@ -80,6 +80,14 @@ The following table lists the DSF versions that each module is tested and mainta
       <td>4.17+</td>
    </tr>
    <tr>
+      <td>onboard-azure-cosmosdb-mongo</td>
+      <td>4.17+</td>
+   </tr>
+   <tr>
+      <td>onboard-azure-cosmosdb-sql</td>
+      <td>4.17+</td>
+   </tr>
+   <tr>
       <td>onboard-azure-ms-sql-server</td>
       <td>4.17+</td>
    </tr>
