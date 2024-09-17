@@ -23,9 +23,9 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_body"></a> [body](#input\_body) | It is in a format like resource-type@api-version. resource-type is the Azure resource type, for example, Microsoft.Storage/storageAccounts. api-version is version of the API used to manage this azure resource. | `string` | n/a | yes |
+| <a name="input_body"></a> [body](#input\_body) | The request body used to add on to an existing Azure resource. | `string` | n/a | yes |
 | <a name="input_resource_id"></a> [resource\_id](#input\_resource\_id) | The ID of an existing azure source. Changing this forces a new azure resource to be created. | `string` | n/a | yes |
-| <a name="input_type"></a> [type](#input\_type) | The request body used to add on to an existing Azure resource. | `any` | n/a | yes |
+| <a name="input_type"></a> [type](#input\_type) | It is in a format like resource-type@api-version. resource-type is the Azure resource type, for example, Microsoft.Storage/storageAccounts. api-version is version of the API used to manage this azure resource. | `any` | n/a | yes |
 
 ## Outputs
 
