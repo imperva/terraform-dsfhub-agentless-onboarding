@@ -36,7 +36,6 @@ No modules.
 | <a name="input_password"></a> [password](#input\_password) | Password to use to connect to the PostgreSQL instance. | `string` | `null` | no |
 | <a name="input_reason"></a> [reason](#input\_reason) | Used to differentiate connections that belong to the same asset | `string` | `"default"` | no |
 | <a name="input_server_host_name"></a> [server\_host\_name](#input\_server\_host\_name) | Hostname of the PostgreSQL instance. | `string` | n/a | yes |
-| <a name="input_server_port"></a> [server\_port](#input\_server\_port) | Port that the PostgreSQL instance listens on. | `string` | `"5432"` | no |
 | <a name="input_username"></a> [username](#input\_username) | Username of PostgreSQL database user to connect with. | `string` | `null` | no |
 
 ## Outputs
