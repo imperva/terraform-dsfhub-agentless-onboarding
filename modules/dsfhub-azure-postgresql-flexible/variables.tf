@@ -78,12 +78,6 @@ variable "server_host_name" {
   type        = string
 }
 
-variable "server_port" {
-  description = "Port that the PostgreSQL instance listens on."
-  type        = string
-  default     = "5432"
-}
-
 variable "username" {
   description = "Username of PostgreSQL database user to connect with."
   type        = string

@@ -20,7 +20,7 @@ resource "dsfhub_data_source" "this" {
   parent_asset_id           = var.parent_asset_id
   server_host_name          = var.server_host_name
   server_ip                 = null
-  server_port               = var.server_port
+  server_port               = "5432"
 
   dynamic "asset_connection" {
     # If auth_mechanism is not defined, do not create a connection

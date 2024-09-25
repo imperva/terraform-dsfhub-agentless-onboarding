@@ -59,5 +59,4 @@ module "azure-postgresql-flexible-asset" {
   logs_destination_asset_id = var.azure_postgresql_flexible_logs_destination_asset_id
   parent_asset_id           = var.azure_postgresql_flexible_parent_asset_id
   server_host_name          = module.azure-postgresql-flexible-server.this.fqdn
-  server_port               = "5432"
 }
