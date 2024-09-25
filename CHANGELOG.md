@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.7 (TBD)
+
+### Features
+- Azure Database for PostgreSQL Flexible module
+
 ## 1.0.6 (2024-09-17)
 
 ### Features
