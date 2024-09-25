@@ -17,3 +17,45 @@ Storage Containers are used to store transactional data for the Event Hub import
 ### Database Configuration
 Part of the onboarding process involves connecting to your Azure PostgreSQL instance and running SQL commands to create a role. This module includes an example for how to connect to the instance from your local machine and create this. 
 
+
+<!-- BEGIN_TF_DOCS -->
+## Requirements
+
+No requirements.
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | n/a |
+| <a name="provider_http"></a> [http](#provider\_http) | n/a |
+| <a name="provider_terraform"></a> [terraform](#provider\_terraform) | n/a |
+
+## Modules
+
+| Name | Source | Version |
+|------|--------|---------|
+| <a name="module_azure-postgresql-flexible-1"></a> [azure-postgresql-flexible-1](#module\_azure-postgresql-flexible-1) | ../../modules/onboard-azure-postgresql-flexible | n/a |
+| <a name="module_azure-postgresql-flexible-2"></a> [azure-postgresql-flexible-2](#module\_azure-postgresql-flexible-2) | ../../modules/onboard-azure-postgresql-flexible | n/a |
+| <a name="module_azure-postgresql-flexible-3"></a> [azure-postgresql-flexible-3](#module\_azure-postgresql-flexible-3) | ../../modules/onboard-azure-postgresql-flexible | n/a |
+| <a name="module_onboard-azure-postgresql-flexible-eventhub-1"></a> [onboard-azure-postgresql-flexible-eventhub-1](#module\_onboard-azure-postgresql-flexible-eventhub-1) | ../../modules/onboard-azure-eventhub | n/a |
+
+## Resources
+
+| Name | Type |
+|------|------|
+| [azurerm_postgresql_flexible_server_firewall_rule.my-ip](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_flexible_server_firewall_rule) | resource |
+| [terraform_data.configure_database](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/resources/data) | resource |
+| [http_http.my-ip](https://registry.terraform.io/providers/hashicorp/http/latest/docs/data-sources/http) | data source |
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_dsfhub_host"></a> [dsfhub\_host](#input\_dsfhub\_host) | n/a | `any` | n/a | yes |
+| <a name="input_dsfhub_token"></a> [dsfhub\_token](#input\_dsfhub\_token) | n/a | `any` | n/a | yes |
+
+## Outputs
+
+No outputs.
+<!-- END_TF_DOCS -->
