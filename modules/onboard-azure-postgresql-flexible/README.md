@@ -1,0 +1,12 @@
+# onboard-azure-postgresql-flexible
+Onboard Azure PostgreSQL Flexible to DSF Hub.
+
+## Notes
+There are three prerequisites for using this module:
+1. An Azure Event Hub Namespace and Event Hub. 
+2. An Azure Storage Account and Container. This is used by DSF to store a marker which keeps track of what data in the Event Hub has been consumed.
+3. A method to create the 'pgaudit' extension on the postgres instance.
+
+The first two can be created along with an AZURE EVENTHUB asset via the ``onboard-azure-eventhub`` module.
+
+See the corresponding example for more details.
