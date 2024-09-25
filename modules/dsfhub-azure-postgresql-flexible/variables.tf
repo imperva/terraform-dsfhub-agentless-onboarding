@@ -78,11 +78,6 @@ variable "server_host_name" {
   type        = string
 }
 
-variable "server_ip" {
-  description = "IP address / hostname of the PostgreSQL instance."
-  type        = string
-}
-
 variable "server_port" {
   description = "Port that the PostgreSQL instance listens on."
   type        = string
