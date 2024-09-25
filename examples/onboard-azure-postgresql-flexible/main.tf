@@ -3,7 +3,7 @@ locals {
   azure_resource_group_name = "My_Resource_Group"
   azure_subscription_id     = "123456790-wxyz-g8h9-e5f6-a1b2c3d4"
 
-  postgresql_admin = "exampleadmin"
+  postgresql_admin          = "exampleadmin"
   postgresql_admin_password = "Abcd1234"
 
   admin_email = "test@example.com"
