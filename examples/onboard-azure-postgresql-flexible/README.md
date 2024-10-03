@@ -25,35 +25,69 @@ No requirements.
 
 ## Providers
 
-| Name | Version |
-|------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | n/a |
-| <a name="provider_http"></a> [http](#provider\_http) | n/a |
-| <a name="provider_terraform"></a> [terraform](#provider\_terraform) | n/a |
+The following providers are used by this module:
+
+- <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm)
+
+- <a name="provider_http"></a> [http](#provider\_http)
+
+- <a name="provider_terraform"></a> [terraform](#provider\_terraform)
 
 ## Modules
 
-| Name | Source | Version |
-|------|--------|---------|
-| <a name="module_azure-postgresql-flexible-1"></a> [azure-postgresql-flexible-1](#module\_azure-postgresql-flexible-1) | ../../modules/onboard-azure-postgresql-flexible | n/a |
-| <a name="module_azure-postgresql-flexible-2"></a> [azure-postgresql-flexible-2](#module\_azure-postgresql-flexible-2) | ../../modules/onboard-azure-postgresql-flexible | n/a |
-| <a name="module_azure-postgresql-flexible-3"></a> [azure-postgresql-flexible-3](#module\_azure-postgresql-flexible-3) | ../../modules/onboard-azure-postgresql-flexible | n/a |
-| <a name="module_onboard-azure-postgresql-flexible-eventhub-1"></a> [onboard-azure-postgresql-flexible-eventhub-1](#module\_onboard-azure-postgresql-flexible-eventhub-1) | ../../modules/onboard-azure-eventhub | n/a |
+The following Modules are called:
+
+### <a name="module_azure-postgresql-flexible-1"></a> [azure-postgresql-flexible-1](#module\_azure-postgresql-flexible-1)
+
+Source: ../../modules/onboard-azure-postgresql-flexible
+
+Version:
+
+### <a name="module_azure-postgresql-flexible-2"></a> [azure-postgresql-flexible-2](#module\_azure-postgresql-flexible-2)
+
+Source: ../../modules/onboard-azure-postgresql-flexible
+
+Version:
+
+### <a name="module_azure-postgresql-flexible-3"></a> [azure-postgresql-flexible-3](#module\_azure-postgresql-flexible-3)
+
+Source: ../../modules/onboard-azure-postgresql-flexible
+
+Version:
+
+### <a name="module_onboard-azure-postgresql-flexible-eventhub-1"></a> [onboard-azure-postgresql-flexible-eventhub-1](#module\_onboard-azure-postgresql-flexible-eventhub-1)
+
+Source: ../../modules/onboard-azure-eventhub
+
+Version:
 
 ## Resources
 
-| Name | Type |
-|------|------|
-| [azurerm_postgresql_flexible_server_firewall_rule.my-ip](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_flexible_server_firewall_rule) | resource |
-| [terraform_data.configure_database](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/resources/data) | resource |
-| [http_http.my-ip](https://registry.terraform.io/providers/hashicorp/http/latest/docs/data-sources/http) | data source |
+The following resources are used by this module:
 
-## Inputs
+- [azurerm_postgresql_flexible_server_firewall_rule.my-ip](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_flexible_server_firewall_rule) (resource)
+- [terraform_data.configure_database](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/resources/data) (resource)
+- [http_http.my-ip](https://registry.terraform.io/providers/hashicorp/http/latest/docs/data-sources/http) (data source)
 
-| Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
-| <a name="input_dsfhub_host"></a> [dsfhub\_host](#input\_dsfhub\_host) | n/a | `any` | n/a | yes |
-| <a name="input_dsfhub_token"></a> [dsfhub\_token](#input\_dsfhub\_token) | n/a | `any` | n/a | yes |
+## Required Inputs
+
+The following input variables are required:
+
+### <a name="input_dsfhub_host"></a> [dsfhub\_host](#input\_dsfhub\_host)
+
+Description: n/a
+
+Type: `any`
+
+### <a name="input_dsfhub_token"></a> [dsfhub\_token](#input\_dsfhub\_token)
+
+Description: n/a
+
+Type: `any`
+
+## Optional Inputs
+
+No optional inputs.
 
 ## Outputs
 

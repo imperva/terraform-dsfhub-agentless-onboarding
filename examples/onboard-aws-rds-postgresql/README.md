@@ -21,31 +21,63 @@ No requirements.
 
 ## Providers
 
-| Name | Version |
-|------|---------|
-| <a name="provider_terraform"></a> [terraform](#provider\_terraform) | n/a |
+The following providers are used by this module:
+
+- <a name="provider_terraform"></a> [terraform](#provider\_terraform)
 
 ## Modules
 
-| Name | Source | Version |
-|------|--------|---------|
-| <a name="module_aws-default-account-asset"></a> [aws-default-account-asset](#module\_aws-default-account-asset) | imperva/agentless-onboarding/dsfhub//modules/dsfhub-aws-cloud-account | n/a |
-| <a name="module_aws-rds-postgresql-1"></a> [aws-rds-postgresql-1](#module\_aws-rds-postgresql-1) | imperva/agentless-onboarding/dsfhub//modules/onboard-aws-rds-postgresql | n/a |
-| <a name="module_aws-rds-postgresql-2"></a> [aws-rds-postgresql-2](#module\_aws-rds-postgresql-2) | imperva/agentless-onboarding/dsfhub//modules/onboard-aws-rds-postgresql | n/a |
-| <a name="module_aws-rds-postgresql-3"></a> [aws-rds-postgresql-3](#module\_aws-rds-postgresql-3) | imperva/agentless-onboarding/dsfhub//modules/onboard-aws-rds-postgresql | n/a |
+The following Modules are called:
+
+### <a name="module_aws-default-account-asset"></a> [aws-default-account-asset](#module\_aws-default-account-asset)
+
+Source: imperva/agentless-onboarding/dsfhub//modules/dsfhub-aws-cloud-account
+
+Version:
+
+### <a name="module_aws-rds-postgresql-1"></a> [aws-rds-postgresql-1](#module\_aws-rds-postgresql-1)
+
+Source: imperva/agentless-onboarding/dsfhub//modules/onboard-aws-rds-postgresql
+
+Version:
+
+### <a name="module_aws-rds-postgresql-2"></a> [aws-rds-postgresql-2](#module\_aws-rds-postgresql-2)
+
+Source: imperva/agentless-onboarding/dsfhub//modules/onboard-aws-rds-postgresql
+
+Version:
+
+### <a name="module_aws-rds-postgresql-3"></a> [aws-rds-postgresql-3](#module\_aws-rds-postgresql-3)
+
+Source: imperva/agentless-onboarding/dsfhub//modules/onboard-aws-rds-postgresql
+
+Version:
 
 ## Resources
 
-| Name | Type |
-|------|------|
-| [terraform_data.configure_database](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/resources/data) | resource |
+The following resources are used by this module:
 
-## Inputs
+- [terraform_data.configure_database](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/resources/data) (resource)
 
-| Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
-| <a name="input_dsfhub_host"></a> [dsfhub\_host](#input\_dsfhub\_host) | n/a | `any` | n/a | yes |
-| <a name="input_dsfhub_token"></a> [dsfhub\_token](#input\_dsfhub\_token) | n/a | `any` | n/a | yes |
+## Required Inputs
+
+The following input variables are required:
+
+### <a name="input_dsfhub_host"></a> [dsfhub\_host](#input\_dsfhub\_host)
+
+Description: n/a
+
+Type: `any`
+
+### <a name="input_dsfhub_token"></a> [dsfhub\_token](#input\_dsfhub\_token)
+
+Description: n/a
+
+Type: `any`
+
+## Optional Inputs
+
+No optional inputs.
 
 ## Outputs
 

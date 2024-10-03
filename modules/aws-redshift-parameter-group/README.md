@@ -5,9 +5,9 @@ No requirements.
 
 ## Providers
 
-| Name | Version |
-|------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | n/a |
+The following providers are used by this module:
+
+- <a name="provider_aws"></a> [aws](#provider\_aws)
 
 ## Modules
 
@@ -15,23 +15,79 @@ No modules.
 
 ## Resources
 
-| Name | Type |
-|------|------|
-| [aws_redshift_parameter_group.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_parameter_group) | resource |
+The following resources are used by this module:
 
-## Inputs
+- [aws_redshift_parameter_group.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_parameter_group) (resource)
 
-| Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
-| <a name="input_description"></a> [description](#input\_description) | The description of the Redshift parameter group. | `string` | `null` | no |
-| <a name="input_family"></a> [family](#input\_family) | The family of the Redshift parameter group. | `string` | `"redshift-1.0"` | no |
-| <a name="input_name"></a> [name](#input\_name) | The name of the Redshift parameter group. | `string` | n/a | yes |
-| <a name="input_parameters"></a> [parameters](#input\_parameters) | A list of Redshift parameters to apply. | <pre>list(<br>    object({<br>      name  = string<br>      value = any<br>    })<br>  )</pre> | <pre>[<br>  {<br>    "name": "enable_user_activity_logging",<br>    "value": "true"<br>  }<br>]</pre> | no |
-| <a name="input_tags"></a> [tags](#input\_tags) | A map of tags to assign to the resource. | `map(string)` | `null` | no |
+## Required Inputs
+
+The following input variables are required:
+
+### <a name="input_name"></a> [name](#input\_name)
+
+Description: The name of the Redshift parameter group.
+
+Type: `string`
+
+## Optional Inputs
+
+The following input variables are optional (have default values):
+
+### <a name="input_description"></a> [description](#input\_description)
+
+Description: The description of the Redshift parameter group.
+
+Type: `string`
+
+Default: `null`
+
+### <a name="input_family"></a> [family](#input\_family)
+
+Description: The family of the Redshift parameter group.
+
+Type: `string`
+
+Default: `"redshift-1.0"`
+
+### <a name="input_parameters"></a> [parameters](#input\_parameters)
+
+Description: A list of Redshift parameters to apply.
+
+Type:
+
+```hcl
+list(
+    object({
+      name  = string
+      value = any
+    })
+  )
+```
+
+Default:
+
+```json
+[
+  {
+    "name": "enable_user_activity_logging",
+    "value": "true"
+  }
+]
+```
+
+### <a name="input_tags"></a> [tags](#input\_tags)
+
+Description: A map of tags to assign to the resource.
+
+Type: `map(string)`
+
+Default: `null`
 
 ## Outputs
 
-| Name | Description |
-|------|-------------|
-| <a name="output_this"></a> [this](#output\_this) | AWS Redshift parameter group |
+The following outputs are exported:
+
+### <a name="output_this"></a> [this](#output\_this)
+
+Description: AWS Redshift parameter group
 <!-- END_TF_DOCS -->

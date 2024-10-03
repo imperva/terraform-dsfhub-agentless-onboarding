@@ -18,29 +18,51 @@ No requirements.
 
 ## Providers
 
-| Name | Version |
-|------|---------|
-| <a name="provider_terraform"></a> [terraform](#provider\_terraform) | n/a |
+The following providers are used by this module:
+
+- <a name="provider_terraform"></a> [terraform](#provider\_terraform)
 
 ## Modules
 
-| Name | Source | Version |
-|------|--------|---------|
-| <a name="module_aws-rds-oracle-unified-1"></a> [aws-rds-oracle-unified-1](#module\_aws-rds-oracle-unified-1) | ../../modules/onboard-aws-rds-oracle-unified | n/a |
-| <a name="module_aws-rds-oracle-unified-2"></a> [aws-rds-oracle-unified-2](#module\_aws-rds-oracle-unified-2) | ../../modules/onboard-aws-rds-oracle-unified | n/a |
+The following Modules are called:
+
+### <a name="module_aws-rds-oracle-unified-1"></a> [aws-rds-oracle-unified-1](#module\_aws-rds-oracle-unified-1)
+
+Source: ../../modules/onboard-aws-rds-oracle-unified
+
+Version:
+
+### <a name="module_aws-rds-oracle-unified-2"></a> [aws-rds-oracle-unified-2](#module\_aws-rds-oracle-unified-2)
+
+Source: ../../modules/onboard-aws-rds-oracle-unified
+
+Version:
 
 ## Resources
 
-| Name | Type |
-|------|------|
-| [terraform_data.configure_database](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/resources/data) | resource |
+The following resources are used by this module:
 
-## Inputs
+- [terraform_data.configure_database](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/resources/data) (resource)
 
-| Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
-| <a name="input_dsfhub_host"></a> [dsfhub\_host](#input\_dsfhub\_host) | n/a | `any` | n/a | yes |
-| <a name="input_dsfhub_token"></a> [dsfhub\_token](#input\_dsfhub\_token) | n/a | `any` | n/a | yes |
+## Required Inputs
+
+The following input variables are required:
+
+### <a name="input_dsfhub_host"></a> [dsfhub\_host](#input\_dsfhub\_host)
+
+Description: n/a
+
+Type: `any`
+
+### <a name="input_dsfhub_token"></a> [dsfhub\_token](#input\_dsfhub\_token)
+
+Description: n/a
+
+Type: `any`
+
+## Optional Inputs
+
+No optional inputs.
 
 ## Outputs
 

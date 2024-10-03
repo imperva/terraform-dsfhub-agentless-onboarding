@@ -5,9 +5,9 @@ No requirements.
 
 ## Providers
 
-| Name | Version |
-|------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | n/a |
+The following providers are used by this module:
+
+- <a name="provider_aws"></a> [aws](#provider\_aws)
 
 ## Modules
 
@@ -15,20 +15,35 @@ No modules.
 
 ## Resources
 
-| Name | Type |
-|------|------|
-| [aws_s3_bucket_policy.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_policy) | resource |
+The following resources are used by this module:
 
-## Inputs
+- [aws_s3_bucket_policy.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_policy) (resource)
 
-| Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
-| <a name="input_bucket"></a> [bucket](#input\_bucket) | Name of the bucket to which to apply the policy. | `string` | n/a | yes |
-| <a name="input_policy"></a> [policy](#input\_policy) | Text of the policy. Although this is a bucket policy rather than an IAM policy, the aws\_iam\_policy\_document data source may be used, so long as it specifies a principal. | `string` | n/a | yes |
+## Required Inputs
+
+The following input variables are required:
+
+### <a name="input_bucket"></a> [bucket](#input\_bucket)
+
+Description: Name of the bucket to which to apply the policy.
+
+Type: `string`
+
+### <a name="input_policy"></a> [policy](#input\_policy)
+
+Description: Text of the policy. Although this is a bucket policy rather than an IAM policy, the aws\_iam\_policy\_document data source may be used, so long as it specifies a principal.
+
+Type: `string`
+
+## Optional Inputs
+
+No optional inputs.
 
 ## Outputs
 
-| Name | Description |
-|------|-------------|
-| <a name="output_this"></a> [this](#output\_this) | AWS S3 bucket policy |
+The following outputs are exported:
+
+### <a name="output_this"></a> [this](#output\_this)
+
+Description: AWS S3 bucket policy
 <!-- END_TF_DOCS -->

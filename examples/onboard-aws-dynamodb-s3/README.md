@@ -26,25 +26,67 @@ No providers.
 
 ## Modules
 
-| Name | Source | Version |
-|------|--------|---------|
-| <a name="module_dynamodb-1"></a> [dynamodb-1](#module\_dynamodb-1) | ../../modules/onboard-aws-dynamodb-s3 | n/a |
-| <a name="module_dynamodb-2"></a> [dynamodb-2](#module\_dynamodb-2) | ../../modules/onboard-aws-dynamodb-s3 | n/a |
-| <a name="module_dynamodb-3"></a> [dynamodb-3](#module\_dynamodb-3) | ../../modules/onboard-aws-dynamodb-s3 | n/a |
-| <a name="module_dynamodb-4"></a> [dynamodb-4](#module\_dynamodb-4) | ../../modules/onboard-aws-dynamodb-s3 | n/a |
+The following Modules are called:
+
+### <a name="module_dynamodb-1"></a> [dynamodb-1](#module\_dynamodb-1)
+
+Source: ../../modules/onboard-aws-dynamodb-s3
+
+Version:
+
+### <a name="module_dynamodb-2"></a> [dynamodb-2](#module\_dynamodb-2)
+
+Source: ../../modules/onboard-aws-dynamodb-s3
+
+Version:
+
+### <a name="module_dynamodb-3"></a> [dynamodb-3](#module\_dynamodb-3)
+
+Source: ../../modules/onboard-aws-dynamodb-s3
+
+Version:
+
+### <a name="module_dynamodb-4"></a> [dynamodb-4](#module\_dynamodb-4)
+
+Source: ../../modules/onboard-aws-dynamodb-s3
+
+Version:
 
 ## Resources
 
 No resources.
 
-## Inputs
+## Required Inputs
 
-| Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
-| <a name="input_aws_dynamodb_access_id"></a> [aws\_dynamodb\_access\_id](#input\_aws\_dynamodb\_access\_id) | n/a | `any` | n/a | yes |
-| <a name="input_aws_dynamodb_secret_key"></a> [aws\_dynamodb\_secret\_key](#input\_aws\_dynamodb\_secret\_key) | n/a | `any` | n/a | yes |
-| <a name="input_dsfhub_host"></a> [dsfhub\_host](#input\_dsfhub\_host) | n/a | `any` | n/a | yes |
-| <a name="input_dsfhub_token"></a> [dsfhub\_token](#input\_dsfhub\_token) | n/a | `any` | n/a | yes |
+The following input variables are required:
+
+### <a name="input_aws_dynamodb_access_id"></a> [aws\_dynamodb\_access\_id](#input\_aws\_dynamodb\_access\_id)
+
+Description: n/a
+
+Type: `any`
+
+### <a name="input_aws_dynamodb_secret_key"></a> [aws\_dynamodb\_secret\_key](#input\_aws\_dynamodb\_secret\_key)
+
+Description: n/a
+
+Type: `any`
+
+### <a name="input_dsfhub_host"></a> [dsfhub\_host](#input\_dsfhub\_host)
+
+Description: n/a
+
+Type: `any`
+
+### <a name="input_dsfhub_token"></a> [dsfhub\_token](#input\_dsfhub\_token)
+
+Description: n/a
+
+Type: `any`
+
+## Optional Inputs
+
+No optional inputs.
 
 ## Outputs
 

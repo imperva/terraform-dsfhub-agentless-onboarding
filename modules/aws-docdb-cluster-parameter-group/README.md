@@ -5,9 +5,9 @@ No requirements.
 
 ## Providers
 
-| Name | Version |
-|------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | n/a |
+The following providers are used by this module:
+
+- <a name="provider_aws"></a> [aws](#provider\_aws)
 
 ## Modules
 
@@ -15,23 +15,83 @@ No modules.
 
 ## Resources
 
-| Name | Type |
-|------|------|
-| [aws_docdb_cluster_parameter_group.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/docdb_cluster_parameter_group) | resource |
+The following resources are used by this module:
 
-## Inputs
+- [aws_docdb_cluster_parameter_group.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/docdb_cluster_parameter_group) (resource)
 
-| Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
-| <a name="input_description"></a> [description](#input\_description) | The description of the DocumentDB cluster parameter group. | `string` | `null` | no |
-| <a name="input_family"></a> [family](#input\_family) | Database family version, e.g. "docdb5.0" | `string` | `"docdb5.0"` | no |
-| <a name="input_name"></a> [name](#input\_name) | The name of the DocumentDB cluster parameter group. | `string` | `"docdb-parameter-group"` | no |
-| <a name="input_parameters"></a> [parameters](#input\_parameters) | List of objects containing parameters for the DocumentDB parameter group. | <pre>list(<br>    object({<br>      name         = string<br>      apply_method = optional(string, "immediate")<br>      value        = any<br>    })<br>  )</pre> | <pre>[<br>  {<br>    "apply_method": "immediate",<br>    "name": "audit_logs",<br>    "value": "all"<br>  }<br>]</pre> | no |
-| <a name="input_tags"></a> [tags](#input\_tags) | A map of tags to assign to the cluster. | `map(string)` | `null` | no |
+## Required Inputs
+
+No required inputs.
+
+## Optional Inputs
+
+The following input variables are optional (have default values):
+
+### <a name="input_description"></a> [description](#input\_description)
+
+Description: The description of the DocumentDB cluster parameter group.
+
+Type: `string`
+
+Default: `null`
+
+### <a name="input_family"></a> [family](#input\_family)
+
+Description: Database family version, e.g. "docdb5.0"
+
+Type: `string`
+
+Default: `"docdb5.0"`
+
+### <a name="input_name"></a> [name](#input\_name)
+
+Description: The name of the DocumentDB cluster parameter group.
+
+Type: `string`
+
+Default: `"docdb-parameter-group"`
+
+### <a name="input_parameters"></a> [parameters](#input\_parameters)
+
+Description: List of objects containing parameters for the DocumentDB parameter group.
+
+Type:
+
+```hcl
+list(
+    object({
+      name         = string
+      apply_method = optional(string, "immediate")
+      value        = any
+    })
+  )
+```
+
+Default:
+
+```json
+[
+  {
+    "apply_method": "immediate",
+    "name": "audit_logs",
+    "value": "all"
+  }
+]
+```
+
+### <a name="input_tags"></a> [tags](#input\_tags)
+
+Description: A map of tags to assign to the cluster.
+
+Type: `map(string)`
+
+Default: `null`
 
 ## Outputs
 
-| Name | Description |
-|------|-------------|
-| <a name="output_this"></a> [this](#output\_this) | AWS DocumentDB Parameter Group |
+The following outputs are exported:
+
+### <a name="output_this"></a> [this](#output\_this)
+
+Description: AWS DocumentDB Parameter Group
 <!-- END_TF_DOCS -->
