@@ -29,7 +29,7 @@ output "diagnostic-setting" {
 }
 
 output "azure-sql-managed-instance-asset" {
-  description = "AZURE SQL MANAGED INSTANCE asseet."
+  description = "AZURE SQL MANAGED INSTANCE asset."
   value       = module.azure-sql-managed-instance-asset.this
 }
 

@@ -3,7 +3,7 @@
 Onboard Azure SQL Managed Instance to DSF Hub.
 
 ## Notes
-There are two prerequisites for using this module:
+There are three prerequisites for using this module:
 1. An Azure Event Hub Namespace and Event Hub. 
 2. An Azure Storage Account and Container. This is used by DSF to store a marker which keeps track of what data in the Event Hub has been consumed.
 3. A method to create a server audit policy on the managed instance.
