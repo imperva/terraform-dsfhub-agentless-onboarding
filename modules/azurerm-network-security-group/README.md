@@ -33,5 +33,5 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_this"></a> [this](#output\_this) | Azure Network Security Rule. |
+| <a name="output_this"></a> [this](#output\_this) | Azure Network Security Group and Rules. |
 <!-- END_TF_DOCS -->

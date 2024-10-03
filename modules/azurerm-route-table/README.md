@@ -33,5 +33,5 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_this"></a> [this](#output\_this) | Azure Route Table. |
+| <a name="output_this"></a> [this](#output\_this) | Azure Route Table and Routes. |
 <!-- END_TF_DOCS -->
