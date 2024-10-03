@@ -66,6 +66,7 @@ jobs:
         recursive: true
         recursive-path: .
         output-file: README.md
+        output-format: markdown document
         output-method: inject
         git-push: "true"
 
