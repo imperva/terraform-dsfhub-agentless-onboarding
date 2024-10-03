@@ -17,7 +17,7 @@ resource "azurerm_virtual_network" "this" {
       security_group                  = subnet.value.security_group
 
       dynamic "delegation" {
-        # If delegation is not define, do not create
+        # If delegation is not defined, do not create
         for_each = subnet.value.delegation != null ? subnet.value.delegation : []
 
         content {

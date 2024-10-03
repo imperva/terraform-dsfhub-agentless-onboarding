@@ -32,7 +32,6 @@ variable "security_rules" {
         source_address_prefixes      = optional(list(string))
         source_port_range            = optional(string)
         source_port_ranges           = optional(list(string))
-
       }
     )
   )
