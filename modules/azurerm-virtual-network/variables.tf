@@ -19,28 +19,29 @@ variable "resource_group_name" {
 }
 
 variable "subnets" {
-  description = <<-EOF
-    [
-      {
-        address_prefixes: A list of address prefixes to use for the subnet
-        default_outbound_access_enabled: (Optional) Enable default outbound access to the internet for the subnet. Defaults to true.
-        name: The name of the subnet
-        route_table_id: (Optional) The ID of the Route Table that should be associated with this subnet.
-        security_group: (Optional) he Network Security Group to associate with the subnet. (Referenced by id, ie. azurerm_network_security_group.example.id)
+  description = <<EOF
+  A list of subnet objects as defined below.
+  
+  subnet:
+  - address_prefixes: A list of address prefixes to use for the subnet
+  - default_outbound_access_enabled: (Optional) Enable default outbound access to 
+  &emsp;the internet for the subnet. Defaults to true.
+  - name: The name of the subnet
+  - route_table_id: (Optional) The ID of the Route Table that should be associated 
+  &emsp;with this subnet.
+  - security_group: (Optional) The Network Security Group to associate with the 
+  &emsp;subnet. (Referenced by id, ie. azurerm_network_security_group.example.id)
+  - delegation: (Optional) One or more delegation blocks as defined below.
 
-        deletegation: (Optional) One or more delegation blocks as defined below.
-      }
-    ]
+  delegation:
+  - name: A name for this delegation.
+  - service_delegation: A service_delegation block as defined below.
 
-    delegation: {
-      name: A name for this delegation.
-      service_delegation: A service_delegation block as defined below.
-    }
-    
-    service_delegation: {
-      name: The name of service to delegate to.
-      actions: (Optional) A list of Actions which should be delegated. This list is specific to the service to delegate to.
-    }
+  service_delegation:
+  - name: The name of service to delegate to.
+  - actions: (Optional) A list of Actions which should be delegated. This list is 
+  &emsp;specific to the service to delegate to. See the [azure documentation](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet#service_delegation) 
+  &emsp;for the full list of possible values.
   EOF
   type = list(
     object(
