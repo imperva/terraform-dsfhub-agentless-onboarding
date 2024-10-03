@@ -88,8 +88,8 @@ locals {
 
 # Construct public endpoint
 locals {
-  fqdn_parsing = regex("([^.]+)(.*)", module.sql-managed-instance-1.azure-ms-sql-managed-instance.fqdn) # Split after instance name
-  managed_instance_public_endpoint = "${local.fqdn_parsing[0]}.public${local.fqdn_parsing[1]},3342"     # Add ".public" and public port
+  fqdn_parsing                     = regex("([^.]+)(.*)", module.sql-managed-instance-1.azure-ms-sql-managed-instance.fqdn) # Split after instance name
+  managed_instance_public_endpoint = "${local.fqdn_parsing[0]}.public${local.fqdn_parsing[1]},3342"                         # Add ".public" and public port
 }
 
 # Create server audit policy
