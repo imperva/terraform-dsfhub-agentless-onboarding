@@ -15,7 +15,7 @@ output "route-table" {
 
 output "virtual-network" {
   description = "Azure Managed Instance Virtual Network."
-  value       = module.route-table.this
+  value       = module.virtual-network.this
 }
 
 output "azure-ms-sql-managed-instance" {
