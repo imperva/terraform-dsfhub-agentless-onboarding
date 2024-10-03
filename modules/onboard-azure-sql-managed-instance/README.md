@@ -77,7 +77,7 @@ No resources.
 | Name | Description |
 |------|-------------|
 | <a name="output_azure-ms-sql-managed-instance"></a> [azure-ms-sql-managed-instance](#output\_azure-ms-sql-managed-instance) | Microsoft SQL Azure Managed Instance. |
-| <a name="output_azure-sql-managed-instance-asset"></a> [azure-sql-managed-instance-asset](#output\_azure-sql-managed-instance-asset) | AZURE SQL MANAGED INSTANCE asseet. |
+| <a name="output_azure-sql-managed-instance-asset"></a> [azure-sql-managed-instance-asset](#output\_azure-sql-managed-instance-asset) | AZURE SQL MANAGED INSTANCE asset. |
 | <a name="output_default-managed-instance-security-rules"></a> [default-managed-instance-security-rules](#output\_default-managed-instance-security-rules) | Security rules required for Managed Instances by default. |
 | <a name="output_diagnostic-setting"></a> [diagnostic-setting](#output\_diagnostic-setting) | Diagnostic Setting. |
 | <a name="output_route-table"></a> [route-table](#output\_route-table) | Azure Managed Instance Route Table. |
