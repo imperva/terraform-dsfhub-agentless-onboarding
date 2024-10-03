@@ -4,6 +4,7 @@
 
 ### Features
 - Azure Database for PostgreSQL Flexible module
+- Azure SQL Managed Instance module
 
 ## 1.0.6 (2024-09-17)
 
