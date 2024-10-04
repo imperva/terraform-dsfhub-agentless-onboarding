@@ -13,7 +13,6 @@ resource "dsfhub_cloud_account" "this" {
   asset_display_name = var.asset_display_name
   asset_id           = var.asset_id
   gateway_id         = var.gateway_id
-  server_host_name   = "azure.microsoft.com"
 
   dynamic "asset_connection" {
     # If auth_mechanism is not defined, do not create a connection

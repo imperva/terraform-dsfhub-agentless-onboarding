@@ -30,7 +30,7 @@ module "azure-auth-file-account-asset" {
 
   admin_email        = local.admin_email
   asset_display_name = "azure-auth-file-account-asset"
-  asset_id           = "/subscriptions/aaaaaaaa-bbbb-cccc-dddd-eeeeffffgggghhhh/my_app_name"
+  asset_id           = "/subscriptions/11111111-2222-3333-4444-123456789012/asset"
   auth_mechanism     = "auth_file"
   gateway_id         = local.gateway_id
   key_file           = "/data/jsonar/local/credentials/azure_auth_file.json"
@@ -44,16 +44,15 @@ module "azure-client-secret-account-asset" {
   source = "../../modules/dsfhub-azure-cloud-account"
 
   admin_email        = local.admin_email
-  application_id     = ""
+  application_id     = "12345678-1234-1234-1234-123456789012"
   asset_display_name = "azure-client-secret-account-asset"
-  asset_id           = ""
+  asset_id           = "/subscriptions/11111111-2222-3333-4444-123456789012/asset"
   auth_mechanism     = "client_secret"
-  client_secret      = ""
-  directory_id       = ""
+  client_secret      = "secret"
+  directory_id       = "11111111-2222-3333-4444-123456789012"
   gateway_id         = local.gateway_id
   reason             = "default"
-  subscription_id    = ""
-
+  subscription_id    = "87654321-4321-4321-4321-210987654321"
 }
 
 ################################################################################
@@ -64,10 +63,9 @@ module "azure-managed-identity-account-asset" {
 
   admin_email        = local.admin_email
   asset_display_name = "azure-managed-identity-account-asset"
-  asset_id           = ""
+  asset_id           = "/subscriptions/11111111-2222-3333-4444-123456789012/resourceGroups/group/path/to/managed-identity"
   auth_mechanism     = "managed_identity"
   gateway_id         = local.gateway_id
   reason             = "default"
-  subscription_id    = ""
+  subscription_id    = "87654321-4321-4321-4321-210987654321"
 }
-
