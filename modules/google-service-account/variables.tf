@@ -3,8 +3,8 @@ variable "account_id" {
   type        = string
   validation {
     condition = (
-      length(var.account_id >= 6) &&
-      length(var.account_id <= 30) &&
+      length(var.account_id) >= 6 &&
+      length(var.account_id) <= 30 &&
       can(regex("[a-z]([-a-z0-9]*[a-z0-9])", var.account_id))
     )
     error_message = "Invalid service account ID."
