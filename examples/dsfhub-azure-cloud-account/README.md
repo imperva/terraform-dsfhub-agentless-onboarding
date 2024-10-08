@@ -4,7 +4,7 @@ This example covers the various authentication mechanisms that are supported for
 
 | Auth Mechanism | Notes |
 |----------------|-------|
-| auth_file | Uses the credentials defined in a JSON file on the DSF machine. |
+| auth_file | Uses the credentials defined in a JSON file on the DSF machine that owns the asset. |
 | client_secret | Uses an Azure Application secret defined in the ``client_secret`` field to authenticate to Azure. |
 | managed_identity | DSF uses the managed identity attached to the DSF machine. Only supported for DSF machines that are Azure Virtual Machines. |
 
