@@ -11,6 +11,16 @@ variable "account_id" {
   }
 }
 
+variable "auth_mechanism" {
+  description = "Authentication mechanism intended to be used by DSF to leverage this service account. Valid values are: service_account, default."
+  type        = string
+  default     = "service_account"
+  validation {
+    condition     = contains(["service_account", "default"], var.auth_mechanism)
+    error_message = "Invalid service account auth_mechanism. Valid values are: service_account, default."
+  }
+}
+
 variable "create_ignore_already_exists" {
   description = "If set to true, skip service account creation if a service account with the same email already exists. Defaults to false."
   type        = bool
@@ -46,4 +56,13 @@ variable "project" {
   description = "The ID of the project that the service account will be created in. Defaults to the provider project configuration."
   type        = string
   default     = null
+}
+
+variable "project_roles" {
+  description = "Roles to grant the Service Account in the specified project. Defaults to roles required for DSF to pull audit data."
+  type        = list(string)
+  default = [
+    "roles/pubsub.subscriber",
+    "roles/pubsub.viewer"
+  ]
 }
