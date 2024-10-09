@@ -13,7 +13,7 @@ output "key" {
   value       = google_service_account_key.key
 }
 
-output "key_file" {
+output "key_file_path" {
   description = "JSON key file containing the Service Account credentials."
-  value       = local_file.service_account_key_file
+  value       = "${path.root}/${var.account_id}"
 }
