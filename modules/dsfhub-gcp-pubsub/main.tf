@@ -15,6 +15,7 @@ resource "dsfhub_log_aggregator" "this" {
   audit_pull_enabled  = var.audit_pull_enabled
   audit_type          = var.audit_type
   gateway_id          = var.gateway_id
+  pubsub_subscription = var.pubsub_subscription
   server_host_name    = "pubsub.googleapis.com"
   server_ip           = "pubsub.googleapis.com"
   server_port         = "443"
