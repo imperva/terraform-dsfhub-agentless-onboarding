@@ -1,14 +1,14 @@
 locals {
-  gcp_project_id = "my-gcp-project"
+  gcp_project_id           = "my-gcp-project"
   pubsub_subscription_name = "tf-bigquery-sub"
-  pubsub_topic_name = "tf-bigquery-topic"
-  service_account_name = "dsf-service-account"
-  sink_router_name = "tf-bigquery-sink"
+  pubsub_topic_name        = "tf-bigquery-topic"
+  service_account_name     = "dsf-service-account"
+  sink_router_name         = "tf-bigquery-sink"
 
 
-  admin_email = "test@example.com"
+  admin_email    = "test@example.com"
   auth_mechanism = "default"
-  gateway_id  = "a1b2c3d4-e5f6-g8h9-wxyz-123456790"
+  gateway_id     = "a1b2c3d4-e5f6-g8h9-wxyz-123456790"
 }
 
 ################################################################################
@@ -43,10 +43,10 @@ provider "dsfhub" {
 module "service-account" {
   source = "../../modules/google-service-account-dsf"
 
-  account_id = local.service_account_name
+  account_id     = local.service_account_name
   auth_mechanism = local.auth_mechanism
-  description = "BigQuery audit pull service account"
-  project = local.gcp_project_id
+  description    = "BigQuery audit pull service account"
+  project        = local.gcp_project_id
   project_roles = [
     "roles/pubsub.subscriber",
     "roles/pubsub.viewer"
@@ -56,23 +56,23 @@ module "service-account" {
 module "gcp-pubsub" {
   source = "../../modules/onboard-gcp-pubsub"
 
-  gcp_pubsub_admin_email                         = local.admin_email
-  gcp_pubsub_audit_type                          = "BIGQUERY"
-  gcp_pubsub_auth_mechanism                      = local.auth_mechanism
-  gcp_pubsub_gateway_id                          = local.gateway_id
-  
-  project                                        = local.gcp_project_id
-  
-  pubsub_subscription_name                       = local.pubsub_subscription_name
+  gcp_pubsub_admin_email    = local.admin_email
+  gcp_pubsub_audit_type     = "BIGQUERY"
+  gcp_pubsub_auth_mechanism = local.auth_mechanism
+  gcp_pubsub_gateway_id     = local.gateway_id
 
-  pubsub_topic_name                              = local.pubsub_topic_name
-  
-  sink_router_description                        = "BigQuery sink"
-  sink_router_exclusions                         = null
-  sink_router_filter                             = <<EOF
+  project = local.gcp_project_id
+
+  pubsub_subscription_name = local.pubsub_subscription_name
+
+  pubsub_topic_name = local.pubsub_topic_name
+
+  sink_router_description = "BigQuery sink"
+  sink_router_exclusions  = null
+  sink_router_filter      = <<EOF
     resource.type="bigquery_resource"
   EOF
-  sink_router_name                               = local.sink_router_name
+  sink_router_name        = local.sink_router_name
 }
 
 ################################################################################

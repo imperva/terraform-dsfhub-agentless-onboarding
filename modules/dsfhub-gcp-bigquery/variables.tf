@@ -10,7 +10,7 @@ variable "asset_display_name" {
 
 variable "asset_id" {
   description = "Unique identifier for the BigQuery service in the form 'projects/{{project}}/bigquery'."
-  type = string
+  type        = string
 }
 
 variable "audit_pull_enabled" {
@@ -32,8 +32,8 @@ variable "logs_destination_asset_id" {
 
 variable "parent_asset_id" {
   description = "The asset_id of the GCP asset representing the GCP account where this datasource is located."
-  type = string
-  default = null
+  type        = string
+  default     = null
 }
 
 variable "pubsub_subscription" {
