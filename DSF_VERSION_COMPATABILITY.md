@@ -99,5 +99,9 @@ The following table lists the DSF versions that each module is tested and mainta
       <td>onboard-azure-sql-managed-instance</td>
       <td>4.17+</td>
    </tr>
+   <tr>
+      <td>onboard-gcp-bigquery</td>
+      <td>4.17+</td>
+   </tr>
 
 </table>

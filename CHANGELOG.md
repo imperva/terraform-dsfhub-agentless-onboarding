@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.8 (TBD)
+
+### Features
+- GCP account asset module
+- Google Cloud BigQuery module
+
 ## 1.0.7 (2024-10-03)
 
 ### Features
