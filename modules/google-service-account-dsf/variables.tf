@@ -53,9 +53,8 @@ variable "description" {
 }
 
 variable "project" {
-  description = "The ID of the project that the service account will be created in. Defaults to the provider project configuration."
+  description = "The ID of the project that the service account will be created in."
   type        = string
-  default     = null
 }
 
 variable "project_roles" {
