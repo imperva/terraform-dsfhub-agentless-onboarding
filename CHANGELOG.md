@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.0.8 (TBD)
+## 1.0.8 (2024-10-15)
 
 ### Features
 - GCP account asset module
