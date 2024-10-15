@@ -146,12 +146,12 @@ module "aurora-postgresql-3" {
   aws_log_group_gateway_id         = local.gateway_id
   aws_log_group_region             = local.aws_region
 
-  cluster_db_subnet_group_name   = local.subnet_group_name
-  cluster_engine_version         = "16.1"
-  cluster_identifier             = "tf-aurora-postgresql-cluster"
-  cluster_master_password        = local.master_password
-  cluster_master_username        = local.master_user
-  cluster_parameter_group_name   = "tf-aurora-postgresql-instance-pg"
+  cluster_db_subnet_group_name = local.subnet_group_name
+  cluster_engine_version       = "16.1"
+  cluster_identifier           = "tf-aurora-postgresql-cluster"
+  cluster_master_password      = local.master_password
+  cluster_master_username      = local.master_user
+  cluster_parameter_group_name = "tf-aurora-postgresql-instance-pg"
   cluster_parameter_group_parameters = [
     {
       name  = "log_connections"
@@ -179,7 +179,7 @@ module "aurora-postgresql-3" {
       apply_method = "pending-reboot"
     },
     {
-      name = "log_min_duration_statement"
+      name  = "log_min_duration_statement"
       value = 10000
     }
   ]
