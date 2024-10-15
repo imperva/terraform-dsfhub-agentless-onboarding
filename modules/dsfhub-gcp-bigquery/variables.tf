@@ -31,7 +31,7 @@ variable "logs_destination_asset_id" {
 }
 
 variable "parent_asset_id" {
-  description = "The asset_id of the GCP asset representing the GCP account where this datasource is located."
+  description = "The asset_id of the GCP asset representing the GCP account where this data source is located."
   type        = string
   default     = null
 }
