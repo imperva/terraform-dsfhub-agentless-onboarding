@@ -31,6 +31,7 @@ No requirements.
 |------|--------|---------|
 | <a name="module_aurora-postgresql-1"></a> [aurora-postgresql-1](#module\_aurora-postgresql-1) | ../../modules/onboard-aws-rds-aurora-postgresql | n/a |
 | <a name="module_aurora-postgresql-2"></a> [aurora-postgresql-2](#module\_aurora-postgresql-2) | ../../modules/onboard-aws-rds-aurora-postgresql | n/a |
+| <a name="module_aurora-postgresql-3"></a> [aurora-postgresql-3](#module\_aurora-postgresql-3) | ../../modules/onboard-aws-rds-aurora-postgresql | n/a |
 | <a name="module_aws-default-account-asset"></a> [aws-default-account-asset](#module\_aws-default-account-asset) | imperva/agentless-onboarding/dsfhub//modules/dsfhub-aws-cloud-account | n/a |
 
 ## Resources
