@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.9 (TBD)
+
+### Features
+- Aurora PostgreSQL CloudWatch with slow query auditing example
+
 ## 1.0.8 (2024-10-15)
 
 ### Features

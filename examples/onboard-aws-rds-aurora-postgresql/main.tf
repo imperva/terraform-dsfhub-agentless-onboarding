@@ -129,3 +129,63 @@ module "aurora-postgresql-2" {
   instance_identifier          = "tf-aurora-postgresql-instance"
   instance_publicly_accessible = true
 }
+
+################################################################################
+# Amazon Aurora PostgreSQL 16.1 with Slow Query
+################################################################################
+module "aurora-postgresql-3" {
+  source = "../../modules/onboard-aws-rds-aurora-postgresql"
+
+  aws_aurora_postgresql_cluster_admin_email     = local.admin_email
+  aws_aurora_postgresql_cluster_gateway_id      = local.gateway_id
+  aws_aurora_postgresql_cluster_parent_asset_id = module.aws-default-account-asset.this.asset_id
+  aws_aurora_postgresql_cluster_region          = local.aws_region
+
+  aws_log_group_admin_email        = local.admin_email
+  aws_log_group_audit_pull_enabled = true
+  aws_log_group_gateway_id         = local.gateway_id
+  aws_log_group_region             = local.aws_region
+
+  cluster_db_subnet_group_name   = local.subnet_group_name
+  cluster_engine_version         = "16.1"
+  cluster_identifier             = "tf-aurora-postgresql-cluster"
+  cluster_master_password        = local.master_password
+  cluster_master_username        = local.master_user
+  cluster_parameter_group_name   = "tf-aurora-postgresql-instance-pg"
+  cluster_parameter_group_parameters = [
+    {
+      name  = "log_connections"
+      value = 1
+    },
+    {
+      name  = "log_disconnections"
+      value = 1
+    },
+    {
+      name  = "log_error_verbosity"
+      value = "verbose"
+    },
+    {
+      name  = "pgaudit.log"
+      value = "all"
+    },
+    {
+      name  = "pgaudit.role"
+      value = "rds_pgaudit"
+    },
+    {
+      name         = "shared_preload_libraries"
+      value        = "pgaudit,pg_stat_statements"
+      apply_method = "pending-reboot"
+    },
+    {
+      name = "log_min_duration_statement"
+      value = 10000
+    }
+  ]
+  cluster_vpc_security_group_ids = local.vpc_security_groups
+
+  instance_apply_immediately   = local.apply_immediately
+  instance_identifier          = "tf-aurora-postgresql-instance"
+  instance_publicly_accessible = true
+}
