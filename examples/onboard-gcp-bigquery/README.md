@@ -1,5 +1,5 @@
 # Onboard Google Cloud BigQuery example
-This example includes additional prerequisites that will need to be completed to fully utilize the module. More details can be found in the [onboarding documentation](hhttps://docs.imperva.com/bundle/onboarding-databases-to-sonar-reference-guide/page/BigQuery-Onboarding-Steps_48367536.html).
+This example includes additional prerequisites that will need to be completed to fully utilize the module. More details can be found in the [onboarding documentation](https://docs.imperva.com/bundle/onboarding-databases-to-sonar-reference-guide/page/BigQuery-Onboarding-Steps_48367536.html).
 
 This example creates 'dsfhub' and 'google' resources. More information regarding authentication to each can be found in the relevant provider documentation:
 - [dsfhub](https://registry.terraform.io/providers/imperva/dsfhub/latest/docs)
