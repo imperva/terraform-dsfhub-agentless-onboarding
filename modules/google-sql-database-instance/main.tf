@@ -1,9 +1,10 @@
 resource "google_sql_database_instance" "this" {
-  database_version = var.database_version
-  name             = var.name
-  project          = var.project
-  region           = var.region
-  root_password    = var.root_password
+  database_version    = var.database_version
+  deletion_protection = var.deletion_protection
+  name                = var.name
+  project             = var.project
+  region              = var.region
+  root_password       = var.root_password
 
   settings {
     tier = var.tier
@@ -30,7 +31,7 @@ resource "google_sql_database_instance" "this" {
     }
 
     dynamic "sql_server_audit_config" {
-      for_each = var.authorized_networks != null ? [0] : []
+      for_each = var.sql_server_audit_config != null ? [0] : []
 
       content {
         bucket             = var.sql_server_audit_config.bucket

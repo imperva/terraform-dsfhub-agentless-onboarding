@@ -45,6 +45,12 @@ variable "database_version" {
   }
 }
 
+variable "deletion_protection" {
+  description = "Whether Terraform will be prevented from destroying the instance. When the field is set to true or unset in Terraform state, a terraform apply or terraform destroy that would delete the instance will fail. When the field is set to false, deleting the instance is allowed."
+  type        = bool
+  default     = false
+}
+
 variable "name" {
   description = "The name of the instance."
   type        = string

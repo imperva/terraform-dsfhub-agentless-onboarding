@@ -4,6 +4,7 @@ module "gcp-mysql-instance" {
   authorized_networks     = var.instance_authorized_networks
   database_flags          = var.instance_database_flags
   database_version        = var.instance_database_version
+  deletion_protection     = var.instance_deletion_protection
   name                    = var.instance_name
   project                 = var.instance_project
   region                  = var.instance_region
