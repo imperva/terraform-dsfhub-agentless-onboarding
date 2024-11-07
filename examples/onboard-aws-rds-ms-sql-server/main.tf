@@ -71,7 +71,7 @@ resource "terraform_data" "configure_database-2" {
     environment = {
       ADMIN_USER     = local.master_user
       ADMIN_PASSWORD = local.master_password
-      ENDPOINT       = module.aws-rds-ms-sql-server-2.rds-sql-server-instance[count.index].endpoint
+      ENDPOINT       = regex("(.*):", module.aws-rds-ms-sql-server-2.rds-sql-server-instance[count.index].endpoint)[0]
 
       SERVER_AUDIT_NAME      = local.server_audit_name
       SERVER_AUDIT_SPEC_NAME = local.server_audit_spec_name

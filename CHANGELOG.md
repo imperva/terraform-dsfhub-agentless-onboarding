@@ -5,6 +5,9 @@
 ### Features
 - Aurora PostgreSQL CloudWatch with slow query auditing example
 
+### Bug Fixes
+- Modified Server Host Name of AWS RDS MS SQL SERVER Dsfhub assets
+
 ## 1.0.8 (2024-10-15)
 
 ### Features
