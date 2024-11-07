@@ -167,7 +167,7 @@ module "aws-rds-ms-sql-server-asset" {
   logs_destination_asset_id = module.s3-bucket.this.arn
   parent_asset_id           = var.aws_rds_mssql_parent_asset_id
   region                    = var.aws_rds_mssql_region
-  server_host_name          = module.rds-sql-server-db[count.index].this.endpoint
+  server_host_name          = regex("(.*):", module.rds-sql-server-db[count.index].this.endpoint)[0]
   server_port               = module.rds-sql-server-db[count.index].this.port
 }
 
