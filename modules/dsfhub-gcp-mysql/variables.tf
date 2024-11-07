@@ -9,7 +9,7 @@ variable "asset_display_name" {
 }
 
 variable "asset_id" {
-  description = "Unique identifier for the BigQuery service in the form 'projects/{{project}}/bigquery'."
+  description = "Unique identifier for the MySQL instance in the form '{project-id}:{instance-region}:{instance-name}'."
   type        = string
 }
 
