@@ -7,7 +7,7 @@ resource "google_logging_project_sink" "this" {
 
   dynamic "exclusions" {
     # If exclusions is not defined, do not create
-    for_each = var.exclusions != null ? [0] : []
+    for_each = var.exclusions != null ? var.exclusions : []
 
     content {
       description = exclusions.value.description

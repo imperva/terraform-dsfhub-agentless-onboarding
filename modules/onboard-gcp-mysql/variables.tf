@@ -62,7 +62,7 @@ variable "instance_database_flags" {
     },
     {
       name  = "general_log"
-      value = "On"
+      value = "on"
     }
   ]
 }
