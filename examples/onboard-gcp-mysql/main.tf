@@ -1,44 +1,21 @@
-# locals {
-#   admin_email           = "test@example.com"
-#   gateway_id            = "a1b2c3d4-e5f6-g8h9-wxyz-123456790"
-#   pubsub_auth_mechanism = "default"
-
-#   gcp_mysql_instance_authorized_networks = [
-#     {
-#       name  = "local"
-#       value = "127.0.0.1"
-#     }
-#   ]
-#   gcp_project_id           = "my-gcp-project"
-#   gcp_service_account_name = "dsf-service-account"
-
-#   excluded_traffic_filter = [
-#     {
-#       name   = "exclude internal traffic"
-#       filter = "textPayload:\"[root]\" OR \"__google_connectivity_prober\""
-#     }
-#   ]
-# }
-
 locals {
-  admin_email           = "matt.gill@thalesgroup.com"
-  gateway_id            = "f2ba158f-6ead-42ef-be92-b10382df4ffa"
-  pubsub_auth_mechanism = "service_account"
+  admin_email           = "test@example.com"
+  gateway_id            = "a1b2c3d4-e5f6-g8h9-wxyz-123456790"
+  pubsub_auth_mechanism = "default"
 
   gcp_mysql_instance_authorized_networks = [
     {
-      name  = "me"
-      value = "208.98.210.83"
+      name  = "local"
+      value = "127.0.0.1"
     }
   ]
-  gcp_project_id           = "cloudsql-postgres-audit"
-  gcp_service_account_name = "matt-tf-mysql-sa"
+  gcp_project_id           = "my-gcp-project"
+  gcp_service_account_name = "dsf-service-account"
 
   excluded_traffic_filter = [
     {
-      description = "exclude internal traffic"
-      name        = "dsf-exclusion"
-      filter      = "textPayload:\"[root]\" OR \"__google_connectivity_prober\""
+      name   = "exclude internal traffic"
+      filter = "textPayload:\"[root]\" OR \"__google_connectivity_prober\""
     }
   ]
 }
@@ -79,29 +56,29 @@ module "service-account" {
   ]
 }
 
-# module "gcp-pubsub-1" {
-#   source = "../../modules/onboard-gcp-pubsub"
+module "gcp-pubsub-1" {
+  source = "../../modules/onboard-gcp-pubsub"
 
-#   gcp_pubsub_admin_email    = local.admin_email
-#   gcp_pubsub_audit_type     = "MYSQL"
-#   gcp_pubsub_auth_mechanism = local.pubsub_auth_mechanism
-#   gcp_pubsub_gateway_id     = local.gateway_id
+  gcp_pubsub_admin_email    = local.admin_email
+  gcp_pubsub_audit_type     = "MYSQL"
+  gcp_pubsub_auth_mechanism = local.pubsub_auth_mechanism
+  gcp_pubsub_gateway_id     = local.gateway_id
 
-#   project = local.gcp_project_id
+  project = local.gcp_project_id
 
-#   pubsub_subscription_name = "tf-mysql-sub-1"
+  pubsub_subscription_name = "tf-mysql-sub-1"
 
-#   pubsub_topic_name = "tf-mysql-topic-1"
+  pubsub_topic_name = "tf-mysql-topic-1"
 
-#   sink_router_description = "MySQL 8.0 sink"
-#   sink_router_exclusions  = local.excluded_traffic_filter
-#   sink_router_filter      = <<EOF
-#     resource.type="cloudsql_database"
-#     resource.labels.database_id="${local.gcp_project_id}:tf-mysql-8"
-#     logName="projects/${local.gcp_project_id}/logs/cloudsql.googleapis.com%2Fmysql-general.log"
-#   EOF
-#   sink_router_name        = "tf-mysql-sink-1"
-# }
+  sink_router_description = "MySQL 8.0 sink"
+  sink_router_exclusions  = local.excluded_traffic_filter
+  sink_router_filter      = <<EOF
+    resource.type="cloudsql_database"
+    resource.labels.database_id="${local.gcp_project_id}:tf-mysql-8"
+    logName="projects/${local.gcp_project_id}/logs/cloudsql.googleapis.com%2Fmysql-general.log"
+  EOF
+  sink_router_name        = "tf-mysql-sink-1"
+}
 
 module "gcp-pubsub-2-audit" {
   source = "../../modules/onboard-gcp-pubsub"
@@ -110,7 +87,6 @@ module "gcp-pubsub-2-audit" {
   gcp_pubsub_audit_type     = "MYSQL"
   gcp_pubsub_auth_mechanism = local.pubsub_auth_mechanism
   gcp_pubsub_gateway_id     = local.gateway_id
-  gcp_pubsub_key_file       = "/data/jsonar/local/credentials/gcp_service_account.json" #TODO:remove
 
   project = local.gcp_project_id
 
@@ -128,7 +104,6 @@ module "gcp-pubsub-2-audit" {
   sink_router_name        = "tf-mysql-sink-2-audit"
 }
 
-
 module "gcp-pubsub-2-slow-query" {
   source = "../../modules/onboard-gcp-pubsub"
 
@@ -138,7 +113,6 @@ module "gcp-pubsub-2-slow-query" {
   gcp_pubsub_auth_mechanism     = local.pubsub_auth_mechanism
   gcp_pubsub_content_type       = "GCP MYSQL"
   gcp_pubsub_gateway_id         = local.gateway_id
-  gcp_pubsub_key_file           = "/data/jsonar/local/credentials/gcp_service_account.json" #TODO:remove
 
   project = local.gcp_project_id
 
@@ -156,48 +130,48 @@ module "gcp-pubsub-2-slow-query" {
   sink_router_name        = "tf-mysql-sink-2-slow-query"
 }
 
-# module "gcp-pubsub-3" {
-#   source = "../../modules/onboard-gcp-pubsub"
+module "gcp-pubsub-3" {
+  source = "../../modules/onboard-gcp-pubsub"
 
-#   gcp_pubsub_admin_email    = local.admin_email
-#   gcp_pubsub_audit_type     = "MYSQL"
-#   gcp_pubsub_auth_mechanism = local.pubsub_auth_mechanism
-#   gcp_pubsub_gateway_id     = local.gateway_id
+  gcp_pubsub_admin_email    = local.admin_email
+  gcp_pubsub_audit_type     = "MYSQL"
+  gcp_pubsub_auth_mechanism = local.pubsub_auth_mechanism
+  gcp_pubsub_gateway_id     = local.gateway_id
 
-#   project = local.gcp_project_id
+  project = local.gcp_project_id
 
-#   pubsub_subscription_name = "tf-mysql-sub-3"
+  pubsub_subscription_name = "tf-mysql-sub-3"
 
-#   pubsub_topic_name = "tf-mysql-topic-3"
+  pubsub_topic_name = "tf-mysql-topic-3"
 
-#   sink_router_description = "MySQL 8.0 many-to-one sink"
-#   sink_router_exclusions  = local.excluded_traffic_filter
-#   sink_router_filter      = <<EOF
-#     resource.type="cloudsql_database"
-#     resource.labels.database_id="${local.gcp_project_id}:tf-mysql-dev" OR 
-#     resource.labels.database_id="${local.gcp_project_id}:tf-mysql-prod" OR 
-#     resource.labels.database_id="${local.gcp_project_id}:tf-mysql-uat"
-#     logName="projects/${local.gcp_project_id}/logs/cloudsql.googleapis.com%2Fmysql-general.log"
-#   EOF
-#   sink_router_name        = "tf-mysql-sink-3"
-# }
+  sink_router_description = "MySQL 8.0 many-to-one sink"
+  sink_router_exclusions  = local.excluded_traffic_filter
+  sink_router_filter      = <<EOF
+    resource.type="cloudsql_database"
+    resource.labels.database_id="${local.gcp_project_id}:tf-mysql-dev" OR 
+    resource.labels.database_id="${local.gcp_project_id}:tf-mysql-prod" OR 
+    resource.labels.database_id="${local.gcp_project_id}:tf-mysql-uat"
+    logName="projects/${local.gcp_project_id}/logs/cloudsql.googleapis.com%2Fmysql-general.log"
+  EOF
+  sink_router_name        = "tf-mysql-sink-3"
+}
 
 ################################################################################
 # GCP MySQL 8.0
 ################################################################################
-# module "gcp-mysql-1" {
-#   source = "../../modules/onboard-gcp-mysql"
+module "gcp-mysql-1" {
+  source = "../../modules/onboard-gcp-mysql"
 
-#   gcp_mysql_admin_email               = local.admin_email
-#   gcp_mysql_audit_pull_enabled        = true
-#   gcp_mysql_gateway_id                = local.gateway_id
-#   gcp_mysql_logs_destination_asset_id = module.gcp-pubsub-1.gcp-pubsub-asset.asset_id
+  gcp_mysql_admin_email               = local.admin_email
+  gcp_mysql_audit_pull_enabled        = true
+  gcp_mysql_gateway_id                = local.gateway_id
+  gcp_mysql_logs_destination_asset_id = module.gcp-pubsub-1.gcp-pubsub-asset.asset_id
 
-#   instance_authorized_networks = local.gcp_mysql_instance_authorized_networks
-#   instance_database_version    = "MYSQL_8_0"
-#   instance_name                = "tf-mysql-8"
-#   instance_region              = "us-west1"
-# }
+  instance_authorized_networks = local.gcp_mysql_instance_authorized_networks
+  instance_database_version    = "MYSQL_8_0"
+  instance_name                = "tf-mysql-8"
+  instance_region              = "us-west1"
+}
 
 ################################################################################
 # GCP MySQL 5.7 with slow query monitoring
@@ -227,7 +201,7 @@ module "gcp-mysql-2" {
     },
     {
       "name" : "long_query_time",
-      "value" : "0" #TODO: set sensible values
+      "value" : "10"
     }
   ]
   instance_name   = "tf-mysql-5-7-slow-query"
@@ -237,26 +211,26 @@ module "gcp-mysql-2" {
 ################################################################################
 # GCP MySQL 8.0 Many-to-one
 ################################################################################
-# locals {
-#   mysql_types = toset([
-#     "dev",
-#     "prod",
-#     "uat"
-#   ])
-# }
+locals {
+  mysql_types = toset([
+    "dev",
+    "prod",
+    "uat"
+  ])
+}
 
-# module "gcp-mysql-3" {
-#   source = "../../modules/onboard-gcp-mysql"
+module "gcp-mysql-3" {
+  source = "../../modules/onboard-gcp-mysql"
 
-#   for_each = local.mysql_types
+  for_each = local.mysql_types
 
-#   gcp_mysql_admin_email               = local.admin_email
-#   gcp_mysql_audit_pull_enabled        = true
-#   gcp_mysql_gateway_id                = local.gateway_id
-#   gcp_mysql_logs_destination_asset_id = module.gcp-pubsub-3.gcp-pubsub-asset.asset_id
+  gcp_mysql_admin_email               = local.admin_email
+  gcp_mysql_audit_pull_enabled        = true
+  gcp_mysql_gateway_id                = local.gateway_id
+  gcp_mysql_logs_destination_asset_id = module.gcp-pubsub-3.gcp-pubsub-asset.asset_id
 
-#   instance_authorized_networks = local.gcp_mysql_instance_authorized_networks
-#   instance_database_version    = "MYSQL_8_0"
-#   instance_name                = "tf-mysql-${each.key}"
-#   instance_region              = "us-west1"
-# }
+  instance_authorized_networks = local.gcp_mysql_instance_authorized_networks
+  instance_database_version    = "MYSQL_8_0"
+  instance_name                = "tf-mysql-${each.key}"
+  instance_region              = "us-west1"
+}
