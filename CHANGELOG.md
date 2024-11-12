@@ -4,6 +4,7 @@
 
 ### Features
 - Aurora PostgreSQL CloudWatch with slow query auditing example
+- Google Cloud SQL for MySQL module
 
 ## 1.0.8 (2024-10-15)
 
