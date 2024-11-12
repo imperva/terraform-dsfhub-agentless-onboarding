@@ -11,3 +11,38 @@ A Google Service Account will need to be created with permissions to read from P
 
 ### Google PubSub Subscription
 A Google logging sink, PubSub topic, and PubSub subscription in addition to a GCP PUBSUB asset in DSF will need to be created in advance. This prerequisite is handled by the ``onboard-gcp-pubsub`` module.
+
+<!-- BEGIN_TF_DOCS -->
+## Requirements
+
+No requirements.
+
+## Providers
+
+No providers.
+
+## Modules
+
+| Name | Source | Version |
+|------|--------|---------|
+| <a name="module_gcp-mysql-1"></a> [gcp-mysql-1](#module\_gcp-mysql-1) | ../../modules/onboard-gcp-mysql | n/a |
+| <a name="module_gcp-mysql-2"></a> [gcp-mysql-2](#module\_gcp-mysql-2) | ../../modules/onboard-gcp-mysql | n/a |
+| <a name="module_gcp-mysql-3"></a> [gcp-mysql-3](#module\_gcp-mysql-3) | ../../modules/onboard-gcp-mysql | n/a |
+| <a name="module_gcp-pubsub-1"></a> [gcp-pubsub-1](#module\_gcp-pubsub-1) | ../../modules/onboard-gcp-pubsub | n/a |
+| <a name="module_gcp-pubsub-2-audit"></a> [gcp-pubsub-2-audit](#module\_gcp-pubsub-2-audit) | ../../modules/onboard-gcp-pubsub | n/a |
+| <a name="module_gcp-pubsub-2-slow-query"></a> [gcp-pubsub-2-slow-query](#module\_gcp-pubsub-2-slow-query) | ../../modules/onboard-gcp-pubsub | n/a |
+| <a name="module_gcp-pubsub-3"></a> [gcp-pubsub-3](#module\_gcp-pubsub-3) | ../../modules/onboard-gcp-pubsub | n/a |
+| <a name="module_service-account"></a> [service-account](#module\_service-account) | ../../modules/google-service-account-dsf | n/a |
+
+## Resources
+
+No resources.
+
+## Inputs
+
+No inputs.
+
+## Outputs
+
+No outputs.
+<!-- END_TF_DOCS -->
