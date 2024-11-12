@@ -14,7 +14,7 @@ locals {
 
   excluded_traffic_filter = [
     {
-      name   = "exclude internal traffic"
+      name   = "exclude-internal-traffic"
       filter = "textPayload:\"[root]\" OR \"__google_connectivity_prober\""
     }
   ]
