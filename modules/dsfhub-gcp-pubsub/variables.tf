@@ -20,7 +20,7 @@ variable "audit_pull_enabled" {
 }
 
 variable "audit_type" {
-  description = "Identifier for the type of audit data contained within the PubSub Subscription. Supported values: ALLOYDB_POSTGRESQL, BIGQUERY, BIGTABLE, MYSQL, MYSQL_SLOW, MSSQL, POSTGRESQL, SPANNER."
+  description = "Identifier for the type of audit data contained within the PubSub Subscription. Supported values: ALLOYDB_POSTGRESQL, BIGQUERY, BIGTABLE, GCP_MYSQL_SLOW, MYSQL, MSSQL, POSTGRESQL, SPANNER."
   type        = string
   default     = null
   validation {
