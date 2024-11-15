@@ -1,7 +1,8 @@
 terraform {
   required_providers {
     dsfhub = {
-      source = "imperva/dsfhub"
+      source  = "imperva/dsfhub"
+      version = ">= 1.3.5"
     }
   }
 }
@@ -14,6 +15,7 @@ resource "dsfhub_log_aggregator" "this" {
   asset_id            = var.asset_id
   audit_pull_enabled  = var.audit_pull_enabled
   audit_type          = var.audit_type
+  content_type        = var.content_type
   gateway_id          = var.gateway_id
   pubsub_subscription = var.pubsub_subscription
   server_host_name    = "pubsub.googleapis.com"

@@ -10,7 +10,7 @@ variable "gcp_pubsub_audit_pull_enabled" {
 }
 
 variable "gcp_pubsub_audit_type" {
-  description = "Identifier for the type of audit data contained within the PubSub Subscription. Supported values: ALLOYDB_POSTGRESQL, BIGQUERY, BIGTABLE, MYSQL, MYSQL_SLOW, MSSQL, POSTGRESQL, SPANNER."
+  description = "Identifier for the type of audit data contained within the PubSub Subscription. Supported values: ALLOYDB_POSTGRESQL, BIGQUERY, BIGTABLE, GCP_MYSQL_SLOW, MYSQL, MSSQL, POSTGRESQL, SPANNER."
   type        = string
   default     = null
   validation {
@@ -19,8 +19,8 @@ variable "gcp_pubsub_audit_type" {
         "ALLOYDB_POSTGRESQL",
         "BIGQUERY",
         "BIGTABLE",
+        "GCP_MYSQL_SLOW",
         "MYSQL",
-        "MYSQL_SLOW",
         "MSSQL",
         "POSTGRESQL",
         "SPANNER"
@@ -39,6 +39,12 @@ variable "gcp_pubsub_auth_mechanism" {
     condition     = contains(["default", "service_account"], var.gcp_pubsub_auth_mechanism)
     error_message = "Invalid authentication mechanism. Supported values: default, service_account."
   }
+}
+
+variable "gcp_pubsub_content_type" {
+  description = "Desired 'parent' asset 'Server Type' which is the one tha tuses this asset as a destination for logs. NOTE: The content_type field will take precedence on the lookup for parent_asset_id field when checking which server is sending logs to this asset."
+  type        = string
+  default     = null
 }
 
 variable "gcp_pubsub_gateway_id" {

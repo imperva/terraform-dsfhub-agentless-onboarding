@@ -55,6 +55,7 @@ module "gcp-pubsub-asset" {
   audit_pull_enabled  = var.gcp_pubsub_audit_pull_enabled
   audit_type          = var.gcp_pubsub_audit_type
   auth_mechanism      = var.gcp_pubsub_auth_mechanism
+  content_type        = var.gcp_pubsub_content_type
   gateway_id          = var.gcp_pubsub_gateway_id
   key_file            = var.gcp_pubsub_key_file
   pubsub_subscription = module.pubsub-subscription.this.id
