@@ -7,6 +7,9 @@
 - Google Cloud SQL for MySQL module
 - Google Cloud SQL for PostgreSQL module
 
+### Bug Fixes
+- Modified Server Host Name of AWS RDS MS SQL SERVER Dsfhub assets
+
 ## 1.0.8 (2024-10-15)
 
 ### Features
