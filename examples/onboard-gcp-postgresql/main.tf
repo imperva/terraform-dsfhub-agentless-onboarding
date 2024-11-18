@@ -18,7 +18,7 @@ locals {
       filter = "textPayload:\"user=cloudsqladmin\""
     }
   ]
-  postgresql_admin = "admin"
+  postgresql_admin          = "admin"
   postgresql_admin_password = "Abcd1234"
 }
 
@@ -296,7 +296,7 @@ module "gcp-pubsub-3" {
   gcp_pubsub_audit_type     = "POSTGRESQL"
   gcp_pubsub_auth_mechanism = local.pubsub_auth_mechanism
   gcp_pubsub_gateway_id     = local.gateway_id
-  
+
   project = local.gcp_project_id
 
   pubsub_subscription_name = "${local.gcp_postgresql_3_instance_name_prefix}-sub"
