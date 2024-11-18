@@ -5,6 +5,7 @@
 ### Features
 - Aurora PostgreSQL CloudWatch with slow query auditing example
 - Google Cloud SQL for MySQL module
+- Google Cloud SQL for PostgreSQL module
 
 ### Bug Fixes
 - Modified Server Host Name of AWS RDS MS SQL SERVER Dsfhub assets
