@@ -14,3 +14,47 @@ A Google logging sink, PubSub topic, and PubSub subscription in addition to a GC
 
 ### Database Configuration
 Part of the onboarding process involves connecting to your Google PostgreSQL instance and running SQL commands to create an extension. This module includes an example for how to connect to the instance from your local machine and create this.
+
+<!-- BEGIN_TF_DOCS -->
+## Requirements
+
+No requirements.
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| <a name="provider_google"></a> [google](#provider\_google) | n/a |
+| <a name="provider_terraform"></a> [terraform](#provider\_terraform) | n/a |
+
+## Modules
+
+| Name | Source | Version |
+|------|--------|---------|
+| <a name="module_gcp-postgresql-1"></a> [gcp-postgresql-1](#module\_gcp-postgresql-1) | ../../modules/onboard-gcp-postgresql | n/a |
+| <a name="module_gcp-postgresql-2"></a> [gcp-postgresql-2](#module\_gcp-postgresql-2) | ../../modules/onboard-gcp-postgresql | n/a |
+| <a name="module_gcp-postgresql-3"></a> [gcp-postgresql-3](#module\_gcp-postgresql-3) | ../../modules/onboard-gcp-postgresql | n/a |
+| <a name="module_gcp-pubsub-1"></a> [gcp-pubsub-1](#module\_gcp-pubsub-1) | ../../modules/onboard-gcp-pubsub | n/a |
+| <a name="module_gcp-pubsub-2"></a> [gcp-pubsub-2](#module\_gcp-pubsub-2) | ../../modules/onboard-gcp-pubsub | n/a |
+| <a name="module_gcp-pubsub-3"></a> [gcp-pubsub-3](#module\_gcp-pubsub-3) | ../../modules/onboard-gcp-pubsub | n/a |
+| <a name="module_service-account"></a> [service-account](#module\_service-account) | ../../modules/google-service-account-dsf | n/a |
+
+## Resources
+
+| Name | Type |
+|------|------|
+| [google_sql_user.gcp-postgresql-admin-user-1](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/sql_user) | resource |
+| [google_sql_user.gcp-postgresql-admin-user-2](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/sql_user) | resource |
+| [google_sql_user.gcp-postgresql-admin-user-3](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/sql_user) | resource |
+| [terraform_data.configure_database_1](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/resources/data) | resource |
+| [terraform_data.configure_database_2](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/resources/data) | resource |
+| [terraform_data.configure_database_3](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/resources/data) | resource |
+
+## Inputs
+
+No inputs.
+
+## Outputs
+
+No outputs.
+<!-- END_TF_DOCS -->
