@@ -1,4 +1,4 @@
 output "this" {
-  description = "A bucket in Google cloud storage service (GCS)."
+  description = "A Google Cloud Storage bucket."
   value       = google_storage_bucket.this
 }

@@ -1,6 +1,6 @@
 # GCP Cloud Account Asset
 
-This example covers the various authentication mechanisms that are supported for AZURE cloud account assets. This includes the following:
+This example covers the various authentication mechanisms that are supported for GCP cloud account assets. This includes the following:
 
 | Auth Mechanism | Notes |
 |----------------|-------|

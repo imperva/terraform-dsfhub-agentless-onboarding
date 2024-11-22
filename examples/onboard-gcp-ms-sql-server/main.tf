@@ -39,7 +39,7 @@ provider "dsfhub" {}
 # 1. A service account with permissions to read from the GCS bucket alongside a
 #    GCP cloud account asset representing the service account onboarded to DSF 
 #    Hub.
-# 2. A Google cloud storage service (GCS) bucket in addition to a GCP CLOUD 
+# 2. A Google Cloud Storage service (GCS) bucket in addition to a GCP CLOUD 
 #    STORAGE BUCKET asset onboarded to DSF Hub (handled below).
 # 3. A method to create the server audit and server audit specification on the 
 #    newly created SQL Server instances (handled below). 
