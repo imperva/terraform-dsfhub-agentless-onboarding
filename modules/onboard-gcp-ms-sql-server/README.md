@@ -60,6 +60,6 @@ No requirements.
 | Name | Description |
 |------|-------------|
 | <a name="output_gcp-ms-sql-server-asset"></a> [gcp-ms-sql-server-asset](#output\_gcp-ms-sql-server-asset) | GCP MS SQL SERVER asset. |
-| <a name="output_gcp-ms-sql-server-instance"></a> [gcp-ms-sql-server-instance](#output\_gcp-ms-sql-server-instance) | Google MS SQL Server instance. |
-| <a name="output_service-account-permissions"></a> [service-account-permissions](#output\_service-account-permissions) | Permissions granted to the Google MS SQL Server service account. |
+| <a name="output_gcp-ms-sql-server-instance"></a> [gcp-ms-sql-server-instance](#output\_gcp-ms-sql-server-instance) | Google Cloud SQL for SQL Server instance. |
+| <a name="output_service-account-permissions"></a> [service-account-permissions](#output\_service-account-permissions) | Permissions granted to the SQL Server service account. |
 <!-- END_TF_DOCS -->
