@@ -1,5 +1,5 @@
 output "gcp-ms-sql-server-instance" {
-  description = "Google MS SQL Server instance."
+  description = "Google Cloud SQL for SQL Server instance."
   value       = module.gcp-ms-sql-server-instance.this
 }
 
@@ -9,6 +9,6 @@ output "gcp-ms-sql-server-asset" {
 }
 
 output "service-account-permissions" {
-  description = "Permissions granted to the Google MS SQL Server service account."
+  description = "Permissions granted to the SQL Server service account."
   value       = google_storage_bucket_iam_member.this
 }
