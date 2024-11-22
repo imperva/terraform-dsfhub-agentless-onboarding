@@ -17,3 +17,41 @@ Part of the onboarding process involves connecting to your GCP SQL Server instan
 
 **Note:** This example requires the ``sqlcmd`` client to be installed, as well as for the newly created GCP SQL Server instance to be accessible from your local machine. 
 
+
+<!-- BEGIN_TF_DOCS -->
+## Requirements
+
+No requirements.
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| <a name="provider_terraform"></a> [terraform](#provider\_terraform) | n/a |
+
+## Modules
+
+| Name | Source | Version |
+|------|--------|---------|
+| <a name="module_gcp-account-asset"></a> [gcp-account-asset](#module\_gcp-account-asset) | ../../modules/dsfhub-gcp-cloud-account | n/a |
+| <a name="module_gcp-bucket-1"></a> [gcp-bucket-1](#module\_gcp-bucket-1) | ../../modules/onboard-gcp-cloud-storage-bucket | n/a |
+| <a name="module_gcp-bucket-2"></a> [gcp-bucket-2](#module\_gcp-bucket-2) | ../../modules/onboard-gcp-cloud-storage-bucket | n/a |
+| <a name="module_gcp-sql-server-1"></a> [gcp-sql-server-1](#module\_gcp-sql-server-1) | ../../modules/onboard-gcp-ms-sql-server | n/a |
+| <a name="module_gcp-sql-server-2"></a> [gcp-sql-server-2](#module\_gcp-sql-server-2) | ../../modules/onboard-gcp-ms-sql-server | n/a |
+| <a name="module_service-account"></a> [service-account](#module\_service-account) | ../../modules/google-service-account-dsf | n/a |
+
+## Resources
+
+| Name | Type |
+|------|------|
+| [terraform_data.configure-database-1](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/resources/data) | resource |
+| [terraform_data.configure-database-2](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/resources/data) | resource |
+
+## Inputs
+
+No inputs.
+
+## Outputs
+
+No outputs.
+<!-- END_TF_DOCS -->
