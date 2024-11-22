@@ -33,5 +33,5 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_this"></a> [this](#output\_this) | A bucket in Google cloud storage service (GCS). |
+| <a name="output_this"></a> [this](#output\_this) | A Google Cloud Storage bucket. |
 <!-- END_TF_DOCS -->
