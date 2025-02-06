@@ -115,5 +115,9 @@ The following table lists the DSF versions that each module is tested and mainta
       <td>onboard-gcp-postgresql</td>
       <td>4.17+</td>
    </tr>
+      <tr>
+      <td>onboard-gcp-spanner</td>
+      <td>4.20+</td>
+   </tr>
 
 </table>
