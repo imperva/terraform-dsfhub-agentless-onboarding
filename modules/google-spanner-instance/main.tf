@@ -1,5 +1,9 @@
 resource "google_spanner_instance" "this" {
-  name         = var.name
   config       = var.config
   display_name = var.display_name
+  edition      = var.edition
+  labels       = var.labels
+  name         = var.name
+  num_nodes    = var.num_nodes
+  project      = var.project
 }

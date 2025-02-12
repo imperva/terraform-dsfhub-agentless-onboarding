@@ -14,6 +14,22 @@ variable "display_name" {
   }
 }
 
+variable "edition" {
+  description = "The edition selected for this instance. Different editions provide different capabilities at different price points. Possible values are: EDITION_UNSPECIFIED, STANDARD, ENTERPRISE, ENTERPRISE_PLUS."
+  type        = string
+  default     = "STANDARD"
+  validation {
+    condition     = can(regexall("EDITION_UNSPECIFIED|STANDARD|ENTERPRISE|ENTERPRISE_PLUS", var.edition))
+    error_message = "The edition must be one of EDITION_UNSPECIFIED, STANDARD, ENTERPRISE, ENTERPRISE_PLUS."
+  }
+}
+
+variable "labels" {
+  description = "An object containing a list of key/value pairs."
+  type        = map(string)
+  default     = {}
+}
+
 variable "name" {
   description = "A unique identifier for the instance, which cannot be changed after the instance is created. If not provided, a random string starting with `tf-` will be selected."
   type        = string
@@ -21,4 +37,16 @@ variable "name" {
     condition     = length(var.name) >= 6 && length(var.name) <= 30
     error_message = "The name must be between 6 and 30 characters in length."
   }
+}
+
+variable "num_nodes" {
+  description = "The number of nodes allocated to this instance. Exactly one of either node_count or processing_units must be present in terraform."
+  type        = number
+  default     = 1
+}
+
+variable "project" {
+  description = "The ID of the project in which the resource belongs. If it is not provided, the provider project is used."
+  type        = string
+  default     = null
 }
