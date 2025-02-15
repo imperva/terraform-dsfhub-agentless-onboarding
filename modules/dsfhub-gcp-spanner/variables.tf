@@ -9,7 +9,7 @@ variable "asset_display_name" {
 }
 
 variable "asset_id" {
-  description = "Unique identifier for the Spanner instance in the form '{project-id}:{instance-config}:{instance-name}'."
+  description = "Unique identifier for the Spanner instance in the form '{project-id}:{instance-name}'."
   type        = string
 }
 
@@ -20,9 +20,13 @@ variable "audit_pull_enabled" {
 }
 
 variable "duration_threshold" {
-  description = "How long (in seconds) is a query's duration before it should be flagged as slow."
-  type        = int
+  description = "How long (in seconds) a query's execution may take until it is flagged as slow."
+  type        = number
   default     = null
+  validation {
+    condition     = var.duration_threshold > 0 || var.duration_threshold == null
+    error_message = "The duration_threshold must be a non-negative number."
+  }
 }
 
 variable "gateway_id" {

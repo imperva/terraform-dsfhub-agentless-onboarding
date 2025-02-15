@@ -19,4 +19,5 @@ resource "dsfhub_data_source" "this" {
   parent_asset_id           = var.parent_asset_id
   server_host_name          = var.server_host_name
   server_ip                 = var.server_ip
+  server_port               = "443"
 }
