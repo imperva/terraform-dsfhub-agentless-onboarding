@@ -3,6 +3,7 @@ locals {
   gateway_id            = "a1b2c3d4-e5f6-g8h9-wxyz-123456790"
   pubsub_auth_mechanism = "service_account"
 
+  gcp_project_id           = "my-gcp-project"
   gcp_service_account_name = "dsf-service-account"
   gcp_spanner_config       = "regional-us-west1"
 

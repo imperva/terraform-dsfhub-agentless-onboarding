@@ -24,7 +24,7 @@ variable "duration_threshold" {
   type        = number
   default     = null
   validation {
-    condition     = var.duration_threshold > 0 || var.duration_threshold == null
+    condition     = var.duration_threshold == null ? true : var.duration_threshold > 0
     error_message = "The duration_threshold must be a non-negative number."
   }
 }

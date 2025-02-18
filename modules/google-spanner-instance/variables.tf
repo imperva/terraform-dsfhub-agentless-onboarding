@@ -40,9 +40,15 @@ variable "name" {
 }
 
 variable "num_nodes" {
-  description = "The number of nodes allocated to this instance. Exactly one of either node_count or processing_units must be present in terraform."
+  description = "The number of nodes allocated to this instance. Exactly one of either node_count or processing_units must be present in terraform. Default is 1."
   type        = number
   default     = 1
+}
+
+variable "processing_units" {
+  description = "The number of processing units allocated to this instance. Exactly one of either node_count or processing_units must be present in terraform."
+  type        = number
+  default     = null
 }
 
 variable "project" {
