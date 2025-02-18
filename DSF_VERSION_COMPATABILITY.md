@@ -117,7 +117,7 @@ The following table lists the DSF versions that each module is tested and mainta
    </tr>
       <tr>
       <td>onboard-gcp-spanner</td>
-      <td>4.20+</td>
+      <td>4.19+</td>
    </tr>
 
 </table>
