@@ -9,7 +9,7 @@ output "oracle-instance" {
 }
 
 output "oracle-log-group" {
-  description = "value"
+  description = "aws log group"
   value       = module.oracle-log-group.this
 }
 

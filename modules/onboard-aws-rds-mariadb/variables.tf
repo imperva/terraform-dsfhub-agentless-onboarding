@@ -163,7 +163,7 @@ variable "option_group_description" {
 }
 
 variable "option_group_major_engine_version" {
-  description = "value"
+  description = "Specifies the major version of the engine that this option group should be associated with."
   type        = any
 }
 

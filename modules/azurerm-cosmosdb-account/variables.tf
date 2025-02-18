@@ -25,7 +25,7 @@ variable "consistency_policy" {
 }
 
 variable "geo_location" {
-  description = "value"
+  description = "Used to define where data should be replicated with the failover_priority 0 specifying the primary location."
   type = list(
     object(
       {
