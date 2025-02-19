@@ -28,6 +28,10 @@ variable "gcp_spanner_logs_destination_asset_id" {
   description = "The asset_id of the GCP PUSUB asset that this asset is sending its audit logs to."
   type        = string
   default     = null
+  validation {
+    condition     = can(regex("projects/.+/subscriptions/.+", var.gcp_spanner_logs_destination_asset_id))
+    error_message = "Invalid pubsub subscription ID. Must be in the form 'projects/{{project}}/subscriptions/{{name}}'."
+  }
 }
 
 variable "gcp_spanner_parent_asset_id" {

@@ -98,7 +98,7 @@ module "gcp-pubsub-one-to-one" {
   sink_router_description = "One-to-one Spanner sink"
   sink_router_exclusions  = null
   sink_router_filter      = <<EOF
-    resource.type="spanner_instance" AND resource.labels.instance_id="${module.gcp-spanner-2.gcp-spanner-instance.this.instance_name}"
+    resource.type="spanner_instance" AND resource.labels.instance_id="${module.gcp-spanner-2.gcp-spanner-instance.name}"
   EOF
   sink_router_name        = local.sink_router_name
 }
