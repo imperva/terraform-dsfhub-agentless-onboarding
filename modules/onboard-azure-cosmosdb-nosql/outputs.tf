@@ -1,6 +1,6 @@
-output "cosmos-sql-account" {
-  description = "CosmosDB SQL account."
-  value       = module.cosmos-sql-account.this
+output "cosmos-nosql-account" {
+  description = "CosmosDB NoSQL account."
+  value       = module.cosmos-nosql-account.this
 }
 
 output "enable-full-text-query" {

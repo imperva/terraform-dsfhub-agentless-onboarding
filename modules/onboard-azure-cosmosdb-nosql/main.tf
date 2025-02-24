@@ -9,7 +9,7 @@ terraform {
   }
 }
 
-module "cosmos-sql-account" {
+module "cosmos-nosql-account" {
   source = "../azurerm-cosmosdb-account"
 
   capabilities         = var.cosmosdb_account_capabilities
@@ -35,7 +35,7 @@ module "enable-full-text-query" {
       }
     }
   })
-  resource_id = module.cosmos-sql-account.this.id
+  resource_id = module.cosmos-nosql-account.this.id
   type        = "Microsoft.DocumentDB/databaseAccounts@2021-05-01-preview"
 }
 
@@ -52,18 +52,18 @@ module "diagnostic-setting" {
   metric                         = null
   name                           = var.diagnostic_setting_name
   storage_account_id             = var.diagnostic_setting_storage_account_id
-  target_resource_id             = module.cosmos-sql-account.this.id
+  target_resource_id             = module.cosmos-nosql-account.this.id
 }
 
 module "azure-cosmosdb-asset" {
   source = "../dsfhub-azure-cosmosdb"
 
   admin_email               = var.azure_cosmosdb_admin_email
-  asset_display_name        = module.cosmos-sql-account.this.name
-  asset_id                  = module.cosmos-sql-account.this.id
+  asset_display_name        = module.cosmos-nosql-account.this.name
+  asset_id                  = module.cosmos-nosql-account.this.id
   audit_pull_enabled        = var.azure_cosmosdb_audit_pull_enabled
   gateway_id                = var.azure_cosmosdb_gateway_id
   logs_destination_asset_id = var.azure_cosmosdb_logs_destination_asset_id
-  server_host_name          = regex("(?P<protocol>.*)://(?P<hostname>.*):(?P<port>.*)/", module.cosmos-sql-account.this.endpoint).hostname
-  server_port               = regex("(?P<protocol>.*)://(?P<hostname>.*):(?P<port>.*)/", module.cosmos-sql-account.this.endpoint).port
+  server_host_name          = regex("(?P<protocol>.*)://(?P<hostname>.*):(?P<port>.*)/", module.cosmos-nosql-account.this.endpoint).hostname
+  server_port               = regex("(?P<protocol>.*)://(?P<hostname>.*):(?P<port>.*)/", module.cosmos-nosql-account.this.endpoint).port
 }

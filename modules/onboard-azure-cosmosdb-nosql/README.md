@@ -1,5 +1,5 @@
-# onboard-azure-cosmosdb-sql
-Onboard Azure Cosmos DB with SQL API to DSF Hub.
+# onboard-azure-cosmosdb-nosql
+Onboard Azure Cosmos DB for NoSQL API to DSF Hub.
 
 ## Notes
 There are two prerequisites for using this module:
@@ -9,7 +9,6 @@ There are two prerequisites for using this module:
 These can be created along with an AZURE EVENTHUB asset via the ``onboard-azure-eventhub`` module.
 
 See the corresponding example for more details.
-
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
