@@ -24,7 +24,7 @@ No providers.
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_azure-cosmosdb-asset"></a> [azure-cosmosdb-asset](#module\_azure-cosmosdb-asset) | ../dsfhub-azure-cosmosdb | n/a |
-| <a name="module_cosmos-sql-account"></a> [cosmos-sql-account](#module\_cosmos-sql-account) | ../azurerm-cosmosdb-account | n/a |
+| <a name="module_cosmos-nosql-account"></a> [cosmos-nosql-account](#module\_cosmos-nosql-account) | ../azurerm-cosmosdb-account | n/a |
 | <a name="module_diagnostic-setting"></a> [diagnostic-setting](#module\_diagnostic-setting) | ../azurerm-monitor-diagnostic-setting | n/a |
 | <a name="module_enable-full-text-query"></a> [enable-full-text-query](#module\_enable-full-text-query) | ../azapi-update-resource | n/a |
 
@@ -57,7 +57,7 @@ No resources.
 | Name | Description |
 |------|-------------|
 | <a name="output_azure-cosmosdb-asset"></a> [azure-cosmosdb-asset](#output\_azure-cosmosdb-asset) | AZURE COSMOSDB asset. |
-| <a name="output_cosmos-sql-account"></a> [cosmos-sql-account](#output\_cosmos-sql-account) | CosmosDB SQL account. |
+| <a name="output_cosmos-nosql-account"></a> [cosmos-nosql-account](#output\_cosmos-nosql-account) | CosmosDB NoSQL account. |
 | <a name="output_diagnostic-setting"></a> [diagnostic-setting](#output\_diagnostic-setting) | Diagnostic Setting. |
 | <a name="output_enable-full-text-query"></a> [enable-full-text-query](#output\_enable-full-text-query) | API update to enable full text query logging. |
 <!-- END_TF_DOCS -->
