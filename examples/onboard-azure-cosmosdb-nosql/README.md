@@ -27,9 +27,9 @@ No providers.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_azure-cosmosdb-sql-1"></a> [azure-cosmosdb-sql-1](#module\_azure-cosmosdb-sql-1) | ../../modules/onboard-azure-cosmosdb-sql | n/a |
-| <a name="module_azure-cosmosdb-sql-2"></a> [azure-cosmosdb-sql-2](#module\_azure-cosmosdb-sql-2) | ../../modules/onboard-azure-cosmosdb-sql | n/a |
-| <a name="module_onboard-cosmos-sql-eventhub-1"></a> [onboard-cosmos-sql-eventhub-1](#module\_onboard-cosmos-sql-eventhub-1) | ../../modules/onboard-azure-eventhub | n/a |
+| <a name="module_azure-cosmosdb-nosql-1"></a> [azure-cosmosdb-nosql-1](#module\_azure-cosmosdb-nosql-1) | ../../modules/onboard-azure-cosmosdb-nosql | n/a |
+| <a name="module_azure-cosmosdb-nosql-2"></a> [azure-cosmosdb-nosql-2](#module\_azure-cosmosdb-nosql-2) | ../../modules/onboard-azure-cosmosdb-nosql | n/a |
+| <a name="module_onboard-cosmos-nosql-eventhub-1"></a> [onboard-cosmos-nosql-eventhub-1](#module\_onboard-cosmos-nosql-eventhub-1) | ../../modules/onboard-azure-eventhub | n/a |
 
 ## Resources
 

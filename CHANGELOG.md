@@ -1,9 +1,9 @@
 # Changelog
 
-## 1.0.10 (TBD)
+## 1.0.10 (2025-02-27)
 
 ### Features
-- Google Cloud Spanner module
+- Google Cloud Spanner module with slow query, many-to-one and one-to-one examples
 
 ## 1.0.9 (2024-11-22)
 
