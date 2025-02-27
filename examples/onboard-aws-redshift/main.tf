@@ -40,7 +40,7 @@ provider "dsfhub" {
 }
 
 ################################################################################
-# Redshift via Table Prerequisites
+# Redshift via ODBC Prerequisites
 # 1. Method to create audit pull user
 ################################################################################
 # Runs the shell script locally to create the audit pull user
@@ -66,7 +66,7 @@ resource "terraform_data" "configure_database" {
 }
 
 ################################################################################
-# Amazon Redshift Cluster via Table
+# Amazon Redshift Cluster via ODBC
 ################################################################################
 module "aws-redshift-cluster-1" {
   source = "../../modules/onboard-aws-redshift-odbc"

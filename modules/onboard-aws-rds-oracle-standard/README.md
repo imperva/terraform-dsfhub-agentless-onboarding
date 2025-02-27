@@ -77,6 +77,6 @@ No resources.
 | <a name="output_aws-log-group-asset"></a> [aws-log-group-asset](#output\_aws-log-group-asset) | aws log group asset |
 | <a name="output_aws-rds-oracle-asset"></a> [aws-rds-oracle-asset](#output\_aws-rds-oracle-asset) | aws rds oracle asset |
 | <a name="output_oracle-instance"></a> [oracle-instance](#output\_oracle-instance) | oracle instance |
-| <a name="output_oracle-log-group"></a> [oracle-log-group](#output\_oracle-log-group) | value |
+| <a name="output_oracle-log-group"></a> [oracle-log-group](#output\_oracle-log-group) | aws log group |
 | <a name="output_oracle-parameter-group"></a> [oracle-parameter-group](#output\_oracle-parameter-group) | oracle parameter group |
 <!-- END_TF_DOCS -->

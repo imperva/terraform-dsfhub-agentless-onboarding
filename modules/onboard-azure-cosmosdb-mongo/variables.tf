@@ -46,7 +46,7 @@ variable "cosmosdb_account_consistency_policy" {
 }
 
 variable "cosmosdb_account_geo_location" {
-  description = "value"
+  description = "Used to define where data should be replicated with the failover_priority 0 specifying the primary location."
   type = list(
     object(
       {

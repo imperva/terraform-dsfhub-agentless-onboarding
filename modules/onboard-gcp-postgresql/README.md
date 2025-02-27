@@ -3,10 +3,11 @@
 Onboard Cloud SQL for PostgreSQL to DSF Hub.
 
 ## Notes
-There are three prerequisites for using this module:
+There are four prerequisites for using this module:
 1. A Google Service Account with permissions to read from PubSub subscriptions.
-2. A Google logging sink, PubSub topic, and PubSub subscription in addition to a GCP PUBSUB asset in DSF Hub.
-3. A method to create the 'pgaudit' extension on the postgres instance.
+2. Data Access logs to be enabled for the Cloud SQL API service in your GCP project, including "Admin Read", "Data Read" and "Data Write" permissions.
+3. A Google logging sink, PubSub topic, and PubSub subscription in addition to a GCP PUBSUB asset in DSF Hub.
+4. A method to create the 'pgaudit' extension on the postgres instance.
 
 See the corresponding example for more details.
 

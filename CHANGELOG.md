@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.10 (TBD)
+
+### Features
+- Google Cloud Spanner module
+
 ## 1.0.9 (2024-11-22)
 
 ### Features

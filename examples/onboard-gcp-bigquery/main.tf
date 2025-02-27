@@ -5,7 +5,6 @@ locals {
   service_account_name     = "dsf-service-account"
   sink_router_name         = "tf-bigquery-sink"
 
-
   admin_email    = "test@example.com"
   auth_mechanism = "default"
   gateway_id     = "a1b2c3d4-e5f6-g8h9-wxyz-123456790"

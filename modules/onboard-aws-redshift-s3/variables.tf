@@ -5,7 +5,7 @@ variable "s3_bucket" {
 }
 
 variable "s3_force_destroy" {
-  description = "A boolean that indicates all objects should be deleted from the bucket when the bucket is destroyed so that the bucket can be destroyed without error. See more details in the (aws terraform documentation)[https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#force_destroy]."
+  description = "A boolean that indicates all objects should be deleted from the bucket when the bucket is destroyed so that the bucket can be destroyed without error. See more details in the [aws terraform documentation](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#force_destroy)."
   type        = bool
   default     = false
 }

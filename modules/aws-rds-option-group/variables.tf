@@ -5,12 +5,12 @@ variable "description" {
 }
 
 variable "engine_name" {
-  description = "value"
+  description = "Specifies the name of the engine that this option group should be associated with."
   type        = any
 }
 
 variable "major_engine_version" {
-  description = "value"
+  description = "Specifies the major version of the engine that this option group should be associated with."
   type        = any
 }
 
