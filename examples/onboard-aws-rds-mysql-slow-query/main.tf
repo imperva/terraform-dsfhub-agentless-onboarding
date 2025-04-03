@@ -37,7 +37,7 @@ provider "dsfhub" {
 # 1. AWS cloud account
 ################################################################################
 module "aws-default-account-asset" {
-  source = "imperva/agentless-onboarding/dsfhub//modules/dsfhub-aws-cloud-account"
+  source = "../../modules/dsfhub-aws-cloud-account"
 
   admin_email        = local.admin_email
   asset_display_name = "aws-account-asset"
