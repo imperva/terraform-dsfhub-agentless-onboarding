@@ -23,7 +23,7 @@ No providers.
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_aws-aurora-mysql-kinesis"></a> [aws-aurora-mysql-kinesis](#module\_aws-aurora-mysql-kinesis) | ../../modules/onboard-aws-rds-aurora-mysql-kinesis | n/a |
-| <a name="module_aws-default-account-asset"></a> [aws-default-account-asset](#module\_aws-default-account-asset) | imperva/agentless-onboarding/dsfhub//modules/dsfhub-aws-cloud-account | n/a |
+| <a name="module_aws-default-account-asset"></a> [aws-default-account-asset](#module\_aws-default-account-asset) | ../../modules/dsfhub-aws-cloud-account | n/a |
 
 ## Resources
 
