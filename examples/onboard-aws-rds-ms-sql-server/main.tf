@@ -111,7 +111,7 @@ resource "terraform_data" "configure_database-3" {
 # s3:ListBucket
 # s3:ListAllMyBuckets
 module "aws-default-account-asset" {
-  source = "imperva/agentless-onboarding/dsfhub//modules/dsfhub-aws-cloud-account"
+  source = "../../modules/dsfhub-aws-cloud-account"
 
   admin_email        = local.admin_email
   asset_display_name = "aws-account-asset"
@@ -126,7 +126,6 @@ module "aws-default-account-asset" {
 ################################################################################
 module "aws-rds-ms-sql-server-1" {
   source = "../../modules/onboard-aws-rds-ms-sql-server"
-  #   source = "imperva/agentless-onboarding/dsfhub//modules/onboard-aws-rds-ms-sql-server"
 
   aws_rds_mssql_audit_pull_enabled = true
   aws_rds_mssql_admin_email        = local.admin_email
@@ -164,7 +163,6 @@ module "aws-rds-ms-sql-server-1" {
 ################################################################################
 module "aws-rds-ms-sql-server-2" {
   source = "../../modules/onboard-aws-rds-ms-sql-server"
-  #   source = "imperva/agentless-onboarding/dsfhub//modules/onboard-aws-rds-ms-sql-server"
 
   aws_rds_mssql_audit_pull_enabled = true
   aws_rds_mssql_admin_email        = local.admin_email
@@ -209,7 +207,6 @@ data "aws_caller_identity" "current" {}
 
 module "aws-rds-ms-sql-server-3" {
   source = "../../modules/onboard-aws-rds-ms-sql-server"
-  # source = "imperva/agentless-onboarding/dsfhub//modules/onboard-aws-rds-ms-sql-server"
 
   aws_rds_mssql_audit_pull_enabled = true
   aws_rds_mssql_admin_email        = local.admin_email
