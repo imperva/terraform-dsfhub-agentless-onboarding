@@ -36,7 +36,7 @@ provider "dsfhub" {
 ################################################################################
 # 1. AWS cloud account
 module "aws-default-account-asset" {
-  source = "imperva/agentless-onboarding/dsfhub//modules/dsfhub-aws-cloud-account"
+  source = "../../modules/dsfhub-aws-cloud-account"
 
   admin_email        = local.admin_email
   asset_display_name = "aws-account-asset"
@@ -70,7 +70,7 @@ resource "terraform_data" "configure_database" {
 # Amazon RDS for PostgreSQL 16.0
 ################################################################################
 module "aws-rds-postgresql-1" {
-  source = "imperva/agentless-onboarding/dsfhub//modules/onboard-aws-rds-postgresql"
+  source = "../../modules/onboard-aws-rds-postgresql"
 
   aws_log_group_admin_email        = local.admin_email
   aws_log_group_audit_pull_enabled = true
@@ -104,7 +104,7 @@ module "aws-rds-postgresql-1" {
 # Amazon RDS for PostgreSQL 16.0 w/ Slow Query
 ################################################################################
 module "aws-rds-postgresql-2" {
-  source = "imperva/agentless-onboarding/dsfhub//modules/onboard-aws-rds-postgresql"
+  source = "../../modules/onboard-aws-rds-postgresql"
 
   aws_log_group_admin_email        = local.admin_email
   aws_log_group_audit_pull_enabled = true
@@ -169,7 +169,7 @@ module "aws-rds-postgresql-2" {
 # Amazon RDS for PostgreSQL 15.0 Aggregated
 ################################################################################
 module "aws-rds-postgresql-3" {
-  source = "imperva/agentless-onboarding/dsfhub//modules/onboard-aws-rds-postgresql"
+  source = "../../modules/onboard-aws-rds-postgresql"
 
   aws_log_group_admin_email        = local.admin_email
   aws_log_group_audit_pull_enabled = true
