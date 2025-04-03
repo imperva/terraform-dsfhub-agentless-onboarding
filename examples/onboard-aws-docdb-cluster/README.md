@@ -22,7 +22,7 @@ No providers.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_aws-default-account-asset"></a> [aws-default-account-asset](#module\_aws-default-account-asset) | imperva/agentless-onboarding/dsfhub//modules/dsfhub-aws-cloud-account | n/a |
+| <a name="module_aws-default-account-asset"></a> [aws-default-account-asset](#module\_aws-default-account-asset) | ../../modules/dsfhub-aws-cloud-account | n/a |
 | <a name="module_aws-docdb-cluster-1"></a> [aws-docdb-cluster-1](#module\_aws-docdb-cluster-1) | ../../modules/onboard-aws-docdb-cluster | n/a |
 
 ## Resources
