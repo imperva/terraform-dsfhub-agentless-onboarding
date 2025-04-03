@@ -29,7 +29,7 @@ No requirements.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_aws-key-pair-account-asset"></a> [aws-key-pair-account-asset](#module\_aws-key-pair-account-asset) | imperva/agentless-onboarding/dsfhub//modules/dsfhub-aws-cloud-account | n/a |
+| <a name="module_aws-key-pair-account-asset"></a> [aws-key-pair-account-asset](#module\_aws-key-pair-account-asset) | ../../modules/dsfhub-aws-cloud-account | n/a |
 | <a name="module_aws-rds-oracle-standard-1"></a> [aws-rds-oracle-standard-1](#module\_aws-rds-oracle-standard-1) | ../../modules/onboard-aws-rds-oracle-standard | n/a |
 | <a name="module_aws-rds-oracle-standard-2"></a> [aws-rds-oracle-standard-2](#module\_aws-rds-oracle-standard-2) | ../../modules/onboard-aws-rds-oracle-standard | n/a |
 
