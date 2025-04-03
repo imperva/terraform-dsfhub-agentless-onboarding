@@ -37,7 +37,7 @@ No requirements.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_aws-default-account-asset"></a> [aws-default-account-asset](#module\_aws-default-account-asset) | imperva/agentless-onboarding/dsfhub//modules/dsfhub-aws-cloud-account | n/a |
+| <a name="module_aws-default-account-asset"></a> [aws-default-account-asset](#module\_aws-default-account-asset) | ../../modules/dsfhub-aws-cloud-account | n/a |
 | <a name="module_aws-rds-ms-sql-server-1"></a> [aws-rds-ms-sql-server-1](#module\_aws-rds-ms-sql-server-1) | ../../modules/onboard-aws-rds-ms-sql-server | n/a |
 | <a name="module_aws-rds-ms-sql-server-2"></a> [aws-rds-ms-sql-server-2](#module\_aws-rds-ms-sql-server-2) | ../../modules/onboard-aws-rds-ms-sql-server | n/a |
 | <a name="module_aws-rds-ms-sql-server-3"></a> [aws-rds-ms-sql-server-3](#module\_aws-rds-ms-sql-server-3) | ../../modules/onboard-aws-rds-ms-sql-server | n/a |
