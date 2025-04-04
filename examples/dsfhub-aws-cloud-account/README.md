@@ -24,10 +24,10 @@ No providers.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_aws-default-account-asset"></a> [aws-default-account-asset](#module\_aws-default-account-asset) | imperva/agentless-onboarding/dsfhub//modules/dsfhub-aws-cloud-account | n/a |
-| <a name="module_aws-iam-role-account-asset"></a> [aws-iam-role-account-asset](#module\_aws-iam-role-account-asset) | imperva/agentless-onboarding/dsfhub//modules/dsfhub-aws-cloud-account | n/a |
-| <a name="module_aws-key-pair-account-asset"></a> [aws-key-pair-account-asset](#module\_aws-key-pair-account-asset) | imperva/agentless-onboarding/dsfhub//modules/dsfhub-aws-cloud-account | n/a |
-| <a name="module_aws-profile-account-asset"></a> [aws-profile-account-asset](#module\_aws-profile-account-asset) | imperva/agentless-onboarding/dsfhub//modules/dsfhub-aws-cloud-account | n/a |
+| <a name="module_aws-default-account-asset"></a> [aws-default-account-asset](#module\_aws-default-account-asset) | ../../modules/dsfhub-aws-cloud-account | n/a |
+| <a name="module_aws-iam-role-account-asset"></a> [aws-iam-role-account-asset](#module\_aws-iam-role-account-asset) | ../../modules/dsfhub-aws-cloud-account | n/a |
+| <a name="module_aws-key-pair-account-asset"></a> [aws-key-pair-account-asset](#module\_aws-key-pair-account-asset) | ../../modules/dsfhub-aws-cloud-account | n/a |
+| <a name="module_aws-profile-account-asset"></a> [aws-profile-account-asset](#module\_aws-profile-account-asset) | ../../modules/dsfhub-aws-cloud-account | n/a |
 
 ## Resources
 

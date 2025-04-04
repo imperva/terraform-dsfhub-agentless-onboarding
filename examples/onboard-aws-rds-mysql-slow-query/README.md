@@ -22,7 +22,7 @@ No providers.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_aws-default-account-asset"></a> [aws-default-account-asset](#module\_aws-default-account-asset) | imperva/agentless-onboarding/dsfhub//modules/dsfhub-aws-cloud-account | n/a |
+| <a name="module_aws-default-account-asset"></a> [aws-default-account-asset](#module\_aws-default-account-asset) | ../../modules/dsfhub-aws-cloud-account | n/a |
 | <a name="module_aws-rds-mysql-1"></a> [aws-rds-mysql-1](#module\_aws-rds-mysql-1) | ../../modules/onboard-aws-rds-mysql-slow-query | n/a |
 
 ## Resources

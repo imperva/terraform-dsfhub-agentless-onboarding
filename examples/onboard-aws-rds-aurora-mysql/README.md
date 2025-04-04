@@ -23,7 +23,7 @@ No providers.
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_aws-aurora-mysql"></a> [aws-aurora-mysql](#module\_aws-aurora-mysql) | ../../modules/onboard-aws-rds-aurora-mysql | n/a |
-| <a name="module_aws-default-account-asset"></a> [aws-default-account-asset](#module\_aws-default-account-asset) | imperva/agentless-onboarding/dsfhub//modules/dsfhub-aws-cloud-account | n/a |
+| <a name="module_aws-default-account-asset"></a> [aws-default-account-asset](#module\_aws-default-account-asset) | ../../modules/dsfhub-aws-cloud-account | n/a |
 
 ## Resources
 

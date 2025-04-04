@@ -41,7 +41,7 @@ variable "aws_access_key" {}
 variable "aws_secret_key" {}
 
 module "aws-key-pair-account-asset" {
-  source = "imperva/agentless-onboarding/dsfhub//modules/dsfhub-aws-cloud-account"
+  source = "../../modules/dsfhub-aws-cloud-account"
 
   admin_email        = local.admin_email
   asset_display_name = "aws-key-pair-account-asset"

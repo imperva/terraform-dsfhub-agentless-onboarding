@@ -23,7 +23,7 @@ No providers.
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_aws-aurora-mysql-slowquery"></a> [aws-aurora-mysql-slowquery](#module\_aws-aurora-mysql-slowquery) | ../../modules/onboard-aws-rds-aurora-mysql-slowquery | n/a |
-| <a name="module_aws-default-account-asset"></a> [aws-default-account-asset](#module\_aws-default-account-asset) | imperva/agentless-onboarding/dsfhub//modules/dsfhub-aws-cloud-account | n/a |
+| <a name="module_aws-default-account-asset"></a> [aws-default-account-asset](#module\_aws-default-account-asset) | ../../modules/dsfhub-aws-cloud-account | n/a |
 
 ## Resources
 

@@ -28,7 +28,7 @@ provider "dsfhub" {
 # auth_mechanism: default
 ################################################################################
 module "aws-default-account-asset" {
-  source = "imperva/agentless-onboarding/dsfhub//modules/dsfhub-aws-cloud-account"
+  source = "../../modules/dsfhub-aws-cloud-account"
 
   admin_email        = local.admin_email
   asset_display_name = "aws-default-account-asset"
@@ -46,7 +46,7 @@ variable "aws_access_key" {}
 variable "aws_secret_key" {}
 
 module "aws-key-pair-account-asset" {
-  source = "imperva/agentless-onboarding/dsfhub//modules/dsfhub-aws-cloud-account"
+  source = "../../modules/dsfhub-aws-cloud-account"
 
   admin_email        = local.admin_email
   asset_display_name = "aws-key-pair-account-asset"
@@ -62,7 +62,7 @@ module "aws-key-pair-account-asset" {
 # auth_mechanism: iam_role
 ################################################################################
 module "aws-iam-role-account-asset" {
-  source = "imperva/agentless-onboarding/dsfhub//modules/dsfhub-aws-cloud-account"
+  source = "../../modules/dsfhub-aws-cloud-account"
 
   admin_email        = local.admin_email
   asset_display_name = "aws-iam-role-account-asset"
@@ -76,7 +76,7 @@ module "aws-iam-role-account-asset" {
 # auth_mechanism: profile
 ################################################################################
 module "aws-profile-account-asset" {
-  source = "imperva/agentless-onboarding/dsfhub//modules/dsfhub-aws-cloud-account"
+  source = "../../modules/dsfhub-aws-cloud-account"
 
   admin_email        = local.admin_email
   asset_display_name = "aws-profile-account-asset"

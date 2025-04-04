@@ -24,7 +24,7 @@ No providers.
 |------|--------|---------|
 | <a name="module_aws-aurora-postgresql-kinesis-1"></a> [aws-aurora-postgresql-kinesis-1](#module\_aws-aurora-postgresql-kinesis-1) | ../../modules/onboard-aws-rds-aurora-postgresql-kinesis | n/a |
 | <a name="module_aws-aurora-postgresql-kinesis-2"></a> [aws-aurora-postgresql-kinesis-2](#module\_aws-aurora-postgresql-kinesis-2) | ../../modules/onboard-aws-rds-aurora-postgresql-kinesis | n/a |
-| <a name="module_aws-default-account-asset"></a> [aws-default-account-asset](#module\_aws-default-account-asset) | imperva/agentless-onboarding/dsfhub//modules/dsfhub-aws-cloud-account | n/a |
+| <a name="module_aws-default-account-asset"></a> [aws-default-account-asset](#module\_aws-default-account-asset) | ../../modules/dsfhub-aws-cloud-account | n/a |
 
 ## Resources
 

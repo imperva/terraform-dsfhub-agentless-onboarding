@@ -22,7 +22,7 @@ No providers.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_aws-default-account-asset"></a> [aws-default-account-asset](#module\_aws-default-account-asset) | imperva/agentless-onboarding/dsfhub//modules/dsfhub-aws-cloud-account | n/a |
+| <a name="module_aws-default-account-asset"></a> [aws-default-account-asset](#module\_aws-default-account-asset) | ../../modules/dsfhub-aws-cloud-account | n/a |
 | <a name="module_aws-neptune-slowquery-1"></a> [aws-neptune-slowquery-1](#module\_aws-neptune-slowquery-1) | ../../modules/onboard-aws-neptune-slow-query | n/a |
 
 ## Resources

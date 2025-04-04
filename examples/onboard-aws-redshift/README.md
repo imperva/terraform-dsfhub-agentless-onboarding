@@ -42,7 +42,7 @@ No requirements.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_aws-default-account-asset"></a> [aws-default-account-asset](#module\_aws-default-account-asset) | imperva/agentless-onboarding/dsfhub//modules/dsfhub-aws-cloud-account | n/a |
+| <a name="module_aws-default-account-asset"></a> [aws-default-account-asset](#module\_aws-default-account-asset) | ../../modules/dsfhub-aws-cloud-account | n/a |
 | <a name="module_aws-redshift-1"></a> [aws-redshift-1](#module\_aws-redshift-1) | ../../modules/onboard-aws-redshift-s3 | n/a |
 | <a name="module_aws-redshift-cluster-1"></a> [aws-redshift-cluster-1](#module\_aws-redshift-cluster-1) | ../../modules/onboard-aws-redshift-odbc | n/a |
 
