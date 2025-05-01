@@ -11,10 +11,10 @@ variable "asset_display_name" {
 variable "asset_id" {
   description = "Unique identifier for the AlloyDB for PostgreSQL database service in the form 'projects/<project>/locations/<location>/clusters/<cluster_id>/instances/<instance_id>'."
   type        = string
-  validation {
-    condition     = can(regex("projects/.+/locations/.+/clusters/.+/instances/.+", var.asset_id))
-    error_message = "Invalid asset ID. Must be in the form 'projects/<project>/locations/<location>/clusters/<cluster_id>/instances/<instance_id>'."
-  }
+  # validation {
+  #   condition     = can(regex("projects/.+/locations/.+/clusters/.+/instances/.+", var.asset_id))
+  #   error_message = "Invalid asset ID. Must be in the form 'projects/<project>/locations/<location>/clusters/<cluster_id>/instances/<instance_id>'."
+  # }
 }
 
 variable "audit_pull_enabled" {
@@ -25,6 +25,11 @@ variable "audit_pull_enabled" {
 
 variable "cluster_id" {
   description = "The name of the AlloyDB for PostgreSQL cluster"
+  type        = string
+}
+
+variable "cluster_member_id" {
+  description = "The name of the AlloyDB for PostgreSQL cluster member"
   type        = string
 }
 
@@ -43,15 +48,6 @@ variable "parent_asset_id" {
   description = "The asset_id of the GCP asset representing the GCP account where this data source is located."
   type        = string
   default     = null
-}
-
-variable "pubsub_subscription" {
-  description = "ID of the Google PubSub Subscription containing the AlloyDB for PostgreSQL audit logs in the form 'projects/{{project}}/subscriptions/{{name}}'."
-  type        = string
-  validation {
-    condition     = can(regex("projects/.+/subscriptions/.+", var.pubsub_subscription))
-    error_message = "Invalid pubsub subscription ID. Must be in the form 'projects/{{project}}/subscriptions/{{name}}'."
-  }
 }
 
 variable "server_host_name" {

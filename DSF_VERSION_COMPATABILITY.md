@@ -183,5 +183,11 @@ The following table lists the DSF versions against which each module is tested a
       <td>4.19+</td>
       <td>Supports slow query monitoring, includes examples for one-to-one and many-to-one monitoring</td>
    </tr>
+      <tr>
+      <td>GCP AlloyDB for PostgreSQL</td>
+      <td><a href="https://github.com/imperva/terraform-dsfhub-agentless-onboarding/tree/main/modules/onboard-gcp-alloydb-postgresql">onboard-gcp-alloydb-postgresql</a></td>
+      <td>4.19+</td>
+      <td>Includes examples for one-to-one and many-to-one monitoring</td>
+   </tr>
 
 </table>

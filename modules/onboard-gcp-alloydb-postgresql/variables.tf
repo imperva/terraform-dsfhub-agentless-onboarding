@@ -1,16 +1,7 @@
-variable "cluster_cluster_id" {
-  description = "The ID of the alloydb cluster."
+variable "cluster_allocated_ip_range" {
+  description = "The name of the allocated IP range for the private IP AlloyDB cluster. For example: 'google-managed-services-default'. If set, the instance IPs for this cluster will be created in the allocated range."
   type        = string
-}
-
-variable "cluster_cluster_type" {
-  description = "The type of cluster. If not set, defaults to PRIMARY. Default value is PRIMARY. Possible values are: PRIMARY, SECONDARY"
-  type        = string
-  validation {
-    condition     = can(contains(["PRIMARY", "SECONDARY"], var.cluster_type))
-    error_message = "Invalid cluster type. Supported values: PRIMARY, SECONDARY"
-  }
-  default = "PRIMARY"
+  default     = null
 }
 
 variable "cluster_database_version" {
@@ -21,6 +12,11 @@ variable "cluster_database_version" {
 
 variable "cluster_display_name" {
   description = "User-settable and human-readable display name for the Cluster."
+  type        = string
+}
+
+variable "cluster_id" {
+  description = "The ID of the alloydb cluster."
   type        = string
 }
 
@@ -35,9 +31,16 @@ variable "cluster_location" {
   type        = string
 }
 
-variable "cluster_password" {
-  description = "The initial password for the user."
+variable "cluster_network" {
+  description = "The resource link for the VPC network in which cluster resources are created and from which they are accessible via Private IP. The network must belong to the same project as the cluster. It is specified in the form: 'projects/{projectNumber}/global/networks/{network_id}'."
   type        = string
+  default     = null
+}
+
+variable "cluster_password" {
+  description = "The password for the initial user."
+  type        = string
+  default     = null
 }
 
 variable "cluster_project" {
@@ -49,92 +52,127 @@ variable "cluster_subscription_type" {
   description = "The subscription type of cluster. Possible values are: TRIAL, STANDARD. Default value is STANDARD."
   type        = string
   validation {
-    condition     = can(contains(["STANDARD", "TRIAL"], var.subscription_type))
+    condition     = can(contains(["STANDARD", "TRIAL"], var.cluster_subscription_type))
     error_message = "Invalid subscription type. Supported values: STANDARD, TRIAL"
   }
   default = "STANDARD"
 }
 
-variable "cluster_user" {
-  description = "The database username."
-  type        = string
-}
-
-variable "instance_cluster" {
-  description = "Identifies the alloydb cluster. Must be in the format 'projects/{project}/locations/{location}/clusters/{cluster_id}'."
+variable "cluster_type" {
+  description = "The type of cluster. If not set, defaults to PRIMARY. Default value is PRIMARY. Possible values are: PRIMARY, SECONDARY"
   type        = string
   validation {
-    condition     = can(regex("projects/.+/locations/.+/clusters/.+", var.cluster))
-    error_message = "Invalid cluster ID. Must be in the format 'projects/{project}/locations/{location}/clusters/{cluster_id}'."
+    condition     = can(contains(["PRIMARY", "SECONDARY"], var.cluster_type))
+    error_message = "Invalid cluster type. Supported values: PRIMARY, SECONDARY"
+  }
+  default = "PRIMARY"
+}
+
+variable "cluster_user" {
+  description = "The initial user for the cluster. Default is 'postgres'."
+  type        = string
+  default     = "postgres"
+}
+
+variable "primary_instance_cidr_range" {
+  description = "CIDR range for one authorized network of the instance."
+  type        = string
+  default     = null
+}
+
+variable "primary_instance_database_flags" {
+  description = "List of database flags to assign to the instance."
+  type        = map(string)
+  default = {
+    "alloydb.enable_pgaudit"      = "on"
+    "log_error_verbosity"         = "verbose"
+    "log_connections"             = "on"
+    "log_disconnections"          = "on"
+    "log_hostname"                = "on"
+    "pgaudit.log"                 = "all"
+    "password.enforce_complexity" = "on"
   }
 }
 
-variable "instance_database_flags" {
-  description = "List of database flags to assign to the instance."
-  type = list(
-    object(
-      {
-        name  = string
-        value = string
-      }
-    )
-  )
-  default = [
-    {
-      name  = "alloydb.enable_pgaudit"
-      value = "on"
-    },
-    {
-      name  = "log_error_verbosity"
-      value = "verbose"
-    },
-    {
-      name  = "log_connections"
-      value = "on"
-    },
-    {
-      name  = "log_disconnections"
-      value = "on"
-    },
-    {
-      name  = "log_hostname"
-      value = "on"
-    },
-    {
-      name  = "pgaudit.log"
-      value = "all"
-    }
-    # {
-    #   name  = "log_line_prefix"
-    #   value = "SONAR_AUDIT=1|TIMESTAMP=%m|APPLICATION_NAME=%a|USER=%u|DATABASE=%d|REMOTE_HOST_AND_PORT=%r|SQL_STATE=%e|SESSION_ID=%c|SESSION_START=%s|PROCESS_ID=[%p]|VIRTUAL_TRANSACTION_ID=%v|TRANSACTION_ID=%x| "
-    # }
-  ]
-}
-
-variable "instance_display_name" {
+variable "primary_instance_display_name" {
   description = "User-settable and human-readable display name for the Instance."
   type        = string
 }
 
-variable "instance_instance_id" {
+variable "primary_instance_enable_outbound_public_ip" {
+  description = "Whether to enable outbound public IP for the instance. Default is false."
+  type        = bool
+  default     = false
+}
+
+variable "primary_instance_enable_public_ip" {
+  description = "Enabling public ip for the instance. If a user wishes to disable this, please also clear the list of the authorized external networks set on the same instance. Default is false."
+  type        = bool
+  default     = false
+}
+
+variable "primary_instance_id" {
   description = "The ID of the alloydb instance."
   type        = string
 }
 
-variable "instance_instance_type" {
-  description = "The type of the instance. If the instance type is READ_POOL, provide the associated PRIMARY/SECONDARY instance in the depends_on meta-data attribute. If the instance type is SECONDARY, point to the cluster_type of the associated secondary cluster instead of mentioning SECONDARY. Example: {instance_type = google_alloydb_cluster..cluster_type} instead of {instance_type = SECONDARY} If the instance type is SECONDARY, the terraform delete instance operation does not delete the secondary instance but abandons it instead. Use deletion_policy = \"FORCE\" in the associated secondary cluster and delete the cluster forcefully to delete the secondary cluster as well its associated secondary instance. Users can undo the delete secondary instance action by importing the deleted secondary instance by calling terraform import. Possible values are: PRIMARY, READ_POOL, SECONDARY."
-  type        = string
-  default     = "PRIMARY"
-  validation {
-    condition     = can(contains(["PRIMARY", "READ_POOL", "SECONDARY"], var.instance_type))
-    error_message = "Invalid instance type. Supported values: PRIMARY, READ_POOL, SECONDARY"
-  }
-}
-
-variable "instance_labels" {
+variable "primary_instance_labels" {
   description = "Labels to apply to this instance."
   type        = map(string)
   default     = {}
+}
+
+variable "read_pool_instance_cidr_range" {
+  description = "CIDR range for one authorized network of the instance."
+  type        = string
+  default     = null
+}
+
+variable "read_pool_instance_database_flags" {
+  description = "List of database flags to assign to the instance."
+  type        = map(string)
+  default = {
+    "alloydb.enable_pgaudit" = "on"
+    "log_error_verbosity"    = "verbose"
+    "log_connections"        = "on"
+    "log_disconnections"     = "on"
+    "log_hostname"           = "on"
+    "pgaudit.log"            = "all"
+  }
+}
+
+variable "read_pool_instance_display_name" {
+  description = "User-settable and human-readable display name for the Instance."
+  type        = string
+}
+
+variable "read_pool_instance_enable_outbound_public_ip" {
+  description = "Whether to enable outbound public IP for the instance. Default is false."
+  type        = bool
+  default     = false
+}
+
+variable "read_pool_instance_enable_public_ip" {
+  description = "Enabling public ip for the instance. If a user wishes to disable this, please also clear the list of the authorized external networks set on the same instance. Default is false."
+  type        = bool
+  default     = false
+}
+
+variable "read_pool_instance_id" {
+  description = "The ID of the alloydb instance."
+  type        = string
+}
+
+variable "read_pool_instance_labels" {
+  description = "Labels to apply to this instance."
+  type        = map(string)
+  default     = {}
+}
+
+variable "read_pool_instance_node_count" {
+  description = "Number of nodes in the read pool."
+  type        = number
+  default     = 1
 }
 
 variable "gcp_alloydb_postgresql_cluster_admin_email" {
@@ -142,29 +180,10 @@ variable "gcp_alloydb_postgresql_cluster_admin_email" {
   type        = string
 }
 
-variable "gcp_alloydb_postgresql_cluster_asset_display_name" {
-  description = "User-friendly name of the asset, defined by user"
-  type        = string
-}
-
-variable "gcp_alloydb_postgresql_cluster_asset_id" {
-  description = "Unique identifier for the AlloyDB for PostgreSQL database service in the form 'projects/<project>/locations/<location>/clusters/<cluster_id>/instances/<instance_id>'."
-  type        = string
-  validation {
-    condition     = can(regex("projects/.+/locations/.+/clusters/.+/instances/.+", var.asset_id))
-    error_message = "Invalid asset ID. Must be in the form 'projects/<project>/locations/<location>/clusters/<cluster_id>/instances/<instance_id>'."
-  }
-}
-
 variable "gcp_alloydb_postgresql_cluster_audit_pull_enabled" {
   description = "If true, sonargateway will collect the audit logs for this system if it can."
   type        = bool
   default     = false
-}
-
-variable "gcp_alloydb_postgresql_cluster_cluster_id" {
-  description = "The name of the AlloyDB for PostgreSQL cluster"
-  type        = string
 }
 
 variable "gcp_alloydb_postgresql_cluster_gateway_id" {
@@ -184,25 +203,6 @@ variable "gcp_alloydb_postgresql_cluster_parent_asset_id" {
   default     = null
 }
 
-variable "gcp_alloydb_postgresql_cluster_pubsub_subscription" {
-  description = "ID of the Google PubSub Subscription containing the AlloyDB for PostgreSQL audit logs in the form 'projects/{{project}}/subscriptions/{{name}}'."
-  type        = string
-  validation {
-    condition     = can(regex("projects/.+/subscriptions/.+", var.pubsub_subscription))
-    error_message = "Invalid pubsub subscription ID. Must be in the form 'projects/{{project}}/subscriptions/{{name}}'."
-  }
-}
-
-variable "gcp_alloydb_postgresql_cluster_server_host_name" {
-  description = "Hostname of the AlloyDB for PostgreSQL instance."
-  type        = string
-}
-
-variable "gcp_alloydb_postgresql_cluster_server_ip" {
-  description = "IP address / hostname of the AlloyDB for PostgreSQL instance."
-  type        = string
-}
-
 variable "gcp_alloydb_postgresql_cluster_server_port" {
   description = "Port that the AlloyDB for PostgreSQL instance listens on."
   type        = string
@@ -215,8 +215,8 @@ variable "gcp_alloydb_postgresql_cluster_auth_mechanism" {
   default     = null
   validation {
     condition = (
-      var.auth_mechanism == null ||
-      can(contains(["password"], var.auth_mechanism))
+      var.gcp_alloydb_postgresql_cluster_auth_mechanism == null ||
+      can(contains(["password"], var.gcp_alloydb_postgresql_cluster_auth_mechanism))
     )
     error_message = "Invalid authentication mechanism. Supported values: password"
   }
@@ -245,29 +245,10 @@ variable "gcp_alloydb_postgresql_admin_email" {
   type        = string
 }
 
-variable "gcp_alloydb_postgresql_asset_display_name" {
-  description = "User-friendly name of the asset, defined by user"
-  type        = string
-}
-
-variable "gcp_alloydb_postgresql_asset_id" {
-  description = "Unique identifier for the AlloyDB for PostgreSQL database service in the form 'projects/<project>/locations/<location>/clusters/<cluster_id>/instances/<instance_id>'."
-  type        = string
-  validation {
-    condition     = can(regex("projects/.+/locations/.+/clusters/.+/instances/.+", var.asset_id))
-    error_message = "Invalid asset ID. Must be in the form 'projects/<project>/locations/<location>/clusters/<cluster_id>/instances/<instance_id>'."
-  }
-}
-
 variable "gcp_alloydb_postgresql_audit_pull_enabled" {
   description = "If true, sonargateway will collect the audit logs for this system if it can."
   type        = bool
   default     = false
-}
-
-variable "gcp_alloydb_postgresql_cluster_id" {
-  description = "The name of the AlloyDB for PostgreSQL cluster"
-  type        = string
 }
 
 variable "gcp_alloydb_postgresql_gateway_id" {
@@ -287,25 +268,6 @@ variable "gcp_alloydb_postgresql_parent_asset_id" {
   default     = null
 }
 
-variable "gcp_alloydb_postgresql_pubsub_subscription" {
-  description = "ID of the Google PubSub Subscription containing the AlloyDB for PostgreSQL audit logs in the form 'projects/{{project}}/subscriptions/{{name}}'."
-  type        = string
-  validation {
-    condition     = can(regex("projects/.+/subscriptions/.+", var.pubsub_subscription))
-    error_message = "Invalid pubsub subscription ID. Must be in the form 'projects/{{project}}/subscriptions/{{name}}'."
-  }
-}
-
-variable "gcp_alloydb_postgresql_server_host_name" {
-  description = "Hostname of the AlloyDB for PostgreSQL instance."
-  type        = string
-}
-
-variable "gcp_alloydb_postgresql_server_ip" {
-  description = "IP address / hostname of the AlloyDB for PostgreSQL instance."
-  type        = string
-}
-
 variable "gcp_alloydb_postgresql_server_port" {
   description = "Port that the AlloyDB for PostgreSQL instance listens on."
   type        = string
@@ -318,8 +280,8 @@ variable "gcp_alloydb_postgresql_auth_mechanism" {
   default     = null
   validation {
     condition = (
-      var.auth_mechanism == null ||
-      can(contains(["password"], var.auth_mechanism))
+      var.gcp_alloydb_postgresql_auth_mechanism == null ||
+      can(contains(["password"], var.gcp_alloydb_postgresql_auth_mechanism))
     )
     error_message = "Invalid authentication mechanism. Supported values: password"
   }

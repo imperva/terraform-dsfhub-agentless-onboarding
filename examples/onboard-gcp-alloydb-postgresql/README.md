@@ -7,6 +7,8 @@ This example creates 'dsfhub' and 'google' resources. More information regarding
 
 ## Prerequisites
 ### Service Account
+The user or service account used for running the module will require the AlloyDB Admin role for configuring the cluster including modifying database flags.
+
 A Google Service Account will need to be created with permissions to read from PubSub subscriptions. This can be done via the ``google-service-account-dsf`` module. Depending on the authentication mechanism chosen, the service account will either need to be attached to a GCP Compute Engine instance or the service account's credentials file will need to be copied to your Agentless Gateway.
 
 ### Data Access Audit Logs

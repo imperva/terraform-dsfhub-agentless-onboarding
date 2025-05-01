@@ -2,6 +2,7 @@ terraform {
   required_providers {
     dsfhub = {
       source = "imperva/dsfhub"
+      # version = ">= 1.3.7"
     }
   }
 }
@@ -14,10 +15,10 @@ resource "dsfhub_data_source" "this" {
   asset_id                  = var.asset_id
   audit_pull_enabled        = var.audit_pull_enabled
   cluster_id                = var.cluster_id
+  cluster_member_id         = var.cluster_member_id
   gateway_id                = var.gateway_id
   logs_destination_asset_id = var.logs_destination_asset_id
   parent_asset_id           = var.parent_asset_id
-  pubsub_subscription       = var.pubsub_subscription
   server_host_name          = var.server_host_name
   server_ip                 = var.server_ip
   server_port               = var.server_port

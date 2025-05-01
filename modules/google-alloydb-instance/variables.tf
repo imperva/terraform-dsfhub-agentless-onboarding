@@ -1,3 +1,9 @@
+variable "cidr_range" {
+  description = "CIDR range for one authorized network of the instance."
+  type        = string
+  default     = null
+}
+
 variable "cluster" {
   description = "Identifies the alloydb cluster. Must be in the format 'projects/{project}/locations/{location}/clusters/{cluster_id}'."
   type        = string
@@ -9,13 +15,25 @@ variable "cluster" {
 
 variable "database_flags" {
   description = "List of database flags to assign to the instance."
-  type        = object
-  default     = {}
+  type        = map(string)
+  default     = null
 }
 
 variable "display_name" {
   description = "User-settable and human-readable display name for the Instance."
   type        = string
+}
+
+variable "enable_outbound_public_ip" {
+  description = "Whether to enable outbound public IP for the instance. Default is true."
+  type        = bool
+  default     = null
+}
+
+variable "enable_public_ip" {
+  description = "Enabling public ip for the instance. If a user wishes to disable this, please also clear the list of the authorized external networks set on the same instance. Default is true."
+  type        = bool
+  default     = null
 }
 
 variable "instance_id" {
@@ -37,4 +55,16 @@ variable "labels" {
   description = "Labels to apply to this instance."
   type        = map(string)
   default     = {}
+}
+
+variable "node_count" {
+  description = "Number of nodes in the read pool. This field is required for READ_POOL instance type."
+  type        = number
+  default     = null
+}
+
+variable "ssl_mode" {
+  description = "SSL mode. Specifies client-server SSL/TLS connection behavior. Possible values are: ENCRYPTED_ONLY, ALLOW_UNENCRYPTED_AND_ENCRYPTED."
+  type        = string
+  default     = null
 }

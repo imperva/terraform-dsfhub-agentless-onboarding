@@ -1,82 +1,96 @@
+terraform {
+  required_providers {
+    dsfhub = {
+      source = "imperva/dsfhub"
+      # version = ">= 1.3.7"
+    }
+  }
+}
+
 module "gcp-alloydb-cluster" {
   source = "../google-alloydb-cluster"
 
-  cluster_id       = var.cluster_cluster_id
-  cluster_type     = var.cluster_cluster_type
-  database_version = var.cluster_database_version
-  display_name     = var.cluster_display_name
-  labels           = var.cluster_labels
-  location         = var.cluster_location
-  #   network_config {
-  #     allocated_ip_range = var.allocated_ip_range
-  #     network            = var.network
-  #   }
-  password          = var.cluster_password
-  project           = var.cluster_project
-  subscription_type = var.cluster_subscription_type
-  user              = var.cluster_user
-
+  allocated_ip_range = var.cluster_allocated_ip_range
+  cluster_id         = var.cluster_id
+  cluster_type       = var.cluster_type
+  database_version   = var.cluster_database_version
+  display_name       = var.cluster_display_name
+  labels             = var.cluster_labels
+  location           = var.cluster_location
+  network            = var.cluster_network
+  password           = var.cluster_password
+  project            = var.cluster_project
+  subscription_type  = var.cluster_subscription_type
+  user               = var.cluster_user
 }
 
-module "gcp-alloydb-instance" {
+module "gcp-alloydb-primary-instance" {
   source = "../google-alloydb-instance"
 
-  cluster        = var.instance_cluster
-  database_flags = var.instance_database_flags
-  display_name   = var.instance_display_name
-  instance_id    = var.instance_instance_id
-  instance_type  = var.instance_instance_type
-  labels         = var.instance_labels
+  cidr_range                = var.primary_instance_cidr_range
+  cluster                   = module.gcp-alloydb-cluster.this.name
+  database_flags            = var.primary_instance_database_flags
+  display_name              = var.primary_instance_display_name
+  enable_outbound_public_ip = var.primary_instance_enable_outbound_public_ip
+  instance_id               = var.primary_instance_id
+  instance_type             = "PRIMARY"
+  labels                    = var.primary_instance_labels
+
+  # Fields required to allow initial user to connect and run pgaudit configuration script
+  enable_public_ip = "true"
+  ssl_mode         = "ALLOW_UNENCRYPTED_AND_ENCRYPTED"
+}
+
+module "gcp-alloydb-read-pool-instance" {
+  source = "../google-alloydb-instance"
+
+  depends_on = [module.gcp-alloydb-primary-instance]
+
+  cidr_range                = var.read_pool_instance_cidr_range
+  cluster                   = module.gcp-alloydb-cluster.this.name
+  database_flags            = var.read_pool_instance_database_flags
+  display_name              = var.read_pool_instance_display_name
+  enable_outbound_public_ip = var.read_pool_instance_enable_outbound_public_ip
+  enable_public_ip          = var.read_pool_instance_enable_public_ip
+  instance_id               = var.read_pool_instance_id
+  instance_type             = "READ_POOL"
+  labels                    = var.read_pool_instance_labels
+  node_count                = var.read_pool_instance_node_count
 }
 
 module "gcp-alloydb-postgresql-cluster-asset" {
   source = "../dsfhub-gcp-alloydb-postgresql-cluster"
 
-  #   admin_email               = var.gcp_postgresql_admin_email
-  #   asset_display_name        = module.gcp-postgresql-instance.this.name
-  #   asset_id                  = "${module.gcp-postgresql-instance.this.project}:${module.gcp-postgresql-instance.this.region}:${module.gcp-postgresql-instance.this.name}"
-  #   audit_pull_enabled        = var.gcp_postgresql_audit_pull_enabled
-  #   gateway_id                = var.gcp_postgresql_gateway_id
-  #   logs_destination_asset_id = var.gcp_postgresql_logs_destination_asset_id
-  #   parent_asset_id           = var.gcp_postgresql_parent_asset_id
-  #   server_host_name          = module.gcp-postgresql-instance.this.ip_address.0.ip_address
-  #   server_ip                 = module.gcp-postgresql-instance.this.ip_address.0.ip_address
+  depends_on = [module.gcp-alloydb-cluster, module.gcp-alloydb-primary-instance]
+
   admin_email               = var.gcp_alloydb_postgresql_cluster_admin_email
-  asset_display_name        = var.gcp_alloydb_postgresql_cluster_asset_display_name
-  asset_id                  = var.gcp_alloydb_postgresql_cluster_asset_id
+  asset_display_name        = var.primary_instance_display_name
+  asset_id                  = "projects/${var.cluster_project}/locations/${var.cluster_location}/clusters/${var.cluster_id}/instances/${var.primary_instance_display_name}"
   audit_pull_enabled        = var.gcp_alloydb_postgresql_cluster_audit_pull_enabled
-  cluster_id                = var.gcp_alloydb_postgresql_cluster_cluster_id
+  cluster_id                = module.gcp-alloydb-cluster.this.cluster_id
+  cluster_member_id         = var.primary_instance_id
   gateway_id                = var.gcp_alloydb_postgresql_cluster_gateway_id
   logs_destination_asset_id = var.gcp_alloydb_postgresql_cluster_logs_destination_asset_id
   parent_asset_id           = var.gcp_alloydb_postgresql_cluster_parent_asset_id
-  pubsub_subscription       = var.gcp_alloydb_postgresql_cluster_pubsub_subscription
-  server_host_name          = var.gcp_alloydb_postgresql_cluster_server_host_name
-  server_ip                 = var.gcp_alloydb_postgresql_cluster_server_ip
+  server_host_name          = module.gcp-alloydb-primary-instance.this.ip_address
+  server_ip                 = module.gcp-alloydb-primary-instance.this.ip_address
   server_port               = var.gcp_alloydb_postgresql_cluster_server_port
 }
 
 module "gcp-alloydb-postgresql-asset" {
   source = "../dsfhub-gcp-alloydb-postgresql"
 
-  #   admin_email               = var.gcp_postgresql_admin_email
-  #   asset_display_name        = module.gcp-postgresql-instance.this.name
-  #   asset_id                  = "${module.gcp-postgresql-instance.this.project}:${module.gcp-postgresql-instance.this.region}:${module.gcp-postgresql-instance.this.name}"
-  #   audit_pull_enabled        = var.gcp_postgresql_audit_pull_enabled
-  #   gateway_id                = var.gcp_postgresql_gateway_id
-  #   logs_destination_asset_id = var.gcp_postgresql_logs_destination_asset_id
-  #   parent_asset_id           = var.gcp_postgresql_parent_asset_id
-  #   server_host_name          = module.gcp-postgresql-instance.this.ip_address.0.ip_address
-  #   server_ip                 = module.gcp-postgresql-instance.this.ip_address.0.ip_address
-  admin_email               = var.gcp_alloydb_postgresql_admin_email
-  asset_display_name        = var.gcp_alloydb_postgresql_asset_display_name
-  asset_id                  = var.gcp_alloydb_postgresql_asset_id
-  audit_pull_enabled        = var.gcp_alloydb_postgresql_audit_pull_enabled
-  cluster_id                = var.gcp_alloydb_postgresql_cluster_id
-  gateway_id                = var.gcp_alloydb_postgresql_gateway_id
-  logs_destination_asset_id = var.gcp_alloydb_postgresql_logs_destination_asset_id
-  parent_asset_id           = var.gcp_alloydb_postgresql_parent_asset_id
-  pubsub_subscription       = var.gcp_alloydb_postgresql_pubsub_subscription
-  server_host_name          = var.gcp_alloydb_postgresql_server_host_name
-  server_ip                 = var.gcp_alloydb_postgresql_server_ip
-  server_port               = var.gcp_alloydb_postgresql_server_port
+  depends_on = [module.gcp-alloydb-cluster, module.gcp-alloydb-read-pool-instance]
+
+  admin_email        = var.gcp_alloydb_postgresql_admin_email
+  asset_display_name = module.gcp-alloydb-read-pool-instance.this.display_name
+  asset_id           = "projects/${module.gcp-alloydb-cluster.this.project}/locations/${var.cluster_location}/clusters/${module.gcp-alloydb-cluster.this.cluster_id}/instances/${module.gcp-alloydb-read-pool-instance.this.instance_id}"
+  audit_pull_enabled = var.gcp_alloydb_postgresql_audit_pull_enabled
+  cluster_id         = module.gcp-alloydb-cluster.this.cluster_id
+  cluster_member_id  = var.read_pool_instance_id
+  gateway_id         = var.gcp_alloydb_postgresql_gateway_id
+  parent_asset_id    = var.gcp_alloydb_postgresql_parent_asset_id
+  server_host_name   = module.gcp-alloydb-read-pool-instance.this.ip_address
+  server_ip          = module.gcp-alloydb-read-pool-instance.this.ip_address
+  server_port        = var.gcp_alloydb_postgresql_server_port
 }
