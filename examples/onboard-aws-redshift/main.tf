@@ -97,7 +97,7 @@ module "aws-redshift-cluster-1" {
 # s3:ListBucket
 # s3:ListAllMyBuckets
 module "aws-default-account-asset" {
-  source = "imperva/agentless-onboarding/dsfhub//modules/dsfhub-aws-cloud-account"
+  source = "../../modules/dsfhub-aws-cloud-account"
 
   admin_email        = local.admin_email
   asset_display_name = "aws-account-asset"
