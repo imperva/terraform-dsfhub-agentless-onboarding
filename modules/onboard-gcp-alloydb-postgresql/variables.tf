@@ -5,18 +5,17 @@ variable "cluster_allocated_ip_range" {
 }
 
 variable "cluster_database_version" {
-  description = "The database engine major version. This is an optional field and it's populated at the Cluster creation time. Note: Changing this field to a higer version results in upgrading the AlloyDB cluster which is an irreversible change."
+  description = "The database engine major version. This is an optional field and it's populated at the Cluster creation time. Note: Changing this field to a higer version results in upgrading the AlloyDB cluster which is an irreversible change. Default is 'POSTGRES_15'."
   type        = string
-  default     = null
-}
-
-variable "cluster_display_name" {
-  description = "User-settable and human-readable display name for the Cluster."
-  type        = string
+  default     = "POSTGRES_15"
+  validation {
+    condition     = can(contains(["POSTGRES_14", "POSTGRES_15", "POSTGRES_16"], var.cluster_database_version))
+    error_message = "Invalid database version. Supported values: POSTGRES_14, POSTGRES_15, POSTGRES_16"
+  }
 }
 
 variable "cluster_id" {
-  description = "The ID of the alloydb cluster."
+  description = "The ID of the AlloyDB cluster."
   type        = string
 }
 
@@ -27,7 +26,7 @@ variable "cluster_labels" {
 }
 
 variable "cluster_location" {
-  description = "The location where the alloydb cluster should reside."
+  description = "The location where the AlloyDB cluster should reside."
   type        = string
 }
 
@@ -81,22 +80,9 @@ variable "primary_instance_cidr_range" {
 }
 
 variable "primary_instance_database_flags" {
-  description = "List of database flags to assign to the instance."
+  description = "List of database flags to assign to the instance. See the example module for required flags for different DSF versions."
   type        = map(string)
-  default = {
-    "alloydb.enable_pgaudit"      = "on"
-    "log_error_verbosity"         = "verbose"
-    "log_connections"             = "on"
-    "log_disconnections"          = "on"
-    "log_hostname"                = "on"
-    "pgaudit.log"                 = "all"
-    "password.enforce_complexity" = "on"
-  }
-}
-
-variable "primary_instance_display_name" {
-  description = "User-settable and human-readable display name for the Instance."
-  type        = string
+  default     = null
 }
 
 variable "primary_instance_enable_outbound_public_ip" {
@@ -112,7 +98,7 @@ variable "primary_instance_enable_public_ip" {
 }
 
 variable "primary_instance_id" {
-  description = "The ID of the alloydb instance."
+  description = "The ID of the AlloyDB instance."
   type        = string
 }
 
@@ -129,21 +115,9 @@ variable "read_pool_instance_cidr_range" {
 }
 
 variable "read_pool_instance_database_flags" {
-  description = "List of database flags to assign to the instance."
+  description = "List of database flags to assign to the instance. See the example module for required flags for different DSF versions."
   type        = map(string)
-  default = {
-    "alloydb.enable_pgaudit" = "on"
-    "log_error_verbosity"    = "verbose"
-    "log_connections"        = "on"
-    "log_disconnections"     = "on"
-    "log_hostname"           = "on"
-    "pgaudit.log"            = "all"
-  }
-}
-
-variable "read_pool_instance_display_name" {
-  description = "User-settable and human-readable display name for the Instance."
-  type        = string
+  default     = null
 }
 
 variable "read_pool_instance_enable_outbound_public_ip" {
@@ -159,7 +133,7 @@ variable "read_pool_instance_enable_public_ip" {
 }
 
 variable "read_pool_instance_id" {
-  description = "The ID of the alloydb instance."
+  description = "The ID of the AlloyDB instance."
   type        = string
 }
 
@@ -209,57 +183,14 @@ variable "gcp_alloydb_postgresql_cluster_server_port" {
   default     = "5432"
 }
 
-variable "gcp_alloydb_postgresql_cluster_auth_mechanism" {
-  description = "Specifies the auth mechanism used by the connection"
-  type        = string
-  default     = null
-  validation {
-    condition = (
-      var.gcp_alloydb_postgresql_cluster_auth_mechanism == null ||
-      can(contains(["password"], var.gcp_alloydb_postgresql_cluster_auth_mechanism))
-    )
-    error_message = "Invalid authentication mechanism. Supported values: password"
-  }
-}
-
-variable "gcp_alloydb_postgresql_cluster_password" {
-  description = "Password to use to connect to the AlloyDB for PostgreSQL instance."
-  type        = string
-  default     = null
-}
-
-variable "gcp_alloydb_postgresql_cluster_reason" {
-  description = "Used to differentiate connections that belong to the same asset"
-  type        = string
-  default     = "default"
-}
-
-variable "gcp_alloydb_postgresql_cluster_username" {
-  description = "Username of AlloyDB for PostgreSQL database user to connect with."
-  type        = string
-  default     = null
-}
-
 variable "gcp_alloydb_postgresql_admin_email" {
   description = "The email address to notify about the asset."
   type        = string
 }
 
-variable "gcp_alloydb_postgresql_audit_pull_enabled" {
-  description = "If true, sonargateway will collect the audit logs for this system if it can."
-  type        = bool
-  default     = false
-}
-
 variable "gcp_alloydb_postgresql_gateway_id" {
   description = "Unique identifier (UID) attached to the jSonar machine controlling the asset"
   type        = string
-}
-
-variable "gcp_alloydb_postgresql_logs_destination_asset_id" {
-  description = "The asset_id of the GCP PUSUB asset that this asset is sending its audit logs to."
-  type        = string
-  default     = null
 }
 
 variable "gcp_alloydb_postgresql_parent_asset_id" {
@@ -272,35 +203,4 @@ variable "gcp_alloydb_postgresql_server_port" {
   description = "Port that the AlloyDB for PostgreSQL instance listens on."
   type        = string
   default     = "5432"
-}
-
-variable "gcp_alloydb_postgresql_auth_mechanism" {
-  description = "Specifies the auth mechanism used by the connection"
-  type        = string
-  default     = null
-  validation {
-    condition = (
-      var.gcp_alloydb_postgresql_auth_mechanism == null ||
-      can(contains(["password"], var.gcp_alloydb_postgresql_auth_mechanism))
-    )
-    error_message = "Invalid authentication mechanism. Supported values: password"
-  }
-}
-
-variable "gcp_alloydb_postgresql_password" {
-  description = "Password to use to connect to the AlloyDB for PostgreSQL instance."
-  type        = string
-  default     = null
-}
-
-variable "gcp_alloydb_postgresql_reason" {
-  description = "Used to differentiate connections that belong to the same asset"
-  type        = string
-  default     = "default"
-}
-
-variable "gcp_alloydb_postgresql_username" {
-  description = "Username of AlloyDB for PostgreSQL database user to connect with."
-  type        = string
-  default     = null
 }
