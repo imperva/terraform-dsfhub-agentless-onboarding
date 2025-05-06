@@ -39,7 +39,7 @@ No modules.
 | <a name="input_reason"></a> [reason](#input\_reason) | Used to differentiate connections that belong to the same asset | `string` | `"default"` | no |
 | <a name="input_server_host_name"></a> [server\_host\_name](#input\_server\_host\_name) | Hostname of the AlloyDB for PostgreSQL instance. | `string` | n/a | yes |
 | <a name="input_server_ip"></a> [server\_ip](#input\_server\_ip) | IP address / hostname of the AlloyDB for PostgreSQL instance. | `string` | n/a | yes |
-| <a name="input_server_port"></a> [server\_port](#input\_server\_port) | Port that the AlloyDB for PostgreSQL instance listens on. | `string` | `"5432"` | no |
+| <a name="input_server_port"></a> [server\_port](#input\_server\_port) | Port that the AlloyDB for PostgreSQL instance listens on. Defaults to 5432. | `string` | `"5432"` | no |
 | <a name="input_username"></a> [username](#input\_username) | Username of AlloyDB for PostgreSQL database user to connect with. | `string` | `null` | no |
 
 ## Outputs
