@@ -11,10 +11,10 @@ variable "asset_display_name" {
 variable "asset_id" {
   description = "Unique identifier for the AlloyDB for PostgreSQL database service in the form 'projects/<project>/locations/<location>/clusters/<cluster_id>/instances/<instance_id>'."
   type        = string
-  # validation {
-  #   condition     = can(regex("projects/.+/locations/.+/clusters/.+/instances/.+", var.asset_id))
-  #   error_message = "Invalid asset ID. Must be in the form 'projects/<project>/locations/<location>/clusters/<cluster_id>/instances/<instance_id>'."
-  # }
+  validation {
+    condition     = can(regex("projects/.+/locations/.+/clusters/.+/instances/.+", var.asset_id))
+    error_message = "Invalid asset ID. Must be in the form 'projects/<project>/locations/<location>/clusters/<cluster_id>/instances/<instance_id>'."
+  }
 }
 
 variable "audit_pull_enabled" {
@@ -61,7 +61,7 @@ variable "server_ip" {
 }
 
 variable "server_port" {
-  description = "Port that the AlloyDB for PostgreSQL instance listens on."
+  description = "Port that the AlloyDB for PostgreSQL instance listens on. Defaults to 5432."
   type        = string
   default     = "5432"
 }

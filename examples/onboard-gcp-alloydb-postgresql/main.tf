@@ -134,11 +134,12 @@ module "gcp-alloydb-postgresql-1" {
   cluster_password          = local.alloydb_admin_password
   cluster_user              = local.alloydb_admin
 
+  primary_instance_database_flags            = local.required_database_flags["4.19"]
   primary_instance_id                        = "${local.gcp_alloydb_instance_name_dsf_419}-primary"
   primary_instance_cidr_range                = local.gcp_authorized_cidr_range
   primary_instance_enable_outbound_public_ip = false
-  primary_instance_enable_public_ip          = true
 
+  read_pool_instance_database_flags   = local.required_database_flags["4.19"]
   read_pool_instance_id               = "${local.gcp_alloydb_instance_name_dsf_419}-read-pool"
   read_pool_instance_node_count       = 1
   read_pool_instance_enable_public_ip = false
@@ -217,7 +218,6 @@ module "gcp-alloydb-postgresql-2" {
   primary_instance_cidr_range                = local.gcp_authorized_cidr_range
   primary_instance_database_flags            = local.required_database_flags["15.0"]
   primary_instance_enable_outbound_public_ip = false
-  primary_instance_enable_public_ip          = true
 
   read_pool_instance_database_flags   = local.required_database_flags["15.0"]
   read_pool_instance_id               = "${local.gcp_alloydb_instance_name_dsf_150}-read-pool"

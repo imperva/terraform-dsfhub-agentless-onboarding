@@ -9,8 +9,10 @@ variable "cluster_database_version" {
   type        = string
   default     = "POSTGRES_15"
   validation {
-    condition     = can(contains(["POSTGRES_14", "POSTGRES_15", "POSTGRES_16"], var.cluster_database_version))
-    error_message = "Invalid database version. Supported values: POSTGRES_14, POSTGRES_15, POSTGRES_16"
+    condition = (
+      startswith(var.cluster_database_version, "POSTGRES_")
+    )
+    error_message = "Invalid database version. See https://cloud.google.com/alloydb/docs/db-version-policies for supported versions."
   }
 }
 
@@ -26,7 +28,7 @@ variable "cluster_labels" {
 }
 
 variable "cluster_location" {
-  description = "The location where the AlloyDB cluster should reside."
+  description = "The location where the AlloyDB cluster should reside. See https://cloud.google.com/alloydb/docs/reference/rest/v1/projects.locations to learn how to list your project's available locations."
   type        = string
 }
 
