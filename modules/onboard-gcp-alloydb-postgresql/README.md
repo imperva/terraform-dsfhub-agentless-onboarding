@@ -68,6 +68,7 @@ No resources.
 | <a name="input_primary_instance_id"></a> [primary\_instance\_id](#input\_primary\_instance\_id) | The ID of the AlloyDB instance. | `string` | n/a | yes |
 | <a name="input_primary_instance_labels"></a> [primary\_instance\_labels](#input\_primary\_instance\_labels) | Labels to apply to this instance. | `map(string)` | `{}` | no |
 | <a name="input_read_pool_instance_cidr_range"></a> [read\_pool\_instance\_cidr\_range](#input\_read\_pool\_instance\_cidr\_range) | CIDR range for one authorized network of the instance. | `string` | `null` | no |
+| <a name="input_read_pool_instance_count"></a> [read\_pool\_instance\_count](#input\_read\_pool\_instance\_count) | Number of read pool instances to create. Default is 1. | `number` | `1` | no |
 | <a name="input_read_pool_instance_database_flags"></a> [read\_pool\_instance\_database\_flags](#input\_read\_pool\_instance\_database\_flags) | List of database flags to assign to the instance. See the example module for required flags for different DSF versions. | `map(string)` | `null` | no |
 | <a name="input_read_pool_instance_enable_outbound_public_ip"></a> [read\_pool\_instance\_enable\_outbound\_public\_ip](#input\_read\_pool\_instance\_enable\_outbound\_public\_ip) | Whether to enable outbound public IP for the instance. Default is false. | `bool` | `false` | no |
 | <a name="input_read_pool_instance_enable_public_ip"></a> [read\_pool\_instance\_enable\_public\_ip](#input\_read\_pool\_instance\_enable\_public\_ip) | Enabling public ip for the instance. If a user wishes to disable this, please also clear the list of the authorized external networks set on the same instance. Default is false. | `bool` | `false` | no |
@@ -83,5 +84,5 @@ No resources.
 | <a name="output_gcp-alloydb-postgresql-asset"></a> [gcp-alloydb-postgresql-asset](#output\_gcp-alloydb-postgresql-asset) | GCP ALLOYDB POSTGRESQL asset |
 | <a name="output_gcp-alloydb-postgresql-cluster-asset"></a> [gcp-alloydb-postgresql-cluster-asset](#output\_gcp-alloydb-postgresql-cluster-asset) | GCP ALLOYDB POSTGRESQL CLUSTER asset |
 | <a name="output_gcp-alloydb-primary-instance"></a> [gcp-alloydb-primary-instance](#output\_gcp-alloydb-primary-instance) | Google AlloyDB for PostgreSQL primary instance |
-| <a name="output_gcp-alloydb-read-pool-instance"></a> [gcp-alloydb-read-pool-instance](#output\_gcp-alloydb-read-pool-instance) | Google AlloyDB for PostgreSQL reader instance |
+| <a name="output_gcp-alloydb-read-pool-instance"></a> [gcp-alloydb-read-pool-instance](#output\_gcp-alloydb-read-pool-instance) | Google AlloyDB for PostgreSQL reader instance(s) |
 <!-- END_TF_DOCS -->
