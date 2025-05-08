@@ -116,6 +116,12 @@ variable "read_pool_instance_cidr_range" {
   default     = null
 }
 
+variable "read_pool_instance_count" {
+  description = "Number of read pool instances to create. Default is 1."
+  type        = number
+  default     = 1
+}
+
 variable "read_pool_instance_database_flags" {
   description = "List of database flags to assign to the instance. See the example module for required flags for different DSF versions."
   type        = map(string)

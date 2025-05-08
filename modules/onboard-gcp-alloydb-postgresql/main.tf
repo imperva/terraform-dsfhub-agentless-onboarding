@@ -46,13 +46,15 @@ module "gcp-alloydb-read-pool-instance" {
 
   depends_on = [module.gcp-alloydb-primary-instance]
 
-  cidr_range                = var.read_pool_instance_cidr_range
-  cluster                   = module.gcp-alloydb-cluster.this.name
-  database_flags            = var.read_pool_instance_database_flags
-  display_name              = var.read_pool_instance_id
+  count = var.read_pool_instance_count
+
+  cidr_range     = var.read_pool_instance_cidr_range
+  cluster        = module.gcp-alloydb-cluster.this.name
+  database_flags = var.read_pool_instance_database_flags
+  display_name              = "${var.read_pool_instance_id}-${count.index+1}"
   enable_outbound_public_ip = var.read_pool_instance_enable_outbound_public_ip
   enable_public_ip          = var.read_pool_instance_enable_public_ip
-  instance_id               = var.read_pool_instance_id
+  instance_id               = "${var.read_pool_instance_id}-${count.index+1}"
   instance_type             = "READ_POOL"
   labels                    = var.read_pool_instance_labels
   node_count                = var.read_pool_instance_node_count
@@ -82,15 +84,17 @@ module "gcp-alloydb-postgresql-asset" {
 
   depends_on = [module.gcp-alloydb-cluster, module.gcp-alloydb-read-pool-instance]
 
+  count = var.read_pool_instance_count
+
   admin_email        = var.gcp_alloydb_postgresql_admin_email
-  asset_display_name = var.read_pool_instance_id
-  asset_id           = "projects/${var.cluster_project}/locations/${var.cluster_location}/clusters/${var.cluster_id}/instances/${var.read_pool_instance_id}"
+  asset_display_name = "${var.read_pool_instance_id}-${count.index+1}"
+  asset_id           = "projects/${var.cluster_project}/locations/${var.cluster_location}/clusters/${var.cluster_id}/instances/${var.read_pool_instance_id}-${count.index+1}"
   audit_pull_enabled = var.gcp_alloydb_postgresql_cluster_audit_pull_enabled
   cluster_id         = var.cluster_id
-  cluster_member_id  = var.read_pool_instance_id
+  cluster_member_id  = "${var.read_pool_instance_id}-${count.index+1}"
   gateway_id         = var.gcp_alloydb_postgresql_gateway_id
   parent_asset_id    = var.gcp_alloydb_postgresql_parent_asset_id
-  server_host_name   = module.gcp-alloydb-read-pool-instance.this.ip_address
-  server_ip          = module.gcp-alloydb-read-pool-instance.this.ip_address
+  server_host_name   = module.gcp-alloydb-read-pool-instance[count.index].this.ip_address
+  server_ip          = module.gcp-alloydb-read-pool-instance[count.index].this.ip_address
   server_port        = var.gcp_alloydb_postgresql_server_port
 }

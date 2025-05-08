@@ -9,8 +9,8 @@ output "gcp-alloydb-primary-instance" {
 }
 
 output "gcp-alloydb-read-pool-instance" {
-  description = "Google AlloyDB for PostgreSQL reader instance"
-  value       = module.gcp-alloydb-read-pool-instance.this
+  description = "Google AlloyDB for PostgreSQL reader instance(s)"
+  value       = module.gcp-alloydb-read-pool-instance.*.this
 }
 
 output "gcp-alloydb-postgresql-cluster-asset" {
@@ -20,5 +20,5 @@ output "gcp-alloydb-postgresql-cluster-asset" {
 
 output "gcp-alloydb-postgresql-asset" {
   description = "GCP ALLOYDB POSTGRESQL asset"
-  value       = module.gcp-alloydb-postgresql-asset.this
+  value       = module.gcp-alloydb-postgresql-asset.*.this
 }
