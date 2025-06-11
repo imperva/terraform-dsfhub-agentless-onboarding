@@ -83,6 +83,7 @@ variable "format" {
         "File",
         "Mariadb",
         "Mysql",
+        "Mysql_Flexible",
         "Postgresql",
         "Postgresql_Flexible",
         "Queue",
