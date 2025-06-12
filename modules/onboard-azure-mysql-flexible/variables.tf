@@ -59,19 +59,19 @@ variable "server_administrator_password" {
   type        = string
 }
 
-variable "slow_query_time" {
+variable "server_config_slow_query_time" {
   description = "The time in seconds that a query must take to be considered slow. Defaults to 0 seconds."
   type        = number
   default     = 0
 }
 
-variable "slow_query_log" {
+variable "server_config_slow_query_log" {
   description = "Enable or disable the slow query log. Defaults to false."
   type        = bool
   default     = false
 }
 
-variable "require_secure_transport" {
+variable "server_config_require_secure_transport" {
   description = "If true, requires secure transport for connections to the MySQL Flexible Server. Defaults to true."
   type        = bool
   default     = true
