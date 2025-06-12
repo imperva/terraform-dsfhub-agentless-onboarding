@@ -135,11 +135,11 @@ variable "server_io_scaling_enabled" {
 }
 
 variable "server_iops" {
-  description = "The storage IOPS for the MySQL Flexible Server. Possible values are between 360 and 20000. Defaults to 360. If IO Scaling is enabled, this value must not be set."
+  description = "The storage IOPS for the MySQL Flexible Server. Possible values are between 360 and 20000. Defaults to null. If IO Scaling is enabled, the value will automatically be null."
   type        = number
-  default     = 360
+  default     = null
   validation {
-    condition     = var.server_io_scaling_enabled || (var.server_iops >= 360 && var.server_iops <= 20000)
+    condition     = (var.server_iops >= 360 && var.server_iops <= 20000)
     error_message = "Invalid IOPS value. If IO Scaling is enabled, IOPS cannot be set. Otherwise, it must be between 360 and 20000."
   }
 }

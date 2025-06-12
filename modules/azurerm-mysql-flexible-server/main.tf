@@ -15,7 +15,7 @@ resource "azurerm_mysql_flexible_server" "this" {
   storage {
     auto_grow_enabled   = var.azure_mysql_flexible_auto_grow_enabled
     io_scaling_enabled  = var.azure_mysql_flexible_io_scaling_enabled
-    iops                = var.azure_mysql_flexible_iops
+    iops                = var.azure_mysql_flexible_io_scaling_enabled ? null : var.azure_mysql_flexible_iops
     log_on_disk_enabled = var.azure_mysql_flexible_log_on_disk_enabled
     size_gb             = var.azure_mysql_flexible_size_gb
   }
