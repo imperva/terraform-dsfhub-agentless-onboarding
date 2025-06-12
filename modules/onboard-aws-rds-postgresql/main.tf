@@ -18,7 +18,7 @@ module "postgres-instance" {
   db_name                         = var.instance_db_name
   deletion_protection             = var.instance_deletion_protection
   enabled_cloudwatch_logs_exports = var.instance_enabled_cloudwatch_logs_exports
-  engine                          = var.instance_engine
+  engine                          = "postgres"
   engine_version                  = var.instance_engine_version
   final_snapshot_identifier       = var.instance_final_snapshot_identifier
   identifier                      = var.instance_identifier

@@ -276,7 +276,7 @@ module "aws-rds-postgresql" {
 
   aws_log_group_admin_email        = local.admin_email
   aws_log_group_audit_pull_enabled = true
-  aws_log_group_gateway_id         = local.admin_email
+  aws_log_group_gateway_id         = local.gateway_id
   aws_log_group_region             = local.aws_region
 
   aws_rds_postgresql_admin_email     = local.admin_email

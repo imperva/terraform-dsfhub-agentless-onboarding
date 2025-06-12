@@ -12,6 +12,7 @@ module "cosmos-mongo-account" {
   capabilities         = var.cosmosdb_account_capabilities
   consistency_policy   = var.cosmosdb_account_consistency_policy
   geo_location         = var.cosmosdb_account_geo_location
+  ip_range_filter      = var.cosmosdb_account_ip_range_filter
   kind                 = "MongoDB"
   location             = var.cosmosdb_account_location
   mongo_server_version = var.cosmosdb_account_mongo_server_version

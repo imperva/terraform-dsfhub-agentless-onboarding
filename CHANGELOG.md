@@ -5,7 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html) as of version 1.1.0.
 
-## [1.1.0] - TBD
+## [1.2.0] - TBD
+
+### Added
+- Google Cloud AlloyDB for PostgreSQL slow query monitoring example
+
+### Fixed
+- Fixed typo in Google Cloud AlloyDB for PostgreSQL Log Router sink inclusion filters
+- Removed use of deprecated arguments in helper modules used by onboard-azure-eventhub module
+
+## [1.1.0] - 2025-05-09
 
 ### Added
 - Google Cloud AlloyDB for PostgreSQL module with many-to-one example

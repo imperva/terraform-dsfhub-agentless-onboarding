@@ -36,7 +36,13 @@ provider "google" {
   project = local.gcp_project_id
 }
 
-provider "dsfhub" {}
+variable "dsfhub_host" {}  # TF_VAR_dsfhub_host env variable
+variable "dsfhub_token" {} # TF_VAR_dsfhub_token env variable
+
+provider "dsfhub" {
+  dsfhub_host  = var.dsfhub_host
+  dsfhub_token = var.dsfhub_token
+}
 
 ################################################################################
 # Prerequisites

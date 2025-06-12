@@ -15,6 +15,7 @@ module "cosmos-nosql-account" {
   capabilities         = var.cosmosdb_account_capabilities
   consistency_policy   = var.cosmosdb_account_consistency_policy
   geo_location         = var.cosmosdb_account_geo_location
+  ip_range_filter      = var.cosmosdb_account_ip_range_filter
   kind                 = "GlobalDocumentDB"
   location             = var.cosmosdb_account_location
   mongo_server_version = null
@@ -28,13 +29,13 @@ module "cosmos-nosql-account" {
 module "enable-full-text-query" {
   source = "../azapi-update-resource"
 
-  body = jsonencode({
+  body = {
     properties = {
       diagnosticLogSettings = {
         enableFullTextQuery = "True"
       }
     }
-  })
+  }
   resource_id = module.cosmos-nosql-account.this.id
   type        = "Microsoft.DocumentDB/databaseAccounts@2021-05-01-preview"
 }

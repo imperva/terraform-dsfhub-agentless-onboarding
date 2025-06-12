@@ -1,20 +1,20 @@
-variable "azure_cosmosdb_mongo_admin_email" {
+variable "azure_cosmosdb_admin_email" {
   description = "The email address to notify about this asset"
   type        = string
 }
 
-variable "azure_cosmosdb_mongo_audit_pull_enabled" {
+variable "azure_cosmosdb_audit_pull_enabled" {
   description = "If true, sonargateway will collect the audit logs for this system if it can."
   type        = bool
   default     = false
 }
 
-variable "azure_cosmosdb_mongo_gateway_id" {
+variable "azure_cosmosdb_gateway_id" {
   description = "Unique identifier (UID) attached to the jSonar machine controlling the asset"
   type        = string
 }
 
-variable "azure_cosmosdb_mongo_logs_destination_asset_id" {
+variable "azure_cosmosdb_logs_destination_asset_id" {
   description = "The asset_id of the AZURE EVENTHUB asset that this instance is sending its audit logs to."
   type        = string
 }
@@ -24,7 +24,10 @@ variable "cosmosdb_account_capabilities" {
   type = list(object({
     name = string
   }))
-  default = null
+  default = [
+    {
+      name = "EnableTable"
+  }]
 }
 
 variable "cosmosdb_account_consistency_policy" {
@@ -84,16 +87,6 @@ variable "cosmosdb_account_location" {
   type        = string
 }
 
-variable "cosmosdb_account_mongo_server_version" {
-  description = "The Server Version of a MongoDB account. Possible values are 4.2, 4.0, 3.6, and 3.2. Defaults to 4.2."
-  type        = string
-  default     = "4.2"
-  validation {
-    condition     = contains(["4.2", "4.0", "3.6", "3.2"], var.cosmosdb_account_mongo_server_version)
-    error_message = "Invalid MongoDB server version. Possible values are 4.2, 4.0, 3.6, and 3.2."
-  }
-}
-
 variable "cosmosdb_account_name" {
   description = "Specifies the name of the CosmosDB Account. Changing this forces a new resource to be created."
   type        = string
@@ -107,7 +100,7 @@ variable "cosmosdb_account_resource_group_name" {
 variable "cosmosdb_account_tags" {
   description = "A mapping of tags to assign to the resource."
   type        = map(string)
-  default     = null
+  default     = { "defaultExperience" : "Azure Table" }
 }
 
 variable "diagnostic_setting_eventhub_authorization_rule_id" {
@@ -129,4 +122,19 @@ variable "diagnostic_setting_storage_account_id" {
   description = "The ID of the Storage Account where logs should be sent. "
   type        = string
   default     = null
+}
+
+variable "cosmosdb_table_name" {
+  description = "Specifies the name of the Cosmos DB Table. Changing this forces a new resource to be created."
+  type        = string
+}
+
+variable "cosmosdb_table_throughput" {
+  description = "The throughput of Table (RU/s). Must be set in increments of 100. The minimum value is 400. This must be set upon database creation otherwise it cannot be updated without a manual terraform destroy-apply."
+  type        = number
+  default     = 400
+  validation {
+    condition     = var.cosmosdb_table_throughput % 100 == 0 && var.cosmosdb_table_throughput >= 400 && var.cosmosdb_table_throughput <= 1000000
+    error_message = "Throughput must be set in increments of 100 and the minimum value is 400 and the maximum value is 1000000."
+  }
 }

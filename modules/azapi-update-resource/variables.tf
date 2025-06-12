@@ -1,6 +1,8 @@
 variable "body" {
   description = "The request body used to add on to an existing Azure resource."
-  type        = string
+  type = object({
+    properties = map(any)
+  })
 }
 
 variable "resource_id" {
