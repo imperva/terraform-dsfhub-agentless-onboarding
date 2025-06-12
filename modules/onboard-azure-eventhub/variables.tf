@@ -4,7 +4,7 @@ variable "azure_eventhub_admin_email" {
 }
 
 variable "azure_eventhub_format" {
-  description = "The type of audit data being sent to the Event Hub. Possible values are: AzureSQL_Managed, Blob, Cosmos_Mongo, Cosmos_SQL, Data_Explorer, Databricks_Workspace, File, Mariadb, Mysql, Postgresql, Postgresql_Flexible, Queue, Sql, Synapse, Table. Defaults to Sql."
+  description = "The type of audit data being sent to the Event Hub. Possible values are: AzureSQL_Managed, Blob, Cosmos_Mongo, Cosmos_SQL, Data_Explorer, Databricks_Workspace, File, Mariadb, Mysql, Mysql_Flexible, Postgresql, Postgresql_Flexible, Queue, Sql, Synapse, Table. Defaults to Sql."
   type        = string
   default     = "Sql"
   validation {
@@ -29,7 +29,7 @@ variable "azure_eventhub_format" {
       ],
       var.azure_eventhub_format
     )
-    error_message = "Invalid format. Possible values are: AzureSQL_Managed, Blob, Cosmos_Mongo, Cosmos_SQL, Data_Explorer, Databricks_Workspace, File, Mariadb, Mysql, Postgresql, Postgresql_Flexible, Queue, Sql, Synapse, Table."
+    error_message = "Invalid format. Possible values are: AzureSQL_Managed, Blob, Cosmos_Mongo, Cosmos_SQL, Data_Explorer, Databricks_Workspace, File, Mariadb, Mysql, Mysql_Flexible, Postgresql, Postgresql_Flexible, Queue, Sql, Synapse, Table."
   }
 }
 

@@ -2,7 +2,7 @@ terraform {
   required_providers {
     dsfhub = {
       source  = "imperva/dsfhub"
-      version = ">= 1.3.2"
+      version = ">= 1.3.7"
     }
   }
 }
@@ -28,6 +28,7 @@ module "azure-mysql-flexible-server" {
 }
 
 locals {
+  enabled_log = var.server_config_slow_query_log ? [{ category = "MySqlSlowLogs" }, { category = "MySqlAuditLogs" }] : [{ category = "MySqlAuditLogs" }]
   server_configurations = [
     {
       name  = "audit_log_enabled"
@@ -43,18 +44,17 @@ locals {
     },
     {
       name  = "require_secure_transport"
-      value = var.require_secure_transport ? "ON" : "OFF"
+      value = var.server_config_require_secure_transport ? "ON" : "OFF"
     },
     {
       name  = "slow_query_log"
-      value = var.slow_query_log ? "ON" : "OFF"
+      value = var.server_config_slow_query_log ? "ON" : "OFF"
     },
     {
       name  = "long_query_time"
-      value = var.slow_query_time
+      value = var.server_config_slow_query_time
     }
   ]
-  enabled_log = var.slow_query_log ? [{ category = "MySqlSlowLogs" }, { category = "MySqlAuditLogs" }] : [{ category = "MySqlAuditLogs" }]
 }
 
 resource "azurerm_mysql_flexible_server_configuration" "this" {
@@ -71,8 +71,7 @@ module "mysql-diagnostic-setting" {
 
   depends_on = [azurerm_mysql_flexible_server_configuration.this]
 
-  enabled_log = local.enabled_log
-
+  enabled_log                    = local.enabled_log
   eventhub_authorization_rule_id = var.diagnostic_setting_eventhub_authorization_rule_id
   eventhub_name                  = var.diagnostic_setting_eventhub_name
   metric                         = null

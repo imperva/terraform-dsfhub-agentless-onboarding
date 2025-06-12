@@ -41,7 +41,6 @@ provider "dsfhub" {
 # 2. Storage Account and Container
 ################################################################################
 
-# 1 and 2: This creates the Eventhub and Storage Account Container
 module "onboard-azure-mysql-flexible-eventhub-1" {
   source = "../../modules/onboard-azure-eventhub"
 
@@ -86,7 +85,7 @@ module "azure-mysql-flexible-1" {
 }
 
 ################################################################################
-# Azure MySQL Flexible Server 8 - With Slow Query Log
+# Azure MySQL Flexible Server 8 - With Slow Query Monitoring
 ################################################################################
 module "azure-mysql-flexible-2" {
   source = "../../modules/onboard-azure-mysql-flexible"
@@ -108,8 +107,8 @@ module "azure-mysql-flexible-2" {
   server_public_network_access  = "Enabled"
   server_resource_group_name    = local.azure_resource_group_name
 
-  slow_query_log  = true
-  slow_query_time = 0
+  server_config_slow_query_log  = true
+  server_config_slow_query_time = 0
 }
 
 
