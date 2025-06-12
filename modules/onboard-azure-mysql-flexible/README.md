@@ -14,7 +14,7 @@ See the corresponding example for more details.
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_dsfhub"></a> [dsfhub](#requirement\_dsfhub) | >= 1.3.2 |
+| <a name="requirement_dsfhub"></a> [dsfhub](#requirement\_dsfhub) | >= 1.3.7 |
 
 ## Providers
 
@@ -49,10 +49,12 @@ See the corresponding example for more details.
 | <a name="input_diagnostic_setting_eventhub_authorization_rule_id"></a> [diagnostic\_setting\_eventhub\_authorization\_rule\_id](#input\_diagnostic\_setting\_eventhub\_authorization\_rule\_id) | Specifies the ID of an Event Hub Namespace Authorization Rule used to send Diagnostics Data. | `string` | `null` | no |
 | <a name="input_diagnostic_setting_eventhub_name"></a> [diagnostic\_setting\_eventhub\_name](#input\_diagnostic\_setting\_eventhub\_name) | Specifies the name of the Event Hub where Diagnostics Data should be sent. | `string` | `null` | no |
 | <a name="input_diagnostic_setting_name"></a> [diagnostic\_setting\_name](#input\_diagnostic\_setting\_name) | Specifies the name of the Diagnostic Setting. Changing this forces a new resource to be created. | `string` | `"dsfhubdiagnostic"` | no |
-| <a name="input_require_secure_transport"></a> [require\_secure\_transport](#input\_require\_secure\_transport) | If true, requires secure transport for connections to the MySQL Flexible Server. Defaults to true. | `bool` | `true` | no |
 | <a name="input_server_administrator_login"></a> [server\_administrator\_login](#input\_server\_administrator\_login) | The Administrator login for the MySQLs Flexible Server. | `string` | n/a | yes |
 | <a name="input_server_administrator_password"></a> [server\_administrator\_password](#input\_server\_administrator\_password) | The Password associated with the administrator\_login for the MySQL Flexible Server. | `string` | n/a | yes |
 | <a name="input_server_auto_grow_enabled"></a> [server\_auto\_grow\_enabled](#input\_server\_auto\_grow\_enabled) | Should Storage Auto Grow be enabled? Defaults to true | `bool` | `true` | no |
+| <a name="input_server_config_require_secure_transport"></a> [server\_config\_require\_secure\_transport](#input\_server\_config\_require\_secure\_transport) | If true, requires secure transport for connections to the MySQL Flexible Server. Defaults to true. | `bool` | `true` | no |
+| <a name="input_server_config_slow_query_log"></a> [server\_config\_slow\_query\_log](#input\_server\_config\_slow\_query\_log) | Enable or disable the slow query log. Defaults to false. | `bool` | `false` | no |
+| <a name="input_server_config_slow_query_time"></a> [server\_config\_slow\_query\_time](#input\_server\_config\_slow\_query\_time) | The time in seconds that a query must take to be considered slow. Defaults to 0 seconds. | `number` | `0` | no |
 | <a name="input_server_io_scaling_enabled"></a> [server\_io\_scaling\_enabled](#input\_server\_io\_scaling\_enabled) | Should IO Scaling be enabled? If true, iops can not be set. Defaults to false | `bool` | `false` | no |
 | <a name="input_server_iops"></a> [server\_iops](#input\_server\_iops) | The storage IOPS for the MySQL Flexible Server. Possible values are between 360 and 20000. Defaults to 360. If IO Scaling is enabled, this value must not be set. | `number` | `360` | no |
 | <a name="input_server_location"></a> [server\_location](#input\_server\_location) | The Azure Region where the MySQL Flexible Server should exist. Changing this forces a new MySQL Flexible Server to be created. | `string` | n/a | yes |
@@ -64,8 +66,6 @@ See the corresponding example for more details.
 | <a name="input_server_size_gb"></a> [server\_size\_gb](#input\_server\_size\_gb) | The size of the storage in GB for the MySQL Flexible Server. Possible values are between 20 and 16384. Defaults to 20. | `number` | `20` | no |
 | <a name="input_server_sku_name"></a> [server\_sku\_name](#input\_server\_sku\_name) | The SKU Name for the MySQL Flexible Server. The name of the SKU, follows the tier + name pattern (e.g. B\_Standard\_B1ms, GP\_Standard\_D2s\_v3, MO\_Standard\_E4s\_v3). Defaults to GP\_Standard\_D2ds\_v4 | `string` | `"GP_Standard_D2ds_v4"` | no |
 | <a name="input_server_tags"></a> [server\_tags](#input\_server\_tags) | A mapping of tags to assign to the resource. | `map(string)` | `{}` | no |
-| <a name="input_slow_query_log"></a> [slow\_query\_log](#input\_slow\_query\_log) | Enable or disable the slow query log. Defaults to false. | `bool` | `false` | no |
-| <a name="input_slow_query_time"></a> [slow\_query\_time](#input\_slow\_query\_time) | The time in seconds that a query must take to be considered slow. Defaults to 0 seconds. | `number` | `0` | no |
 
 ## Outputs
 
