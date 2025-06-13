@@ -3,16 +3,18 @@ locals {
   gateway_id            = "a1b2c3d4-e5f6-g8h9-wxyz-123456790"
   pubsub_auth_mechanism = "service_account"
 
-  gcp_alloydb_instance_name_dsf_419 = "tf-alloydb-dsf-419"
-  gcp_alloydb_instance_name_dsf_150 = "tf-alloydb-dsf-150"
-  gcp_authorized_cidr_range         = "${chomp(data.http.my-ip.response_body)}/32"
-  gcp_network                       = "default"
-  gcp_project_id                    = "my-gcp-project"
-  gcp_service_account_name          = "dsf-service-account"
+  gcp_alloydb_instance_name_dsf_419    = "tf-alloydb-dsf-419"
+  gcp_alloydb_instance_name_dsf_150    = "tf-alloydb-dsf-150"
+  gcp_alloydb_instance_name_slow_query = "tf-alloydb-slow-query"
+  gcp_authorized_cidr_range            = "${chomp(data.http.my-ip.response_body)}/32"
+  gcp_network                          = "default"
+  gcp_project_id                       = "my-gcp-project"
+  gcp_service_account_name             = "dsf-service-account"
 
-  cluster_id_dsf_419 = "my-alloydb-postgresql-cluster-dsf-419"
-  cluster_id_dsf_150 = "my-alloydb-postgresql-cluster-dsf-150"
-  cluster_location   = "us-west1"
+  cluster_id_dsf_419    = "my-alloydb-postgresql-cluster-dsf-419"
+  cluster_id_dsf_150    = "my-alloydb-postgresql-cluster-dsf-150"
+  cluster_id_slow_query = "my-alloydb-postgresql-cluster-slow-query"
+  cluster_location      = "us-west1"
 
   alloydb_admin          = "postgres"
   alloydb_admin_password = "@S3cureP@ssw0rd"
@@ -37,6 +39,17 @@ locals {
       "password.enforce_complexity" = "on" # Required for connecting to the database with the initial user and running the pgaudit configuration script
       "log_line_prefix"             = "SONAR_AUDIT=1|TIMESTAMP=%m|APPLICATION_NAME=%a|USER=%u|DATABASE=%d|REMOTE_HOST_AND_PORT=%r|SQL_STATE=%e|SESSION_ID=%c|SESSION_START=%s|PROCESS_ID=[%p]|VIRTUAL_TRANSACTION_ID=%v|TRANSACTION_ID=%x| "
     }
+    "slow_query" = {
+      "alloydb.enable_pgaudit"      = "on"
+      "log_error_verbosity"         = "verbose"
+      "log_connections"             = "on"
+      "log_disconnections"          = "on"
+      "log_hostname"                = "on"
+      "pgaudit.log"                 = "all"
+      "password.enforce_complexity" = "on" # Required for connecting to the database with the initial user and running the pgaudit configuration script
+      "log_line_prefix"             = "SONAR_AUDIT=1|TIMESTAMP=%m|APPLICATION_NAME=%a|USER=%u|DATABASE=%d|REMOTE_HOST_AND_PORT=%r|SQL_STATE=%e|SESSION_ID=%c|SESSION_START=%s|PROCESS_ID=[%p]|VIRTUAL_TRANSACTION_ID=%v|TRANSACTION_ID=%x| "
+      "log_min_duration_statement"  = "1000" # 1 second
+    }
   }
 }
 
@@ -57,7 +70,13 @@ provider "google" {
   project = local.gcp_project_id
 }
 
-provider "dsfhub" {}
+variable "dsfhub_host" {}  # TF_VAR_dsfhub_host env variable
+variable "dsfhub_token" {} # TF_VAR_dsfhub_token env variable
+
+provider "dsfhub" {
+  dsfhub_host  = var.dsfhub_host
+  dsfhub_token = var.dsfhub_token
+}
 
 data "http" "my-ip" {
   url = "http://icanhazip.com"
@@ -108,7 +127,7 @@ module "gcp-pubsub-1" {
     resource.labels.cluster_id="${local.cluster_id_dsf_419}" AND
     logName=(
       "projects/${local.gcp_project_id}/logs/cloudaudit.googleapis.com%2Fdata_access" OR
-      "projects/${local.gcp_project_id}/logs/cloudsql.googleapis.com%2Fpostgres.log"
+      "projects/${local.gcp_project_id}/logs/alloydb.googleapis.com%2Fpostgres.log"
     )
   EOF
   sink_router_name        = "${local.gcp_alloydb_instance_name_dsf_419}-sink"
@@ -188,7 +207,7 @@ module "gcp-pubsub-2" {
     resource.labels.cluster_id="${local.cluster_id_dsf_150}" AND
     logName=(
       "projects/${local.gcp_project_id}/logs/cloudaudit.googleapis.com%2Fdata_access" OR
-      "projects/${local.gcp_project_id}/logs/cloudsql.googleapis.com%2Fpostgres.log"
+      "projects/${local.gcp_project_id}/logs/alloydb.googleapis.com%2Fpostgres.log"
     )
   EOF
   sink_router_name        = "${local.gcp_alloydb_instance_name_dsf_150}-sink"
@@ -233,6 +252,91 @@ resource "terraform_data" "configure_database_2" {
 
     environment = {
       PGHOST     = module.gcp-alloydb-postgresql-2.gcp-alloydb-primary-instance.public_ip_address
+      PGUSER     = local.alloydb_admin
+      PGPASSWORD = local.alloydb_admin_password
+      PGPORT     = "5432"
+      PGDATABASE = "postgres"
+    }
+
+    command = "./configure_database.sh"
+
+    on_failure = fail
+  }
+}
+
+################################################################################
+# GCP AlloyDB for PostgreSQL (15) with Slow Query Monitoring
+#   Note that slow query monitoring is only supported for DSF version 15.0 and
+#   later, and requires the log_line_prefix flag.
+#   Modify the log_min_duration_statement flag to set the desired threshold for 
+#   slow queries.
+################################################################################
+module "gcp-pubsub-3" {
+  source = "../../modules/onboard-gcp-pubsub"
+
+  gcp_pubsub_admin_email    = local.admin_email
+  gcp_pubsub_audit_type     = "ALLOYDB_POSTGRESQL"
+  gcp_pubsub_auth_mechanism = local.pubsub_auth_mechanism
+  gcp_pubsub_gateway_id     = local.gateway_id
+  gcp_pubsub_key_file       = "/path/to/JSONAR_LOCALDIR/credentials/service-account-private-key.json"
+
+  project = local.gcp_project_id
+
+  pubsub_subscription_name = "${local.gcp_alloydb_instance_name_slow_query}-sub"
+
+  pubsub_topic_name = "${local.gcp_alloydb_instance_name_slow_query}-topic"
+
+  sink_router_description = "AlloyDB for PostgreSQL sink with slow query"
+  sink_router_exclusions  = null
+  sink_router_filter      = <<EOF
+    resource.labels.cluster_id="${local.cluster_id_slow_query}" AND
+    logName=(
+      "projects/${local.gcp_project_id}/logs/cloudaudit.googleapis.com%2Fdata_access" OR
+      "projects/${local.gcp_project_id}/logs/alloydb.googleapis.com%2Fpostgres.log"
+    )
+  EOF
+  sink_router_name        = "${local.gcp_alloydb_instance_name_slow_query}-sink"
+}
+
+module "gcp-alloydb-postgresql-3" {
+  source = "../../modules/onboard-gcp-alloydb-postgresql"
+
+  gcp_alloydb_postgresql_cluster_admin_email               = local.admin_email
+  gcp_alloydb_postgresql_cluster_audit_pull_enabled        = true
+  gcp_alloydb_postgresql_cluster_gateway_id                = local.gateway_id
+  gcp_alloydb_postgresql_cluster_logs_destination_asset_id = module.gcp-pubsub-3.gcp-pubsub-asset.asset_id
+
+  gcp_alloydb_postgresql_admin_email = local.admin_email
+  gcp_alloydb_postgresql_gateway_id  = local.gateway_id
+
+  cluster_database_version  = "POSTGRES_15"
+  cluster_location          = local.cluster_location
+  cluster_project           = local.gcp_project_id
+  cluster_subscription_type = "STANDARD"
+  cluster_id                = local.cluster_id_slow_query
+  cluster_network           = "projects/${local.gcp_project_id}/global/networks/${local.gcp_network}"
+  cluster_password          = local.alloydb_admin_password
+  cluster_user              = local.alloydb_admin
+
+  primary_instance_id                        = "${local.gcp_alloydb_instance_name_slow_query}-primary"
+  primary_instance_cidr_range                = local.gcp_authorized_cidr_range
+  primary_instance_database_flags            = local.required_database_flags["slow_query"]
+  primary_instance_enable_outbound_public_ip = false
+
+  read_pool_instance_database_flags   = local.required_database_flags["slow_query"]
+  read_pool_instance_count            = 2
+  read_pool_instance_id               = "${local.gcp_alloydb_instance_name_slow_query}-read-pool"
+  read_pool_instance_node_count       = 1
+  read_pool_instance_enable_public_ip = false
+}
+
+resource "terraform_data" "configure_database_3" {
+  depends_on = [module.gcp-alloydb-postgresql-3]
+
+  provisioner "local-exec" {
+
+    environment = {
+      PGHOST     = module.gcp-alloydb-postgresql-3.gcp-alloydb-primary-instance.public_ip_address
       PGUSER     = local.alloydb_admin
       PGPASSWORD = local.alloydb_admin_password
       PGPORT     = "5432"

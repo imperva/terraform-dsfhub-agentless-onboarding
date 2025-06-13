@@ -19,9 +19,9 @@ module "storage-account" {
 module "storage-container" {
   source = "../azurerm-storage-container"
 
-  name = var.storage_container_name
-  # storage_account_name = module.storage-account.this.name
-  storage_account_id = module.storage-account.this.id
+  container_access_type = "private"
+  name                  = var.storage_container_name
+  storage_account_id    = module.storage-account.this.id
 }
 
 module "eventhub-namespace" {

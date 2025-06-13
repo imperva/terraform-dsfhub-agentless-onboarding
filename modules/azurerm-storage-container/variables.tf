@@ -13,8 +13,3 @@ variable "storage_account_id" {
   description = "The name of the Storage Account where the Container should be created. Changing this forces a new resource to be created."
   type        = string
 }
-
-# variable "storage_account_name" {
-#   description = "The name of the Storage Account where the Container should be created. Changing this forces a new resource to be created."
-#   type        = string
-# }
