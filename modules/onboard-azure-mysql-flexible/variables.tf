@@ -139,7 +139,7 @@ variable "server_iops" {
   type        = number
   default     = null
   validation {
-    condition     = (var.server_iops >= 360 && var.server_iops <= 20000) || var.server_iops == null
+    condition     = var.server_iops != null ? (var.server_iops >= 360 && var.server_iops <= 20000) : true
     error_message = "Invalid IOPS value. If IO Scaling is enabled, IOPS cannot be set. Otherwise, it must be between 360 and 20000."
   }
 }
