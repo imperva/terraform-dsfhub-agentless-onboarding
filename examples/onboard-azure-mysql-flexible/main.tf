@@ -108,7 +108,7 @@ module "azure-mysql-flexible-2" {
   server_resource_group_name    = local.azure_resource_group_name
 
   server_config_slow_query_log  = true
-  server_config_slow_query_time = 0
+  server_config_slow_query_time = 0 # time threshold in seconds for slow query logging
 }
 
 

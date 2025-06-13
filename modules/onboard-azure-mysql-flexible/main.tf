@@ -20,11 +20,11 @@ module "azure-mysql-flexible-server" {
   sku_name               = var.server_sku_name
   tags                   = var.server_tags
 
-  azure_mysql_flexible_auto_grow_enabled   = var.server_auto_grow_enabled
-  azure_mysql_flexible_io_scaling_enabled  = var.server_io_scaling_enabled
-  azure_mysql_flexible_iops                = var.server_iops
-  azure_mysql_flexible_log_on_disk_enabled = var.server_log_on_disk_enabled
-  azure_mysql_flexible_size_gb             = var.server_size_gb
+  storage_auto_grow_enabled   = var.server_auto_grow_enabled
+  storage_io_scaling_enabled  = var.server_io_scaling_enabled
+  storage_iops                = var.server_iops
+  storage_log_on_disk_enabled = var.server_log_on_disk_enabled
+  storage_size_gb             = var.server_size_gb
 }
 
 locals {

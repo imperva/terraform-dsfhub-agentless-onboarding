@@ -54,38 +54,38 @@ variable "tags" {
   default     = {}
 }
 
-variable "azure_mysql_flexible_auto_grow_enabled" {
+variable "storage_auto_grow_enabled" {
   description = "Specifies whether auto grow is enabled for the MySQL Flexible Server. Defaults to true."
   type        = bool
   default     = true
 }
 
-variable "azure_mysql_flexible_io_scaling_enabled" {
+variable "storage_io_scaling_enabled" {
   description = "Specifies whether IO scaling is enabled for the MySQL Flexible Server. Defaults to true."
   type        = bool
   default     = true
 }
 
-variable "azure_mysql_flexible_iops" {
+variable "storage_iops" {
   description = "The number of IOPS for the MySQL Flexible Server. Possible Values are between 360 to 20000."
   type        = number
   validation {
-    condition     = var.azure_mysql_flexible_iops == null || (var.azure_mysql_flexible_iops >= 360 && var.azure_mysql_flexible_iops <= 20000)
+    condition     = var.storage_iops == null || (var.storage_iops >= 360 && var.storage_iops <= 20000)
     error_message = "Invalid value for azure_mysql_flexible_iops. Possible values are between 360 to 20000."
   }
 }
 
-variable "azure_mysql_flexible_log_on_disk_enabled" {
+variable "storage_log_on_disk_enabled" {
   description = "Specifies whether storage log on disk is enabled for the MySQL Flexible Server. Defaults to false."
   type        = bool
   default     = false
 }
 
-variable "azure_mysql_flexible_size_gb" {
+variable "storage_size_gb" {
   description = "The max storage allowed for the MySQL Flexible Server. Possible values are between 20 and 16384."
   type        = number
   validation {
-    condition     = var.azure_mysql_flexible_size_gb == null || (var.azure_mysql_flexible_size_gb >= 20 && var.azure_mysql_flexible_size_gb <= 16384)
+    condition     = var.storage_size_gb == null || (var.storage_size_gb >= 20 && var.storage_size_gb <= 16384)
     error_message = "Invalid value for azure_mysql_flexible_size_gb. Possible values are between 20 and 16384."
   }
 }
