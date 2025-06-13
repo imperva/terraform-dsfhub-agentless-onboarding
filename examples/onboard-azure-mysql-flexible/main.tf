@@ -8,6 +8,10 @@ locals {
 
   admin_email = "test@example.com"
   gateway_id  = "a1b2c3d4-e5f6-g8h9-wxyz-123456790"
+
+  firewall_rules = [
+    { name = "example-name", start_ip = "123.456.789.012", end_ip = "123.456.789.012" }
+  ]
 }
 
 ################################################################################
@@ -82,6 +86,7 @@ module "azure-mysql-flexible-1" {
   server_mysql_version          = "8.0.21"
   server_public_network_access  = "Enabled"
   server_resource_group_name    = local.azure_resource_group_name
+  server_firewall_rules         = local.firewall_rules
 }
 
 ################################################################################
@@ -106,6 +111,7 @@ module "azure-mysql-flexible-2" {
   server_mysql_version          = "8.0.21"
   server_public_network_access  = "Enabled"
   server_resource_group_name    = local.azure_resource_group_name
+  server_firewall_rules         = local.firewall_rules
 
   server_config_slow_query_log  = true
   server_config_slow_query_time = 0 # time threshold in seconds for slow query logging

@@ -122,6 +122,16 @@ variable "server_tags" {
   default     = {}
 }
 
+variable "server_firewall_rules" {
+  description = "A list of firewall rules to apply to the MySQL Flexible Server. Each rule should have a name, start_ip, and end_ip."
+  type = list(object({
+    name     = string
+    start_ip = string
+    end_ip   = string
+  }))
+  default = []
+}
+
 variable "server_auto_grow_enabled" {
   description = "Should Storage Auto Grow be enabled? Defaults to true"
   type        = bool

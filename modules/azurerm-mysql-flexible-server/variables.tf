@@ -70,7 +70,7 @@ variable "storage_iops" {
   description = "The number of IOPS for the MySQL Flexible Server. Possible Values are between 360 to 20000."
   type        = number
   validation {
-    condition     = var.storage_iops == null || (var.storage_iops >= 360 && var.storage_iops <= 20000)
+    condition     = var.storage_iops != null ? (var.storage_iops >= 360 && var.storage_iops <= 20000) : true
     error_message = "Invalid value for azure_mysql_flexible_iops. Possible values are between 360 to 20000."
   }
 }
