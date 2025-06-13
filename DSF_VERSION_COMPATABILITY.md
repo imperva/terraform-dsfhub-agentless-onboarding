@@ -142,6 +142,12 @@ The following table lists the DSF versions against which each module is tested a
       <td>Supports many-to-one monitoring</td>
    </tr>
    <tr>
+      <td>Azure Database for MySQL Flexible Server</td>
+      <td><a href="https://github.com/imperva/terraform-dsfhub-agentless-onboarding/tree/main/modules/onboard-azure-mysql-flexible">onboard-azure-mysql-flexible</a></td>
+      <td>15.0+</td>
+      <td>Supports slow query monitoring</td>
+   </tr>
+   <tr>
       <td>Azure Database for PostgreSQL Flexible Server</td>
       <td><a href="https://github.com/imperva/terraform-dsfhub-agentless-onboarding/tree/main/modules/onboard-azure-postgresql-flexible">onboard-azure-postgresql-flexible</a></td>
       <td>4.17+</td>

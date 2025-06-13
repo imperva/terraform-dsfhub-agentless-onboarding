@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.2.0] - TBD
 
 ### Added
+- Azure Database for MySQL Flexible Server module with Slow Query example
 - Google Cloud AlloyDB for PostgreSQL slow query monitoring example
 
 ### Fixed
