@@ -35,6 +35,7 @@ See the corresponding example for more details.
 | Name | Type |
 |------|------|
 | [azurerm_mysql_flexible_server_configuration.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/mysql_flexible_server_configuration) | resource |
+| [azurerm_mysql_flexible_server_firewall_rule.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/mysql_flexible_server_firewall_rule) | resource |
 
 ## Inputs
 
@@ -55,6 +56,7 @@ See the corresponding example for more details.
 | <a name="input_server_config_require_secure_transport"></a> [server\_config\_require\_secure\_transport](#input\_server\_config\_require\_secure\_transport) | If true, requires secure transport for connections to the MySQL Flexible Server. Defaults to true. | `bool` | `true` | no |
 | <a name="input_server_config_slow_query_log"></a> [server\_config\_slow\_query\_log](#input\_server\_config\_slow\_query\_log) | Enable or disable the slow query log. Defaults to false. | `bool` | `false` | no |
 | <a name="input_server_config_slow_query_time"></a> [server\_config\_slow\_query\_time](#input\_server\_config\_slow\_query\_time) | The time in seconds that a query must take to be considered slow. Defaults to 0 seconds. | `number` | `0` | no |
+| <a name="input_server_firewall_rules"></a> [server\_firewall\_rules](#input\_server\_firewall\_rules) | A list of firewall rules to apply to the MySQL Flexible Server. Each rule should have a name, start\_ip, and end\_ip. | <pre>list(object({<br>    name     = string<br>    start_ip = string<br>    end_ip   = string<br>  }))</pre> | `[]` | no |
 | <a name="input_server_io_scaling_enabled"></a> [server\_io\_scaling\_enabled](#input\_server\_io\_scaling\_enabled) | Should IO Scaling be enabled? If true, iops can not be set. Defaults to false | `bool` | `false` | no |
 | <a name="input_server_iops"></a> [server\_iops](#input\_server\_iops) | The storage IOPS for the MySQL Flexible Server. Possible values are between 360 and 20000. Defaults to null. If IO Scaling is enabled, the value will automatically be null. | `number` | `null` | no |
 | <a name="input_server_location"></a> [server\_location](#input\_server\_location) | The Azure Region where the MySQL Flexible Server should exist. Changing this forces a new MySQL Flexible Server to be created. | `string` | n/a | yes |
