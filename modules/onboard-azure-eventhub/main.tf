@@ -41,11 +41,9 @@ module "eventhub" {
 
   message_retention = var.eventhub_message_retention
   name              = var.eventhub_name
-  # namespace_name      = module.eventhub-namespace.this.name
-  namespace_id    = module.eventhub-namespace.this.id
-  partition_count = var.eventhub_partition_count
-  # resource_group_name = var.eventhub_resource_group_name
-  status = var.eventhub_status
+  namespace_id      = module.eventhub-namespace.this.id
+  partition_count   = var.eventhub_partition_count
+  status            = var.eventhub_status
 }
 
 locals {

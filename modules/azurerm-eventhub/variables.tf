@@ -9,11 +9,6 @@ variable "name" {
   type        = string
 }
 
-# variable "namespace_name" {
-#   description = "Specifies the name of the Event Hub Namespace. Changing this forces a new resource to be created."
-#   type        = string
-# }
-
 variable "namespace_id" {
   description = "Specifies the name of the EventHub resource. Changing this forces a new resource to be created."
   type        = string
@@ -24,11 +19,6 @@ variable "partition_count" {
   type        = number
   default     = 1
 }
-
-# variable "resource_group_name" {
-#   description = "The name of the resource group in which the Event Hub's parent Namespace exists. Changing this forces a new resource to be created."
-#   type        = string
-# }
 
 variable "status" {
   description = "Specifies the status of the Event Hub resource. Possible values are Active, Disabled and SendDisabled. Defaults to Active."

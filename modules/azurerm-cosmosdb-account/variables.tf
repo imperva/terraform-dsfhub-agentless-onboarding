@@ -54,7 +54,6 @@ variable "ip_range_filter" {
         for ip in var.ip_range_filter :
         can(regex("^(\\d{1,3}\\.){3}\\d{1,3}(/\\d{1,2})?$", ip))
     ]))
-    # condition     = can(regexall("^(\\d{1,3}\\.){3}\\d{1,3}(/\\d{1,2})?$", var.ip_range_filter)) || var.ip_range_filter == null
     error_message = "Invalid IP range filter format. Use CIDR notation or a single IP address."
   }
 }
