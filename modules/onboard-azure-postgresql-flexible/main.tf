@@ -26,10 +26,10 @@ module "azure-postgresql-flexible-server" {
 resource "azurerm_postgresql_flexible_server_firewall_rule" "this" {
   for_each = var.server_firewall_rules != null && length(var.server_firewall_rules) > 0 ? { for rule in var.server_firewall_rules : rule.name => rule } : {}
 
-  name                = each.value.name
-  server_id         = module.azure-postgresql-flexible-server.this.id
-  start_ip_address    = each.value.start_ip
-  end_ip_address      = each.value.end_ip
+  name             = each.value.name
+  server_id        = module.azure-postgresql-flexible-server.this.id
+  start_ip_address = each.value.start_ip
+  end_ip_address   = each.value.end_ip
 }
 
 resource "azurerm_postgresql_flexible_server_configuration" "this" {

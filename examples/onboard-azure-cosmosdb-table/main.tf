@@ -29,8 +29,8 @@ provider "azurerm" {
   subscription_id = local.azure_subscription_id
 }
 
-variable "dsfhub_host" {}    # TF_VAR_dsfhub_host env variable
-variable "dsfhub_token" {}   # TF_VAR_dsfhub_token env variable
+variable "dsfhub_host" {}  # TF_VAR_dsfhub_host env variable
+variable "dsfhub_token" {} # TF_VAR_dsfhub_token env variable
 
 provider "dsfhub" {
   dsfhub_host  = var.dsfhub_host

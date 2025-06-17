@@ -53,7 +53,7 @@ module "diagnostic-setting" {
   source = "../azurerm-monitor-diagnostic-setting"
 
   depends_on = [resource.time_sleep.wait]
-  
+
   enabled_log = [
     { category = "DataPlaneRequests" },
     { category = "ControlPlaneRequests" },
