@@ -10,7 +10,7 @@ variable "name" {
 }
 
 variable "namespace_id" {
-  description = "Specifies the name of the EventHub resource. Changing this forces a new resource to be created."
+  description = "Specifies the ID of the EventHub Namespace. Changing this forces a new resource to be created."
   type        = string
 }
 

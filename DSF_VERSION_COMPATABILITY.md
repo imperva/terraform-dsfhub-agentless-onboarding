@@ -136,6 +136,12 @@ The following table lists the DSF versions against which each module is tested a
       <td>Supports many-to-one monitoring</td>
    </tr>
    <tr>
+      <td>Azure Cosmos DB for Table</td>
+      <td><a href="https://github.com/imperva/terraform-dsfhub-agentless-onboarding/tree/main/modules/onboard-azure-cosmosdb-table">onboard-azure-cosmosdb-table</a></td>
+      <td>4.17+</td>
+      <td>Supports many-to-one monitoring</td>
+   </tr>
+   <tr>
       <td>Azure MS SQL Server</td>
       <td><a href="https://github.com/imperva/terraform-dsfhub-agentless-onboarding/tree/main/modules/onboard-azure-ms-sql-server">onboard-azure-ms-sql-server</a></td>
       <td>4.17+</td>

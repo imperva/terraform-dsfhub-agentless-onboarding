@@ -9,11 +9,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - Azure Database for MySQL Flexible Server module with Slow Query example
+- Azure Cosmos DB for Table API module with many-to-one example
 - Google Cloud AlloyDB for PostgreSQL slow query monitoring example
+- Added optional firewall rule resources for several Azure modules
 
 ### Fixed
 - Fixed typo in Google Cloud AlloyDB for PostgreSQL Log Router sink inclusion filters
 - Removed use of deprecated arguments in helper modules used by onboard-azure-eventhub module
+- Added time_sleep between destruction of Azure Cosmos DB account resource and Diagnostic Setting resource
 
 ## [1.1.0] - 2025-05-09
 
