@@ -40,9 +40,20 @@ module "enable-full-text-query" {
   type        = "Microsoft.DocumentDB/databaseAccounts@2021-05-01-preview"
 }
 
+# Allow time for the diagnostic setting to be destroyed before destroying the Cosmos DB account
+# to prevent destruction issue with exclusive lock on the service
+# If experiencing status 412 "PreconditionFailed", increase the destroy_duration
+resource "time_sleep" "wait" {
+  depends_on = [module.cosmos-mongo-account]
+
+  destroy_duration = "90s"
+}
+
 module "diagnostic-setting" {
   source = "../azurerm-monitor-diagnostic-setting"
 
+  depends_on = [resource.time_sleep.wait]
+  
   enabled_log = [
     { category = "DataPlaneRequests" },
     { category = "ControlPlaneRequests" },

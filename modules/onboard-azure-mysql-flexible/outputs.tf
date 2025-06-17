@@ -3,6 +3,11 @@ output "mysql-server" {
   value       = module.azure-mysql-flexible-server.this
 }
 
+output "azure-mysql-flexible-firewall-rules" {
+  description = "Azure MySQL Flexible Server Firewall Rules."
+  value       = values(azurerm_mysql_flexible_server_firewall_rule.this).*
+}
+
 output "mysql-server-configurations" {
   description = "Azure MySQL Flexible server configurations."
   value       = values(azurerm_mysql_flexible_server_configuration.this).*

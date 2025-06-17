@@ -8,6 +8,11 @@ output "sql-server-extended-server-audit-policy" {
   value       = module.sql-server-extended-server-audit-policy.this
 }
 
+output "azure-ms-sql-server-firewall-rules" {
+  description = "SQL Server Firewall Rules."
+  value       = values(azurerm_mssql_firewall_rule.this).*
+}
+
 output "sql-server-diagnostic-setting" {
   description = "Diagnostic Setting."
   value       = module.sql-server-diagnostic-setting.this

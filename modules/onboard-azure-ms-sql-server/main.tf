@@ -51,6 +51,15 @@ module "sql-server-diagnostic-setting" {
   target_resource_id             = data.azurerm_mssql_database.master.id
 }
 
+resource "azurerm_mssql_firewall_rule" "this" {
+  for_each = var.firewall_rules != null && length(var.firewall_rules) > 0 ? { for rule in var.firewall_rules : rule.name => rule } : {}
+
+  name             = each.value.name
+  server_id        = module.sql-server-instance.this.id
+  start_ip_address = each.value.start_ip
+  end_ip_address   = each.value.end_ip
+}
+
 module "azure-ms-sql-server-asset" {
   depends_on = [module.sql-server-diagnostic-setting]
   source     = "../dsfhub-azure-ms-sql-server"

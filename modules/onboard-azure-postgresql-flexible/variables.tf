@@ -187,3 +187,13 @@ variable "server_tags" {
   type        = map(string)
   default     = null
 }
+
+variable "server_firewall_rules" {
+  description = "A list of firewall rules to apply to the PostgreSQL Flexible Server. Each rule should have a name, start_ip, and end_ip."
+  type = list(object({
+    name     = string
+    start_ip = string
+    end_ip   = string
+  }))
+  default = []
+}

@@ -5,6 +5,10 @@ locals {
 
   admin_email = "test@example.com"
   gateway_id  = "a1b2c3d4-e5f6-g8h9-wxyz-123456790"
+
+  firewall_rules = [
+    { name = "example-name", start_ip = "123.456.789.012", end_ip = "123.456.789.012" }
+  ]
 }
 
 ################################################################################
@@ -75,6 +79,8 @@ module "azure-ms-sql-server-1" {
   diagnostic_setting_eventhub_name                  = module.onboard-azure-sql-server-eventhub-1.eventhub.name
   diagnostic_setting_name                           = "dsfhubdiagnostic"
 
+  firewall_rules = local.firewall_rules
+
   server_administrator_login           = "exampleadmin"
   server_administrator_login_password  = "Abcd1234"
   server_location                      = local.azure_location
@@ -110,6 +116,8 @@ module "azure-ms-sql-server-2" {
   diagnostic_setting_eventhub_authorization_rule_id = module.onboard-azure-sql-server-eventhub-1.eventhub-write-authorization.id
   diagnostic_setting_eventhub_name                  = module.onboard-azure-sql-server-eventhub-1.eventhub.name
   diagnostic_setting_name                           = "dsfhubdiagnostic"
+
+  firewall_rules = local.firewall_rules
 
   server_administrator_login           = "exampleadmin"
   server_administrator_login_password  = "Abcd1234"
