@@ -36,7 +36,7 @@ module "cosmosdb-table" {
 # to prevent destruction issue with exclusive lock on the service
 # If experiencing status 412 "PreconditionFailed", increase the destroy_duration
 resource "time_sleep" "wait" {
-  depends_on = [module.cosmos-mongo-account]
+  depends_on = [module.cosmos-table-account]
 
   destroy_duration = "90s"
 }
