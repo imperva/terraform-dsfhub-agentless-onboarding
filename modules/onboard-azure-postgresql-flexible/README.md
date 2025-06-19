@@ -37,6 +37,7 @@ See the corresponding example for more details.
 | Name | Type |
 |------|------|
 | [azurerm_postgresql_flexible_server_configuration.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_flexible_server_configuration) | resource |
+| [azurerm_postgresql_flexible_server_firewall_rule.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_flexible_server_firewall_rule) | resource |
 
 ## Inputs
 
@@ -54,6 +55,7 @@ See the corresponding example for more details.
 | <a name="input_server_administrator_login"></a> [server\_administrator\_login](#input\_server\_administrator\_login) | The Administrator login for the PostgreSQL Flexible Server. | `string` | n/a | yes |
 | <a name="input_server_administrator_password"></a> [server\_administrator\_password](#input\_server\_administrator\_password) | The Password associated with the administrator\_login for the PostgreSQL Flexible Server. | `string` | n/a | yes |
 | <a name="input_server_configurations"></a> [server\_configurations](#input\_server\_configurations) | List of objects containing the name and value of server configurations, e.g. [ { name = "pgaudit.log", value = "all" } ] | <pre>list(<br>    object(<br>      {<br>        name  = string<br>        value = string<br>      }<br>    )<br>  )</pre> | <pre>[<br>  {<br>    "name": "pgaudit.log",<br>    "value": "all"<br>  },<br>  {<br>    "name": "log_line_prefix",<br>    "value": "SONAR_AUDIT=1|TIMESTAMP=%m|APPLICATION_NAME=%a|USER=%u|DATABASE=%d|REMOTE_HOST_AND_PORT=%r|SQL_STATE=%e|SESSION_ID=%c|SESSION_START=%s|PROCESS_ID[%p]|VIRTUAL_TRANSACTION_ID=%v|TRANSACTION_ID=%x|"<br>  },<br>  {<br>    "name": "azure.extensions",<br>    "value": "pgaudit"<br>  },<br>  {<br>    "name": "shared_preload_libraries",<br>    "value": "pgaudit"<br>  }<br>]</pre> | no |
+| <a name="input_server_firewall_rules"></a> [server\_firewall\_rules](#input\_server\_firewall\_rules) | A list of firewall rules to apply to the PostgreSQL Flexible Server. Each rule should have a name, start\_ip, and end\_ip. | <pre>list(object({<br>    name     = string<br>    start_ip = string<br>    end_ip   = string<br>  }))</pre> | `[]` | no |
 | <a name="input_server_location"></a> [server\_location](#input\_server\_location) | The Azure Region where the PostgreSQL Flexible Server should exist. Changing this forces a new PostgreSQL Flexible Server to be created. | `string` | n/a | yes |
 | <a name="input_server_name"></a> [server\_name](#input\_server\_name) | The name which should be used for this PostgreSQL Flexible Server. Changing this forces a new PostgreSQL Flexible Server to be created. | `string` | n/a | yes |
 | <a name="input_server_postgres_version"></a> [server\_postgres\_version](#input\_server\_postgres\_version) | The version of PostgreSQL Flexible Server to use. Possible values are 11,12, 13, 14, 15 and 16. Defaults to 16. | `number` | `16` | no |
@@ -69,6 +71,7 @@ See the corresponding example for more details.
 | Name | Description |
 |------|-------------|
 | <a name="output_azure-postgresql-flexible-asset"></a> [azure-postgresql-flexible-asset](#output\_azure-postgresql-flexible-asset) | AZURE POSTGRESQL FLEXIBLE asset. |
+| <a name="output_azure-postgresql-flexible-firewall-rules"></a> [azure-postgresql-flexible-firewall-rules](#output\_azure-postgresql-flexible-firewall-rules) | Azure PostgreSQL Flexible Server Firewall Rules. |
 | <a name="output_postgresql-diagnostic-setting"></a> [postgresql-diagnostic-setting](#output\_postgresql-diagnostic-setting) | Diagnostic setting. |
 | <a name="output_postgresql-server"></a> [postgresql-server](#output\_postgresql-server) | Azure PostgreSQL Flexible server. |
 | <a name="output_postgresql-server-configurations"></a> [postgresql-server-configurations](#output\_postgresql-server-configurations) | Azure PostgreSQL Flexible server configurations. |
