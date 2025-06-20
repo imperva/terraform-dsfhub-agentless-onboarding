@@ -19,8 +19,9 @@ module "storage-account" {
 module "storage-container" {
   source = "../azurerm-storage-container"
 
-  name                 = var.storage_container_name
-  storage_account_name = module.storage-account.this.name
+  container_access_type = "private"
+  name                  = var.storage_container_name
+  storage_account_id    = module.storage-account.this.id
 }
 
 module "eventhub-namespace" {
@@ -38,12 +39,11 @@ module "eventhub-namespace" {
 module "eventhub" {
   source = "../azurerm-eventhub"
 
-  message_retention   = var.eventhub_message_retention
-  name                = var.eventhub_name
-  namespace_name      = module.eventhub-namespace.this.name
-  partition_count     = var.eventhub_partition_count
-  resource_group_name = var.eventhub_resource_group_name
-  status              = var.eventhub_status
+  message_retention = var.eventhub_message_retention
+  name              = var.eventhub_name
+  namespace_id      = module.eventhub-namespace.this.id
+  partition_count   = var.eventhub_partition_count
+  status            = var.eventhub_status
 }
 
 locals {

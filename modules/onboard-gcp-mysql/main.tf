@@ -23,6 +23,6 @@ module "gcp-mysql-asset" {
   gateway_id                = var.gcp_mysql_gateway_id
   logs_destination_asset_id = var.gcp_mysql_logs_destination_asset_id
   parent_asset_id           = var.gcp_mysql_parent_asset_id
-  server_host_name          = module.gcp-mysql-instance.this.ip_address.0.ip_address
+  server_host_name          = "4.3.2.1.bc.googleusercontent.com"
   server_ip                 = module.gcp-mysql-instance.this.ip_address.0.ip_address
 }

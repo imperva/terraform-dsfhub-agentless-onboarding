@@ -3,6 +3,15 @@ locals {
 
   admin_email = "test@example.com"
   gateway_id  = "a1b2c3d4-e5f6-g8h9-wxyz-123456790"
+
+  admin_user        = "admin"
+  admin_password    = "abcd1234"
+  database_name     = "testdb"
+  instance_class    = "db.t3.small"
+  subnet_group_name = "default"
+  vpc_security_groups = [
+    "sg-0123456789abcdefg"
+  ]
 }
 
 ################################################################################
@@ -54,8 +63,8 @@ resource "terraform_data" "configure_database" {
   provisioner "local-exec" {
     environment = {
       PGHOST     = module.aws-rds-postgresql-1.postgres-instance.address
-      PGUSER     = "admin"
-      PGPASSWORD = "abcd1234"
+      PGUSER     = local.admin_user
+      PGPASSWORD = local.admin_password
       PGPORT     = module.aws-rds-postgresql-1.postgres-instance.port
       PGDATABASE = module.aws-rds-postgresql-1.postgres-instance.db_name
     }
@@ -74,7 +83,7 @@ module "aws-rds-postgresql-1" {
 
   aws_log_group_admin_email        = local.admin_email
   aws_log_group_audit_pull_enabled = true
-  aws_log_group_gateway_id         = local.admin_email
+  aws_log_group_gateway_id         = local.gateway_id
   aws_log_group_region             = local.aws_region
 
   aws_rds_postgresql_admin_email     = local.admin_email
@@ -82,19 +91,16 @@ module "aws-rds-postgresql-1" {
   aws_rds_postgresql_parent_asset_id = module.aws-default-account-asset.this.asset_id
   aws_rds_postgresql_region          = local.aws_region
 
-  instance_db_name             = "testdb"
-  instance_engine              = "postgres"
-  instance_engine_version      = "16"
-  instance_identifier          = "example-tf-postgres-16"
-  instance_instance_class      = "db.t3.small"
-  instance_password            = "abcd1234"
-  instance_publicly_accessible = true
-  instance_skip_final_snapshot = true
-  instance_subnet_group_name   = "default"
-  instance_username            = "admin"
-  instance_vpc_security_group_ids = [
-    "sg-0123456789abcdefg"
-  ]
+  instance_db_name                = local.database_name
+  instance_engine_version         = "16"
+  instance_identifier             = "example-tf-postgres-16"
+  instance_instance_class         = local.instance_class
+  instance_password               = local.admin_password
+  instance_publicly_accessible    = true
+  instance_skip_final_snapshot    = true
+  instance_subnet_group_name      = local.subnet_group_name
+  instance_username               = local.admin_user
+  instance_vpc_security_group_ids = local.vpc_security_groups
 
   parameter_group_family = "postgres16"
   parameter_group_name   = "example-tf-postgres-16-pg"
@@ -116,22 +122,19 @@ module "aws-rds-postgresql-2" {
   aws_rds_postgresql_parent_asset_id = module.aws-default-account-asset.this.asset_id
   aws_rds_postgresql_region          = local.aws_region
 
-  instance_db_name             = "testdb"
-  instance_engine              = "postgres"
-  instance_engine_version      = "16"
-  instance_identifier          = "example-tf-postgres-16"
-  instance_instance_class      = "db.t3.small"
-  instance_password            = "abcd1234"
-  instance_publicly_accessible = true
-  instance_skip_final_snapshot = true
-  instance_subnet_group_name   = "default"
-  instance_username            = "admin"
-  instance_vpc_security_group_ids = [
-    "sg-0123456789abcdefg"
-  ]
+  instance_db_name                = local.database_name
+  instance_engine_version         = "16"
+  instance_identifier             = "example-tf-postgres-16-slow"
+  instance_instance_class         = local.instance_class
+  instance_password               = local.admin_password
+  instance_publicly_accessible    = true
+  instance_skip_final_snapshot    = true
+  instance_subnet_group_name      = local.subnet_group_name
+  instance_username               = local.admin_user
+  instance_vpc_security_group_ids = local.vpc_security_groups
 
   parameter_group_family = "postgres16"
-  parameter_group_name   = "example-tf-postgres-16-pg"
+  parameter_group_name   = "example-tf-postgres-slow-16-pg"
   parameter_group_parameters = [
     {
       name  = "log_connections"
@@ -182,19 +185,16 @@ module "aws-rds-postgresql-3" {
   aws_rds_postgresql_parent_asset_id = module.aws-default-account-asset.this.asset_id
   aws_rds_postgresql_region          = local.aws_region
 
-  instance_db_name             = "testdb"
-  instance_engine              = "postgres"
-  instance_engine_version      = "15"
-  instance_identifier          = "example-tf-postgres-15"
-  instance_instance_class      = "db.t3.small"
-  instance_password            = "abcd1234"
-  instance_publicly_accessible = true
-  instance_skip_final_snapshot = true
-  instance_subnet_group_name   = "default"
-  instance_username            = "admin"
-  instance_vpc_security_group_ids = [
-    "sg-0123456789abcdefg"
-  ]
+  instance_db_name                = local.database_name
+  instance_engine_version         = "15"
+  instance_identifier             = "example-tf-postgres-15"
+  instance_instance_class         = local.instance_class
+  instance_password               = local.admin_password
+  instance_publicly_accessible    = true
+  instance_skip_final_snapshot    = true
+  instance_subnet_group_name      = local.subnet_group_name
+  instance_username               = local.admin_user
+  instance_vpc_security_group_ids = local.vpc_security_groups
 
   parameter_group_family = "postgres15"
   parameter_group_name   = "example-tf-postgres-15-pg"

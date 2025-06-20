@@ -35,6 +35,7 @@ No requirements.
 
 | Name | Type |
 |------|------|
+| [azurerm_mssql_firewall_rule.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/mssql_firewall_rule) | resource |
 | [time_sleep.wait](https://registry.terraform.io/providers/hashicorp/time/latest/docs/resources/sleep) | resource |
 | [azurerm_mssql_database.master](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/mssql_database) | data source |
 
@@ -53,6 +54,7 @@ No requirements.
 | <a name="input_diagnostic_setting_eventhub_authorization_rule_id"></a> [diagnostic\_setting\_eventhub\_authorization\_rule\_id](#input\_diagnostic\_setting\_eventhub\_authorization\_rule\_id) | Specifies the ID of an Event Hub Namespace Authorization Rule used to send Diagnostics Data. Must have write access. | `string` | n/a | yes |
 | <a name="input_diagnostic_setting_eventhub_name"></a> [diagnostic\_setting\_eventhub\_name](#input\_diagnostic\_setting\_eventhub\_name) | Specifies the name of the Event Hub where Diagnostics Data should be sent. | `string` | n/a | yes |
 | <a name="input_diagnostic_setting_name"></a> [diagnostic\_setting\_name](#input\_diagnostic\_setting\_name) | Specifies the name of the Diagnostic Setting. Changing this forces a new resource to be created. | `string` | `"dsfhubdiagnostic"` | no |
+| <a name="input_firewall_rules"></a> [firewall\_rules](#input\_firewall\_rules) | A list of firewall rules to apply to the SQL Server. Each rule should have a name, start\_ip, and end\_ip. | <pre>list(object({<br>    name     = string<br>    start_ip = string<br>    end_ip   = string<br>  }))</pre> | `[]` | no |
 | <a name="input_server_administrator_login"></a> [server\_administrator\_login](#input\_server\_administrator\_login) | The administrator login name for the new server. Changing this forces a new resource to be created. | `string` | n/a | yes |
 | <a name="input_server_administrator_login_password"></a> [server\_administrator\_login\_password](#input\_server\_administrator\_login\_password) | The password associated with the administrator\_login user. | `string` | n/a | yes |
 | <a name="input_server_location"></a> [server\_location](#input\_server\_location) | Specifies the supported Azure location where the resource exists. Changing this forces a new resource to be created. | `string` | n/a | yes |
@@ -67,6 +69,7 @@ No requirements.
 | Name | Description |
 |------|-------------|
 | <a name="output_azure-ms-sql-server-asset"></a> [azure-ms-sql-server-asset](#output\_azure-ms-sql-server-asset) | AZURE MS SQL SERVER asset. |
+| <a name="output_azure-ms-sql-server-firewall-rules"></a> [azure-ms-sql-server-firewall-rules](#output\_azure-ms-sql-server-firewall-rules) | SQL Server Firewall Rules. |
 | <a name="output_sql-server-diagnostic-setting"></a> [sql-server-diagnostic-setting](#output\_sql-server-diagnostic-setting) | Diagnostic Setting. |
 | <a name="output_sql-server-extended-server-audit-policy"></a> [sql-server-extended-server-audit-policy](#output\_sql-server-extended-server-audit-policy) | Azure MS SQL Server Extended Auditing Policy. |
 | <a name="output_sql-server-instance"></a> [sql-server-instance](#output\_sql-server-instance) | Azure SQL Server instance. |

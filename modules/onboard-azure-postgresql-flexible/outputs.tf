@@ -3,6 +3,11 @@ output "postgresql-server" {
   value       = module.azure-postgresql-flexible-server.this
 }
 
+output "azure-postgresql-flexible-firewall-rules" {
+  description = "Azure PostgreSQL Flexible Server Firewall Rules."
+  value       = values(azurerm_postgresql_flexible_server_firewall_rule.this).*
+}
+
 output "postgresql-server-configurations" {
   description = "Azure PostgreSQL Flexible server configurations."
   value       = values(azurerm_postgresql_flexible_server_configuration.this).*

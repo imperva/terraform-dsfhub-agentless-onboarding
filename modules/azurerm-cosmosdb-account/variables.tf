@@ -44,6 +44,20 @@ variable "geo_location" {
   ]
 }
 
+variable "ip_range_filter" {
+  description = "A set of IP addresses or IP address ranges in CIDR form to be included as the allowed list of client IPs for a given database account."
+  type        = list(string)
+  default     = null
+  validation {
+    condition = (var.ip_range_filter == null ? true :
+      alltrue([
+        for ip in var.ip_range_filter :
+        can(regex("^(\\d{1,3}\\.){3}\\d{1,3}(/\\d{1,2})?$", ip))
+    ]))
+    error_message = "Invalid IP range filter format. Use CIDR notation or a single IP address."
+  }
+}
+
 variable "kind" {
   description = "Specifies the Kind of CosmosDB to create - possible values are GlobalDocumentDB (used for both SQL and Table API) and MongoDB. Defaults to GlobalDocumentDB. Changing this forces a new resource to be created. Defaults to GlobalDocumentDB."
   type        = string

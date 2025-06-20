@@ -82,9 +82,18 @@ variable "primary_instance_cidr_range" {
 }
 
 variable "primary_instance_database_flags" {
-  description = "List of database flags to assign to the instance. See the example module for required flags for different DSF versions."
+  description = "List of database flags to assign to the instance. See the example module for required flags for different DSF versions. Defaults to the flags required for DSF version 15.0+ without slow query monitoring."
   type        = map(string)
-  default     = null
+  default = {
+    "alloydb.enable_pgaudit"      = "on"
+    "log_error_verbosity"         = "verbose"
+    "log_connections"             = "on"
+    "log_disconnections"          = "on"
+    "log_hostname"                = "on"
+    "pgaudit.log"                 = "all"
+    "password.enforce_complexity" = "on"
+    "log_line_prefix"             = "SONAR_AUDIT=1|TIMESTAMP=%m|APPLICATION_NAME=%a|USER=%u|DATABASE=%d|REMOTE_HOST_AND_PORT=%r|SQL_STATE=%e|SESSION_ID=%c|SESSION_START=%s|PROCESS_ID=[%p]|VIRTUAL_TRANSACTION_ID=%v|TRANSACTION_ID=%x| "
+  }
 }
 
 variable "primary_instance_enable_outbound_public_ip" {
@@ -123,9 +132,18 @@ variable "read_pool_instance_count" {
 }
 
 variable "read_pool_instance_database_flags" {
-  description = "List of database flags to assign to the instance. See the example module for required flags for different DSF versions."
+  description = "List of database flags to assign to the instance. See the example module for required flags for different DSF versions. Defaults to the flags required for DSF version 15.0+ without slow query monitoring."
   type        = map(string)
-  default     = null
+  default = {
+    "alloydb.enable_pgaudit"      = "on"
+    "log_error_verbosity"         = "verbose"
+    "log_connections"             = "on"
+    "log_disconnections"          = "on"
+    "log_hostname"                = "on"
+    "pgaudit.log"                 = "all"
+    "password.enforce_complexity" = "on"
+    "log_line_prefix"             = "SONAR_AUDIT=1|TIMESTAMP=%m|APPLICATION_NAME=%a|USER=%u|DATABASE=%d|REMOTE_HOST_AND_PORT=%r|SQL_STATE=%e|SESSION_ID=%c|SESSION_START=%s|PROCESS_ID=[%p]|VIRTUAL_TRANSACTION_ID=%v|TRANSACTION_ID=%x| "
+  }
 }
 
 variable "read_pool_instance_enable_outbound_public_ip" {

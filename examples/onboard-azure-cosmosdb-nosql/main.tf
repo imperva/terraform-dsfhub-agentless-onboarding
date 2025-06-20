@@ -1,8 +1,8 @@
 locals {
-  azure_eventhub_name       = "cosmosnosqleventhub"
   azure_location            = "East US"
   azure_resource_group_name = "My_Resource_Group"
   azure_subscription_id     = "123456790-wxyz-g8h9-e5f6-a1b2c3d4"
+  azure_allowed_ip_range    = ["1.2.3.4/32"]
 
   admin_email = "test@example.com"
   gateway_id  = "a1b2c3d4-e5f6-g8h9-wxyz-123456790"
@@ -88,6 +88,7 @@ module "azure-cosmosdb-nosql-1" {
       "zone_redundant" : false
     }
   ]
+  cosmosdb_account_ip_range_filter     = local.azure_allowed_ip_range
   cosmosdb_account_location            = local.azure_location
   cosmosdb_account_name                = "example-cosmos-nosql"
   cosmosdb_account_resource_group_name = local.azure_resource_group_name
@@ -132,6 +133,7 @@ module "azure-cosmosdb-nosql-2" {
       "zone_redundant" : false
     }
   ]
+  cosmosdb_account_ip_range_filter     = local.azure_allowed_ip_range
   cosmosdb_account_location            = local.azure_location
   cosmosdb_account_name                = "example-cosmos-nosql-${each.key}"
   cosmosdb_account_resource_group_name = local.azure_resource_group_name

@@ -1,4 +1,5 @@
 resource "azurerm_cosmosdb_account" "this" {
+  ip_range_filter      = var.ip_range_filter
   kind                 = var.kind
   location             = var.location
   mongo_server_version = var.mongo_server_version

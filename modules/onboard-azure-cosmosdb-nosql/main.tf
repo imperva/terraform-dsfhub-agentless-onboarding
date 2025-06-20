@@ -15,6 +15,7 @@ module "cosmos-nosql-account" {
   capabilities         = var.cosmosdb_account_capabilities
   consistency_policy   = var.cosmosdb_account_consistency_policy
   geo_location         = var.cosmosdb_account_geo_location
+  ip_range_filter      = var.cosmosdb_account_ip_range_filter
   kind                 = "GlobalDocumentDB"
   location             = var.cosmosdb_account_location
   mongo_server_version = null
@@ -28,19 +29,30 @@ module "cosmos-nosql-account" {
 module "enable-full-text-query" {
   source = "../azapi-update-resource"
 
-  body = jsonencode({
+  body = {
     properties = {
       diagnosticLogSettings = {
         enableFullTextQuery = "True"
       }
     }
-  })
+  }
   resource_id = module.cosmos-nosql-account.this.id
   type        = "Microsoft.DocumentDB/databaseAccounts@2021-05-01-preview"
 }
 
+# Allow time for the diagnostic setting to be destroyed before destroying the Cosmos DB account
+# to prevent destruction issue with exclusive lock on the service
+# If experiencing status 412 "PreconditionFailed", increase the destroy_duration
+resource "time_sleep" "wait" {
+  depends_on = [module.cosmos-nosql-account]
+
+  destroy_duration = "90s"
+}
+
 module "diagnostic-setting" {
   source = "../azurerm-monitor-diagnostic-setting"
+
+  depends_on = [resource.time_sleep.wait]
 
   enabled_log = [
     { category = "DataPlaneRequests" },

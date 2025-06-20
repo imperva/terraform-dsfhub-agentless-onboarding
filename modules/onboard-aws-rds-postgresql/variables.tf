@@ -159,10 +159,6 @@ variable "instance_enabled_cloudwatch_logs_exports" {
   }
 }
 
-variable "instance_engine" {
-  description = "The database engine to use. For supported values, see the Engine parameter in https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_CreateDBInstance.html"
-}
-
 variable "instance_engine_version" {
   description = "Database engine version, e.g. \"8.0\""
   type        = string

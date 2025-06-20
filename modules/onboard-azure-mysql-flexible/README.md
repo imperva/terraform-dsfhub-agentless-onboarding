@@ -74,6 +74,7 @@ See the corresponding example for more details.
 | Name | Description |
 |------|-------------|
 | <a name="output_azure-mysql-flexible-asset"></a> [azure-mysql-flexible-asset](#output\_azure-mysql-flexible-asset) | AZURE MYSQL FLEXIBLE asset. |
+| <a name="output_azure-mysql-flexible-firewall-rules"></a> [azure-mysql-flexible-firewall-rules](#output\_azure-mysql-flexible-firewall-rules) | Azure MySQL Flexible Server Firewall Rules. |
 | <a name="output_mysql-diagnostic-setting"></a> [mysql-diagnostic-setting](#output\_mysql-diagnostic-setting) | Diagnostic setting. |
 | <a name="output_mysql-server"></a> [mysql-server](#output\_mysql-server) | Azure MySQL Flexible server. |
 | <a name="output_mysql-server-configurations"></a> [mysql-server-configurations](#output\_mysql-server-configurations) | Azure MySQL Flexible server configurations. |

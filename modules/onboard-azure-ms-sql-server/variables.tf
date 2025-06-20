@@ -59,6 +59,16 @@ variable "diagnostic_setting_name" {
   default     = "dsfhubdiagnostic"
 }
 
+variable "firewall_rules" {
+  description = "A list of firewall rules to apply to the SQL Server. Each rule should have a name, start_ip, and end_ip."
+  type = list(object({
+    name     = string
+    start_ip = string
+    end_ip   = string
+  }))
+  default = []
+}
+
 variable "server_administrator_login" {
   description = "The administrator login name for the new server. Changing this forces a new resource to be created."
   type        = string

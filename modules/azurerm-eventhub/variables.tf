@@ -9,8 +9,8 @@ variable "name" {
   type        = string
 }
 
-variable "namespace_name" {
-  description = "Specifies the name of the Event Hub Namespace. Changing this forces a new resource to be created."
+variable "namespace_id" {
+  description = "Specifies the ID of the EventHub Namespace. Changing this forces a new resource to be created."
   type        = string
 }
 
@@ -18,11 +18,6 @@ variable "partition_count" {
   description = "Specifies the current number of shards on the Event Hub. Note: partition_count cannot be changed unless Eventhub Namespace SKU is Premium and cannot be decreased. Defaults to 1."
   type        = number
   default     = 1
-}
-
-variable "resource_group_name" {
-  description = "The name of the resource group in which the Event Hub's parent Namespace exists. Changing this forces a new resource to be created."
-  type        = string
 }
 
 variable "status" {

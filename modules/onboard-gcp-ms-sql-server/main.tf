@@ -24,7 +24,7 @@ module "gcp-ms-sql-server-asset" {
   gateway_id                = var.gcp_ms_sql_server_gateway_id
   logs_destination_asset_id = var.gcp_ms_sql_server_logs_destination_asset_id
   parent_asset_id           = var.gcp_ms_sql_server_parent_asset_id
-  server_host_name          = module.gcp-ms-sql-server-instance.this.ip_address.0.ip_address
+  server_host_name          = "4.3.2.1.bc.googleusercontent.com"
   server_ip                 = module.gcp-ms-sql-server-instance.this.ip_address.0.ip_address
 }
 

@@ -12,6 +12,7 @@ module "cosmos-mongo-account" {
   capabilities         = var.cosmosdb_account_capabilities
   consistency_policy   = var.cosmosdb_account_consistency_policy
   geo_location         = var.cosmosdb_account_geo_location
+  ip_range_filter      = var.cosmosdb_account_ip_range_filter
   kind                 = "MongoDB"
   location             = var.cosmosdb_account_location
   mongo_server_version = var.cosmosdb_account_mongo_server_version
@@ -20,8 +21,19 @@ module "cosmos-mongo-account" {
   tags                 = var.cosmosdb_account_tags
 }
 
+# Allow time for the diagnostic setting to be destroyed before destroying the Cosmos DB account
+# to prevent destruction issue with exclusive lock on the service
+# If experiencing status 412 "PreconditionFailed", increase the destroy_duration
+resource "time_sleep" "wait" {
+  depends_on = [module.cosmos-mongo-account]
+
+  destroy_duration = "90s"
+}
+
 module "diagnostic-setting" {
   source = "../azurerm-monitor-diagnostic-setting"
+
+  depends_on = [resource.time_sleep.wait]
 
   enabled_log = [
     { category = "MongoRequests" },

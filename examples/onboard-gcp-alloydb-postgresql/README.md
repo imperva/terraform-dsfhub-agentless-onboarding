@@ -39,8 +39,10 @@ Part of the onboarding process involves connecting to your Google AlloyDB for Po
 |------|--------|---------|
 | <a name="module_gcp-alloydb-postgresql-1"></a> [gcp-alloydb-postgresql-1](#module\_gcp-alloydb-postgresql-1) | ../../modules/onboard-gcp-alloydb-postgresql | n/a |
 | <a name="module_gcp-alloydb-postgresql-2"></a> [gcp-alloydb-postgresql-2](#module\_gcp-alloydb-postgresql-2) | ../../modules/onboard-gcp-alloydb-postgresql | n/a |
+| <a name="module_gcp-alloydb-postgresql-3"></a> [gcp-alloydb-postgresql-3](#module\_gcp-alloydb-postgresql-3) | ../../modules/onboard-gcp-alloydb-postgresql | n/a |
 | <a name="module_gcp-pubsub-1"></a> [gcp-pubsub-1](#module\_gcp-pubsub-1) | ../../modules/onboard-gcp-pubsub | n/a |
 | <a name="module_gcp-pubsub-2"></a> [gcp-pubsub-2](#module\_gcp-pubsub-2) | ../../modules/onboard-gcp-pubsub | n/a |
+| <a name="module_gcp-pubsub-3"></a> [gcp-pubsub-3](#module\_gcp-pubsub-3) | ../../modules/onboard-gcp-pubsub | n/a |
 | <a name="module_service-account"></a> [service-account](#module\_service-account) | ../../modules/google-service-account-dsf | n/a |
 
 ## Resources
@@ -49,11 +51,15 @@ Part of the onboarding process involves connecting to your Google AlloyDB for Po
 |------|------|
 | [terraform_data.configure_database_1](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/resources/data) | resource |
 | [terraform_data.configure_database_2](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/resources/data) | resource |
+| [terraform_data.configure_database_3](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/resources/data) | resource |
 | [http_http.my-ip](https://registry.terraform.io/providers/hashicorp/http/latest/docs/data-sources/http) | data source |
 
 ## Inputs
 
-No inputs.
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_dsfhub_host"></a> [dsfhub\_host](#input\_dsfhub\_host) | n/a | `any` | n/a | yes |
+| <a name="input_dsfhub_token"></a> [dsfhub\_token](#input\_dsfhub\_token) | n/a | `any` | n/a | yes |
 
 ## Outputs
 

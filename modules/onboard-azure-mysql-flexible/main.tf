@@ -55,11 +55,10 @@ locals {
       value = var.server_config_slow_query_time
     }
   ]
-  firewall_rules = var.server_firewall_rules
 }
 
 resource "azurerm_mysql_flexible_server_firewall_rule" "this" {
-  for_each = local.firewall_rules != null && length(local.firewall_rules) > 0 ? { for rule in local.firewall_rules : rule.name => rule } : {}
+  for_each = var.server_firewall_rules != null && length(var.server_firewall_rules) > 0 ? { for rule in var.server_firewall_rules : rule.name => rule } : {}
 
   name                = each.value.name
   server_name         = module.azure-mysql-flexible-server.this.name
