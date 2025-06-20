@@ -1,8 +1,5 @@
 terraform {
   required_providers {
-    azapi = {
-      source = "Azure/azapi"
-    }
     dsfhub = {
       source = "imperva/dsfhub"
     }

@@ -13,16 +13,11 @@ locals {
 ################################################################################
 terraform {
   required_providers {
-    azapi = {
-      source = "azure/azapi"
-    }
     dsfhub = {
       source = "imperva/dsfhub"
     }
   }
 }
-
-provider "azapi" {}
 
 provider "azurerm" {
   features {}
