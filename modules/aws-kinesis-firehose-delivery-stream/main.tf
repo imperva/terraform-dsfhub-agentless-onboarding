@@ -24,11 +24,20 @@ resource "aws_kinesis_firehose_delivery_stream" "this" {
 
           dynamic "processors" {
             # If processors is not defined, do not create
-            for_each = [processing_configuration.value.processors] != null ? [processing_configuration.value.processors] : []
+            for_each = try(processing_configuration.value.processors, [])
+            # for_each = [processing_configuration.value.processors] != null ? [processing_configuration.value.processors] : []
 
             content {
               type = processors.value.type
-              # TODO: support 'parameters' block, see https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/kinesis_firehose_delivery_stream.html#parameters-block
+              dynamic "parameters" {
+                # If parameters is not defined, do not create
+                for_each = try(processors.value.parameters, null) != null ? [processors.value.parameters] : []
+
+                content {
+                  parameter_name  = parameters.value.parameter_name
+                  parameter_value = parameters.value.parameter_value
+                }
+              }
             }
           }
         }

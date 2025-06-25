@@ -21,12 +21,16 @@ variable "extended_s3_configuration" {
         object(
           {
             enabled = string
-            processors = optional(
-              object(
-                {
-                  type = string
-                }
-              )
+            processors = optional(list(object(
+              {
+                type = string
+                parameters = optional(object({
+                  parameter_name  = string
+                  parameter_value = string
+                }))
+              }
+              ))
+
             )
           }
         )

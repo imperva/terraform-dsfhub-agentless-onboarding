@@ -14,13 +14,23 @@ output "dynamodb-cloudtrail" {
 }
 
 output "eventbridge-firehose-iam-role" {
-  description = "EventBridge to firehose IAM role"
+  description = "EventBridge to Firehose IAM role"
   value       = module.eventbridge-firehose-iam-role.this
+}
+
+output "eventbridge-firehose-iam-role-policy" {
+  description = "EventBridge to Firehose IAM role policy"
+  value       = module.eventbridge-firehose-iam-role-policy.this
 }
 
 output "firehose-s3-iam-role" {
   description = "Firehose to S3 IAM role"
   value       = module.firehose-s3-iam-role.this
+}
+
+output "firehose-s3-iam-role-policy" {
+  description = "Firehose to S3 IAM role policy"
+  value       = module.firehose-s3-iam-role-policy.this
 }
 
 output "kinesis-firehose-delivery-stream" {
