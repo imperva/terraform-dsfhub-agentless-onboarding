@@ -73,10 +73,10 @@ variable "server_host_name" {
   type        = string
 }
 
-variable "server_ip" {
-  description = "S3 bucket ARN."
-  type        = string
-}
+# variable "server_ip" {
+#   description = "S3 bucket ARN."
+#   type        = string
+# }
 
 variable "server_port" {
   description = "Database port being used."

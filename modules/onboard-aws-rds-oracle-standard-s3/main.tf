@@ -13,8 +13,24 @@ module "oracle-parameter-group" {
   tags        = var.parameter_group_tags
 }
 
+# For supporting many-to-one monitoring
+locals {
+  # If instance_count is 1, we don't need postfixes, so we set it to null
+  # If instance_count is greater than 1, we use instance_identifier_postfixes or generate a list of postfixes
+  postfixes = var.instance_count != 1 ? var.instance_identifier_postfixes != null ? var.instance_identifier_postfixes : tolist([for i in range(1, var.instance_count + 1) : tostring(i)]) : null
+
+  # Generate instance names based on the postfixes
+  oracle_instance_names = var.instance_count != 1 ? tolist([
+    for postfix in local.postfixes : "${var.instance_identifier}-${postfix}"
+    ]) : tolist([
+    var.instance_identifier
+  ])
+}
+
 module "oracle-instance" {
   source = "../aws-rds-instance"
+
+  count = var.instance_count
 
   allocated_storage               = var.instance_allocated_storage
   apply_immediately               = var.instance_apply_immediately
@@ -24,7 +40,7 @@ module "oracle-instance" {
   engine                          = "oracle-ee"
   engine_version                  = var.instance_engine_version
   final_snapshot_identifier       = var.instance_final_snapshot_identifier
-  identifier                      = var.instance_identifier
+  identifier                      = local.oracle_instance_names[count.index]
   instance_class                  = var.instance_instance_class
   max_allocated_storage           = var.instance_max_allocated_storage
   option_group_name               = var.instance_option_group_name
@@ -42,7 +58,9 @@ module "oracle-instance" {
 module "oracle-log-group" {
   source = "../aws-cloudwatch-log-group"
 
-  name              = "/aws/rds/instance/${var.instance_identifier}/audit"
+  count = var.instance_count
+
+  name              = "/aws/rds/instance/${local.oracle_instance_names[count.index]}/audit"
   retention_in_days = var.log_group_retention_in_days
 }
 
@@ -73,15 +91,9 @@ module "log-group-firehose-iam-role" {
 
   assume_role_policy = data.aws_iam_policy_document.cloudwatch_assume_role.json
   description        = var.log_group_to_firehose_iam_role_description
-  # inline_policy = [
-  #   {
-  #     name   = "log_group_to_firehose_policy"
-  #     policy = data.aws_iam_policy_document.log_group_to_firehose.json
-  #   }
-  # ]
-  name        = var.log_group_to_firehose_iam_role_name
-  name_prefix = var.log_group_to_firehose_iam_role_name_prefix
-  tags        = var.log_group_to_firehose_iam_role_tags
+  name               = var.log_group_to_firehose_iam_role_name
+  name_prefix        = var.log_group_to_firehose_iam_role_name_prefix
+  tags               = var.log_group_to_firehose_iam_role_tags
 }
 
 module "log-group-firehose-iam-role-policy" {
@@ -96,10 +108,12 @@ module "oracle-log-group-subscription-filter" {
   depends_on = [module.kinesis-firehose-delivery-stream]
   source     = "../aws-cloudwatch-log-subscription-filter"
 
+  count = var.instance_count
+
   destination_arn = module.kinesis-firehose-delivery-stream.this.arn
   filter_pattern  = ""
-  log_group_name  = module.oracle-log-group.this.name
-  name            = replace(module.oracle-instance.this.arn, ":", "_")
+  log_group_name  = module.oracle-log-group[count.index].this.name
+  name            = replace(module.oracle-instance[count.index].this.arn, ":", "_")
   role_arn        = module.log-group-firehose-iam-role.this.arn
 }
 
@@ -181,19 +195,9 @@ module "firehose-s3-iam-role" {
 
   assume_role_policy = data.aws_iam_policy_document.firehose_assume_role.json
   description        = var.firehose_iam_role_description
-  # inline_policy = [
-  #   {
-  #     name   = "firehose_to_s3_policy"
-  #     policy = data.aws_iam_policy_document.firehose_to_s3.json
-  #   },
-  #   {
-  #     name   = "firehose_to_log_group_policy"
-  #     policy = data.aws_iam_policy_document.firehose_to_log_group.json
-  #   }
-  # ]
-  name        = var.firehose_to_s3_iam_role_name
-  name_prefix = var.firehose_to_s3_iam_role_name_prefix
-  tags        = var.firehose_iam_role_tags
+  name               = var.firehose_to_s3_iam_role_name
+  name_prefix        = var.firehose_to_s3_iam_role_name_prefix
+  tags               = var.firehose_iam_role_tags
 }
 
 module "firehose-s3-iam-role-policy" {
@@ -217,6 +221,8 @@ module "kinesis-firehose-delivery-stream" {
   source     = "../aws-kinesis-firehose-delivery-stream"
 
   destination = "extended_s3"
+  name        = var.firehose_name
+  tags        = var.firehose_tags
   extended_s3_configuration = {
     role_arn            = module.firehose-s3-iam-role.this.arn
     bucket_arn          = module.s3-bucket.this.arn
@@ -228,14 +234,6 @@ module "kinesis-firehose-delivery-stream" {
     error_output_prefix = "errors/result=!{firehose:error-output-type}/!{timestamp:yyyy/MM/dd/HH/mm/}"
     processing_configuration = {
       enabled = "true"
-
-      # processors = {
-      #   type = "AppendDelimiterToRecord"
-      # }
-      # # The bottom one is being applied; the top is replaced
-      # processors = {
-      #   type = "Decompression"
-      # }
       processors = [
         {
           type = "Decompression"
@@ -246,13 +244,11 @@ module "kinesis-firehose-delivery-stream" {
       ]
     }
     cloudwatch_logging_options = {
-      enabled         = true
-      log_group_name  = module.oracle-log-group.this.name
-      log_stream_name = "firehose"
+      enabled         = var.firehose_cloudwatch_logging_enabled
+      log_group_name  = var.firehose_cloudwatch_logging_log_group_name
+      log_stream_name = var.firehose_cloudwatch_logging_log_stream_name
     }
   }
-  name = var.firehose_name
-  tags = var.firehose_tags
 }
 
 data "aws_iam_policy_document" "firehose_to_s3_policy" {
@@ -298,17 +294,19 @@ module "s3-bucket" {
 module "aws-rds-oracle-asset" {
   source = "../dsfhub-aws-rds-oracle"
 
+  count = var.instance_count
+
   admin_email               = var.aws_rds_oracle_admin_email
-  asset_display_name        = module.oracle-instance.this.identifier
-  asset_id                  = module.oracle-instance.this.arn
+  asset_display_name        = module.oracle-instance[count.index].this.identifier
+  asset_id                  = module.oracle-instance[count.index].this.arn
   audit_pull_enabled        = var.aws_rds_oracle_audit_pull_enabled
   gateway_id                = var.aws_rds_oracle_gateway_id
   logs_destination_asset_id = module.aws-s3-asset.this.asset_id
   parent_asset_id           = var.aws_rds_oracle_parent_asset_id
   region                    = data.aws_region.current.name
-  server_host_name          = module.oracle-instance.this.address
-  server_port               = module.oracle-instance.this.port
-  service_name              = module.oracle-instance.this.db_name
+  server_host_name          = module.oracle-instance[count.index].this.address
+  server_port               = module.oracle-instance[count.index].this.port
+  service_name              = module.oracle-instance[count.index].this.db_name
 }
 
 module "aws-s3-asset" {
@@ -328,6 +326,5 @@ module "aws-s3-asset" {
   parent_asset_id              = var.aws_s3_parent_asset_id
   region                       = data.aws_region.current.name
   server_host_name             = module.s3-bucket.this.id
-  server_ip                    = module.s3-bucket.this.arn
   server_port                  = "443"
 }

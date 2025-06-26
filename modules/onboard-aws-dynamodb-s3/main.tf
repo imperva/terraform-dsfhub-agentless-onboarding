@@ -186,9 +186,9 @@ module "kinesis-firehose-delivery-stream" {
     error_output_prefix = "FirehosetoS3Error/!{firehose:error-output-type}/!{timestamp:yyyy/MM/dd/}"
     processing_configuration = {
       enabled = "true"
-      processors = {
+      processors = [{
         type = "AppendDelimiterToRecord"
-      }
+      }]
     }
   }
   name = var.firehose_name
@@ -245,6 +245,6 @@ module "aws-s3-asset" {
   parent_asset_id    = module.aws-dynamodb-asset.this.asset_id
   region             = data.aws_region.current.name
   server_host_name   = module.s3-bucket.this.id
-  server_ip          = module.s3-bucket.this.arn
-  server_port        = "443"
+  # server_ip          = module.s3-bucket.this.arn
+  server_port = "443"
 }

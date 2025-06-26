@@ -1,8 +1,6 @@
 # Onboard Amazon RDS for Oracle (Standard Audit via S3) example
 
----- TODO: update documentation link
-
-This example includes additional prerequisites that will need to be completed to fully utilize the module. More details can be found in the [onboarding documentation](https://docs.imperva.com/bundle/onboarding-databases-to-sonar-reference-guide/page/48367051.html).
+This example includes additional prerequisites that will need to be completed to fully utilize the module. More details can be found in the [onboarding documentation](https://docs-cybersec.thalesgroup.com/bundle/onboarding-databases-to-sonar-reference-guide/page/684326932.html).
 
 This example creates both 'aws' and 'dsfhub' resources. More information regarding authentication to each can be found in the relevant provider documentation:
 - [aws](https://registry.terraform.io/providers/hashicorp/aws/latest/docs)

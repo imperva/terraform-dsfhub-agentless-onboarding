@@ -15,6 +15,17 @@ resource "aws_kinesis_firehose_delivery_stream" "this" {
       prefix              = extended_s3_configuration.value.prefix
       role_arn            = extended_s3_configuration.value.role_arn
 
+      dynamic "cloudwatch_logging_options" {
+        # If cloudwatch_logging_options is not defined, do not create
+        for_each = try(extended_s3_configuration.value.cloudwatch_logging_options, null) != null ? [extended_s3_configuration.value.cloudwatch_logging_options] : []
+
+        content {
+          enabled         = cloudwatch_logging_options.value.enabled
+          log_group_name  = cloudwatch_logging_options.value.log_group_name
+          log_stream_name = cloudwatch_logging_options.value.log_stream_name
+        }
+      }
+
       dynamic "processing_configuration" {
         # If processing_configuration is not defined, do not create
         for_each = [extended_s3_configuration.value.processing_configuration] != null ? [extended_s3_configuration.value.processing_configuration] : []

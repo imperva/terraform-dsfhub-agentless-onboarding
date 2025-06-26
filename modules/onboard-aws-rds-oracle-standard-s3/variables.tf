@@ -130,6 +130,16 @@ variable "instance_identifier" {
   type        = string
 }
 
+variable "instance_identifier_postfixes" {
+  description = "Postfixes for the Oracle instance identifier in a many-to-one monitoring environment. If not set, numbers will be appended to the identifier."
+  type        = list(string)
+  default     = null
+  validation {
+    condition     = var.instance_identifier_postfixes == null ? true : length(var.instance_identifier_postfixes) == length(toset(var.instance_identifier_postfixes))
+    error_message = "If set, all postfixes must be unique."
+  }
+}
+
 variable "instance_instance_class" {
   description = "The instance type of the RDS instance. The default is db.t3.small."
   type        = string
@@ -282,6 +292,24 @@ variable "log_group_to_firehose_iam_role_tags" {
   default     = null
 }
 
+variable "firehose_cloudwatch_logging_enabled" {
+  description = "Whether to enable CloudWatch logging for the Firehose delivery stream. Defaults to false."
+  type        = bool
+  default     = false
+}
+
+variable "firehose_cloudwatch_logging_log_group_name" {
+  description = "The name of the CloudWatch log group to which Firehose will send logs. This value is required if enabled is true."
+  type        = string
+  default     = null
+}
+
+variable "firehose_cloudwatch_logging_log_stream_name" {
+  description = "The name of the CloudWatch log stream to which Firehose will send logs. This value is required if enabled is true."
+  type        = string
+  default     = null
+}
+
 variable "firehose_name" {
   description = "A name to identify the stream. This is unique to the AWS account and region the Stream is created in."
   type        = string
@@ -321,21 +349,3 @@ variable "subscription_filter_name" {
   type        = string
   default     = "oracle_log_group_subscription_filter"
 }
-
-#####################
-
-# variable "oracle_instance_name_prefix" {
-#   description = "Prefix for the Oracle instance name."
-#   type        = string
-#   default     = "example-tf-oracle-19"
-# }
-
-# variable "oracle_instance_name_postfixes" {
-#   description = "Postfixes for the Oracle instance name."
-#   type        = set(string)
-#   default = toset([
-#     "instance1",
-#     "instance2",
-#     "instance3",
-#   ])
-# }

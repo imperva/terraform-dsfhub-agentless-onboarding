@@ -114,6 +114,5 @@ module "s3-bucket-asset" {
   parent_asset_id    = var.aws_s3_parent_asset_id
   region             = var.aws_s3_region
   server_host_name   = module.s3-bucket.this.id
-  server_ip          = module.s3-bucket.this.arn
   server_port        = var.aws_s3_server_port
 }

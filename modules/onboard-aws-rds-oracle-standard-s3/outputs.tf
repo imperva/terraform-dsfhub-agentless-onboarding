@@ -4,13 +4,13 @@ output "oracle-parameter-group" {
 }
 
 output "oracle-instance" {
-  description = "RDS Oracle instance"
-  value       = module.oracle-instance.this
+  description = "RDS Oracle instance(s)"
+  value       = module.oracle-instance.*.this
 }
 
 output "oracle-log-group" {
-  description = "AWS log group"
-  value       = module.oracle-log-group.this
+  description = "AWS log group(s)"
+  value       = module.oracle-log-group.*.this
 }
 
 output "log-group-firehose-iam-role" {
@@ -24,8 +24,8 @@ output "log-group-firehose-iam-role-policy" {
 }
 
 output "oracle-log-group-subscription-filter" {
-  description = "Log group subscription filter"
-  value       = module.oracle-log-group-subscription-filter.this
+  description = "Log group subscription filter(s)"
+  value       = module.oracle-log-group-subscription-filter.*.this
 }
 
 output "firehose-s3-iam-role" {
@@ -59,8 +59,8 @@ output "s3-bucket" {
 }
 
 output "aws-rds-oracle-asset" {
-  description = "AWS RDS Oracle asset"
-  value       = module.aws-rds-oracle-asset.this
+  description = "AWS RDS Oracle asset(s)"
+  value       = module.aws-rds-oracle-asset.*.this
 }
 
 output "aws-s3-bucket-asset" {

@@ -22,7 +22,6 @@ resource "dsfhub_log_aggregator" "this" {
   parent_asset_id              = var.parent_asset_id
   region                       = var.region
   server_host_name             = var.server_host_name
-  server_ip                    = var.server_ip
   server_port                  = var.server_port
   s3_provider                  = var.s3_provider
 
