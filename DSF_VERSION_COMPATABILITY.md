@@ -103,7 +103,7 @@ The following table lists the DSF versions against which each module is tested a
       <td>Amazon RDS for Oracle (Standard Audit via S3)</td>
       <td><a href="https://github.com/imperva/terraform-dsfhub-agentless-onboarding/tree/main/modules/onboard-aws-rds-oracle-standard-s3">onboard-aws-rds-oracle-standard-s3</a></td>
       <td>4.16+</td>
-      <td></td>
+      <td>Supports many-to-one monitoring</td>
    </tr>
    <tr>
       <td>Amazon RDS for Oracle (Unified Audit)</td>
