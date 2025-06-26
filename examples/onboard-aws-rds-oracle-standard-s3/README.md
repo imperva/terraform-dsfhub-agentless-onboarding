@@ -8,7 +8,7 @@ This example creates both 'aws' and 'dsfhub' resources. More information regardi
 
 ## Prerequisites
 ### Account Asset Permissions
-An AWS account asset will need to be onboarded to your DSF hub prior to using this module. The account asset will need to be granted permissions to be able to read from the newly created CloudWatch log group. 
+An AWS account asset will need to be onboarded to your DSF hub prior to using this module. The account asset will need to be granted permissions to be able to read from the newly created S3 bucket. 
 
 ### Database Configuration
 Part of the onboarding process involves connecting to your RDS Oracle instance and running SQL commands to create an audit policy. This module includes an example for how to connect to the instance from your local machine and create this. 
