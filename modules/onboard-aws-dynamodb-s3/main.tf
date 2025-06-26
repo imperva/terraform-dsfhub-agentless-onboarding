@@ -129,15 +129,9 @@ module "eventbridge-firehose-iam-role" {
 
   assume_role_policy = data.aws_iam_policy_document.eventbridge_assume_role.json
   description        = var.eventbridge_iam_role_description
-  # inline_policy = [
-  #   {
-  #     name   = "eventbridge_to_firehose_policy"
-  #     policy = data.aws_iam_policy_document.eventbridge_to_firehose.json
-  #   }
-  # ]
-  name        = var.eventbridge_iam_role_name
-  name_prefix = var.eventbridge_iam_role_name_prefix
-  tags        = var.eventbridge_iam_role_tags
+  name               = var.eventbridge_iam_role_name
+  name_prefix        = var.eventbridge_iam_role_name_prefix
+  tags               = var.eventbridge_iam_role_tags
 }
 
 module "eventbridge-firehose-iam-role-policy" {
@@ -153,15 +147,9 @@ module "firehose-s3-iam-role" {
 
   assume_role_policy = data.aws_iam_policy_document.firehose_assume_role.json
   description        = var.firehose_iam_role_description
-  # inline_policy = [
-  #   {
-  #     name   = "firehose_to_s3_policy"
-  #     policy = data.aws_iam_policy_document.firehose_to_s3.json
-  #   }
-  # ]
-  name        = var.firehose_iam_role_name
-  name_prefix = var.firehose_iam_role_name_prefix
-  tags        = var.firehose_iam_role_tags
+  name               = var.firehose_iam_role_name
+  name_prefix        = var.firehose_iam_role_name_prefix
+  tags               = var.firehose_iam_role_tags
 }
 
 module "firehose-s3-iam-role-policy" {
@@ -189,6 +177,11 @@ module "kinesis-firehose-delivery-stream" {
       processors = [{
         type = "AppendDelimiterToRecord"
       }]
+    }
+    cloudwatch_logging_options = {
+      enabled         = var.firehose_cloudwatch_logging_enabled
+      log_group_name  = var.firehose_cloudwatch_logging_log_group_name
+      log_stream_name = var.firehose_cloudwatch_logging_log_stream_name
     }
   }
   name = var.firehose_name
@@ -245,6 +238,5 @@ module "aws-s3-asset" {
   parent_asset_id    = module.aws-dynamodb-asset.this.asset_id
   region             = data.aws_region.current.name
   server_host_name   = module.s3-bucket.this.id
-  # server_ip          = module.s3-bucket.this.arn
-  server_port = "443"
+  server_port        = "443"
 }

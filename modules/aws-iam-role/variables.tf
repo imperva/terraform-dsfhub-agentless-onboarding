@@ -15,25 +15,6 @@ variable "force_detach_policies" {
   default     = false
 }
 
-variable "inline_policy" {
-  description = "Configuration block defining an exclusive set of IAM inline policies associated with the IAM role."
-  type = list(
-    object(
-      {
-        name   = string
-        policy = any
-      }
-    )
-  )
-  default = null
-}
-
-# variable "managed_policy_arns" {
-#   description = "Set of exclusive IAM managed policy ARNs to attach to the IAM role. If this attribute is not configured, Terraform will ignore policy attachments to this resource. When configured, Terraform will align the role's managed policy attachments with this set by attaching or detaching managed policies."
-#   type        = list(string)
-#   default     = null
-# }
-
 variable "max_session_duration" {
   description = "The maximum session duration (in seconds) that you want to set for the specified role. If you do not specify a value for this setting, the default maximum of one hour is applied. This setting can have a value from 1 hour to 12 hours."
   type        = number
