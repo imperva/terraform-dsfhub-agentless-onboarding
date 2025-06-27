@@ -268,6 +268,12 @@ variable "firehose_iam_role_tags" {
   default     = null
 }
 
+variable "firehose_to_s3_iam_role_policy_name" {
+  description = "The name of the IAM role policy that allows Firehose to send logs to S3."
+  type        = string
+  default     = "firehose_to_s3_policy"
+}
+
 variable "log_group_to_firehose_iam_role_description" {
   description = "The description of the IAM role."
   type        = string
@@ -290,6 +296,12 @@ variable "log_group_to_firehose_iam_role_tags" {
   description = "Key-value mapping of tags for the IAM role."
   type        = map(string)
   default     = null
+}
+
+variable "log_group_to_firehose_iam_role_policy_name" {
+  description = "The name of the IAM role policy that allows the log group to send logs to Firehose."
+  type        = string
+  default     = "log_group_to_firehose_policy"
 }
 
 variable "firehose_cloudwatch_logging_enabled" {

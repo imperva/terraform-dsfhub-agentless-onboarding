@@ -99,7 +99,7 @@ module "log-group-firehose-iam-role" {
 module "log-group-firehose-iam-role-policy" {
   source = "../aws-iam-role-policy"
 
-  name   = "log_group_to_firehose_policy"
+  name   = var.log_group_to_firehose_iam_role_policy_name
   role   = module.log-group-firehose-iam-role.this.name
   policy = data.aws_iam_policy_document.log_group_to_firehose.json
 }
@@ -203,7 +203,7 @@ module "firehose-s3-iam-role" {
 module "firehose-s3-iam-role-policy" {
   source = "../aws-iam-role-policy"
 
-  name   = "firehose_to_s3_policy"
+  name   = var.firehose_to_s3_iam_role_policy_name
   role   = module.firehose-s3-iam-role.this.name
   policy = data.aws_iam_policy_document.firehose_to_s3.json
 }
