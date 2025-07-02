@@ -1,7 +1,6 @@
 name: Pull request
 on:
-  pull_request:
-    types: [opened, synchronize, reopened, review_requested]
+  - pull_request
 jobs:
   collectInputs:
     name: Collect workflow inputs
