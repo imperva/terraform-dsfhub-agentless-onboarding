@@ -31,6 +31,7 @@ No modules.
 | <a name="input_auth_mechanism"></a> [auth\_mechanism](#input\_auth\_mechanism) | Specifies the auth mechanism used by the connection | `string` | `null` | no |
 | <a name="input_dsn"></a> [dsn](#input\_dsn) | Datasource name to use in odbc.ini. If using the asset for SDM, keep a dummy DSN value. | `string` | `null` | no |
 | <a name="input_gateway_id"></a> [gateway\_id](#input\_gateway\_id) | Unique identifier (UID) attached to the jSonar machine controlling the asset | `string` | n/a | yes |
+| <a name="input_logs_destination_asset_id"></a> [logs\_destination\_asset\_id](#input\_logs\_destination\_asset\_id) | Asset ID of the log aggregator that stores this asset's logs. | `string` | `null` | no |
 | <a name="input_parent_asset_id"></a> [parent\_asset\_id](#input\_parent\_asset\_id) | The asset\_id that contains this asset (e.g. Asset ID of the database sending audit events) | `string` | `null` | no |
 | <a name="input_password"></a> [password](#input\_password) | Password to use to connect to Oracle database. Must not include semicolons. | `string` | `null` | no |
 | <a name="input_reason"></a> [reason](#input\_reason) | Used to differentiate connections that belong to the same asset | `string` | `"default"` | no |

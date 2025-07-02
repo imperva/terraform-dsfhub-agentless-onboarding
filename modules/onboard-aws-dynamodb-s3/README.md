@@ -25,9 +25,11 @@ No requirements.
 | <a name="module_aws-s3-asset"></a> [aws-s3-asset](#module\_aws-s3-asset) | ../dsfhub-aws-s3-bucket-la | n/a |
 | <a name="module_dynamodb-cloudtrail"></a> [dynamodb-cloudtrail](#module\_dynamodb-cloudtrail) | ../aws-cloudtrail | n/a |
 | <a name="module_eventbridge-firehose-iam-role"></a> [eventbridge-firehose-iam-role](#module\_eventbridge-firehose-iam-role) | ../aws-iam-role | n/a |
+| <a name="module_eventbridge-firehose-iam-role-policy"></a> [eventbridge-firehose-iam-role-policy](#module\_eventbridge-firehose-iam-role-policy) | ../aws-iam-role-policy | n/a |
 | <a name="module_eventbridge-rule"></a> [eventbridge-rule](#module\_eventbridge-rule) | ../aws-cloudwatch-event-rule | n/a |
 | <a name="module_eventbridge-target"></a> [eventbridge-target](#module\_eventbridge-target) | ../aws-cloudwatch-event-target | n/a |
 | <a name="module_firehose-s3-iam-role"></a> [firehose-s3-iam-role](#module\_firehose-s3-iam-role) | ../aws-iam-role | n/a |
+| <a name="module_firehose-s3-iam-role-policy"></a> [firehose-s3-iam-role-policy](#module\_firehose-s3-iam-role-policy) | ../aws-iam-role-policy | n/a |
 | <a name="module_kinesis-firehose-delivery-stream"></a> [kinesis-firehose-delivery-stream](#module\_kinesis-firehose-delivery-stream) | ../aws-kinesis-firehose-delivery-stream | n/a |
 | <a name="module_s3-bucket"></a> [s3-bucket](#module\_s3-bucket) | ../aws-s3-bucket | n/a |
 | <a name="module_s3-bucket-policy"></a> [s3-bucket-policy](#module\_s3-bucket-policy) | ../aws-s3-bucket-policy | n/a |
@@ -72,6 +74,9 @@ No requirements.
 | <a name="input_eventbridge_rule_name"></a> [eventbridge\_rule\_name](#input\_eventbridge\_rule\_name) | The name of the rule. If omitted, Terraform will assign a random, unique name. | `string` | `null` | no |
 | <a name="input_eventbridge_rule_state"></a> [eventbridge\_rule\_state](#input\_eventbridge\_rule\_state) | State of the rule. Valid values are DISABLED, ENABLED, and ENABLED\_WITH\_ALL\_CLOUDTRAIL\_MANAGEMENT\_EVENTS. | `string` | `"ENABLED"` | no |
 | <a name="input_eventbridge_rule_tags"></a> [eventbridge\_rule\_tags](#input\_eventbridge\_rule\_tags) | A map of tags to assign to the resource. | `map(string)` | `null` | no |
+| <a name="input_firehose_cloudwatch_logging_enabled"></a> [firehose\_cloudwatch\_logging\_enabled](#input\_firehose\_cloudwatch\_logging\_enabled) | Whether to enable CloudWatch logging for the Firehose delivery stream. Defaults to false. | `bool` | `false` | no |
+| <a name="input_firehose_cloudwatch_logging_log_group_name"></a> [firehose\_cloudwatch\_logging\_log\_group\_name](#input\_firehose\_cloudwatch\_logging\_log\_group\_name) | The name of the CloudWatch log group to which Firehose will send logs. This value is required if enabled is true. | `string` | `null` | no |
+| <a name="input_firehose_cloudwatch_logging_log_stream_name"></a> [firehose\_cloudwatch\_logging\_log\_stream\_name](#input\_firehose\_cloudwatch\_logging\_log\_stream\_name) | The name of the CloudWatch log stream to which Firehose will send logs. This value is required if enabled is true. | `string` | `null` | no |
 | <a name="input_firehose_iam_role_description"></a> [firehose\_iam\_role\_description](#input\_firehose\_iam\_role\_description) | The description of the IAM role. | `string` | `"IAM role for sending DynamoDB logs from Firehose to S3."` | no |
 | <a name="input_firehose_iam_role_name"></a> [firehose\_iam\_role\_name](#input\_firehose\_iam\_role\_name) | Friendly name of the role. If omitted, Terraform will assign a random, unique name. Forces new resource. | `string` | `"dynamodb_firehose_role"` | no |
 | <a name="input_firehose_iam_role_name_prefix"></a> [firehose\_iam\_role\_name\_prefix](#input\_firehose\_iam\_role\_name\_prefix) | Creates a unique friendly name beginning with the specified prefix. Conflicts with 'name'. Forces new resources. | `string` | `null` | no |
@@ -90,10 +95,12 @@ No requirements.
 | <a name="output_aws-dynamodb-asset"></a> [aws-dynamodb-asset](#output\_aws-dynamodb-asset) | AWS DynamoDB asset |
 | <a name="output_aws-s3-bucket-asset"></a> [aws-s3-bucket-asset](#output\_aws-s3-bucket-asset) | AWS S3 asset |
 | <a name="output_dynamodb-cloudtrail"></a> [dynamodb-cloudtrail](#output\_dynamodb-cloudtrail) | DynamoDB CloudTrail |
-| <a name="output_eventbridge-firehose-iam-role"></a> [eventbridge-firehose-iam-role](#output\_eventbridge-firehose-iam-role) | EventBridge to firehose IAM role |
+| <a name="output_eventbridge-firehose-iam-role"></a> [eventbridge-firehose-iam-role](#output\_eventbridge-firehose-iam-role) | EventBridge to Firehose IAM role |
+| <a name="output_eventbridge-firehose-iam-role-policy"></a> [eventbridge-firehose-iam-role-policy](#output\_eventbridge-firehose-iam-role-policy) | EventBridge to Firehose IAM role policy |
 | <a name="output_eventbridge-rule"></a> [eventbridge-rule](#output\_eventbridge-rule) | EventBridge rule |
 | <a name="output_eventbridge-target"></a> [eventbridge-target](#output\_eventbridge-target) | EventBridge target |
 | <a name="output_firehose-s3-iam-role"></a> [firehose-s3-iam-role](#output\_firehose-s3-iam-role) | Firehose to S3 IAM role |
+| <a name="output_firehose-s3-iam-role-policy"></a> [firehose-s3-iam-role-policy](#output\_firehose-s3-iam-role-policy) | Firehose to S3 IAM role policy |
 | <a name="output_kinesis-firehose-delivery-stream"></a> [kinesis-firehose-delivery-stream](#output\_kinesis-firehose-delivery-stream) | Firehose delivery stream to S3 |
 | <a name="output_s3-bucket"></a> [s3-bucket](#output\_s3-bucket) | S3 bucket |
 | <a name="output_s3-bucket-policy"></a> [s3-bucket-policy](#output\_s3-bucket-policy) | S3 bucket policy |
