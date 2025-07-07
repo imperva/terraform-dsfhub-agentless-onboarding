@@ -1,3 +1,12 @@
+terraform {
+  required_providers {
+    dsfhub = {
+      source  = "imperva/dsfhub"
+      version = ">= 1.3.7"
+    }
+  }
+}
+
 # Collect AWS region & account info
 data "aws_region" "current" {}
 data "aws_caller_identity" "current" {}

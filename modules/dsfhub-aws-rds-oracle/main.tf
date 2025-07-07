@@ -21,7 +21,6 @@ resource "dsfhub_data_source" "this" {
   server_host_name          = var.server_host_name
   service_name              = var.service_name
   server_port               = var.server_port
-  # version            = var.version
 
   dynamic "asset_connection" {
     # If auth_mechanism is not defined, do not create a connection
