@@ -202,6 +202,24 @@ variable "firehose_iam_role_tags" {
   default     = null
 }
 
+variable "firehose_cloudwatch_logging_enabled" {
+  description = "Whether to enable CloudWatch logging for the Firehose delivery stream. Defaults to false."
+  type        = bool
+  default     = false
+}
+
+variable "firehose_cloudwatch_logging_log_group_name" {
+  description = "The name of the CloudWatch log group to which Firehose will send logs. This value is required if enabled is true."
+  type        = string
+  default     = null
+}
+
+variable "firehose_cloudwatch_logging_log_stream_name" {
+  description = "The name of the CloudWatch log stream to which Firehose will send logs. This value is required if enabled is true."
+  type        = string
+  default     = null
+}
+
 variable "firehose_name" {
   description = "A name to identify the stream. This is unique to the AWS account and region the Stream is created in."
   type        = string

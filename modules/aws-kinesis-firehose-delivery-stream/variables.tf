@@ -17,16 +17,29 @@ variable "extended_s3_configuration" {
       file_extension      = optional(string)
       prefix              = optional(string)
       role_arn            = optional(string)
+      cloudwatch_logging_options = optional(
+        object(
+          {
+            enabled         = string
+            log_group_name  = string
+            log_stream_name = string
+          }
+        )
+      )
       processing_configuration = optional(
         object(
           {
             enabled = string
-            processors = optional(
-              object(
-                {
-                  type = string
-                }
-              )
+            processors = optional(list(object(
+              {
+                type = string
+                parameters = optional(object({
+                  parameter_name  = string
+                  parameter_value = string
+                }))
+              }
+              ))
+
             )
           }
         )

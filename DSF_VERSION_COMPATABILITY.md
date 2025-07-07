@@ -100,6 +100,12 @@ The following table lists the DSF versions against which each module is tested a
       <td>Supports aggregated queries</td>
    </tr>
    <tr>
+      <td>Amazon RDS for Oracle (Standard Audit via S3)</td>
+      <td><a href="https://github.com/imperva/terraform-dsfhub-agentless-onboarding/tree/main/modules/onboard-aws-rds-oracle-standard-s3">onboard-aws-rds-oracle-standard-s3</a></td>
+      <td>15.0+</td>
+      <td>Supports many-to-one monitoring</td>
+   </tr>
+   <tr>
       <td>Amazon RDS for Oracle (Unified Audit)</td>
       <td><a href="https://github.com/imperva/terraform-dsfhub-agentless-onboarding/tree/main/modules/onboard-aws-rds-oracle-unified">onboard-aws-rds-oracle-unified</a></td>
       <td>4.16+</td>
@@ -184,7 +190,7 @@ The following table lists the DSF versions against which each module is tested a
       <td>Supports slow query and many-to-one monitoring</td>
    </tr>
    <tr>
-       <td>GCP Cloud SQL for PostgreSQL</td>
+      <td>GCP Cloud SQL for PostgreSQL</td>
       <td><a href="https://github.com/imperva/terraform-dsfhub-agentless-onboarding/tree/main/modules/onboard-gcp-postgresql">onboard-gcp-postgresql</a></td>
       <td>4.17+</td>
       <td>Supports slow query and many-to-one monitoring</td>

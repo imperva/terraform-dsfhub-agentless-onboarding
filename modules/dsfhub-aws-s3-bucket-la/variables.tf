@@ -3,6 +3,12 @@ variable "admin_email" {
   type        = string
 }
 
+variable "arn" {
+  description = "The ARN of the S3 bucket, e.g. \"arn:aws:s3:::bucket-name\""
+  type        = string
+  default     = null
+}
+
 variable "asset_display_name" {
   description = "User-friendly name of the asset, defined by the user"
   type        = string
@@ -20,13 +26,25 @@ variable "audit_pull_enabled" {
 }
 
 variable "audit_type" {
-  description = "Used to indicate what type of audit will be pulled on systems supporting multiple audit types. Default is null. Valid values: LOG_GROUP, KINESIS, CLOUDWATCH, REDSHIFT, DYNAMODB"
+  description = "Used to indicate what type of audit will be pulled on systems supporting multiple audit types. Default is null. Valid values: LOG_GROUP, KINESIS, CLOUDWATCH, REDSHIFT, DYNAMODB, ORACLE"
   type        = string
   default     = null
   validation {
-    condition     = (var.audit_type == null ? true : (can(regex("LOG_GROUP|KINESIS|CLOUDWATCH|REDSHIFT|DYNAMODB", var.audit_type))))
-    error_message = "audit_type must be one of LOG_GROUP, KINESIS, CLOUDWATCH, REDSHIFT, DYNAMODB"
+    condition     = (var.audit_type == null ? true : (can(regex("LOG_GROUP|KINESIS|CLOUDWATCH|REDSHIFT|DYNAMODB|ORACLE", var.audit_type))))
+    error_message = "audit_type must be one of LOG_GROUP, KINESIS, CLOUDWATCH, REDSHIFT, DYNAMODB, ORACLE or null."
   }
+}
+
+variable "available_bucket_account_ids" {
+  description = "A list of AWS Account IDs to use when pulling account specific audit logs from this bucket. eg: ['123456789012', ‘123456789013’]."
+  type        = list(string)
+  default     = []
+}
+
+variable "available_regions" {
+  description = "A list of regions to use when pulling region-specific audit logs from this bucket."
+  type        = list(string)
+  default     = []
 }
 
 variable "bucket_account_id" {
@@ -52,11 +70,6 @@ variable "region" {
 
 variable "server_host_name" {
   description = "S3 bucket name."
-  type        = string
-}
-
-variable "server_ip" {
-  description = "S3 bucket ARN."
   type        = string
 }
 

@@ -129,15 +129,17 @@ module "eventbridge-firehose-iam-role" {
 
   assume_role_policy = data.aws_iam_policy_document.eventbridge_assume_role.json
   description        = var.eventbridge_iam_role_description
-  inline_policy = [
-    {
-      name   = "eventbridge_to_firehose_policy"
-      policy = data.aws_iam_policy_document.eventbridge_to_firehose.json
-    }
-  ]
-  name        = var.eventbridge_iam_role_name
-  name_prefix = var.eventbridge_iam_role_name_prefix
-  tags        = var.eventbridge_iam_role_tags
+  name               = var.eventbridge_iam_role_name
+  name_prefix        = var.eventbridge_iam_role_name_prefix
+  tags               = var.eventbridge_iam_role_tags
+}
+
+module "eventbridge-firehose-iam-role-policy" {
+  source = "../aws-iam-role-policy"
+
+  name   = "eventbridge_to_firehose_policy"
+  policy = data.aws_iam_policy_document.eventbridge_to_firehose.json
+  role   = module.eventbridge-firehose-iam-role.this.name
 }
 
 module "firehose-s3-iam-role" {
@@ -145,15 +147,17 @@ module "firehose-s3-iam-role" {
 
   assume_role_policy = data.aws_iam_policy_document.firehose_assume_role.json
   description        = var.firehose_iam_role_description
-  inline_policy = [
-    {
-      name   = "firehose_to_s3_policy"
-      policy = data.aws_iam_policy_document.firehose_to_s3.json
-    }
-  ]
-  name        = var.firehose_iam_role_name
-  name_prefix = var.firehose_iam_role_name_prefix
-  tags        = var.firehose_iam_role_tags
+  name               = var.firehose_iam_role_name
+  name_prefix        = var.firehose_iam_role_name_prefix
+  tags               = var.firehose_iam_role_tags
+}
+
+module "firehose-s3-iam-role-policy" {
+  source = "../aws-iam-role-policy"
+
+  name   = "firehose_to_s3_policy"
+  policy = data.aws_iam_policy_document.firehose_to_s3.json
+  role   = module.firehose-s3-iam-role.this.name
 }
 
 module "kinesis-firehose-delivery-stream" {
@@ -170,9 +174,14 @@ module "kinesis-firehose-delivery-stream" {
     error_output_prefix = "FirehosetoS3Error/!{firehose:error-output-type}/!{timestamp:yyyy/MM/dd/}"
     processing_configuration = {
       enabled = "true"
-      processors = {
+      processors = [{
         type = "AppendDelimiterToRecord"
-      }
+      }]
+    }
+    cloudwatch_logging_options = {
+      enabled         = var.firehose_cloudwatch_logging_enabled
+      log_group_name  = var.firehose_cloudwatch_logging_log_group_name
+      log_stream_name = var.firehose_cloudwatch_logging_log_stream_name
     }
   }
   name = var.firehose_name
@@ -219,6 +228,7 @@ module "aws-s3-asset" {
   source = "../dsfhub-aws-s3-bucket-la"
 
   admin_email        = var.aws_s3_admin_email
+  arn                = module.s3-bucket.this.arn
   asset_display_name = module.s3-bucket.this.id
   asset_id           = module.s3-bucket.this.arn
   audit_pull_enabled = var.aws_s3_audit_pull_enabled
@@ -228,6 +238,5 @@ module "aws-s3-asset" {
   parent_asset_id    = module.aws-dynamodb-asset.this.asset_id
   region             = data.aws_region.current.name
   server_host_name   = module.s3-bucket.this.id
-  server_ip          = module.s3-bucket.this.arn
   server_port        = "443"
 }

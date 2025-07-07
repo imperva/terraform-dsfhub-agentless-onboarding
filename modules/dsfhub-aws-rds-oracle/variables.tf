@@ -42,6 +42,12 @@ variable "gateway_id" {
   type        = string
 }
 
+variable "logs_destination_asset_id" {
+  description = "Asset ID of the log aggregator that stores this asset's logs."
+  type        = string
+  default     = null
+}
+
 variable "parent_asset_id" {
   description = "The asset_id that contains this asset (e.g. Asset ID of the database sending audit events)"
   type        = string

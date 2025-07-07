@@ -15,6 +15,17 @@ resource "aws_kinesis_firehose_delivery_stream" "this" {
       prefix              = extended_s3_configuration.value.prefix
       role_arn            = extended_s3_configuration.value.role_arn
 
+      dynamic "cloudwatch_logging_options" {
+        # If cloudwatch_logging_options is not defined, do not create
+        for_each = try(extended_s3_configuration.value.cloudwatch_logging_options, null) != null ? [extended_s3_configuration.value.cloudwatch_logging_options] : []
+
+        content {
+          enabled         = cloudwatch_logging_options.value.enabled
+          log_group_name  = cloudwatch_logging_options.value.log_group_name
+          log_stream_name = cloudwatch_logging_options.value.log_stream_name
+        }
+      }
+
       dynamic "processing_configuration" {
         # If processing_configuration is not defined, do not create
         for_each = [extended_s3_configuration.value.processing_configuration] != null ? [extended_s3_configuration.value.processing_configuration] : []
@@ -24,11 +35,19 @@ resource "aws_kinesis_firehose_delivery_stream" "this" {
 
           dynamic "processors" {
             # If processors is not defined, do not create
-            for_each = [processing_configuration.value.processors] != null ? [processing_configuration.value.processors] : []
+            for_each = try(processing_configuration.value.processors, [])
 
             content {
               type = processors.value.type
-              # TODO: support 'parameters' block, see https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/kinesis_firehose_delivery_stream.html#parameters-block
+              dynamic "parameters" {
+                # If parameters is not defined, do not create
+                for_each = try(processors.value.parameters, null) != null ? [processors.value.parameters] : []
+
+                content {
+                  parameter_name  = parameters.value.parameter_name
+                  parameter_value = parameters.value.parameter_value
+                }
+              }
             }
           }
         }
