@@ -5,10 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html) as of version 1.1.0.
 
-## [1.2.1] - TBD
+## [1.3.0] - 2025-07-07
 
 ### Added
-- Amazon RDS Oracle (Standard Audit) via S3 module
+- Amazon RDS Oracle (Standard Audit) via S3 module with many-to-one-monitoring support/example in one region
+
+### Fixed
+- Removed use of deprecated inline_policy in aws-iam-role resource
+- Modified aws-kinesis-firehose-delivery-stream to support multiple parameters and cloudwatch_logging_options
 
 ## [1.2.0] - 2025-06-20
 
