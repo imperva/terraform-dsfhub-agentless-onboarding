@@ -26,7 +26,7 @@ No modules.
 | <a name="input_admin_email"></a> [admin\_email](#input\_admin\_email) | The email address to notify about the assets. | `string` | `"test@example.com"` | no |
 | <a name="input_asset_display_name"></a> [asset\_display\_name](#input\_asset\_display\_name) | The display name of the asset. | `string` | `"AWS DocumentDB Cluster"` | no |
 | <a name="input_asset_id"></a> [asset\_id](#input\_asset\_id) | The unique identifier of the asset, typically its arn. | `string` | n/a | yes |
-| <a name="input_cluster_identifier"></a> [cluster\_identifier](#input\_cluster\_identifier) | Identifier of AWS DocumentDB Cluster. | `string` | n/a | yes |
+| <a name="input_cluster_id"></a> [cluster\_id](#input\_cluster\_id) | Identifier of AWS DocumentDB Cluster. | `string` | n/a | yes |
 | <a name="input_gateway_id"></a> [gateway\_id](#input\_gateway\_id) | Unique identifier (UID) attached to the jSonar machine controlling the asset | `string` | n/a | yes |
 | <a name="input_parent_asset_id"></a> [parent\_asset\_id](#input\_parent\_asset\_id) | DSFHUB Cloud Account Asset ID | `string` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | AWS region of the AWS DocumentDB Cluster. | `string` | n/a | yes |
