@@ -10,11 +10,11 @@ variable "gcp_spanner_audit_pull_enabled" {
 }
 
 variable "gcp_spanner_duration_threshold" {
-  description = "How long (in seconds) a query's execution may take until it is flagged as slow."
+  description = "How long (in milliseconds) a query's execution may take until it is flagged as slow."
   type        = number
   default     = null
   validation {
-    condition     = var.gcp_spanner_duration_threshold == null ? true : var.gcp_spanner_duration_threshold > 0
+    condition     = var.gcp_spanner_duration_threshold == null ? true : var.gcp_spanner_duration_threshold >= 0
     error_message = "The gcp_spanner_duration_threshold must be a non-negative number."
   }
 }
@@ -46,6 +46,12 @@ variable "instance_config" {
   default     = null
 }
 
+variable "instance_default_backup_schedule_type" {
+  description = "Controls the default backup behavior for new databases within the instance. Note that AUTOMATIC is not permitted for free instances, as backups and backup schedules are not allowed for free instances. if unset or NONE, no default backup schedule will be created for new databases within the instance. Possible values are: NONE, AUTOMATIC. Default is NONE."
+  type        = string
+  default     = "NONE"
+}
+
 variable "instance_display_name" {
   description = "The descriptive name for this instance as it appears in UIs."
   type        = string
@@ -64,6 +70,12 @@ variable "instance_edition" {
     condition     = can(regexall("EDITION_UNSPECIFIED|STANDARD|ENTERPRISE|ENTERPRISE_PLUS", var.instance_edition))
     error_message = "The edition must be one of EDITION_UNSPECIFIED, STANDARD, ENTERPRISE, ENTERPRISE_PLUS."
   }
+}
+
+variable "instance_force_destroy" {
+  description = "When deleting a spanner instance, this boolean option will delete all backups of this instance. This must be set to true if you created a backup manually in the console."
+  type        = bool
+  default     = null
 }
 
 variable "instance_labels" {

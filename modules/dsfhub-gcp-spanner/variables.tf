@@ -20,11 +20,11 @@ variable "audit_pull_enabled" {
 }
 
 variable "duration_threshold" {
-  description = "How long (in seconds) a query's execution may take until it is flagged as slow."
+  description = "How long (in milliseconds) a query's execution may take until it is flagged as slow."
   type        = number
   default     = null
   validation {
-    condition     = var.duration_threshold == null ? true : var.duration_threshold > 0
+    condition     = var.duration_threshold == null ? true : var.duration_threshold >= 0
     error_message = "The duration_threshold must be a non-negative number."
   }
 }

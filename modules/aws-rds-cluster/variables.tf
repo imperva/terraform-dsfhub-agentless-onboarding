@@ -39,6 +39,12 @@ variable "engine" {
   default     = null
 }
 
+variable "engine_mode" {
+  description = "Database engine mode. Valid values: global (only valid for Aurora MySQL 1.21 and earlier), parallelquery, provisioned, serverless. Defaults to: provisioned. Specify an empty string for no engine mode. See the [RDS User Guide](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless.html) for limitations when using serverless. Default is provisioned."
+  type        = string
+  default     = "provisioned"
+}
+
 variable "engine_version" {
   description = "Database engine version, e.g., 8.0.mysql_aurora.3.05.1"
   type        = string
@@ -77,6 +83,12 @@ variable "skip_final_snapshot" {
   description = "Determines whether a final DB snapshot is created before the DB cluster is deleted. If true is specified, no DB snapshot is created. If false is specified, a DB snapshot is created before the DB cluster is deleted, using the value from final_snapshot_identifier."
   type        = bool
   default     = null
+}
+
+variable "storage_encrypted" {
+  description = "Specifies whether the DB cluster is encrypted. The default is false for provisioned engine_mode and true for serverless engine_mode. When restoring an unencrypted snapshot_identifier, the kms_key_id argument must be provided to encrypt the restored cluster. Terraform will only perform drift detection if a configuration value is provided. Default is true."
+  type        = bool
+  default     = true
 }
 
 variable "vpc_security_group_ids" {

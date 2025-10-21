@@ -4,6 +4,12 @@ variable "config" {
   default     = null
 }
 
+variable "default_backup_schedule_type" {
+  description = "Controls the default backup behavior for new databases within the instance. Note that AUTOMATIC is not permitted for free instances, as backups and backup schedules are not allowed for free instances. if unset or NONE, no default backup schedule will be created for new databases within the instance. Possible values are: NONE, AUTOMATIC."
+  type        = string
+  default     = null
+}
+
 variable "display_name" {
   description = "The descriptive name for this instance as it appears in UIs."
   type        = string
@@ -22,6 +28,12 @@ variable "edition" {
     condition     = can(regexall("EDITION_UNSPECIFIED|STANDARD|ENTERPRISE|ENTERPRISE_PLUS", var.edition))
     error_message = "The edition must be one of EDITION_UNSPECIFIED, STANDARD, ENTERPRISE, ENTERPRISE_PLUS."
   }
+}
+
+variable "force_destroy" {
+  description = "When deleting a spanner instance, this boolean option will delete all backups of this instance. This must be set to true if you created a backup manually in the console."
+  type        = bool
+  default     = null
 }
 
 variable "labels" {

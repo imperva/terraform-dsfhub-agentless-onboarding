@@ -107,6 +107,12 @@ variable "skip_final_snapshot" {
   default     = true
 }
 
+variable "storage_encrypted" {
+  description = "Specifies whether the DB instance is encrypted. Note that if you are creating a cross-region read replica this field is ignored and you should instead declare kms_key_id with a valid ARN. The default is true."
+  type        = bool
+  default     = true
+}
+
 variable "tags" {
   description = "A map of tags to assign to the RDS instance."
   type        = map(string)

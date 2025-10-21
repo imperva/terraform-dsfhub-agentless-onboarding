@@ -1,3 +1,15 @@
+variable "cloud_watch_logs_group_arn" {
+  description = "The ARN of the CloudWatch log group to which CloudTrail logs will be delivered."
+  type        = string
+  default     = null
+}
+
+variable "cloud_watch_logs_role_arn" {
+  description = "The ARN of the IAM role that CloudTrail assumes to write to the CloudWatch log group."
+  type        = string
+  default     = null
+}
+
 variable "enable_logging" {
   description = "Enables logging for the trail. Setting this to \"false\" will pause logging."
   type        = bool
@@ -24,6 +36,12 @@ variable "name" {
 variable "s3_bucket_name" {
   description = "Name of the S3 bucket designated for publishing log files."
   type        = string
+}
+
+variable "s3_key_prefix" {
+  description = "The S3 key prefix that follows the name of the bucket you have designated for log file delivery."
+  type        = string
+  default     = null
 }
 
 variable "event_selector" {

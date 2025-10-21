@@ -56,7 +56,7 @@ module "docdb-cluster-asset" {
   admin_email        = var.aws_docdb_cluster_admin_email
   asset_display_name = module.docdb-cluster.this.cluster_identifier
   asset_id           = module.docdb-cluster.this.arn
-  cluster_identifier = module.docdb-cluster.this.cluster_identifier
+  cluster_id         = module.docdb-cluster.this.cluster_identifier
   gateway_id         = var.aws_docdb_cluster_gateway_id
   parent_asset_id    = var.aws_docdb_cluster_parent_asset_id
   region             = var.aws_docdb_cluster_region

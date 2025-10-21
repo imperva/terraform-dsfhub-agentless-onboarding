@@ -1,13 +1,15 @@
 module "gcp-spanner-instance" {
   source = "../google-spanner-instance"
 
-  config       = "projects/${var.instance_project}/instanceConfigs/${var.instance_config}"
-  display_name = var.instance_display_name
-  edition      = var.instance_edition
-  labels       = var.instance_labels
-  name         = var.instance_name
-  num_nodes    = var.instance_num_nodes
-  project      = var.instance_project
+  default_backup_schedule_type = var.instance_default_backup_schedule_type
+  config                       = "projects/${var.instance_project}/instanceConfigs/${var.instance_config}"
+  display_name                 = var.instance_display_name
+  edition                      = var.instance_edition
+  force_destroy                = var.instance_force_destroy
+  labels                       = var.instance_labels
+  name                         = var.instance_name
+  num_nodes                    = var.instance_num_nodes
+  project                      = var.instance_project
 }
 
 module "gcp-spanner-asset" {
