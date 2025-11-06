@@ -1,9 +1,12 @@
 resource "aws_cloudtrail" "this" {
+  cloud_watch_logs_group_arn    = var.cloud_watch_logs_group_arn
+  cloud_watch_logs_role_arn     = var.cloud_watch_logs_role_arn
   enable_logging                = var.enable_logging
   include_global_service_events = var.include_global_service_events
   is_multi_region_trail         = var.is_multi_region_trail
   name                          = var.name
   s3_bucket_name                = var.s3_bucket_name
+  s3_key_prefix                 = var.s3_key_prefix
 
   dynamic "event_selector" {
     # If event_selector is not defined, do not create

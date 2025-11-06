@@ -16,7 +16,7 @@ variable "asset_id" {
   type        = string
 }
 
-variable "cluster_identifier" {
+variable "cluster_id" {
   description = "Identifier of AWS DocumentDB Cluster."
   type        = string
 }
