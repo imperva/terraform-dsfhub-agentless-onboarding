@@ -65,3 +65,28 @@ variable "event_selector" {
   )
   default = null
 }
+
+variable "advanced_event_selector" {
+  description = "Specifies an advanced event selector for enabling data event logging."
+  type = list(
+    object(
+      {
+        name = string
+        field_selector = list(
+          object(
+            {
+              field           = string
+              equals          = optional(list(string))
+              starts_with     = optional(list(string))
+              ends_with       = optional(list(string))
+              not_equals      = optional(list(string))
+              not_starts_with = optional(list(string))
+              not_ends_with   = optional(list(string))
+            }
+          )
+        )
+      }
+    )
+  )
+  default = null
+}

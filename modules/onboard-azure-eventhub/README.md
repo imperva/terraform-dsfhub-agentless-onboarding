@@ -1,5 +1,5 @@
 # onboard-azure-eventhub
-Creates and onboards an Azure Event Hub to DSF Hub using the default authentication mechanism (relying on access and secret keys), alongside creating the Storage Account used by DSF to store a marker when pulling data from the Event Hub.
+Creates and onboards an Azure Event Hub (in an Event Hubs Namespace) to DSF Hub alongside creating the Storage Account used by DSF to store a marker when pulling data from the Event Hub. If using the default authentication mechanism (relying on access and secret keys), no other variables are necessary. If using the client_secret or azure_ad authentication mechanisms, it requires further variables, assuming an existing Azure Application Registration with a secret or an existing System or User Assigned Managed Identity. For more information, see the [Asset Specifications for Azure Event Hub assets](https://docs-cybersec.thalesgroup.com/bundle/onboarding-databases-to-sonar-reference-guide/page/Azure-Event-Hub-Asset-Specifications_35815951.html#AzureEventHubAssetSpecifications-Connection).
 
 
 <!-- BEGIN_TF_DOCS -->

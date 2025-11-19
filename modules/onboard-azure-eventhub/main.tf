@@ -66,7 +66,8 @@ locals {
 module "eventhub-authorizations" {
   source = "../azurerm-eventhub-namespace-authorization-rule"
 
-  for_each = { for permission in local.permissions : permission.id => permission }
+  # for_each = { for permission in local.permissions : permission.id => permission }
+  for_each = var.azure_eventhub_auth_mechanism == "default" ? { for permission in local.permissions : permission.id => permission } : {}
 
   listen              = each.value.listen
   manage              = each.value.manage
@@ -84,19 +85,30 @@ module "azure-eventhub-asset" {
   asset_id           = module.eventhub.this.id
   # audit_pull_enabled set to 'null' so as to be treated as a computed value
   # eventhub asset will be connected when assets using this eventhub as a log aggregator are connected
-  audit_pull_enabled       = null
-  auth_mechanism           = "default"
-  azure_storage_account    = module.storage-account.this.name
-  azure_storage_container  = module.storage-container.this.name
-  azure_storage_secret_key = module.storage-account.this.primary_access_key
-  eventhub_access_key      = module.eventhub-authorizations["read"].this.primary_key
-  eventhub_access_policy   = module.eventhub-authorizations["read"].this.name
-  eventhub_name            = module.eventhub.this.name
-  eventhub_namespace       = module.eventhub.this.namespace_name
-  format                   = var.azure_eventhub_format
-  gateway_id               = var.azure_eventhub_gateway_id
-  parent_asset_id          = var.azure_eventhub_parent_asset_id
-  reason                   = "default"
-  region                   = var.azure_eventhub_region
-  server_host_name         = "${module.eventhub-namespace.this.name}.servicebus.windows.net"
+  audit_pull_enabled      = null
+  auth_mechanism          = var.azure_eventhub_auth_mechanism
+  azure_storage_account   = module.storage-account.this.name
+  azure_storage_container = module.storage-container.this.name
+  eventhub_name           = module.eventhub.this.name
+  eventhub_namespace      = module.eventhub.this.namespace_name
+  format                  = var.azure_eventhub_format
+  gateway_id              = var.azure_eventhub_gateway_id
+  parent_asset_id         = var.azure_eventhub_parent_asset_id
+  reason                  = "default"
+  region                  = var.azure_eventhub_region
+  server_host_name        = "${module.eventhub-namespace.this.name}.servicebus.windows.net"
+
+  # default auth mechanism connection parameters
+  azure_storage_secret_key = var.azure_eventhub_auth_mechanism == "default" ? module.storage-account.this.primary_access_key : null
+  eventhub_access_key      = var.azure_eventhub_auth_mechanism == "default" ? module.eventhub-authorizations["read"].this.primary_key : null
+  eventhub_access_policy   = var.azure_eventhub_auth_mechanism == "default" ? module.eventhub-authorizations["read"].this.name : null
+
+  # client_secret auth mechanism connection parameters
+  application_id  = var.azure_eventhub_auth_mechanism == "client_secret" ? var.azure_eventhub_application_id : null
+  client_secret   = var.azure_eventhub_auth_mechanism == "client_secret" ? var.azure_eventhub_client_secret : null
+  directory_id    = var.azure_eventhub_auth_mechanism == "client_secret" ? var.azure_eventhub_directory_id : null
+  subscription_id = var.azure_eventhub_auth_mechanism == "client_secret" ? var.azure_eventhub_subscription_id : null
+
+  # azure_ad auth mechanism connection parameters
+  user_identity_client_id = var.azure_eventhub_auth_mechanism == "azure_ad" ? var.azure_eventhub_user_identity_client_id : null
 }

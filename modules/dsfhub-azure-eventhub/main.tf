@@ -24,16 +24,27 @@ resource "dsfhub_log_aggregator" "this" {
     for_each = var.auth_mechanism != null ? [0] : []
 
     content {
-      auth_mechanism           = var.auth_mechanism
-      azure_storage_account    = var.azure_storage_account
-      azure_storage_container  = var.azure_storage_container
+      auth_mechanism          = var.auth_mechanism
+      azure_storage_account   = var.azure_storage_account
+      azure_storage_container = var.azure_storage_container
+      eventhub_name           = var.eventhub_name
+      eventhub_namespace      = var.eventhub_namespace
+      format                  = var.format
+      reason                  = var.reason
+
+      # default auth mechanism connection parameters
       azure_storage_secret_key = var.auth_mechanism == "default" ? var.azure_storage_secret_key : null
       eventhub_access_key      = var.auth_mechanism == "default" ? var.eventhub_access_key : null
       eventhub_access_policy   = var.auth_mechanism == "default" ? var.eventhub_access_policy : null
-      eventhub_name            = var.eventhub_name
-      eventhub_namespace       = var.eventhub_namespace
-      format                   = var.format
-      reason                   = var.reason
+
+      # client_secret auth mechanism connection parameters
+      application_id  = var.auth_mechanism == "client_secret" ? var.application_id : null
+      client_secret   = var.auth_mechanism == "client_secret" ? var.client_secret : null
+      directory_id    = var.auth_mechanism == "client_secret" ? var.directory_id : null
+      subscription_id = var.auth_mechanism == "client_secret" ? var.subscription_id : null
+
+      # azure_ad auth mechanism connection parameters
+      user_identity_client_id = var.auth_mechanism == "azure_ad" ? var.user_identity_client_id : null
     }
   }
 }

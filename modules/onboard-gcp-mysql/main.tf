@@ -13,6 +13,11 @@ module "gcp-mysql-instance" {
   tier                    = var.instance_tier
 }
 
+locals {
+  original_ip = module.gcp-mysql-instance.this.ip_address.0.ip_address
+  reversed_ip = join(".", reverse(split(".", local.original_ip)))
+}
+
 module "gcp-mysql-asset" {
   source = "../dsfhub-gcp-mysql"
 
@@ -23,6 +28,6 @@ module "gcp-mysql-asset" {
   gateway_id                = var.gcp_mysql_gateway_id
   logs_destination_asset_id = var.gcp_mysql_logs_destination_asset_id
   parent_asset_id           = var.gcp_mysql_parent_asset_id
-  server_host_name          = "4.3.2.1.bc.googleusercontent.com"
+  server_host_name          = "${local.reversed_ip}.bc.googleusercontent.com"
   server_ip                 = module.gcp-mysql-instance.this.ip_address.0.ip_address
 }

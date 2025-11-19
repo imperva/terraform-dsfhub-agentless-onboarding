@@ -20,12 +20,12 @@ output "eventhub" {
 
 output "eventhub-read-authorization" {
   description = "Read authorization for the Event Hub Namespace."
-  value       = module.eventhub-authorizations["read"].this
+  value       = try(module.eventhub-authorizations["read"].this, null)
 }
 
 output "eventhub-write-authorization" {
   description = "Write authorization for the Event Hub Namespace."
-  value       = module.eventhub-authorizations["write"].this
+  value       = try(module.eventhub-authorizations["write"].this, null)
 }
 
 output "azure-eventhub-asset" {

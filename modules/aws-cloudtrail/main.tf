@@ -26,4 +26,26 @@ resource "aws_cloudtrail" "this" {
       read_write_type                  = event_selector.value.read_write_type != null ? event_selector.value.read_write_type : null
     }
   }
+
+  dynamic "advanced_event_selector" {
+    # If advanced_event_selector is not defined, do not create
+    for_each = var.advanced_event_selector != null ? var.advanced_event_selector : []
+
+    content {
+      name = advanced_event_selector.value.name
+      dynamic "field_selector" {
+        for_each = advanced_event_selector.value.field_selector != null ? advanced_event_selector.value.field_selector : []
+
+        content {
+          field           = field_selector.value.field
+          equals          = field_selector.value.equals != null ? field_selector.value.equals : null
+          starts_with     = field_selector.value.starts_with != null ? field_selector.value.starts_with : null
+          ends_with       = field_selector.value.ends_with != null ? field_selector.value.ends_with : null
+          not_equals      = field_selector.value.not_equals != null ? field_selector.value.not_equals : null
+          not_starts_with = field_selector.value.not_starts_with != null ? field_selector.value.not_starts_with : null
+          not_ends_with   = field_selector.value.not_ends_with != null ? field_selector.value.not_ends_with : null
+        }
+      }
+    }
+  }
 }
