@@ -1,4 +1,4 @@
 output "this" {
-  description = "aws log group asset"
+  description = "AWS Log Group asset"
   value       = dsfhub_log_aggregator.this
 }
