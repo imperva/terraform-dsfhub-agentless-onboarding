@@ -4,12 +4,6 @@ variable "access_id" {
   default     = null
 }
 
-variable "aws_iam_server_id" {
-  description = "The server ID of the AWS IAM server. E.g. vault.example.com"
-  type        = string
-  default     = null
-}
-
 variable "admin_email" {
   description = "The email address to notify about the asset."
   type        = string
@@ -33,6 +27,12 @@ variable "auth_mechanism" {
     condition     = contains(["root_token", "ec2", "iam_role", "app_role"], var.auth_mechanism)
     error_message = "Invalid authentication mechanism. Supported values: root_token, ec2, iam_role, app_role."
   }
+}
+
+variable "aws_iam_server_id" {
+  description = "The server ID of the AWS IAM server. E.g. vault.example.com"
+  type        = string
+  default     = null
 }
 
 variable "gateway_id" {
