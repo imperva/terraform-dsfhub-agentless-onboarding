@@ -5,13 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html) as of version 1.1.0.
 
-## [1.3.1] - 2025-11-TBD
+## [1.3.1] - 2025-12-TBD
 
 ### Added
 - Supported more configuration options for AWS CloudTrail trails, CloudWatch log groups, RDS clusters/instances
 - Supported more configuration options for DSFHub assets for GCP Cloud Storage Buckets, GCP Spanner
 - Added a module and example for ALIABA Cloud Account and ALIBABA LOGSTORE Log Aggregator assets
 - Added modules for AWS, CYBERARK and HASHICORP secret manager assets
+- Added module for ORACLE asset and example dsfhub-oracle-with-secret-manager
 - Added duration_threshold to GCP BIGQUERY asset module
 - Extended the onboard-azure-eventhub module to allow the use of other authentication mechanisms, and added an example
 
