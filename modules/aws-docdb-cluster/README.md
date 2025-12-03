@@ -35,6 +35,7 @@ No modules.
 | <a name="input_master_username"></a> [master\_username](#input\_master\_username) | Master DB username. | `string` | `"docdb"` | no |
 | <a name="input_port"></a> [port](#input\_port) | The port on which the DB accepts connections. | `number` | `27017` | no |
 | <a name="input_skip_final_snapshot"></a> [skip\_final\_snapshot](#input\_skip\_final\_snapshot) | Determines whether a final DB snapshot is created before the DB cluster is deleted. If true is specified, no DB snapshot is created. If false is specified, a DB snapshot is created before the DB cluster is deleted, using the value from final\_snapshot\_identifier | `bool` | `true` | no |
+| <a name="input_storage_encrypted"></a> [storage\_encrypted](#input\_storage\_encrypted) | Specifies whether the DB cluster is encrypted. Defaults to true. | `bool` | `true` | no |
 | <a name="input_storage_type"></a> [storage\_type](#input\_storage\_type) | The storage type to associate with the DB cluster. | `string` | `"standard"` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | A map of tags to assign to the DB cluster. | `map(string)` | `null` | no |
 | <a name="input_vpc_security_group_ids"></a> [vpc\_security\_group\_ids](#input\_vpc\_security\_group\_ids) | List of VPC security groups to associate with the Cluster | `list(string)` | n/a | yes |

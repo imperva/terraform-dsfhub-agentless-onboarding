@@ -19,7 +19,7 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [dsfhub_cloud_account.aws](https://registry.terraform.io/providers/imperva/dsfhub/latest/docs/resources/cloud_account) | resource |
+| [dsfhub_cloud_account.this](https://registry.terraform.io/providers/imperva/dsfhub/latest/docs/resources/cloud_account) | resource |
 
 ## Inputs
 
@@ -32,12 +32,12 @@ No modules.
 | <a name="input_aws_access_key"></a> [aws\_access\_key](#input\_aws\_access\_key) | AWS Access ID | `string` | `null` | no |
 | <a name="input_aws_secret_key"></a> [aws\_secret\_key](#input\_aws\_secret\_key) | AWS secret key | `string` | `null` | no |
 | <a name="input_gateway_id"></a> [gateway\_id](#input\_gateway\_id) | Unique identifier (UID) attached to the jSonar machine controlling the asset | `string` | n/a | yes |
-| <a name="input_profile_name"></a> [profile\_name](#input\_profile\_name) | The name of a profile in /install\_dir/jsonar/local/credentials/.aws/credentials to use for authentication | `string` | `null` | no |
+| <a name="input_profile_name"></a> [profile\_name](#input\_profile\_name) | The name of a profile in /path/to/JSONAR\_LOCALDIR/credentials/.aws/credentials to use for authentication | `string` | `null` | no |
 | <a name="input_region"></a> [region](#input\_region) | Default AWS region of the account | `string` | n/a | yes |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| <a name="output_this"></a> [this](#output\_this) | aws cloud account asset |
+| <a name="output_this"></a> [this](#output\_this) | AWS cloud account asset |
 <!-- END_TF_DOCS -->

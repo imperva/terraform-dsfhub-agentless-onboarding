@@ -37,5 +37,5 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_this"></a> [this](#output\_this) | aws log group asset |
+| <a name="output_this"></a> [this](#output\_this) | AWS Log Group asset |
 <!-- END_TF_DOCS -->
