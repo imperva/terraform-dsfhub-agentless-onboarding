@@ -27,7 +27,9 @@ No providers.
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_gcp-bigquery-1"></a> [gcp-bigquery-1](#module\_gcp-bigquery-1) | ../../modules/dsfhub-gcp-bigquery | n/a |
-| <a name="module_gcp-pubsub"></a> [gcp-pubsub](#module\_gcp-pubsub) | ../../modules/onboard-gcp-pubsub | n/a |
+| <a name="module_gcp-bigquery-2"></a> [gcp-bigquery-2](#module\_gcp-bigquery-2) | ../../modules/dsfhub-gcp-bigquery | n/a |
+| <a name="module_gcp-pubsub-1"></a> [gcp-pubsub-1](#module\_gcp-pubsub-1) | ../../modules/onboard-gcp-pubsub | n/a |
+| <a name="module_gcp-pubsub-2"></a> [gcp-pubsub-2](#module\_gcp-pubsub-2) | ../../modules/onboard-gcp-pubsub | n/a |
 | <a name="module_service-account"></a> [service-account](#module\_service-account) | ../../modules/google-service-account-dsf | n/a |
 
 ## Resources

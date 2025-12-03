@@ -38,7 +38,7 @@ No modules.
 | <a name="input_secret_key"></a> [secret\_key](#input\_secret\_key) | AWS secret key. Required for "key" auth\_mechanism. | `string` | `null` | no |
 | <a name="input_server_host_name"></a> [server\_host\_name](#input\_server\_host\_name) | AWS DynamoDB service endpoint | `string` | `"dynamodb.us-east-2.amazonaws.com"` | no |
 | <a name="input_server_port"></a> [server\_port](#input\_server\_port) | AWS DynamoDB service endpoint port | `string` | `"443"` | no |
-| <a name="input_username"></a> [username](#input\_username) | The name of a profile in /install\_dir/jsonar/local/credentials/.aws/credentials to use for authenticating | `string` | `null` | no |
+| <a name="input_username"></a> [username](#input\_username) | The name of a profile in /path/to/JSONAR\_LOCALDIR/credentials/.aws/credentials to use for authenticating | `string` | `null` | no |
 
 ## Outputs
 

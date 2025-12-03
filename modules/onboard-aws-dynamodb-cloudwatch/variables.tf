@@ -37,7 +37,7 @@ variable "aws_dynamodb_secret_key" {
 }
 
 variable "aws_dynamodb_profile_name" {
-  description = "The name of a profile in /install_dir/jsonar/local/credentials/.aws/credentials to use for authentication. Required for \"profile\" auth_mechanism."
+  description = "The name of a profile in /path/to/JSONAR_LOCALDIR/credentials/.aws/credentials to use for authentication. Required for \"profile\" auth_mechanism."
   type        = string
   default     = null
 }

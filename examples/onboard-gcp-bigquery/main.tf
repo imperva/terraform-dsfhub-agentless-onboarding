@@ -52,7 +52,10 @@ module "service-account" {
   ]
 }
 
-module "gcp-pubsub" {
+################################################################################
+# GCP BigQuery
+################################################################################
+module "gcp-pubsub-1" {
   source = "../../modules/onboard-gcp-pubsub"
 
   gcp_pubsub_admin_email    = local.admin_email
@@ -74,17 +77,53 @@ module "gcp-pubsub" {
   sink_router_name        = local.sink_router_name
 }
 
-################################################################################
-# GCP BigQuery
-################################################################################
 module "gcp-bigquery-1" {
   source = "../../modules/dsfhub-gcp-bigquery"
 
   admin_email               = local.admin_email
-  asset_display_name        = "projects/${local.gcp_project_id}/bigquery"
-  asset_id                  = "projects/${local.gcp_project_id}/bigquery"
+  asset_display_name        = "projects/${local.gcp_project_id}"
+  asset_id                  = "projects/${local.gcp_project_id}"
   audit_pull_enabled        = true
   gateway_id                = local.gateway_id
-  logs_destination_asset_id = module.gcp-pubsub.gcp-pubsub-asset.asset_id
-  pubsub_subscription       = module.gcp-pubsub.gcp-pubsub-asset.asset_id
+  logs_destination_asset_id = module.gcp-pubsub-1.gcp-pubsub-asset.asset_id
+  pubsub_subscription       = module.gcp-pubsub-1.gcp-pubsub-asset.asset_id
+}
+
+################################################################################
+# GCP BigQuery with Slow Query monitoring
+################################################################################
+module "gcp-pubsub-2" {
+  source = "../../modules/onboard-gcp-pubsub"
+
+  gcp_pubsub_admin_email    = local.admin_email
+  gcp_pubsub_audit_type     = "BIGQUERY"
+  gcp_pubsub_auth_mechanism = "service_account"
+  gcp_pubsub_gateway_id     = local.gateway_id
+  gcp_pubsub_key_file       = "/path/to/JSONAR_LOCALDIR/credentials/service-account-private-key.json"
+
+  project = local.gcp_project_id
+
+  pubsub_subscription_name = "${local.pubsub_subscription_name}-slow"
+
+  pubsub_topic_name = "${local.pubsub_topic_name}-slow"
+
+  sink_router_description = "BigQuery sink with slow query monitoring"
+  sink_router_exclusions  = null
+  sink_router_filter      = <<EOF
+    resource.type="bigquery_resource"
+  EOF
+  sink_router_name        = "${local.sink_router_name}-slow"
+}
+
+module "gcp-bigquery-2" {
+  source = "../../modules/dsfhub-gcp-bigquery"
+
+  admin_email               = local.admin_email
+  asset_display_name        = "projects/${local.gcp_project_id}"
+  asset_id                  = "projects/${local.gcp_project_id}"
+  audit_pull_enabled        = true
+  duration_threshold        = 1 # milliseconds
+  gateway_id                = local.gateway_id
+  logs_destination_asset_id = module.gcp-pubsub-2.gcp-pubsub-asset.asset_id
+  pubsub_subscription       = module.gcp-pubsub-2.gcp-pubsub-asset.asset_id
 }

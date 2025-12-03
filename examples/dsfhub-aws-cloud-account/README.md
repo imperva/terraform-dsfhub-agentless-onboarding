@@ -4,10 +4,10 @@ This example covers the various authentication mechanisms that are supported for
 
 | Auth Mechanism | Notes |
 |----------------|-------|
-| default | DSF uses the IAM role attached to the EC2 instance metadata. If there is no IAM role attached, DSF will look for a profile name called ``default`` in the AWS credentials file located at ``${JSONAR_LOCALDIR}/credentials/.aws/credentials``. |
+| default | DSF uses the IAM role attached to the EC2 instance metadata. If there is no IAM role attached, DSF will look for a profile name called ``default`` in the AWS credentials file located at ``/path/to/JSONAR_LOCALDIR/credentials/.aws/credentials``. |
 | iam_role | The DSF machine (either Hub or Agentless Gateway) will assume the role specified in the ``arn`` field. Only supported for DSF machines that are EC2 instances. |
 | key | Uses ``aws_access_key`` and ``aws_secret_key`` to authenticate with the given IAM user access keys. |
-| profile | Uses an AWS profile specified in the ``profile_name`` field and defined in the AWS credentials file located at ``${JSONAR_LOCALDIR}/credentials/.aws/credentials``. | 
+| profile | Uses an AWS profile specified in the ``profile_name`` field and defined in the AWS credentials file located at ``/path/to/JSONAR_LOCALDIR/credentials/.aws/credentials``. | 
 
 More information can be found in the [AWS Asset Specifications](https://docs.imperva.com/bundle/onboarding-databases-to-sonar-reference-guide/page/AWS-Asset-Specifications_35815635.html).
 

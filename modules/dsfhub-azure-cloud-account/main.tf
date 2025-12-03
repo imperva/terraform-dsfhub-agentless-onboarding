@@ -16,7 +16,7 @@ resource "dsfhub_cloud_account" "this" {
   gateway_id         = var.gateway_id
 
   dynamic "asset_connection" {
-    # If auth_mechanism is not defined, do not create a connection
+    # TODO: provider requires one asset_connection block by default
     for_each = var.auth_mechanism != null ? [0] : []
 
     content {

@@ -23,6 +23,7 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_advanced_event_selector"></a> [advanced\_event\_selector](#input\_advanced\_event\_selector) | Specifies an advanced event selector for enabling data event logging. | <pre>list(<br>    object(<br>      {<br>        name = string<br>        field_selector = list(<br>          object(<br>            {<br>              field           = string<br>              equals          = optional(list(string))<br>              starts_with     = optional(list(string))<br>              ends_with       = optional(list(string))<br>              not_equals      = optional(list(string))<br>              not_starts_with = optional(list(string))<br>              not_ends_with   = optional(list(string))<br>            }<br>          )<br>        )<br>      }<br>    )<br>  )</pre> | `null` | no |
 | <a name="input_cloud_watch_logs_group_arn"></a> [cloud\_watch\_logs\_group\_arn](#input\_cloud\_watch\_logs\_group\_arn) | The ARN of the CloudWatch log group to which CloudTrail logs will be delivered. | `string` | `null` | no |
 | <a name="input_cloud_watch_logs_role_arn"></a> [cloud\_watch\_logs\_role\_arn](#input\_cloud\_watch\_logs\_role\_arn) | The ARN of the IAM role that CloudTrail assumes to write to the CloudWatch log group. | `string` | `null` | no |
 | <a name="input_enable_logging"></a> [enable\_logging](#input\_enable\_logging) | Enables logging for the trail. Setting this to "false" will pause logging. | `bool` | `true` | no |

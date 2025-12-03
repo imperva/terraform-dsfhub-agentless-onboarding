@@ -31,7 +31,7 @@ variable "aws_dynamodb_iam_role_name" {
 }
 
 variable "aws_dynamodb_profile_name" {
-  description = "The name of a profile in /install_dir/jsonar/local/credentials/.aws/credentials to use for authenticating"
+  description = "The name of a profile in /path/to/JSONAR_LOCALDIR/credentials/.aws/credentials to use for authenticating"
   type        = string
   default     = null
 }

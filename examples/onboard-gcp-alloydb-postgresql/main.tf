@@ -2,6 +2,7 @@ locals {
   admin_email           = "test@example.com"
   gateway_id            = "a1b2c3d4-e5f6-g8h9-wxyz-123456790"
   pubsub_auth_mechanism = "service_account"
+  pubsub_key_file_path  = "/path/to/JSONAR_LOCALDIR/credentials/service-account-private-key.json"
 
   gcp_alloydb_instance_name_dsf_419    = "tf-alloydb-dsf-419"
   gcp_alloydb_instance_name_dsf_150    = "tf-alloydb-dsf-150"
@@ -113,7 +114,7 @@ module "gcp-pubsub-1" {
   gcp_pubsub_audit_type     = "ALLOYDB_POSTGRESQL"
   gcp_pubsub_auth_mechanism = local.pubsub_auth_mechanism
   gcp_pubsub_gateway_id     = local.gateway_id
-  gcp_pubsub_key_file       = "/path/to/JSONAR_LOCALDIR/credentials/service-account-private-key.json"
+  gcp_pubsub_key_file       = local.pubsub_key_file_path
 
   project = local.gcp_project_id
 
@@ -184,7 +185,7 @@ resource "terraform_data" "configure_database_1" {
 }
 
 ################################################################################
-# GCP AlloyDB for PostgreSQL (15) for DSF version 15.0 with 2 read pools
+# GCP AlloyDB for PostgreSQL (15) for DSF version 15.0+ with 2 read pools
 ################################################################################
 module "gcp-pubsub-2" {
   source = "../../modules/onboard-gcp-pubsub"
@@ -193,7 +194,7 @@ module "gcp-pubsub-2" {
   gcp_pubsub_audit_type     = "ALLOYDB_POSTGRESQL"
   gcp_pubsub_auth_mechanism = local.pubsub_auth_mechanism
   gcp_pubsub_gateway_id     = local.gateway_id
-  gcp_pubsub_key_file       = "/path/to/JSONAR_LOCALDIR/credentials/service-account-private-key.json"
+  gcp_pubsub_key_file       = local.pubsub_key_file_path
 
   project = local.gcp_project_id
 
@@ -201,7 +202,7 @@ module "gcp-pubsub-2" {
 
   pubsub_topic_name = "${local.gcp_alloydb_instance_name_dsf_150}-topic"
 
-  sink_router_description = "AlloyDB for PostgreSQL sink for DSF version 15.0"
+  sink_router_description = "AlloyDB for PostgreSQL sink for DSF version 15.0 and above"
   sink_router_exclusions  = null
   sink_router_filter      = <<EOF
     resource.labels.cluster_id="${local.cluster_id_dsf_150}" AND
@@ -268,8 +269,8 @@ resource "terraform_data" "configure_database_2" {
 # GCP AlloyDB for PostgreSQL (15) with Slow Query Monitoring
 #   Note that slow query monitoring is only supported for DSF version 15.0 and
 #   later, and requires the log_line_prefix flag.
-#   Modify the log_min_duration_statement flag to set the desired threshold for 
-#   slow queries.
+#   Modify the log_min_duration_statement flag in the locals at the top of this 
+#   file to set the desired threshold for slow queries.
 ################################################################################
 module "gcp-pubsub-3" {
   source = "../../modules/onboard-gcp-pubsub"
@@ -278,7 +279,7 @@ module "gcp-pubsub-3" {
   gcp_pubsub_audit_type     = "ALLOYDB_POSTGRESQL"
   gcp_pubsub_auth_mechanism = local.pubsub_auth_mechanism
   gcp_pubsub_gateway_id     = local.gateway_id
-  gcp_pubsub_key_file       = "/path/to/JSONAR_LOCALDIR/credentials/service-account-private-key.json"
+  gcp_pubsub_key_file       = local.pubsub_key_file_path
 
   project = local.gcp_project_id
 

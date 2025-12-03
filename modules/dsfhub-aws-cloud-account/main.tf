@@ -6,7 +6,7 @@ terraform {
   }
 }
 
-resource "dsfhub_cloud_account" "aws" {
+resource "dsfhub_cloud_account" "this" {
   server_type = "AWS"
 
   admin_email        = var.admin_email

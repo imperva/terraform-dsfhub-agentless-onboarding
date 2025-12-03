@@ -8,8 +8,7 @@ The following table lists the DSF versions against which each module is tested a
    <th>DSF Versions</th>
    <th>Notes</th>
   </tr>
-
-   <tr>
+  <tr>
       <td>Amazon DocumentDB</td>
       <td><a href="https://github.com/imperva/terraform-dsfhub-agentless-onboarding/tree/main/modules/onboard-aws-docdb-cluster">onboard-aws-docdb-cluster</a></td>
       <td>4.17+</td>
@@ -76,12 +75,6 @@ The following table lists the DSF versions against which each module is tested a
       <td></td>
    </tr>
    <tr>
-      <td>Amazon RDS for SQL Server</td>
-      <td><a href="https://github.com/imperva/terraform-dsfhub-agentless-onboarding/tree/main/modules/onboard-aws-rds-ms-sql-server">onboard-aws-rds-ms-sql-server</a></td>
-      <td>4.17+</td>
-      <td>Supports many-to-one monitoring</td>
-   </tr>
-      <tr>
       <td>Amazon RDS for MySQL</td>
       <td><a href="https://github.com/imperva/terraform-dsfhub-agentless-onboarding/tree/main/modules/onboard-aws-rds-mysql">onboard-aws-rds-mysql</a></td>
       <td>4.16+</td>
@@ -118,6 +111,12 @@ The following table lists the DSF versions against which each module is tested a
       <td>Supports slow query monitoring and aggregated queries</td>
    </tr>
    <tr>
+      <td>Amazon RDS for SQL Server</td>
+      <td><a href="https://github.com/imperva/terraform-dsfhub-agentless-onboarding/tree/main/modules/onboard-aws-rds-ms-sql-server">onboard-aws-rds-ms-sql-server</a></td>
+      <td>4.17+</td>
+      <td>Supports many-to-one monitoring</td>
+   </tr>
+   <tr>
       <td>Amazon Redshift via ODBC</td>
       <td><a href="https://github.com/imperva/terraform-dsfhub-agentless-onboarding/tree/main/modules/onboard-aws-redshift-odbc">onboard-aws-redshift-odbc</a></td>
       <td>4.17+</td>
@@ -148,12 +147,6 @@ The following table lists the DSF versions against which each module is tested a
       <td>Supports many-to-one monitoring</td>
    </tr>
    <tr>
-      <td>Azure MS SQL Server</td>
-      <td><a href="https://github.com/imperva/terraform-dsfhub-agentless-onboarding/tree/main/modules/onboard-azure-ms-sql-server">onboard-azure-ms-sql-server</a></td>
-      <td>4.17+</td>
-      <td>Supports many-to-one monitoring</td>
-   </tr>
-   <tr>
       <td>Azure Database for MySQL Flexible Server</td>
       <td><a href="https://github.com/imperva/terraform-dsfhub-agentless-onboarding/tree/main/modules/onboard-azure-mysql-flexible">onboard-azure-mysql-flexible</a></td>
       <td>15.0+</td>
@@ -172,16 +165,22 @@ The following table lists the DSF versions against which each module is tested a
       <td></td>
    </tr>
    <tr>
+      <td>Azure MS SQL Server</td>
+      <td><a href="https://github.com/imperva/terraform-dsfhub-agentless-onboarding/tree/main/modules/onboard-azure-ms-sql-server">onboard-azure-ms-sql-server</a></td>
+      <td>4.17+</td>
+      <td>Supports many-to-one monitoring</td>
+   </tr>
+   <tr>
+      <td>GCP AlloyDB for PostgreSQL</td>
+      <td><a href="https://github.com/imperva/terraform-dsfhub-agentless-onboarding/tree/main/modules/onboard-gcp-alloydb-postgresql">onboard-gcp-alloydb-postgresql</a></td>
+      <td>4.19+</td>
+      <td>Includes examples for one-to-one, many-to-one and slow query monitoring</td>
+   </tr>
+   <tr>
       <td>GCP Bigquery (example module)</td>
       <td><a href="https://github.com/imperva/terraform-dsfhub-agentless-onboarding/tree/main/examples/onboard-gcp-bigquery">onboard-gcp-bigquery</a></td>
       <td>4.17+</td>
-      <td>Does not support resource management, only onboarding of the asset</td>
-   </tr>
-   <tr>
-      <td>GCP Cloud SQL for SQL Server</td>
-      <td><a href="https://github.com/imperva/terraform-dsfhub-agentless-onboarding/tree/main/modules/onboard-gcp-ms-sql-server">onboard-gcp-ms-sql-server</a></td>
-      <td>4.17+</td>
-      <td>Supports many-to-one monitoring</td>
+      <td>Does not support resource management, only onboarding of the asset. Includes example for slow query monitoring</td>
    </tr>
    <tr>
       <td>GCP Cloud SQL for MySQL</td>
@@ -195,17 +194,16 @@ The following table lists the DSF versions against which each module is tested a
       <td>4.17+</td>
       <td>Supports slow query and many-to-one monitoring</td>
    </tr>
+      <tr>
+      <td>GCP Cloud SQL for SQL Server</td>
+      <td><a href="https://github.com/imperva/terraform-dsfhub-agentless-onboarding/tree/main/modules/onboard-gcp-ms-sql-server">onboard-gcp-ms-sql-server</a></td>
+      <td>4.17+</td>
+      <td>Supports many-to-one monitoring</td>
+   </tr>
    <tr>
       <td>GCP Spanner</td>
       <td><a href="https://github.com/imperva/terraform-dsfhub-agentless-onboarding/tree/main/modules/onboard-gcp-spanner">onboard-gcp-spanner</a></td>
       <td>4.19+</td>
       <td>Supports slow query monitoring, includes examples for one-to-one and many-to-one monitoring</td>
    </tr>
-      <tr>
-      <td>GCP AlloyDB for PostgreSQL</td>
-      <td><a href="https://github.com/imperva/terraform-dsfhub-agentless-onboarding/tree/main/modules/onboard-gcp-alloydb-postgresql">onboard-gcp-alloydb-postgresql</a></td>
-      <td>4.19+</td>
-      <td>Includes examples for one-to-one, many-to-one and slow query monitoring</td>
-   </tr>
-
 </table>

@@ -159,8 +159,8 @@ module "aws-dynamodb-asset" {
 
   access_id          = var.aws_dynamodb_access_id
   admin_email        = var.aws_dynamodb_admin_email
-  asset_display_name = "arn:${data.aws_partition.current.partition}:dynamodb:${data.aws_caller_identity.current.account_id}"
-  asset_id           = "arn:${data.aws_partition.current.partition}:dynamodb:${data.aws_caller_identity.current.account_id}"
+  asset_display_name = "arn:${data.aws_partition.current.partition}:dynamodb:${data.aws_region.current.region}:${data.aws_caller_identity.current.account_id}"
+  asset_id           = "arn:${data.aws_partition.current.partition}:dynamodb:${data.aws_region.current.region}:${data.aws_caller_identity.current.account_id}"
   audit_type         = "LOG_GROUP"
   auth_mechanism     = var.aws_dynamodb_auth_mechanism
   gateway_id         = var.aws_dynamodb_gateway_id

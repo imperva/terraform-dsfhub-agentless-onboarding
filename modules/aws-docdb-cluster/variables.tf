@@ -74,6 +74,12 @@ variable "skip_final_snapshot" {
   default     = true
 }
 
+variable "storage_encrypted" {
+  description = "Specifies whether the DB cluster is encrypted. Defaults to true."
+  type        = bool
+  default     = true
+}
+
 variable "storage_type" {
   description = "The storage type to associate with the DB cluster."
   type        = string

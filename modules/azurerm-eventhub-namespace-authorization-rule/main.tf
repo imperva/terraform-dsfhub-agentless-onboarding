@@ -1,6 +1,9 @@
 resource "azurerm_eventhub_namespace_authorization_rule" "this" {
   lifecycle {
-    # todo: add precondition ensuring atleast one of manage, send, listen is defined
+    precondition {
+      condition     = var.manage == true || var.listen == true || var.send == true
+      error_message = "At least one of manage, listen, or send must be set to true."
+    }
 
     precondition {
       condition     = var.manage == true ? (var.listen == true && var.send == true) : true

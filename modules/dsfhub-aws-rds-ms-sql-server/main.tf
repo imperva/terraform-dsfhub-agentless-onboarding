@@ -23,5 +23,5 @@ resource "dsfhub_data_source" "this" {
   server_host_name          = var.server_host_name
   server_port               = var.server_port
   service_name              = "MSSQLSERVER"
-  version                   = var.db_engine_version
+  asset_version             = var.db_engine_version
 }

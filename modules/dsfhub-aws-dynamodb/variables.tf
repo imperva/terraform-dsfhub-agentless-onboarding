@@ -89,7 +89,7 @@ variable "server_port" {
 }
 
 variable "username" {
-  description = "The name of a profile in /install_dir/jsonar/local/credentials/.aws/credentials to use for authenticating"
+  description = "The name of a profile in /path/to/JSONAR_LOCALDIR/credentials/.aws/credentials to use for authenticating"
   type        = string
   default     = null
 }

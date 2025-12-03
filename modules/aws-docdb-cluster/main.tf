@@ -14,6 +14,7 @@ resource "aws_docdb_cluster" "this" {
   master_username                 = var.master_username
   port                            = var.port
   skip_final_snapshot             = var.skip_final_snapshot
+  storage_encrypted               = var.storage_encrypted
   storage_type                    = var.storage_type
   tags                            = var.tags
   vpc_security_group_ids          = var.vpc_security_group_ids

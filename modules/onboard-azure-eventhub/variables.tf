@@ -3,6 +3,34 @@ variable "azure_eventhub_admin_email" {
   type        = string
 }
 
+variable "azure_eventhub_application_id" {
+  description = "Also referred to as the Client ID this is the unique identifier for the registered application being used to execute Python SDK commands against Azure’s API services. You can find this number under Azure Active Directory -> App Registrations -> Owned Applications."
+  type        = string
+  default     = null
+}
+
+variable "azure_eventhub_auth_mechanism" {
+  description = "Specifies the auth mechanism used by the connection. Possible values are: default, client_secret, or azure_ad. Defaults to default."
+  type        = string
+  default     = "default"
+  validation {
+    condition     = contains(["default", "client_secret", "azure_ad"], var.azure_eventhub_auth_mechanism)
+    error_message = "Invalid auth_mechanism. Possible values are: default, client_secret, or azure_ad."
+  }
+}
+
+variable "azure_eventhub_client_secret" {
+  description = "This a string containing a secret used by the application to prove its identity when requesting a token. You can get a secret by going to Azure Active Directory -> App Registrations -> Owned Applications, selecting the desired application and then going to Certificates & secrets -> Client secrets -> + New client secret"
+  type        = string
+  default     = null
+}
+
+variable "azure_eventhub_directory_id" {
+  description = "Also referred to as the Tenant ID and is a GUID representing the Active Directory Tenant. It can be found in the Azure Active Directory page under the Azure portal"
+  type        = string
+  default     = null
+}
+
 variable "azure_eventhub_format" {
   description = "The type of audit data being sent to the Event Hub. Possible values are: AzureSQL_Managed, Blob, Cosmos_Mongo, Cosmos_SQL, Cosmos_Table, Data_Explorer, Databricks_Workspace, File, Mariadb, Mysql, Mysql_Flexible, Postgresql, Postgresql_Flexible, Queue, Sql, Synapse, Table. Defaults to Sql."
   type        = string
@@ -47,6 +75,18 @@ variable "azure_eventhub_parent_asset_id" {
 
 variable "azure_eventhub_region" {
   description = "Azure region containing the Event Hub."
+  type        = string
+  default     = null
+}
+
+variable "azure_eventhub_subscription_id" {
+  description = "This is the Azure account subscription ID. You can find this number under the Subscriptions page on the Azure portal. Required when using client_secret auth mechanism."
+  type        = string
+  default     = null
+}
+
+variable "azure_eventhub_user_identity_client_id" {
+  description = "The client ID of a user-assigned managed identity. Defaults to the value of the environment variable AZURE_CLIENT_ID, if any. If not specified, a system-assigned identity will be used."
   type        = string
   default     = null
 }
