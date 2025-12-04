@@ -6,13 +6,13 @@ More information can be found in the [HashiCorp Vault Integration Steps](https:/
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_dsfhub"></a> [dsfhub](#requirement\_dsfhub) | >= 1.3.8 |
+| <a name="requirement_dsfhub"></a> [dsfhub](#requirement\_dsfhub) | >= 1.4.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_dsfhub"></a> [dsfhub](#provider\_dsfhub) | >= 1.3.8 |
+| <a name="provider_dsfhub"></a> [dsfhub](#provider\_dsfhub) | >= 1.4.0 |
 
 ## Modules
 
