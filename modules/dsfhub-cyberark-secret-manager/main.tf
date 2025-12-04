@@ -1,7 +1,8 @@
 terraform {
   required_providers {
     dsfhub = {
-      source = "imperva/dsfhub"
+      source  = "imperva/dsfhub"
+      version = ">= 1.4.0"
     }
   }
 }
