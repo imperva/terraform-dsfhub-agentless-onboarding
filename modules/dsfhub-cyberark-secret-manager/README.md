@@ -4,13 +4,15 @@ More information can be found in the [CyberArk Integration Steps](https://docs-c
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
-No requirements.
+| Name | Version |
+|------|---------|
+| <a name="requirement_dsfhub"></a> [dsfhub](#requirement\_dsfhub) | >= 1.4.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_dsfhub"></a> [dsfhub](#provider\_dsfhub) | n/a |
+| <a name="provider_dsfhub"></a> [dsfhub](#provider\_dsfhub) | >= 1.4.0 |
 
 ## Modules
 
